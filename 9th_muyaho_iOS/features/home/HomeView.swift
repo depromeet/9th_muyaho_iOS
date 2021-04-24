@@ -12,7 +12,7 @@ class HomeView: BaseView {
     let refreshButton: UIButton = {
         let button = UIButton()
         
-        button.setImage(UIImage(named: "ic_refresh"), for: .normal)
+        button.setImage(.refresh, for: .normal)
         return button
     }()
     

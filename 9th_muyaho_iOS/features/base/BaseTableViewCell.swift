@@ -15,6 +15,7 @@ class BaseTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         self.disposeBag = DisposeBag()
     }
     
