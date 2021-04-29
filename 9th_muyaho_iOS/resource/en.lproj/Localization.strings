@@ -1,0 +1,10 @@
+/* 
+  Localization.strings
+  9th_muyaho_iOS
+
+  Created by Hyun Sik Yoo on 2021/04/29.
+  
+*/
+
+"sign_in_with_kakao" = "카카오 계정으로 계속하기";
+"sign_in_with_apple" = "애플 아이디로 계속하기";

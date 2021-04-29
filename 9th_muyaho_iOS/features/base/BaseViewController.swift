@@ -12,12 +12,17 @@ import RxCocoa
 class BaseViewController: UIViewController {
     
     var disposeBag = DisposeBag()
+    let eventDisposeBag = DisposeBag()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupView()
         self.bindEvent()
     }
+    
+    func setupView() { }
     
     func bindEvent() { }
 }

@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Then
 
 class BaseView: UIView {
     
@@ -16,6 +17,7 @@ class BaseView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         self.setup()
         self.bindConstraints()
     }

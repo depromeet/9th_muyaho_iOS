@@ -12,6 +12,9 @@ target '9th_muyaho_iOS' do
   pod 'RxCocoa', '~> 5'
   pod 'Kingfisher', '~> 5.0'
   pod 'Alamofire', '~> 5.2'
+  pod 'Then'
+  pod 'RxKakaoSDKAuth'
+  pod 'RxKakaoSDKUser'
   
   target '9th_muyaho_iOSTests' do
     inherit! :search_paths
