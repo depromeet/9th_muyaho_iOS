@@ -32,7 +32,7 @@ class SignInView: BaseView {
     }
     
     override func setup() {
-        self.backgroundColor = .sub_black_B1
+        self.backgroundColor = .sub_black_b1
         self.addSubviews(kakaoButton, appleButton)
     }
     

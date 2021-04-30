@@ -66,6 +66,8 @@ class SignInViewController: BaseViewController, View {
     }
     
     private func pushSignUpViewController(accessToken: AccessToken) {
-        // TODO: 회원가입 화면 구현 후 연결!
+        let signUpViewController = SignUpViewController.instance(accessToken: accessToken)
+        
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }

@@ -14,7 +14,7 @@ extension UIFont {
     static let h3_30B = UIFont(name: "SpoqaHanSansNeo-Bold", size: 30)
     static let h3_30L = UIFont(name: "SpoqaHanSansNeo-Light", size: 30)
     static let subtitle1_24 = UIFont(name: "SpoqaHanSansNeo-Bold", size: 24)
-    static let subtitle2_1B = UIFont(name: "SpoqaHanSansNeo-Medium", size: 18)
+    static let subtitle2_18 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 18)
     static let body1_16 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 16)
     static let body2_14 = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
     static let body2_14B = UIFont(name: "SpoqaHanSansNeo-Bold", size: 14)

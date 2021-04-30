@@ -12,7 +12,6 @@ import ReactorKit
 class SignInReactor: Reactor {
     
     var initialState = State()
-    let disposeBag = DisposeBag()
     let kakaoManager: SigninManagerProtocol
     let appleManager: SigninManagerProtocol
     

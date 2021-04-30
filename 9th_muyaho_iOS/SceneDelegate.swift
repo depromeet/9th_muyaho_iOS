@@ -17,10 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: scene.coordinateSpace.bounds)
-        window?.windowScene = scene
-        window?.rootViewController = SignInViewController.instance()
-        window?.makeKeyAndVisible()
+        self.window = UIWindow(frame: scene.coordinateSpace.bounds)
+        self.window?.windowScene = scene
+        self.goToSignIn()
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -29,6 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 _ = AuthController.rx.handleOpenUrl(url: url)
             }
         }
+    }
+    
+    private func goToSignIn() {
+        let signInViewController = SignInViewController.instance()
+        let navigationController = UINavigationController(rootViewController: signInViewController).then {
+            $0.setNavigationBarHidden(true, animated: false)
+        }
+        
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
     }
 
 }

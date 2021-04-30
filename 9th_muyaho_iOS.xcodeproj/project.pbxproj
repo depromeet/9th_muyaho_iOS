@@ -11,6 +11,7 @@
 		6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E40DDFB263448060003E4AD /* UIImageExtensions.swift */; };
 		6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A12638625B00103948 /* SignInViewController.swift */; };
 		6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A32638655B00103948 /* SignInReactor.swift */; };
+		6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */; };
 		6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E6DF62639AFF70061AB4A /* KakaoSignInManager.swift */; };
 		6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E6DF82639B1320061AB4A /* AppleSignInManager.swift */; };
 		6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ED81E26385FD400DC0C10 /* SignInView.swift */; };
@@ -30,6 +31,10 @@
 		6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAD4263AC73800ACC332 /* SignInManagerProtocol.swift */; };
 		6EABBADC263AD2C900ACC332 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EABBADE263AD2C900ACC332 /* Localization.strings */; };
 		6EABBAE0263AD2DE00ACC332 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */; };
+		6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE3263AF5B500ACC332 /* SignUpView.swift */; };
+		6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */; };
+		6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */; };
+		6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */; };
 		75EB274A7463C18CD6356549 /* Pods_9th_muyaho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A99F53BEF14AA289056FC2 /* Pods_9th_muyaho_iOS.framework */; };
 		A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5754B4A2625B6C200B6E8A1 /* AppDelegate.swift */; };
 		A5754B4D2625B6C200B6E8A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5754B4C2625B6C200B6E8A1 /* SceneDelegate.swift */; };
@@ -68,6 +73,7 @@
 		6E40DDFB263448060003E4AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		6E4FE4A12638625B00103948 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6E4FE4A32638655B00103948 /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
+		6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		6E6E6DF62639AFF70061AB4A /* KakaoSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoSignInManager.swift; sourceTree = "<group>"; };
 		6E6E6DF82639B1320061AB4A /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
 		6E7ED81E26385FD400DC0C10 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -87,6 +93,10 @@
 		6EABBAD4263AC73800ACC332 /* SignInManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInManagerProtocol.swift; sourceTree = "<group>"; };
 		6EABBADD263AD2C900ACC332 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
 		6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6EABBAE3263AF5B500ACC332 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpReactor.swift; sourceTree = "<group>"; };
+		6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyExistedNicknameView.swift; sourceTree = "<group>"; };
 		6EF07EFF26393349004FBE8F /* 9th_muyaho_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 9th_muyaho_iOS.entitlements; sourceTree = "<group>"; };
 		78331A75FFCFDE917BECB028 /* Pods-9th_muyaho_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9th_muyaho_iOSTests.release.xcconfig"; path = "Target Support Files/Pods-9th_muyaho_iOSTests/Pods-9th_muyaho_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A5B3A6B5E869E13AFFE890C /* Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests/Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +150,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E540A3C263BBF6300AAD4B0 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
 		6E7ED81D26385F9A00DC0C10 /* sign-in */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +238,26 @@
 			path = "sign-in";
 			sourceTree = "<group>";
 		};
+		6EABBAE1263AF58A00ACC332 /* membership */ = {
+			isa = PBXGroup;
+			children = (
+				6EABBAE2263AF59100ACC332 /* sign-up */,
+				6E7ED81D26385F9A00DC0C10 /* sign-in */,
+			);
+			path = membership;
+			sourceTree = "<group>";
+		};
+		6EABBAE2263AF59100ACC332 /* sign-up */ = {
+			isa = PBXGroup;
+			children = (
+				6EABBAE3263AF5B500ACC332 /* SignUpView.swift */,
+				6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */,
+				6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */,
+				6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */,
+			);
+			path = "sign-up";
+			sourceTree = "<group>";
+		};
 		87FCFDC4CDCDE6F10EB1AB73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +329,8 @@
 		A5754BA32625BB6200B6E8A1 /* features */ = {
 			isa = PBXGroup;
 			children = (
-				6E7ED81D26385F9A00DC0C10 /* sign-in */,
+				6E540A3C263BBF6300AAD4B0 /* shared */,
+				6EABBAE1263AF58A00ACC332 /* membership */,
 				6E801CC2262C1C260081E68A /* home */,
 				A5754BAD2625BC2100B6E8A1 /* base */,
 				A5754BA42625BB7000B6E8A1 /* tabbar */,
@@ -576,7 +615,10 @@
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
+				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
+				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
 				6E817597263835390050FFC7 /* UIFontExtensions.swift in Sources */,
+				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
 				6EABBACF263A954100ACC332 /* SocialType.swift in Sources */,
 				A5754BAF2625BC6B00B6E8A1 /* BaseView.swift in Sources */,
@@ -589,6 +631,8 @@
 				6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */,
 				6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
+				6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */,
+				6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */,
 				6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */,
 				6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */,
 				6E801CD2262C1D810081E68A /* UIViewExtensions.swift in Sources */,
