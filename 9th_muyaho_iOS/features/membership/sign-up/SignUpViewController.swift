@@ -15,7 +15,7 @@ class SignUpViewController: BaseViewController, View {
     private let signUpReactor: SignUpReactor
     
     
-    init(accessToken: AccessToken) {
+    init(accessToken: AuthRequest) {
         self.signUpReactor = SignUpReactor(accessToken: accessToken)
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,7 +24,7 @@ class SignUpViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instance(accessToken: AccessToken) -> SignUpViewController {
+    static func instance(accessToken: AuthRequest) -> SignUpViewController {
         return SignUpViewController(accessToken: accessToken)
     }
     

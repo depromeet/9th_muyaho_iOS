@@ -11,7 +11,7 @@ target '9th_muyaho_iOS' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'Kingfisher', '~> 5.0'
-  pod 'Alamofire', '~> 5.2'
+  pod 'RxAlamofire'
   pod 'Then'
   pod 'RxKakaoSDKAuth'
   pod 'RxKakaoSDKUser'

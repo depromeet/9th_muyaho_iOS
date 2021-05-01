@@ -12,7 +12,7 @@ import ReactorKit
 class SignUpReactor: Reactor {
     
     var initialState = State()
-    let accessToken: AccessToken
+    let accessToken: AuthRequest
     
     enum Action {
         case inputNickname(String)
@@ -30,7 +30,7 @@ class SignUpReactor: Reactor {
     }
     
     
-    init(accessToken: AccessToken) {
+    init(accessToken: AuthRequest) {
         self.accessToken = accessToken
     }
     

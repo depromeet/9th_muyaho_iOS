@@ -14,14 +14,14 @@ import RxSwift
 class KakaoSignInManager: SigninManagerProtocol {
     
     private let disposeBag = DisposeBag()
-    let publisher = PublishSubject<AccessToken>()
+    let publisher = PublishSubject<AuthRequest>()
     
     
     deinit {
         self.publisher.onCompleted()
     }
     
-    func signIn() -> Observable<AccessToken> {
+    func signIn() -> Observable<AuthRequest> {
         if UserApi.isKakaoTalkLoginAvailable() {
             self.signInWithKakaoTalk()
         } else {
@@ -33,7 +33,7 @@ class KakaoSignInManager: SigninManagerProtocol {
     private func signInWithKakaoTalk() {
         UserApi.shared.rx.loginWithKakaoTalk()
             .subscribe { authToken in
-                let accessToken = AccessToken(type: .kakao, token: authToken.accessToken)
+                let accessToken = AuthRequest(provider: .kakao, token: authToken.accessToken)
                 
                 self.publisher.onNext(accessToken)
             } onError: { error in
@@ -60,7 +60,7 @@ class KakaoSignInManager: SigninManagerProtocol {
     private func signInWithKakaoAccount() {
         UserApi.shared.rx.loginWithKakaoAccount()
             .subscribe { authToken in
-                let accessToken = AccessToken(type: .kakao, token: authToken.accessToken)
+                let accessToken = AuthRequest(provider: .kakao, token: authToken.accessToken)
                 
                 self.publisher.onNext(accessToken)
             } onError: { error in

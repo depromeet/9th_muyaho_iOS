@@ -10,14 +10,14 @@ import RxSwift
 
 class AppleSignInManager: NSObject, SigninManagerProtocol {
     
-    let publisher: PublishSubject<AccessToken> = PublishSubject<AccessToken>()
+    let publisher: PublishSubject<AuthRequest> = PublishSubject<AuthRequest>()
 
     
     deinit {
         self.publisher.onCompleted()
     }
     
-    func signIn() -> Observable<AccessToken> {
+    func signIn() -> Observable<AuthRequest> {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         
@@ -64,7 +64,7 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
     ) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
            let accessToken = String(data: appleIDCredential.identityToken!, encoding: .utf8) {
-            self.publisher.onNext( AccessToken(type: .apple, token: accessToken))
+            self.publisher.onNext( AuthRequest(provider: .apple, token: accessToken))
         } else {
             let signInError = CommonError(description: "credential is not ASAuthorizationAppleIDCredential")
             

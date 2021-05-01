@@ -47,7 +47,7 @@ class LargeButton: UIButton {
         UIView.transition(with: self, duration: 0.3, options: .curveEaseInOut) { [weak self] in
             guard let self = self else { return }
             if theme == .white {
-                self.backgroundColor = self.isEnabled ? .sub_white_w2 : .sub_white_w2.withAlphaComponent(0.4)
+                self.backgroundColor = self.isEnabled ? .sub_white_w2 : UIColor.sub_white_w2.withAlphaComponent(0.4)
             } else {
                 self.backgroundColor = self.isEnabled ? .primary_default : UIColor(r: 45, g: 36, b: 125)
             }

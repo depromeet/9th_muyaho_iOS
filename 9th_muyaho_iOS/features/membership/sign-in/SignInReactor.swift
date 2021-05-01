@@ -21,12 +21,12 @@ class SignInReactor: Reactor {
     }
     
     enum Mutation {
-        case setAuthToken(AccessToken)
+        case setAuthRequest(AuthRequest)
         case showAlert(String)
     }
     
     struct State {
-        var accessToken: AccessToken?
+        var authRequest: AuthRequest?
         var alertMessage: String?
     }
     
@@ -40,11 +40,11 @@ class SignInReactor: Reactor {
         switch action {
         case .tapKakaoButton:
             return self.kakaoManager.signIn()
-                .map { Mutation.setAuthToken($0) }
+                .map { Mutation.setAuthRequest($0) }
                 .catchError(self.handleSignInError(error:))
         case .tapAppleButton:
             return self.appleManager.signIn()
-                .map { Mutation.setAuthToken($0) }
+                .map { Mutation.setAuthRequest($0) }
                 .catchError(self.handleSignInError(error:))
         }
     }
@@ -53,8 +53,8 @@ class SignInReactor: Reactor {
         var newState = state
         
         switch mutation {
-        case .setAuthToken(let accessToken):
-            newState.accessToken = accessToken
+        case .setAuthRequest(let authToken):
+            newState.authRequest = authToken
         case .showAlert(let message):
             newState.alertMessage = message
         }

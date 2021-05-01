@@ -9,7 +9,7 @@ import RxSwift
 
 protocol SigninManagerProtocol {
     
-    var publisher: PublishSubject<AccessToken> { get }
+    var publisher: PublishSubject<AuthRequest> { get }
     
-    func signIn() -> Observable<AccessToken>
+    func signIn() -> Observable<AuthRequest>
 }

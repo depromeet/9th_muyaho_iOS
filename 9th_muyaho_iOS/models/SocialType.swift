@@ -5,8 +5,8 @@
 //  Created by Hyun Sik Yoo on 2021/04/29.
 //
 
-enum SocialType {
+enum SocialType: String, Encodable {
     
-    case kakao
-    case apple
+    case kakao = "KAKAO"
+    case apple = "APPLE"
 }

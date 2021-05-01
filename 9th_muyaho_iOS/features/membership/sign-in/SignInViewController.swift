@@ -49,10 +49,10 @@ class SignInViewController: BaseViewController, View {
         
         // Bind State
         reactor.state
-            .map { $0.accessToken }
+            .map { $0.authRequest }
             .compactMap { $0 }
             .distinctUntilChanged()
-            .bind(onNext: self.pushSignUpViewController(accessToken:))
+            .bind(onNext: self.pushSignUpViewController(authRequest:))
             .disposed(by: self.disposeBag)
         
         reactor.state
@@ -65,8 +65,8 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
     }
     
-    private func pushSignUpViewController(accessToken: AccessToken) {
-        let signUpViewController = SignUpViewController.instance(accessToken: accessToken)
+    private func pushSignUpViewController(authRequest: AuthRequest) {
+        let signUpViewController = SignUpViewController.instance(accessToken: authRequest)
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
