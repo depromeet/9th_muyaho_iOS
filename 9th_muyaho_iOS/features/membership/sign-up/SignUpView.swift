@@ -108,6 +108,8 @@ class SignUpView: BaseView {
     }
     
     private func setDividorColor(isNicknameEmpty: Bool) {
-        self.dividorView.backgroundColor = isNicknameEmpty ? UIColor(r: 177, g: 167, b: 255) : .sub_white_w2
+        UIView.transition(with: self.dividorView, duration: 0.3, options: .curveEaseInOut) { [weak self] in
+            self?.dividorView.backgroundColor = isNicknameEmpty ? UIColor(r: 177, g: 167, b: 255) : .sub_white_w2
+        }
     }
 }
