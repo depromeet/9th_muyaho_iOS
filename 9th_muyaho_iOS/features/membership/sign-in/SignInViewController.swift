@@ -49,7 +49,6 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         // Bind State
-        
         reactor.state
             .map { $0.sessionId }
             .compactMap { $0 }
@@ -63,10 +62,10 @@ class SignInViewController: BaseViewController, View {
         reactor.state
             .map { $0.signUpFlag }
             .filter { $0 == true }
+            .distinctUntilChanged()
             .map { _ in reactor.authRequest }
             .bind(onNext: self.pushSignUpViewController(authRequest:))
             .disposed(by: self.disposeBag)
-            
         
         reactor.state
             .map { $0.alertMessage }

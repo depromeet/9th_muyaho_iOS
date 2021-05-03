@@ -16,7 +16,7 @@ class SignUpViewController: BaseViewController, View {
     
     
     init(accessToken: AuthRequest) {
-        self.signUpReactor = SignUpReactor(accessToken: accessToken)
+        self.signUpReactor = SignUpReactor(accessToken: accessToken, membershipService: MembershipService())
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -70,6 +70,14 @@ class SignUpViewController: BaseViewController, View {
             .map { $0.isSignUpButtonEnable }
             .distinctUntilChanged()
             .bind(to: self.signUpView.signUpButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        self.signUpReactor.state
+            .compactMap { $0.sessionId }
+            .distinctUntilChanged()
+            .bind { sessionId in
+                print("sessionId: \(sessionId)")
+            }
             .disposed(by: self.disposeBag)
     }
     

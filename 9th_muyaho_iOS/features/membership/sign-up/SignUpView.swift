@@ -52,6 +52,7 @@ class SignUpView: BaseView {
     override func setup() {
         self.backgroundColor = .primary_default
         self.addGestureRecognizer(self.tapBackground)
+        self.nicknameField.delegate = self
         self.addSubviews(
             backButton, titleLabel, descriptionLabel, nicknameField,
             alreadyExistedNicknameView, dividorView, signUpButton
@@ -111,5 +112,19 @@ class SignUpView: BaseView {
         UIView.transition(with: self.dividorView, duration: 0.3, options: .curveEaseInOut) { [weak self] in
             self?.dividorView.backgroundColor = isNicknameEmpty ? UIColor(r: 177, g: 167, b: 255) : .sub_white_w2
         }
+    }
+}
+
+extension SignUpView: UITextFieldDelegate {
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        return newLength <= 5
     }
 }

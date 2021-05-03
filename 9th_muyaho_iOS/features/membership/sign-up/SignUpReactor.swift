@@ -12,7 +12,8 @@ import ReactorKit
 class SignUpReactor: Reactor {
     
     var initialState = State()
-    let accessToken: AuthRequest
+    let requestRequest: AuthRequest
+    let membershipService: MembershipServiceProtocol
     
     enum Action {
         case inputNickname(String)
@@ -22,16 +23,22 @@ class SignUpReactor: Reactor {
     enum Mutation {
         case setNickname(String)
         case setSignUpButtonEnable(Bool)
+        case setSessionId(String)
     }
     
     struct State {
         var nickname = ""
         var isSignUpButtonEnable = false
+        var sessionId: String?
     }
     
     
-    init(accessToken: AuthRequest) {
-        self.accessToken = accessToken
+    init(
+        accessToken: AuthRequest,
+        membershipService: MembershipServiceProtocol
+    ) {
+        self.requestRequest = accessToken
+        self.membershipService = membershipService
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -41,8 +48,12 @@ class SignUpReactor: Reactor {
                 Observable.just(Mutation.setNickname(nickname)),
                 Observable.just(Mutation.setSignUpButtonEnable(!nickname.isEmpty))
             ])
-        default:
-            return Observable.just(Mutation.setNickname(""))
+        case .tapSignUpButton:
+            let nickname = self.currentState.nickname
+            
+            return self.membershipService.signUp(authRequest: self.requestRequest, name: nickname)
+                .map { Mutation.setSessionId($0.data.sessionId) }
+                .catchError(self.handleSignUpError(error:))
         }
     }
     
@@ -54,8 +65,15 @@ class SignUpReactor: Reactor {
             newState.nickname = nickname
         case .setSignUpButtonEnable(let isEnable):
             newState.isSignUpButtonEnable = isEnable
+        case .setSessionId(let sessionId):
+            newState.sessionId = sessionId
         }
         
         return newState
+    }
+    
+    private func handleSignUpError(error: Error) -> Observable<Mutation> {
+        
+        return Observable.just(Mutation.setSessionId(""))
     }
 }
