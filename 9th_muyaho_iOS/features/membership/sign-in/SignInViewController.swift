@@ -14,7 +14,8 @@ class SignInViewController: BaseViewController, View {
     private let signInView = SignInView()
     private let signinReactor = SignInReactor(
         kakaoManager: KakaoSignInManager(),
-        appleManager: AppleSignInManager()
+        appleManager: AppleSignInManager(),
+        membershipService: MembershipService()
     )
     
     
@@ -48,24 +49,38 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         // Bind State
+        
         reactor.state
-            .map { $0.authRequest }
+            .map { $0.sessionId }
             .compactMap { $0 }
             .distinctUntilChanged()
+            .bind { sessionId in
+                // TODO: 로그인 성공해서 홈 화면으로 이동
+                print("sessionId: \(sessionId)")
+            }
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.signUpFlag }
+            .filter { $0 == true }
+            .map { _ in reactor.authRequest }
             .bind(onNext: self.pushSignUpViewController(authRequest:))
             .disposed(by: self.disposeBag)
+            
         
         reactor.state
             .map { $0.alertMessage }
             .compactMap { $0 }
             .distinctUntilChanged()
             .bind { message in
+                // TODO: Alert 띄우기
                 print(message)
             }
             .disposed(by: self.disposeBag)
     }
     
-    private func pushSignUpViewController(authRequest: AuthRequest) {
+    private func pushSignUpViewController(authRequest: AuthRequest?) {
+        guard let authRequest = authRequest else { return }
         let signUpViewController = SignUpViewController.instance(accessToken: authRequest)
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)

@@ -43,16 +43,16 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
             case .canceled:
                 break
             case .failed, .invalidResponse, .notHandled, .unknown:
-                let error = CommonError(description: authorizationError.localizedDescription)
+                let error = CommonError.custom(authorizationError.localizedDescription)
                 
                 self.publisher.onError(error)
             default:
-                let error = CommonError(description: error.localizedDescription)
+                let error = CommonError.custom(error.localizedDescription)
                 
                 self.publisher.onError(error)
             }
         } else {
-            let error = CommonError(description: "error is instance of \(error.self). not ASAuthorizationError")
+            let error = CommonError.custom("error is instance of \(error.self). not ASAuthorizationError")
             
             self.publisher.onError(error)
         }
@@ -66,7 +66,7 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
            let accessToken = String(data: appleIDCredential.identityToken!, encoding: .utf8) {
             self.publisher.onNext( AuthRequest(provider: .apple, token: accessToken))
         } else {
-            let signInError = CommonError(description: "credential is not ASAuthorizationAppleIDCredential")
+            let signInError = CommonError.custom("credential is not ASAuthorizationAppleIDCredential")
             
             self.publisher.onError(signInError)
         }

@@ -21,13 +21,11 @@ struct MembershipService: MembershipServiceProtocol {
         let urlString = HTTPUtils.endPoint + "/api/v1/login"
         let parameters = authRequest.toDict()
         
-        return RxAlamofire.requestJSON(.post, urlString, parameters: parameters, encoding: JSONEncoding.default)
-            .map{ (response, value) -> ResponseContainer<AuthResponse> in
-                if let authResponse: ResponseContainer<AuthResponse> =  JsonUtils.toJson(object: value) {
-                    return authResponse
-                } else {
-                    throw CommonError(description: "")
-                }
-            }
+        return RxAlamofire.requestJSON(
+            .post,
+            urlString,
+            parameters: parameters,
+            encoding: JSONEncoding.default
+        ).expectingObject(ofType: AuthResponse.self)
     }
 }

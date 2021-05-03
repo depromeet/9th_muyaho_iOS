@@ -7,15 +7,14 @@
 
 import Foundation
 
-struct CommonError: Error {
+enum CommonError: Error {
     
-    let description: String
+    case custom(String)
     
-    init(description: String) {
-        self.description = description
-    }
-    
-    init(error: Error) {
-        self.description = error.localizedDescription
+    var message: String {
+        switch self {
+        case .custom(let message):
+            return message
+        }
     }
 }

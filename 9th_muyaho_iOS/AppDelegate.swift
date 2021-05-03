@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         
         self.initilizeKakao()
+        self.initializeNetworkLogger()
         return true
     }
 
@@ -45,6 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KAKAO_APP_KEY") as? String ?? ""
         
       KakaoSDKCommon.initSDK(appKey: kakaoAppKey)
+    }
+    
+    private func initializeNetworkLogger() {
+      NetworkActivityLogger.shared.startLogging()
+      NetworkActivityLogger.shared.level = .debug
     }
 }
 

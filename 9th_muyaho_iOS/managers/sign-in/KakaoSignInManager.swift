@@ -44,13 +44,13 @@ class KakaoSignInManager: SigninManagerProtocol {
                             break
                         default:
                             let errorMessage = sdkError.getApiError().info?.msg ?? ""
-                            let error = CommonError(description: errorMessage)
+                            let error = CommonError.custom(errorMessage)
                             
                             self.publisher.onError(error)
                         }
                     }
                 } else {
-                    let signInError = CommonError(description: "error is not SdkError. (\(error.self))")
+                    let signInError = CommonError.custom("error is not SdkError. (\(error.self))")
                     
                     self.publisher.onError(signInError)
                 }
