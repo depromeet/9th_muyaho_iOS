@@ -30,13 +30,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    private func goToSignIn() {
+    func goToSignIn() {
         let signInViewController = SignInViewController.instance()
         let navigationController = UINavigationController(rootViewController: signInViewController).then {
             $0.setNavigationBarHidden(true, animated: false)
         }
         
         self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func goToMain() {
+        let tabBarController = MainTabBerController()
+        
+        self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
     }
 

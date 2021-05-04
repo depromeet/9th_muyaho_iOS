@@ -60,7 +60,7 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         reactor.state
-            .map { $0.signUpFlag }
+            .map { $0.goToSignUpFlag }
             .distinctUntilChanged()
             .map { _ in reactor.authRequest }
             .bind(onNext: self.pushSignUpViewController(authRequest:))

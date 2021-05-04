@@ -14,6 +14,7 @@ class SignUpReactor: Reactor {
     var initialState = State()
     let requestRequest: AuthRequest
     let membershipService: MembershipServiceProtocol
+    var userDefaults: UserDefaultsUtils
     
     enum Action {
         case inputNickname(String)
@@ -23,23 +24,25 @@ class SignUpReactor: Reactor {
     enum Mutation {
         case setNickname(String)
         case setValidationViewHidden(Bool)
-        case setSessionId(String)
+        case goMain
     }
     
     struct State {
         var nickname = ""
         var isValidationViewHidden = true
         var isSignUpButtonEnable = false
-        var sessionId: String?
+        var goToMainFlag = false
     }
     
     
     init(
         accessToken: AuthRequest,
-        membershipService: MembershipServiceProtocol
+        membershipService: MembershipServiceProtocol,
+        userDefaults: UserDefaultsUtils
     ) {
         self.requestRequest = accessToken
         self.membershipService = membershipService
+        self.userDefaults = userDefaults
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -55,11 +58,15 @@ class SignUpReactor: Reactor {
             }
             return Observable.concat(observables)
         case .tapSignUpButton:
-            let nickname = self.currentState.nickname
-            
-            return self.membershipService.signUp(authRequest: self.requestRequest, name: nickname)
-                .map { Mutation.setSessionId($0.data.sessionId) }
-                .catchError(self.handleSignUpError(error:))
+            return self.membershipService.signUp(
+                authRequest: self.requestRequest,
+                name: self.currentState.nickname
+            )
+            .do(onNext: { [weak self] in
+                self?.userDefaults.sessionId = $0.data.sessionId
+            })
+            .map { _ in Mutation.goMain }
+            .catchError(self.handleSignUpError(error:))
         }
     }
     
@@ -73,8 +80,8 @@ class SignUpReactor: Reactor {
         case .setValidationViewHidden(let isHidden):
             newState.isValidationViewHidden = isHidden
             newState.isSignUpButtonEnable = isHidden
-        case .setSessionId(let sessionId):
-            newState.sessionId = sessionId
+        case .goMain:
+            newState.goToMainFlag.toggle()
         }
         
         return newState
@@ -82,6 +89,6 @@ class SignUpReactor: Reactor {
     
     private func handleSignUpError(error: Error) -> Observable<Mutation> {
         
-        return Observable.just(Mutation.setSessionId(""))
+        return Observable.just(Mutation.setNickname(""))
     }
 }

@@ -31,7 +31,7 @@ class SignInReactor: Reactor {
     
     struct State {
         var sessionId: String?
-        var signUpFlag: Bool = false
+        var goToSignUpFlag: Bool = false
         var alertMessage: String?
     }
     
@@ -74,7 +74,7 @@ class SignInReactor: Reactor {
         case .setSessionId(let sessionId):
             newState.sessionId = sessionId
         case .goSignUp:
-            newState.signUpFlag.toggle()
+            newState.goToSignUpFlag.toggle()
         case .showAlert(let message):
             newState.alertMessage = message
         }

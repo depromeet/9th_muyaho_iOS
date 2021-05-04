@@ -16,7 +16,11 @@ class SignUpViewController: BaseViewController, View {
     
     
     init(accessToken: AuthRequest) {
-        self.signUpReactor = SignUpReactor(accessToken: accessToken, membershipService: MembershipService())
+        self.signUpReactor = SignUpReactor(
+            accessToken: accessToken,
+            membershipService: MembershipService(),
+            userDefaults: UserDefaultsUtils()
+        )
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -81,15 +85,20 @@ class SignUpViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         self.signUpReactor.state
-            .compactMap { $0.sessionId }
-            .distinctUntilChanged()
-            .bind { sessionId in
-                print("sessionId: \(sessionId)")
-            }
+            .map { $0.goToMainFlag }
+            .filter { $0 == true }
+            .map { _ in Void() }
+            .bind(onNext: self.goToMain)
             .disposed(by: self.disposeBag)
     }
     
     private func popup() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func goToMain() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.goToMain()
+        }
     }
 }
