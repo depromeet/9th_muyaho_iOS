@@ -10,4 +10,5 @@ import Foundation
 enum HTTPError: Int, Error {
     
     case notFound = 404
+    case conflict = 409
 }

@@ -56,6 +56,7 @@ class SignUpViewController: BaseViewController, View {
     func bind(reactor: SignUpReactor) {
         // Bind Action
         self.signUpView.nicknameField.rx.text.orEmpty
+            .distinctUntilChanged()
             .map { SignUpReactor.Action.inputNickname($0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
@@ -69,7 +70,14 @@ class SignUpViewController: BaseViewController, View {
         self.signUpReactor.state
             .map { $0.isSignUpButtonEnable }
             .distinctUntilChanged()
+            .do(onNext: self.signUpView.setDividorColor(isNicknameNotEmpty:))
             .bind(to: self.signUpView.signUpButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        self.signUpReactor.state
+            .map { $0.isValidationViewHidden }
+            .distinctUntilChanged()
+            .bind(to: self.signUpView.alreadyExistedNicknameView.rx.isHidden)
             .disposed(by: self.disposeBag)
         
         self.signUpReactor.state

@@ -57,10 +57,6 @@ class SignUpView: BaseView {
             backButton, titleLabel, descriptionLabel, nicknameField,
             alreadyExistedNicknameView, dividorView, signUpButton
         )
-        self.nicknameField.rx.text.orEmpty
-            .map { $0.trimmingCharacters(in: .whitespaces).isEmpty }
-            .bind(onNext: self.setDividorColor(isNicknameEmpty:))
-            .disposed(by: self.disposeBag)
     }
     
     override func bindConstraints() {
@@ -108,9 +104,9 @@ class SignUpView: BaseView {
         self.endEditing(true)
     }
     
-    private func setDividorColor(isNicknameEmpty: Bool) {
+    func setDividorColor(isNicknameNotEmpty: Bool) {
         UIView.transition(with: self.dividorView, duration: 0.3, options: .curveEaseInOut) { [weak self] in
-            self?.dividorView.backgroundColor = isNicknameEmpty ? UIColor(r: 177, g: 167, b: 255) : .sub_white_w2
+            self?.dividorView.backgroundColor = isNicknameNotEmpty ? .sub_white_w2 : UIColor(r: 177, g: 167, b: 255)
         }
     }
 }

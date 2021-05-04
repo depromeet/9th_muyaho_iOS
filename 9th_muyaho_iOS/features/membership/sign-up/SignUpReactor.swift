@@ -22,12 +22,13 @@ class SignUpReactor: Reactor {
     
     enum Mutation {
         case setNickname(String)
-        case setSignUpButtonEnable(Bool)
+        case setValidationViewHidden(Bool)
         case setSessionId(String)
     }
     
     struct State {
         var nickname = ""
+        var isValidationViewHidden = true
         var isSignUpButtonEnable = false
         var sessionId: String?
     }
@@ -44,10 +45,15 @@ class SignUpReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .inputNickname(let nickname):
-            return Observable.concat([
-                Observable.just(Mutation.setNickname(nickname)),
-                Observable.just(Mutation.setSignUpButtonEnable(!nickname.isEmpty))
-            ])
+            var observables = [Observable.just(Mutation.setNickname(nickname))]
+            
+            if !nickname.isEmpty {
+                let validateObservable = self.membershipService.validateNickname(nickname: nickname)
+                    .map { Mutation.setValidationViewHidden($0) }
+                
+                observables.append(validateObservable)
+            }
+            return Observable.concat(observables)
         case .tapSignUpButton:
             let nickname = self.currentState.nickname
             
@@ -63,8 +69,10 @@ class SignUpReactor: Reactor {
         switch mutation {
         case .setNickname(let nickname):
             newState.nickname = nickname
-        case .setSignUpButtonEnable(let isEnable):
-            newState.isSignUpButtonEnable = isEnable
+            newState.isSignUpButtonEnable = !nickname.isEmpty
+        case .setValidationViewHidden(let isHidden):
+            newState.isValidationViewHidden = isHidden
+            newState.isSignUpButtonEnable = isHidden
         case .setSessionId(let sessionId):
             newState.sessionId = sessionId
         }

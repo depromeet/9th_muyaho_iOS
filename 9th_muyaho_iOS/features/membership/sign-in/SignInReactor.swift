@@ -87,6 +87,8 @@ class SignInReactor: Reactor {
             switch httpError {
             case.notFound:
                 return Observable.just(Mutation.goSignUp)
+            default:
+                return Observable.just(Mutation.showAlert("HTTP status code: \(httpError.rawValue)"))
             }
         } else if let commonError = error as? CommonError {
             return Observable.just(Mutation.showAlert(commonError.message))
