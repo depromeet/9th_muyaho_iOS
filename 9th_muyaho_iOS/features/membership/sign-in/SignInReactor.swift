@@ -25,14 +25,14 @@ class SignInReactor: Reactor {
     
     enum Mutation {
         case setSessionId(String)
-        case setSignUpFlag(Bool)
+        case goSignUp
         case showAlert(String)
     }
     
     struct State {
-        var alertMessage: String?
         var sessionId: String?
         var signUpFlag: Bool = false
+        var alertMessage: String?
     }
     
     
@@ -73,8 +73,8 @@ class SignInReactor: Reactor {
         switch mutation {
         case .setSessionId(let sessionId):
             newState.sessionId = sessionId
-        case .setSignUpFlag(let goSignUp):
-            newState.signUpFlag = goSignUp
+        case .goSignUp:
+            newState.signUpFlag.toggle()
         case .showAlert(let message):
             newState.alertMessage = message
         }
@@ -86,7 +86,7 @@ class SignInReactor: Reactor {
         if let httpError = error as? HTTPError {
             switch httpError {
             case.notFound:
-                return Observable.just(Mutation.setSignUpFlag(true))
+                return Observable.just(Mutation.goSignUp)
             }
         } else if let commonError = error as? CommonError {
             return Observable.just(Mutation.showAlert(commonError.message))

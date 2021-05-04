@@ -61,7 +61,6 @@ class SignInViewController: BaseViewController, View {
         
         reactor.state
             .map { $0.signUpFlag }
-            .filter { $0 == true }
             .distinctUntilChanged()
             .map { _ in reactor.authRequest }
             .bind(onNext: self.pushSignUpViewController(authRequest:))
