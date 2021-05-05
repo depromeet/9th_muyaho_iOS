@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-class SignUpReactor: Reactor {
+class SignUpReactor: Reactor, BaseReactorProtocol {
     
     var initialState = State()
     let requestRequest: AuthRequest
@@ -92,7 +92,7 @@ class SignUpReactor: Reactor {
     }
     
     private func handleSignUpError(error: Error) -> Observable<Mutation> {
-        
-        return Observable.just(Mutation.setNickname(""))
+        return self.handleDefaultError(error: error)
+            .map { Mutation.setAlertMessage($0) }
     }
 }

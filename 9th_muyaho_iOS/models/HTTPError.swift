@@ -9,6 +9,7 @@ import Foundation
 
 enum HTTPError: Int, Error {
     
+    case badRequest = 400
     case notFound = 404
     case conflict = 409
     case internalServerError = 500
@@ -16,6 +17,8 @@ enum HTTPError: Int, Error {
     
     var description: String {
         switch self {
+        case .badRequest:
+            return "http_error_bad_request".localized
         case .notFound:
             return "http_error_not_found".localized
         case .conflict:

@@ -10,6 +10,7 @@
 "common_cancel" = "취소";
 
 // http-error
+"http_error_bad_reqeust" = "잘못된 요청입니다.";
 "http_error_not_found" = "결과를 찾을 수 없습니다.";
 "http_error_conflict" = "서버 요청중 충돌이 발생했습니다.";
 "http_error_internal_server_error" = "500에러 서버탓 기기~";
