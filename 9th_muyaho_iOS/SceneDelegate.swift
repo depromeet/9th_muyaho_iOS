@@ -19,7 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(frame: scene.coordinateSpace.bounds)
         self.window?.windowScene = scene
-        self.goToSignIn()
+        
+        if UserDefaultsUtils().sessionId.isEmpty {
+            self.goToSignIn()
+        } else {
+            self.goToMain()
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
