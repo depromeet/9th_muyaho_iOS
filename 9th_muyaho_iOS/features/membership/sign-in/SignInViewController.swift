@@ -15,7 +15,8 @@ class SignInViewController: BaseViewController, View {
     private let signinReactor = SignInReactor(
         kakaoManager: KakaoSignInManager(),
         appleManager: AppleSignInManager(),
-        membershipService: MembershipService()
+        membershipService: MembershipService(),
+        userDefaults: UserDefaultsUtils()
     )
     
     
@@ -50,37 +51,37 @@ class SignInViewController: BaseViewController, View {
         
         // Bind State
         reactor.state
-            .map { $0.sessionId }
-            .compactMap { $0 }
-            .distinctUntilChanged()
-            .bind { sessionId in
-                // TODO: 로그인 성공해서 홈 화면으로 이동
-                print("sessionId: \(sessionId)")
-            }
+            .map { $0.goToMainFlag }
+            .filter { $0 == true }
+            .map { _ in Void() }
+            .bind(onNext: self.goToMain)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.goToSignUpFlag }
             .distinctUntilChanged()
             .map { _ in reactor.authRequest }
-            .bind(onNext: self.pushSignUpViewController(authRequest:))
+            .bind(onNext: self.gpToSignUp(authRequest:))
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.alertMessage }
             .compactMap { $0 }
             .distinctUntilChanged()
-            .bind { message in
-                // TODO: Alert 띄우기
-                print(message)
-            }
+            .bind(onNext: self.showAlert(message:))
             .disposed(by: self.disposeBag)
     }
     
-    private func pushSignUpViewController(authRequest: AuthRequest?) {
+    private func gpToSignUp(authRequest: AuthRequest?) {
         guard let authRequest = authRequest else { return }
         let signUpViewController = SignUpViewController.instance(accessToken: authRequest)
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
+    private func goToMain() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.goToMain()
+        }
     }
 }

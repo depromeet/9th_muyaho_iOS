@@ -21,9 +21,11 @@
 		6E5A3A23263D9B2700B46EAF /* HTTPURLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5A3A22263D9B2700B46EAF /* HTTPURLResponseExtensions.swift */; };
 		6E5A3A25263D9C7C00B46EAF /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5A3A24263D9C7C00B46EAF /* ObservableExtensions.swift */; };
 		6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5A3A26263DA1E700B46EAF /* NetworkActivityLogger.swift */; };
+		6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DECFB26423D080005487F /* AlertUtils.swift */; };
 		6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E6DF62639AFF70061AB4A /* KakaoSignInManager.swift */; };
 		6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E6DF82639B1320061AB4A /* AppleSignInManager.swift */; };
 		6E744C5E2641546C00AB9054 /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E744C5D2641546C00AB9054 /* UserDefaultsUtils.swift */; };
+		6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E744C5F26416FA600AB9054 /* BaseReactorProtocol.swift */; };
 		6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ED81E26385FD400DC0C10 /* SignInView.swift */; };
 		6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E801CC3262C1C2E0081E68A /* HomeViewController.swift */; };
 		6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E801CC8262C1C6E0081E68A /* HomeView.swift */; };
@@ -94,9 +96,11 @@
 		6E5A3A22263D9B2700B46EAF /* HTTPURLResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPURLResponseExtensions.swift; sourceTree = "<group>"; };
 		6E5A3A24263D9C7C00B46EAF /* ObservableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		6E5A3A26263DA1E700B46EAF /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
+		6E5DECFB26423D080005487F /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
 		6E6E6DF62639AFF70061AB4A /* KakaoSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoSignInManager.swift; sourceTree = "<group>"; };
 		6E6E6DF82639B1320061AB4A /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
 		6E744C5D2641546C00AB9054 /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		6E744C5F26416FA600AB9054 /* BaseReactorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReactorProtocol.swift; sourceTree = "<group>"; };
 		6E7ED81E26385FD400DC0C10 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6E801CC3262C1C2E0081E68A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6E801CC8262C1C6E0081E68A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				6E16631F263D34FA00A35C9F /* JsonUtils.swift */,
 				6E5A3A26263DA1E700B46EAF /* NetworkActivityLogger.swift */,
 				6E744C5D2641546C00AB9054 /* UserDefaultsUtils.swift */,
+				6E5DECFB26423D080005487F /* AlertUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				A5754BAE2625BC6B00B6E8A1 /* BaseView.swift */,
 				A5754BB62625BD8900B6E8A1 /* BaseViewController.swift */,
 				A5754BBB2625BE4B00B6E8A1 /* BaseTableViewCell.swift */,
+				6E744C5F26416FA600AB9054 /* BaseReactorProtocol.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -661,6 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */,
+				6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */,
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
 				6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
@@ -685,6 +692,7 @@
 				6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */,
 				6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */,
 				6E5A3A23263D9B2700B46EAF /* HTTPURLResponseExtensions.swift in Sources */,
+				6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */,
 				6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,

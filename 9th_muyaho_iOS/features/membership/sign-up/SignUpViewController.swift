@@ -71,24 +71,31 @@ class SignUpViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         // Bind State
-        self.signUpReactor.state
+        reactor.state
             .map { $0.isSignUpButtonEnable }
             .distinctUntilChanged()
             .do(onNext: self.signUpView.setDividorColor(isNicknameNotEmpty:))
             .bind(to: self.signUpView.signUpButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
         
-        self.signUpReactor.state
+        reactor.state
             .map { $0.isValidationViewHidden }
             .distinctUntilChanged()
             .bind(to: self.signUpView.alreadyExistedNicknameView.rx.isHidden)
             .disposed(by: self.disposeBag)
         
-        self.signUpReactor.state
+        reactor.state
             .map { $0.goToMainFlag }
             .filter { $0 == true }
             .map { _ in Void() }
             .bind(onNext: self.goToMain)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.alertMessage }
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(onNext: self.showAlert(message:))
             .disposed(by: self.disposeBag)
     }
     

@@ -25,4 +25,8 @@ class BaseViewController: UIViewController {
     func setupView() { }
     
     func bindEvent() { }
+    
+    func showAlert(message: String) {
+        AlertUtils.show(viewController: self, title: nil, message: message)
+    }
 }

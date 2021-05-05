@@ -9,12 +9,13 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-class SignInReactor: Reactor {
+class SignInReactor: Reactor, BaseReactorProtocol {
     
     var initialState = State()
     let kakaoManager: SigninManagerProtocol
     let appleManager: SigninManagerProtocol
     let membershipService: MembershipServiceProtocol
+    var userDefaults: UserDefaultsUtils
     
     var authRequest: AuthRequest?
     
@@ -24,14 +25,14 @@ class SignInReactor: Reactor {
     }
     
     enum Mutation {
-        case setSessionId(String)
-        case goSignUp
-        case showAlert(String)
+        case goToSignUp
+        case goToMain
+        case setAlertMessage(String)
     }
     
     struct State {
-        var sessionId: String?
         var goToSignUpFlag: Bool = false
+        var goToMainFlag: Bool = false
         var alertMessage: String?
     }
     
@@ -39,11 +40,13 @@ class SignInReactor: Reactor {
     init(
         kakaoManager: KakaoSignInManager,
         appleManager: AppleSignInManager,
-        membershipService: MembershipServiceProtocol
+        membershipService: MembershipServiceProtocol,
+        userDefaults: UserDefaultsUtils
     ) {
         self.kakaoManager = kakaoManager
         self.appleManager = appleManager
         self.membershipService = membershipService
+        self.userDefaults = userDefaults
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -54,7 +57,10 @@ class SignInReactor: Reactor {
                     self?.authRequest = authRequest
                 })
                 .flatMap { self.membershipService.signIn(authRequest: $0) }
-                .map { Mutation.setSessionId($0.data.sessionId) }
+                .do(onNext: { [weak self] in
+                    self?.userDefaults.sessionId = $0.data.sessionId
+                })
+                .map { _ in Mutation.goToMain }
                 .catchError(self.handleSignInError(error:))
         case .tapAppleButton:
             return self.appleManager.signIn()
@@ -62,7 +68,10 @@ class SignInReactor: Reactor {
                     self?.authRequest = authRequest
                 })
                 .flatMap { self.membershipService.signIn(authRequest: $0) }
-                .map { Mutation.setSessionId($0.data.sessionId) }
+                .do(onNext: { [weak self] in
+                    self?.userDefaults.sessionId = $0.data.sessionId
+                })
+                .map { _ in Mutation.goToMain }
                 .catchError(self.handleSignInError(error:))
         }
     }
@@ -71,11 +80,11 @@ class SignInReactor: Reactor {
         var newState = state
         
         switch mutation {
-        case .setSessionId(let sessionId):
-            newState.sessionId = sessionId
-        case .goSignUp:
+        case .goToSignUp:
             newState.goToSignUpFlag.toggle()
-        case .showAlert(let message):
+        case .goToMain:
+            newState.goToMainFlag.toggle()
+        case .setAlertMessage(let message):
             newState.alertMessage = message
         }
         
@@ -83,17 +92,12 @@ class SignInReactor: Reactor {
     }
     
     private func handleSignInError(error: Error) -> Observable<Mutation> {
-        if let httpError = error as? HTTPError {
-            switch httpError {
-            case.notFound:
-                return Observable.just(Mutation.goSignUp)
-            default:
-                return Observable.just(Mutation.showAlert("HTTP status code: \(httpError.rawValue)"))
-            }
-        } else if let commonError = error as? CommonError {
-            return Observable.just(Mutation.showAlert(commonError.message))
+        if let httpError = error as? HTTPError,
+           httpError == .notFound {
+            return Observable.just(Mutation.goToSignUp)
         } else {
-            return Observable.just(Mutation.showAlert(error.localizedDescription))
+            return self.handleDefaultError(error: error)
+                .map { Mutation.setAlertMessage($0) }
         }
     }
 }

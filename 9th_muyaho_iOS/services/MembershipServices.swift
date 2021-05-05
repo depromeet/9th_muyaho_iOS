@@ -32,9 +32,7 @@ struct MembershipService: MembershipServiceProtocol {
                 } else if response.statusCode == 409 {
                     return false
                 } else {
-                    let httpError = HTTPError(rawValue: response.statusCode)
-                    
-                    throw httpError ?? CommonError.custom("HTTP status code: \(response.statusCode)")
+                    throw HTTPError(rawValue: response.statusCode) ?? .unknown
                 }
             }
     }

@@ -24,7 +24,8 @@ class SignUpReactor: Reactor {
     enum Mutation {
         case setNickname(String)
         case setValidationViewHidden(Bool)
-        case goMain
+        case goToMain
+        case setAlertMessage(String)
     }
     
     struct State {
@@ -32,6 +33,7 @@ class SignUpReactor: Reactor {
         var isValidationViewHidden = true
         var isSignUpButtonEnable = false
         var goToMainFlag = false
+        var alertMessage: String?
     }
     
     
@@ -65,7 +67,7 @@ class SignUpReactor: Reactor {
             .do(onNext: { [weak self] in
                 self?.userDefaults.sessionId = $0.data.sessionId
             })
-            .map { _ in Mutation.goMain }
+            .map { _ in Mutation.goToMain }
             .catchError(self.handleSignUpError(error:))
         }
     }
@@ -80,8 +82,10 @@ class SignUpReactor: Reactor {
         case .setValidationViewHidden(let isHidden):
             newState.isValidationViewHidden = isHidden
             newState.isSignUpButtonEnable = isHidden
-        case .goMain:
+        case .goToMain:
             newState.goToMainFlag.toggle()
+        case .setAlertMessage(let message):
+            newState.alertMessage = message
         }
         
         return newState

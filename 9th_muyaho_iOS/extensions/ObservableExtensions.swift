@@ -19,11 +19,7 @@ extension Observable where Element == (HTTPURLResponse, Any) {
                     throw CommonError.custom("JSONDecoder fail to \(T.self)")
                 }
             } else {
-                if let httpError = HTTPError(rawValue: response.statusCode) {
-                    throw httpError
-                } else {
-                    throw CommonError.custom("HTTP status code: \(response.statusCode)")
-                }
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
             }
         }
     }
