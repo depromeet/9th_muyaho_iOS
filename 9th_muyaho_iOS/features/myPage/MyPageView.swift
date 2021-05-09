@@ -18,9 +18,11 @@ final class MyPageView: BaseView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 20)
+        #warning("테스트")
+        label.text = "김영찬영찬님,\n환영합니다!"
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 30)
         return label
     }()
     
@@ -56,6 +58,11 @@ final class MyPageView: BaseView {
     }
     
     override func bindConstraints() {
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.left.right.equalToSuperview().inset(50)
+        }
         
         logoutButton.snp.makeConstraints { make in
             make.height.equalTo(40)
