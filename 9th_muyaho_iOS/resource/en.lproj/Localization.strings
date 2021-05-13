@@ -51,3 +51,6 @@
 "home_youngchan_down_right_2" = "화성 갈꾸니깐";
 "home_youngchan_down_left_3" = "늦으면";
 "home_youngchan_down_right_3" = "어시없다";
+"home_total_title" = "최종 자산";
+"home_incoming_rate_title" = "오늘의 수익률(%)";
+"home_incoming_title" = "오늘의 수익금(원)";

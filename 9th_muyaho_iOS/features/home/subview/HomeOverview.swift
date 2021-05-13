@@ -27,14 +27,16 @@ class HomeOverview: BaseView {
         $0.image = .imgStar2
     }
     
-    let emptyOverViewButton = EmptyOverviewButton()
+//    let emptyOverViewButton = EmptyOverviewButton()
+    
+    let dashboardView = DashBoardView()
     
     
     override func setup() {
         self.backgroundColor = .clear
         self.addSubviews(
             titleLabel, youngchanView, starImageView1, starImageView2,
-            emptyOverViewButton
+            dashboardView
         )
     }
     
@@ -59,15 +61,21 @@ class HomeOverview: BaseView {
             make.centerY.equalTo(self.youngchanView.snp.bottom)
         }
 
-        self.emptyOverViewButton.snp.makeConstraints { make in
+//        self.emptyOverViewButton.snp.makeConstraints { make in
+//            make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
+//            make.left.equalToSuperview().offset(20)
+//            make.right.equalToSuperview().offset(-20)
+//        }
+        
+        self.dashboardView.snp.makeConstraints { make in
             make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
 
         self.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel).offset(-24)
-            make.bottom.equalTo(self.emptyOverViewButton).offset(20).priority(.high)
+            make.bottom.equalTo(self.dashboardView).offset(20).priority(.high)
         }
     }
 }
