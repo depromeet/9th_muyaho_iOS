@@ -33,12 +33,5 @@ class HomeViewController: BaseViewController, View {
             .map { HomeReactor.Action.tapRefreshButton(()) }
             .bind(to: self.homeReactor.action)
             .disposed(by: self.disposeBag)
-        
-        // Bind State
-        self.homeReactor.state
-            .map { $0.title }
-            .distinctUntilChanged()
-            .bind(to: self.homeView.titleLabel.rx.text)
-            .disposed(by: self.disposeBag)
     }
 }

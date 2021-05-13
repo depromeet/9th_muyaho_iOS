@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Refresh.png",
+      "filename" : "blue.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Refresh@2x.png",
+      "filename" : "blue@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Refresh@3x.png",
+      "filename" : "blue@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

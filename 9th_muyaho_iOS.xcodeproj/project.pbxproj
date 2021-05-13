@@ -14,6 +14,8 @@
 		6E16631B263D30B600A35C9F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16631A263D30B600A35C9F /* AuthResponse.swift */; };
 		6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16631F263D34FA00A35C9F /* JsonUtils.swift */; };
 		6E16632B263D3CC200A35C9F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16632A263D3CC200A35C9F /* APIResult.swift */; };
+		6E2F82B7264CD48300539D8A /* HomeInvestByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */; };
+		6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */; };
 		6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E40DDFB263448060003E4AD /* UIImageExtensions.swift */; };
 		6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A12638625B00103948 /* SignInViewController.swift */; };
 		6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A32638655B00103948 /* SignInReactor.swift */; };
@@ -46,6 +48,10 @@
 		6EABBAE0263AD2DE00ACC332 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */; };
 		6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE3263AF5B500ACC332 /* SignUpView.swift */; };
 		6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */; };
+		6ED95A86264ACCAA00853CA3 /* HomeOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */; };
+		6ED95A88264AD57A00853CA3 /* YoungchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED95A87264AD57A00853CA3 /* YoungchanView.swift */; };
+		6EDADCB7264C1FF000D6D356 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDADCB6264C1FF000D6D356 /* PaddingLabel.swift */; };
+		6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDADCB8264C2B9A00D6D356 /* EmptyOverviewButton.swift */; };
 		6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */; };
 		6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */; };
 		75EB274A7463C18CD6356549 /* Pods_9th_muyaho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A99F53BEF14AA289056FC2 /* Pods_9th_muyaho_iOS.framework */; };
@@ -107,6 +113,8 @@
 		6E16631A263D30B600A35C9F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		6E16631F263D34FA00A35C9F /* JsonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtils.swift; sourceTree = "<group>"; };
 		6E16632A263D3CC200A35C9F /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInvestByCategoryView.swift; sourceTree = "<group>"; };
+		6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestByCategoryButton.swift; sourceTree = "<group>"; };
 		6E40DDFB263448060003E4AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		6E4FE4A12638625B00103948 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6E4FE4A32638655B00103948 /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 		6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		6EABBAE3263AF5B500ACC332 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverview.swift; sourceTree = "<group>"; };
+		6ED95A87264AD57A00853CA3 /* YoungchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoungchanView.swift; sourceTree = "<group>"; };
+		6EDADCB6264C1FF000D6D356 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		6EDADCB8264C2B9A00D6D356 /* EmptyOverviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyOverviewButton.swift; sourceTree = "<group>"; };
 		6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpReactor.swift; sourceTree = "<group>"; };
 		6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyExistedNicknameView.swift; sourceTree = "<group>"; };
 		6EF07EFF26393349004FBE8F /* 9th_muyaho_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 9th_muyaho_iOS.entitlements; sourceTree = "<group>"; };
@@ -236,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */,
+				6EDADCB6264C1FF000D6D356 /* PaddingLabel.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -253,6 +266,7 @@
 		6E801CC2262C1C260081E68A /* home */ = {
 			isa = PBXGroup;
 			children = (
+				6ED95A84264ACB9100853CA3 /* subview */,
 				6E801CC3262C1C2E0081E68A /* HomeViewController.swift */,
 				6E801CC8262C1C6E0081E68A /* HomeView.swift */,
 				6E801CDE262C22240081E68A /* HomeReactor.swift */,
@@ -344,6 +358,18 @@
 				6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */,
 			);
 			path = "sign-up";
+			sourceTree = "<group>";
+		};
+		6ED95A84264ACB9100853CA3 /* subview */ = {
+			isa = PBXGroup;
+			children = (
+				6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */,
+				6ED95A87264AD57A00853CA3 /* YoungchanView.swift */,
+				6EDADCB8264C2B9A00D6D356 /* EmptyOverviewButton.swift */,
+				6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */,
+				6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */,
+			);
+			path = subview;
 			sourceTree = "<group>";
 		};
 		87FCFDC4CDCDE6F10EB1AB73 /* Frameworks */ = {
@@ -785,17 +811,21 @@
 				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
 				A58C2BBC2658944400CEEE8C /* NSObject + reusableIdentifier.swift in Sources */,
+				6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */,
 				6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */,
 				6EABBACF263A954100ACC332 /* SocialType.swift in Sources */,
 				A5754BAF2625BC6B00B6E8A1 /* BaseView.swift in Sources */,
 				6E81759526382B680050FFC7 /* UIColorExtensions.swift in Sources */,
+				6ED95A86264ACCAA00853CA3 /* HomeOverview.swift in Sources */,
 				6E16631B263D30B600A35C9F /* AuthResponse.swift in Sources */,
 				A58C2B752658072000CEEE8C /* CalculatorViewController.swift in Sources */,
 				A58C2B9D265892B200CEEE8C /* CustomMenuBar.swift in Sources */,
 				A5754BA62625BBD100B6E8A1 /* MainTabBerController.swift in Sources */,
 				6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */,
+				6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */,
 				A5754BBC2625BE4B00B6E8A1 /* BaseTableViewCell.swift in Sources */,
 				A5754B4D2625B6C200B6E8A1 /* SceneDelegate.swift in Sources */,
+				6ED95A88264AD57A00853CA3 /* YoungchanView.swift in Sources */,
 				6E166309263D2D1400A35C9F /* HTTPUtils.swift in Sources */,
 				6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */,
 				A58C2BE22659DDF700CEEE8C /* WaterrideCell.swift in Sources */,
@@ -808,7 +838,9 @@
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
 				A58C2B7F2658076400CEEE8C /* CalculatorReactor.swift in Sources */,
+				6EDADCB7264C1FF000D6D356 /* PaddingLabel.swift in Sources */,
 				6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */,
+				6E2F82B7264CD48300539D8A /* HomeInvestByCategoryView.swift in Sources */,
 				6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */,
 				6E744C5E2641546C00AB9054 /* UserDefaultsUtils.swift in Sources */,
 				6E16632B263D3CC200A35C9F /* APIResult.swift in Sources */,
