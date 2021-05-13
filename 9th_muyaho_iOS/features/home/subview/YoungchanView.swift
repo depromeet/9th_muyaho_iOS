@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class YoungchanView: BaseView {
+    
+    enum InvestmentStatus {
+        case empty
+        case up
+        case down
+    }
     
     let youngchanImage = UIImageView().then {
         $0.image = .imgYoungchanGray
@@ -72,6 +80,53 @@ class YoungchanView: BaseView {
             make.left.equalTo(self.leftLabel)
             make.right.equalTo(self.rightLabel)
             make.top.bottom.equalTo(self.youngchanImage)
+        }
+    }
+    
+    func setYoungChanImage(by status: YoungchanView.InvestmentStatus) {
+        switch status {
+        case .empty:
+            self.youngchanImage.image = .imgYoungchanGray
+        case .up:
+            self.youngchanImage.image = .imgYoungchanRed
+        case .down:
+            self.youngchanImage.image = .imgYoungchanBlue
+        }
+    }
+    
+    func setYoungChanLabel(by status: YoungchanView.InvestmentStatus) {
+        switch status{
+        case .empty:
+            self.leftLabel.text = "home_youngchan_empty_left".localized
+            self.rightLabel.text = "home_youngchan_empty_right".localized
+        case .up:
+            self.setUpStateRandomLabel()
+        case .down:
+            self.setDownStateRandomLabel()
+        }
+    }
+    
+    private func setUpStateRandomLabel() {
+        let randomIndex = Int.random(in: 1...3)
+        
+        self.leftLabel.text = "home_youngchan_up_left_\(randomIndex)".localized
+        self.rightLabel.text = "home_youngchan_up_right_\(randomIndex)".localized
+    }
+    
+    private func setDownStateRandomLabel() {
+        let randomIndex = Int.random(in: 1...3)
+        
+        self.leftLabel.text = "home_youngchan_down_left_\(randomIndex)".localized
+        self.rightLabel.text = "home_youngchan_down_right_\(randomIndex)".localized
+    }
+}
+
+extension Reactive where Base: YoungchanView {
+    
+    var status: Binder<Base.InvestmentStatus> {
+        return Binder(self.base) { view, status in
+            view.setYoungChanImage(by: status)
+            view.setYoungChanLabel(by: status)
         }
     }
 }
