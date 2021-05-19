@@ -25,6 +25,13 @@ extension UIImage {
     static let arrowRight16 = UIImage(named: "ic_arrow_right_16")
     static let imgBottomBackground = UIImage(named: "img_line_bottom_bg")
     
+    // write
+    static let icWrite = UIImage(named: "ic_write")
+    static let icCancelWrite = UIImage(named: "ic_cancel_write")
+    static let icWriteNew = UIImage(named: "ic_write_new")
+    static let icWriteModify = UIImage(named: "ic_write_modify")
+    
+    
     // common
     static let arrowUp = UIImage(named: "ic_arrow_up")
     static let arrowDown = UIImage(named: "ic_arrow_down")

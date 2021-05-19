@@ -40,6 +40,12 @@ class HomeView: BaseView {
     
     let homeInvestByCategoryView = HomeInvestByCategoryView()
     
+    let writeButton = UIButton().then {
+        $0.setImage(.icWrite, for: .normal)
+    }
+    
+    let writeMenuView = WriteMenuView()
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -53,7 +59,9 @@ class HomeView: BaseView {
         self.setupGradientLayer()
         self.containerView.addSubviews(homeOverview, homeInvestByCategoryView)
         self.scrollView.addSubviews(containerView)
-        self.addSubviews(scrollView, dimmedView, refreshButton)
+        self.addSubviews(
+            scrollView, dimmedView, refreshButton, writeButton
+        )
     }
     
     override func bindConstraints() {
@@ -88,6 +96,11 @@ class HomeView: BaseView {
             make.left.right.equalToSuperview()
             make.top.equalTo(self.homeOverview.snp.bottom)
             make.bottom.equalToSuperview()
+        }
+        
+        self.writeButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-42)
         }
     }
     
