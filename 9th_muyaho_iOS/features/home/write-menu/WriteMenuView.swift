@@ -55,7 +55,7 @@ class WriteMenuView: BaseView {
         }
         
         self.cancelButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-83)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-85)
             make.right.equalToSuperview().offset(-16)
         }
         
