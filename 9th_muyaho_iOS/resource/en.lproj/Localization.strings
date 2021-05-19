@@ -54,3 +54,7 @@
 "home_total_title" = "최종 자산";
 "home_incoming_rate_title" = "오늘의 수익률(%)";
 "home_incoming_title" = "오늘의 수익금(원)";
+
+// write
+"write_menu_modify" = "기종 종목 정보 수정";
+"write_menu_new" = "신규 종목 추가";
