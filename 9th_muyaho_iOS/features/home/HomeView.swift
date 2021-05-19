@@ -99,8 +99,8 @@ class HomeView: BaseView {
         }
         
         self.writeButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-16)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-42)
+            make.right.equalToSuperview().offset(-4)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-24)
         }
     }
     
