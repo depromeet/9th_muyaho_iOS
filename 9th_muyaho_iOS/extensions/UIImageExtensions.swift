@@ -35,4 +35,6 @@ extension UIImage {
     // common
     static let arrowUp = UIImage(named: "ic_arrow_up")
     static let arrowDown = UIImage(named: "ic_arrow_down")
+    static let close24 = UIImage(named: "ic_close_24")
+    static let searchGray = UIImage(named: "ic_search_gray")
 }

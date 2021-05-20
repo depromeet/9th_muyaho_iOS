@@ -71,13 +71,22 @@ class WriteMenuViewController: BaseViewController {
         }
     }
     
+    private func dismiss(completion: @escaping (() -> Void)) {
+        self.impactGenerator.impactOccurred()
+        self.writeMenuView.startDismissAnimation { [weak self] _ in
+            self?.dismiss(animated: true, completion: completion)
+        }
+    }
+    
     private func showWriteNew() {
-        self.delegate?.onTapNew()
-        self.dismiss()
+        self.dismiss { [weak self] in
+            self?.delegate?.onTapNew()
+        }
     }
     
     private func showModify(){
-        self.delegate?.onTapModify()
-        self.dismiss()
+        self.dismiss { [weak self] in
+            self?.delegate?.onTapModify()
+        }
     }
 }

@@ -14,11 +14,17 @@
 		6E16631B263D30B600A35C9F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16631A263D30B600A35C9F /* AuthResponse.swift */; };
 		6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16631F263D34FA00A35C9F /* JsonUtils.swift */; };
 		6E16632B263D3CC200A35C9F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16632A263D3CC200A35C9F /* APIResult.swift */; };
+		6E2538722656941E00439E8E /* WriteNewStockTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2538712656941E00439E8E /* WriteNewStockTypeViewController.swift */; };
+		6E2538752656964C00439E8E /* StockTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2538742656964C00439E8E /* StockTypeButton.swift */; };
+		6E2538772656980F00439E8E /* StockTypeRadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2538762656980F00439E8E /* StockTypeRadioGroupView.swift */; };
+		6E25387926569A5700439E8E /* StockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E25387826569A5700439E8E /* StockType.swift */; };
+		6E25387B2656A3A100439E8E /* StockSearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E25387A2656A3A100439E8E /* StockSearchButton.swift */; };
 		6E2F82B7264CD48300539D8A /* HomeInvestByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */; };
 		6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */; };
 		6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E40DDFB263448060003E4AD /* UIImageExtensions.swift */; };
 		6E45387C26550966000CFC0F /* WriteMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E45387B26550966000CFC0F /* WriteMenuView.swift */; };
 		6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E45387D26550D16000CFC0F /* WriteMenuViewController.swift */; };
+		6E45388226551A42000CFC0F /* WriteNewStockTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */; };
 		6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E475841264D566F003E16C5 /* DashBoardView.swift */; };
 		6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A12638625B00103948 /* SignInViewController.swift */; };
 		6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A32638655B00103948 /* SignInReactor.swift */; };
@@ -98,11 +104,17 @@
 		6E16631A263D30B600A35C9F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		6E16631F263D34FA00A35C9F /* JsonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtils.swift; sourceTree = "<group>"; };
 		6E16632A263D3CC200A35C9F /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		6E2538712656941E00439E8E /* WriteNewStockTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNewStockTypeViewController.swift; sourceTree = "<group>"; };
+		6E2538742656964C00439E8E /* StockTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTypeButton.swift; sourceTree = "<group>"; };
+		6E2538762656980F00439E8E /* StockTypeRadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTypeRadioGroupView.swift; sourceTree = "<group>"; };
+		6E25387826569A5700439E8E /* StockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockType.swift; sourceTree = "<group>"; };
+		6E25387A2656A3A100439E8E /* StockSearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSearchButton.swift; sourceTree = "<group>"; };
 		6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInvestByCategoryView.swift; sourceTree = "<group>"; };
 		6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestByCategoryButton.swift; sourceTree = "<group>"; };
 		6E40DDFB263448060003E4AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		6E45387B26550966000CFC0F /* WriteMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMenuView.swift; sourceTree = "<group>"; };
 		6E45387D26550D16000CFC0F /* WriteMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMenuViewController.swift; sourceTree = "<group>"; };
+		6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNewStockTypeView.swift; sourceTree = "<group>"; };
 		6E475841264D566F003E16C5 /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
 		6E4FE4A12638625B00103948 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6E4FE4A32638655B00103948 /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
@@ -214,6 +226,16 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		6E2538732656962700439E8E /* subviews */ = {
+			isa = PBXGroup;
+			children = (
+				6E2538742656964C00439E8E /* StockTypeButton.swift */,
+				6E2538762656980F00439E8E /* StockTypeRadioGroupView.swift */,
+				6E25387A2656A3A100439E8E /* StockSearchButton.swift */,
+			);
+			path = subviews;
+			sourceTree = "<group>";
+		};
 		6E45387F265516F1000CFC0F /* write-menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +243,16 @@
 				6E45387D26550D16000CFC0F /* WriteMenuViewController.swift */,
 			);
 			path = "write-menu";
+			sourceTree = "<group>";
+		};
+		6E4538802655194A000CFC0F /* write-new */ = {
+			isa = PBXGroup;
+			children = (
+				6E2538732656962700439E8E /* subviews */,
+				6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */,
+				6E2538712656941E00439E8E /* WriteNewStockTypeViewController.swift */,
+			);
+			path = "write-new";
 			sourceTree = "<group>";
 		};
 		6E540A3C263BBF6300AAD4B0 /* shared */ = {
@@ -245,6 +277,7 @@
 		6E801CC2262C1C260081E68A /* home */ = {
 			isa = PBXGroup;
 			children = (
+				6E4538802655194A000CFC0F /* write-new */,
 				6E45387F265516F1000CFC0F /* write-menu */,
 				6ED95A84264ACB9100853CA3 /* subview */,
 				6E801CC3262C1C2E0081E68A /* HomeViewController.swift */,
@@ -298,6 +331,7 @@
 				6E16631A263D30B600A35C9F /* AuthResponse.swift */,
 				6E16632A263D3CC200A35C9F /* APIResult.swift */,
 				6E9429EE26403BC2005AAC78 /* HTTPError.swift */,
+				6E25387826569A5700439E8E /* StockType.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -709,6 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E25387B2656A3A100439E8E /* StockSearchButton.swift in Sources */,
 				A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */,
 				6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */,
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
@@ -716,6 +751,7 @@
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
 				6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */,
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
+				6E25387926569A5700439E8E /* StockType.swift in Sources */,
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
@@ -732,6 +768,7 @@
 				A5754BA62625BBD100B6E8A1 /* MainTabBerController.swift in Sources */,
 				6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */,
 				6E45387C26550966000CFC0F /* WriteMenuView.swift in Sources */,
+				6E2538752656964C00439E8E /* StockTypeButton.swift in Sources */,
 				6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */,
 				A5754BBC2625BE4B00B6E8A1 /* BaseTableViewCell.swift in Sources */,
 				A5754B4D2625B6C200B6E8A1 /* SceneDelegate.swift in Sources */,
@@ -743,6 +780,7 @@
 				6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */,
 				6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */,
 				6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */,
+				6E2538722656941E00439E8E /* WriteNewStockTypeViewController.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
 				6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
@@ -755,6 +793,8 @@
 				6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */,
 				6E5A3A25263D9C7C00B46EAF /* ObservableExtensions.swift in Sources */,
 				6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */,
+				6E45388226551A42000CFC0F /* WriteNewStockTypeView.swift in Sources */,
+				6E2538772656980F00439E8E /* StockTypeRadioGroupView.swift in Sources */,
 				6E801CD2262C1D810081E68A /* UIViewExtensions.swift in Sources */,
 				6EABBAE0263AD2DE00ACC332 /* StringExtensions.swift in Sources */,
 				A5754BB72625BD8900B6E8A1 /* BaseViewController.swift in Sources */,
