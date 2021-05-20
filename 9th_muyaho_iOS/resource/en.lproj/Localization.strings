@@ -55,6 +55,12 @@
 "home_incoming_rate_title" = "오늘의 수익률(%)";
 "home_incoming_title" = "오늘의 수익금(원)";
 
-// write
+// write-menu
 "write_menu_modify" = "기종 종목 정보 수정";
 "write_menu_new" = "신규 종목 추가";
+
+// write-new-stock-type
+"write_new_stock_type_title" = "신규항목추가";
+"write_new_stock_type_description" = "신규 등록하실\n투자 종목을 알려주세요!";
+"write_new_stock_type_name" = "종목명";
+"write_new_stock_search" = "종목이름으로 검색해주세요.";

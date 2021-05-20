@@ -54,7 +54,9 @@ class HomeViewController: BaseViewController, View {
 extension HomeViewController: WriteMenuDelegate {
     
     func onTapNew() {
-        print("onTapNew")
+        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
+        
+        self.present(writeNewStockTypeViewController, animated: true, completion: nil)
     }
     
     func onTapModify() {
