@@ -29,6 +29,7 @@
 		6E4F5D962657E7780061A13C /* SearchStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D952657E7780061A13C /* SearchStockView.swift */; };
 		6E4F5D992657E8400061A13C /* SearchStockField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D982657E8400061A13C /* SearchStockField.swift */; };
 		6E4F5D9B2657EB6C0061A13C /* SearchStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D9A2657EB6C0061A13C /* SearchStockViewController.swift */; };
+		6E4F5D9D2657F66A0061A13C /* SearchStockTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D9C2657F66A0061A13C /* SearchStockTransition.swift */; };
 		6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A12638625B00103948 /* SignInViewController.swift */; };
 		6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4FE4A32638655B00103948 /* SignInReactor.swift */; };
 		6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */; };
@@ -122,6 +123,7 @@
 		6E4F5D952657E7780061A13C /* SearchStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockView.swift; sourceTree = "<group>"; };
 		6E4F5D982657E8400061A13C /* SearchStockField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockField.swift; sourceTree = "<group>"; };
 		6E4F5D9A2657EB6C0061A13C /* SearchStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockViewController.swift; sourceTree = "<group>"; };
+		6E4F5D9C2657F66A0061A13C /* SearchStockTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockTransition.swift; sourceTree = "<group>"; };
 		6E4FE4A12638625B00103948 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6E4FE4A32638655B00103948 /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
 		6E540A3D263BBF8E00AAD4B0 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				6E4F5D982657E8400061A13C /* SearchStockField.swift */,
+				6E4F5D9C2657F66A0061A13C /* SearchStockTransition.swift */,
 			);
 			path = subviews;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				6E25387B2656A3A100439E8E /* StockSearchButton.swift in Sources */,
 				A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */,
 				6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */,
+				6E4F5D9D2657F66A0061A13C /* SearchStockTransition.swift in Sources */,
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
 				6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
