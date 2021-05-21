@@ -64,3 +64,7 @@
 "write_new_stock_type_description" = "신규 등록하실\n투자 종목을 알려주세요!";
 "write_new_stock_type_name" = "종목명";
 "write_new_stock_search" = "종목이름으로 검색해주세요.";
+
+// search-stock
+"stock_search_title" = "종목 검색하기";
+"stock_search_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
