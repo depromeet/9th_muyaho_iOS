@@ -10,6 +10,7 @@ import RxSwift
 class WriteNewStockTypeViewController: BaseViewController {
     
     private let writeNewStockTypeView = WriteNewStockTypeView()
+    private let searchStockTransition = SearchStockTransition()
     
     
     static func instance() -> UINavigationController {
@@ -47,6 +48,24 @@ class WriteNewStockTypeViewController: BaseViewController {
     private func showSearchStock() {
         let searchStockViewController = SearchStockViewController.instance()
         
+        searchStockViewController.transitioningDelegate = self
         self.present(searchStockViewController, animated: true, completion: nil)
+    }
+}
+
+extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate {
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        self.searchStockTransition.transitionType = .present
+        self.searchStockTransition.originalFrame = self.writeNewStockTypeView.stockSearchButton.frame
+        return self.searchStockTransition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.searchStockTransition.transitionType = .dismiss
+        return self.searchStockTransition
     }
 }
