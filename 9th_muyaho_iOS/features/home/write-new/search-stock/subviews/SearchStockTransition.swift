@@ -12,28 +12,33 @@ final class SearchStockTransition: NSObject {
     let duration = 0.5
     var transitionType: TransitionType = .present
     var originalFrame = CGRect.zero
-    var fieldContainer = UIView().then {
-        $0.backgroundColor = .red
-    }
+    var originalCenter: CGPoint = .zero
+    var fieldContainer = UIView()
     
     enum TransitionType {
         case present
         case dismiss
     }
     
+    
     private func present(using context: UIViewControllerContextTransitioning) {
         if let searchStockViewController = context.viewController(forKey: .to) as? SearchStockViewController {
             let containerView = context.containerView
+            let searchStockButton = StockSearchButton().then {
+                $0.translatesAutoresizingMaskIntoConstraints = true
+                $0.frame = self.originalFrame
+            }
             
+            self.fieldContainer = searchStockButton
             containerView.backgroundColor = .sub_black_b1
             containerView.addSubview(searchStockViewController.view)
             containerView.addSubview(fieldContainer)
+            containerView.layoutIfNeeded()
             searchStockViewController.view.layoutIfNeeded()
             searchStockViewController.view.alpha = 0
             
-            
             UIView.animate(withDuration: self.duration) {
-                self.fieldContainer.frame = searchStockViewController.searchStockView.searchStockField.frame
+                self.fieldContainer.center = searchStockViewController.searchStockView.searchStockField.center
                 containerView.backgroundColor = .sub_black_b2
             } completion: { isComplete in
                 self.fieldContainer.removeFromSuperview()
@@ -46,13 +51,17 @@ final class SearchStockTransition: NSObject {
     private func dismiss(using context: UIViewControllerContextTransitioning) {
         if let searchStockViewController = context.viewController(forKey: .from) as? SearchStockViewController {
             let containerView = context.containerView
+            let searchStockField = SearchStockField().then {
+                $0.translatesAutoresizingMaskIntoConstraints = true
+                $0.frame = searchStockViewController.searchStockView.searchStockField.frame
+            }
             
             searchStockViewController.view.removeFromSuperview()
+            self.fieldContainer = searchStockField
             containerView.addSubview(self.fieldContainer)
-            self.fieldContainer.frame = searchStockViewController.searchStockView.searchStockField.frame
             UIView.animate(withDuration: self.duration) {
                 containerView.backgroundColor = .sub_black_b1
-                self.fieldContainer.frame = self.originalFrame
+                self.fieldContainer.center = self.originalCenter
             } completion: { isComplete in
                 self.fieldContainer.removeFromSuperview()
                 context.completeTransition(isComplete)

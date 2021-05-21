@@ -61,6 +61,7 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
     ) -> UIViewControllerAnimatedTransitioning? {
         self.searchStockTransition.transitionType = .present
         self.searchStockTransition.originalFrame = self.writeNewStockTypeView.stockSearchButton.frame
+        self.searchStockTransition.originalCenter = self.writeNewStockTypeView.stockSearchButton.center
         return self.searchStockTransition
     }
     
