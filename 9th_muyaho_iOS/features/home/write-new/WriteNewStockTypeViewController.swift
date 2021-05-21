@@ -30,12 +30,23 @@ class WriteNewStockTypeViewController: BaseViewController {
     
     override func bindEvent() {
         self.writeNewStockTypeView.closeButton.rx.tap
-            .observeOn(MainScheduler.instance)
-            .bind(onNext: self.dismiss)
+            .asDriver()
+            .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
+        
+        self.writeNewStockTypeView.stockSearchButton.rx.tap
+            .asDriver()
+            .drive(onNext: self.showSearchStock)
+            .disposed(by: self.disposeBag)
     }
     
     private func dismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func showSearchStock() {
+        let searchStockViewController = SearchStockViewController.instance()
+        
+        self.present(searchStockViewController, animated: true, completion: nil)
     }
 }

@@ -31,10 +31,11 @@ extension UIImage {
     static let icWriteNew = UIImage(named: "ic_write_new")
     static let icWriteModify = UIImage(named: "ic_write_modify")
     
-    
     // common
     static let arrowUp = UIImage(named: "ic_arrow_up")
     static let arrowDown = UIImage(named: "ic_arrow_down")
     static let close24 = UIImage(named: "ic_close_24")
     static let searchGray = UIImage(named: "ic_search_gray")
+    static let searchBlue = UIImage(named: "ic_search_blue")
+    static let icDelete = UIImage(named: "ic_delete")
 }
