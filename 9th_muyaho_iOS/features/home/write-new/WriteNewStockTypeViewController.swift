@@ -46,7 +46,7 @@ class WriteNewStockTypeViewController: BaseViewController, View {
         self.writeNewStockTypeView.stockSearchButton.rx.tap
             .asDriver()
             .drive(onNext: self.showSearchStock)
-            .disposed(by: self.disposeBag)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: WriteNewStockTypeReactor) {

@@ -10,11 +10,11 @@ import UIKit
 class StockSearchButton: UIButton {
     
     let searchImage = UIImageView().then {
-        $0.image = .searchGray
+        $0.image = .searchBlue
     }
     
     let textLabel = UILabel().then {
-        $0.font = .body1_16
+        $0.font = .body2_14R
         $0.textColor = .sub_black_b5
         $0.text = "write_new_stock_search".localized
     }
@@ -42,24 +42,26 @@ class StockSearchButton: UIButton {
     
     private func bindConstraints() {
         self.searchImage.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().priority(.high)
+            make.top.equalToSuperview().priority(.high)
+            make.left.equalTo(self.underLineView).offset(12)
+            make.width.height.equalTo(24)
         }
         
         self.textLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.searchImage)
-            make.left.equalTo(self.searchImage.snp.right).offset(6)
+            make.left.equalTo(self.searchImage.snp.right).offset(8)
         }
         
         self.underLineView.snp.makeConstraints { make in
-            make.left.equalTo(self.searchImage)
+            make.left.equalToSuperview().priority(.high)
             make.right.equalToSuperview().priority(.high)
-            make.top.equalTo(self.searchImage.snp.bottom).offset(9)
+            make.top.equalTo(self.searchImage.snp.bottom).offset(11)
             make.height.equalTo(1)
         }
         
         self.snp.makeConstraints { make in
-            make.left.top.equalTo(self.searchImage)
-            make.bottom.right.equalTo(self.underLineView)
+            make.top.equalTo(self.searchImage).offset(-12)
+            make.left.bottom.right.equalTo(self.underLineView)
         }
     }
 }
