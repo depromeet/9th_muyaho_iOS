@@ -35,19 +35,16 @@ class StockTypeRadioGroupView: BaseView {
         
         self.domesticButton.rx.tap
             .map { StockType.domestic }
-            .do(onNext: self.selectButton(type:))
             .bind(to: self.categoryPublishSubject)
             .disposed(by: self.disposeBag)
         
         self.abroadButton.rx.tap
             .map { StockType.abroad }
-            .do(onNext: self.selectButton(type:))
             .bind(to: self.categoryPublishSubject)
             .disposed(by: self.disposeBag)
         
         self.coinButton.rx.tap
             .map { StockType.coin }
-            .do(onNext: self.selectButton(type:))
             .bind(to: self.categoryPublishSubject)
             .disposed(by: self.disposeBag)
     }
@@ -78,7 +75,7 @@ class StockTypeRadioGroupView: BaseView {
         }
     }
     
-    private func selectButton(type: StockType) {
+    func selectButton(type: StockType) {
         self.domesticButton.isSelected = type == .domestic
         self.abroadButton.isSelected = type == .abroad
         self.coinButton.isSelected = type == .coin
@@ -90,5 +87,11 @@ extension Reactive where Base: StockTypeRadioGroupView {
     var category: ControlEvent<StockType> {
         let event = ControlEvent(events: PublishSubject<StockType>())
         return event
+    }
+    
+    var select: Binder<StockType> {
+        return Binder(self.base) { view, stockType in
+            view.selectButton(type: stockType)
+        }
     }
 }
