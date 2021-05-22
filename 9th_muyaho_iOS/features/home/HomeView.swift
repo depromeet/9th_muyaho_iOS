@@ -9,6 +9,8 @@ import UIKit
 
 class HomeView: BaseView {
     
+    var latestAngle: CGFloat = .zero
+    
     let gradientLayer = CAGradientLayer().then {
         let topColor = UIColor.sub_black_b1.cgColor
         let middleColor = UIColor.sub_black_b1.withAlphaComponent(0.83).cgColor
@@ -118,5 +120,12 @@ extension HomeView: UIScrollViewDelegate {
         
         self.homeOverview.starImageView1.transform = .init(rotationAngle: -angle)
         self.homeOverview.starImageView2.transform = .init(rotationAngle: angle * 0.7)
+
+        if 1000 - offset  <= UIScreen.main.bounds.height {
+            self.homeInvestByCategoryView.rocketImage.transform = .init(rotationAngle: -0.3 * (angle - self.latestAngle))
+                .translatedBy(x: -140 * (angle - self.latestAngle), y: -70 * (angle - self.latestAngle))
+        } else {
+            self.latestAngle = angle
+        }
     }
 }

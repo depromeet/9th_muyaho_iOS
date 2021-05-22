@@ -24,6 +24,7 @@ extension UIImage {
     static let plus = UIImage(named: "ic_plus")
     static let arrowRight16 = UIImage(named: "ic_arrow_right_16")
     static let imgBottomBackground = UIImage(named: "img_line_bottom_bg")
+    static let imgRocket = UIImage(named: "img_rocket")
     
     // write
     static let icWrite = UIImage(named: "ic_write")

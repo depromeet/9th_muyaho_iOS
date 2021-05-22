@@ -25,12 +25,16 @@ class HomeInvestByCategoryView: BaseView {
         $0.image = .imgBottomBackground
     }
     
+    let rocketImage = UIImageView().then {
+        $0.image = .imgRocket
+    }
+    
     
     override func setup() {
         self.backgroundColor = .clear
         self.addSubviews(
-            headerLabel, domesticCategoryButton, abroadCategoryButton, coinCategoryButton,
-            bottomBackgroundImage
+            rocketImage, headerLabel, domesticCategoryButton, abroadCategoryButton,
+            coinCategoryButton, bottomBackgroundImage
         )
     }
     
@@ -60,6 +64,11 @@ class HomeInvestByCategoryView: BaseView {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().priority(.high)
             make.top.equalTo(self.coinCategoryButton).offset(31)
+        }
+        
+        self.rocketImage.snp.makeConstraints { make in
+            make.right.equalTo(self.bottomBackgroundImage).offset(-32)
+            make.top.equalTo(self.bottomBackgroundImage).offset(38)
         }
         
         self.snp.makeConstraints { make in
