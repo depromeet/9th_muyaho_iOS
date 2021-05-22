@@ -85,7 +85,8 @@ class StockTypeRadioGroupView: BaseView {
 extension Reactive where Base: StockTypeRadioGroupView {
     
     var category: ControlEvent<StockType> {
-        let event = ControlEvent(events: PublishSubject<StockType>())
+        let event = ControlEvent(events: base.categoryPublishSubject)
+        
         return event
     }
     
