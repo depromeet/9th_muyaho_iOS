@@ -6,10 +6,12 @@
 //
 
 import RxSwift
+import ReactorKit
 
-class WriteNewStockTypeViewController: BaseViewController {
+class WriteNewStockTypeViewController: BaseViewController, View {
     
     private let writeNewStockTypeView = WriteNewStockTypeView()
+    private let writeNewStockTypeReactor = WriteNewStockTypeReactor()
     private let searchStockTransition = SearchStockTransition()
     
     
@@ -20,6 +22,12 @@ class WriteNewStockTypeViewController: BaseViewController {
             $0.modalPresentationStyle = .overCurrentContext
             $0.setNavigationBarHidden(true, animated: false)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.reactor = self.writeNewStockTypeReactor
     }
     
     override func setupView() {
@@ -38,6 +46,21 @@ class WriteNewStockTypeViewController: BaseViewController {
         self.writeNewStockTypeView.stockSearchButton.rx.tap
             .asDriver()
             .drive(onNext: self.showSearchStock)
+            .disposed(by: self.disposeBag)
+    }
+    
+    func bind(reactor: WriteNewStockTypeReactor) {
+        // MARK: Bind action
+        self.writeNewStockTypeView.stockTypeRadioGroupView.rx.category
+            .map { Reactor.Action.tapStockType($0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind state
+        reactor.state
+            .map { $0.stockType }
+            .asDriver(onErrorJustReturn: .domestic)
+            .drive(self.writeNewStockTypeView.stockTypeRadioGroupView.rx.select)
             .disposed(by: self.disposeBag)
     }
     
