@@ -10,6 +10,9 @@ import RxSwift
 import RxCocoa
 
 class StockTypeRadioGroupView: BaseView {
+  
+    let itemSpacing = 15
+    let itemWidth = (UIScreen.main.bounds.width - 40 - 30) / 3
     
     let categoryPublishSubject = PublishSubject<StockType>()
     
@@ -52,16 +55,19 @@ class StockTypeRadioGroupView: BaseView {
     override func bindConstraints() {
         self.abroadButton.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().priority(.high)
+            make.width.equalTo(self.itemWidth)
             make.centerX.equalToSuperview().priority(.high)
         }
         
         self.domesticButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.abroadButton)
+            make.width.equalTo(self.itemWidth)
             make.right.equalTo(self.abroadButton.snp.left).offset(-15)
         }
         
         self.coinButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.abroadButton)
+            make.width.equalTo(self.itemWidth)
             make.left.equalTo(self.abroadButton.snp.right).offset(15)
         }
         
