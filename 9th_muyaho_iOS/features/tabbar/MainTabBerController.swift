@@ -10,7 +10,8 @@ import UIKit
 class MainTabBerController: UITabBarController {
 
     let homeViewController = HomeViewController.instance()
-    
+    let calculatorViewController = CalculatorViewController.instance()
+
     static func make() -> MainTabBerController {
         return MainTabBerController(nibName: nil, bundle: nil)
     }
@@ -23,6 +24,8 @@ class MainTabBerController: UITabBarController {
     }
     
     private func setupTabBar() {
-        self.setViewControllers([homeViewController], animated: true)
+        self.setViewControllers([homeViewController,
+                                 calculatorViewController],
+                                animated: true)
     }
 }

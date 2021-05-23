@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProfitrateCell" customModule="_th_muyaho_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="656"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="442" height="656"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미래의 수익금을 예상해보세요!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8K-UD-R5K">
+                        <rect key="frame" x="20" y="100" width="402" height="105.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="현재 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-hE-26Y">
+                        <rect key="frame" x="20" y="273.5" width="333" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="Color"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="내 목표" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4S-eD-it4">
+                        <rect key="frame" x="20" y="447.5" width="48.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="Color"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AI8-XP-Rs6">
+                        <rect key="frame" x="373" y="268.5" width="51" height="31"/>
+                    </switch>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fty-mL-NSP">
+                        <rect key="frame" x="20" y="319.5" width="402" height="96"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yM5-PC-k03">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="보유 평단가" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8P-mE-chj">
+                                        <rect key="frame" x="0.0" y="0.0" width="191" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="aqr-0L-maK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="보유 수량" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lL4-Cf-UNK">
+                                        <rect key="frame" x="211" y="0.0" width="191" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="매입 금액" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4VN-6b-m48">
+                                <rect key="frame" x="0.0" y="56" width="402" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SLe-ty-dTO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yM5-PC-k03" secondAttribute="trailing" id="56I-nw-S68"/>
+                            <constraint firstItem="yM5-PC-k03" firstAttribute="leading" secondItem="fty-mL-NSP" secondAttribute="leading" id="EtH-lN-H67"/>
+                            <constraint firstItem="4VN-6b-m48" firstAttribute="leading" secondItem="fty-mL-NSP" secondAttribute="leading" id="qSJ-zY-fvw"/>
+                            <constraint firstAttribute="trailing" secondItem="4VN-6b-m48" secondAttribute="trailing" id="r7t-3A-TDB"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="9b7-rA-2KR">
+                        <rect key="frame" x="20" y="488" width="402" height="130"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="akJ-mr-N9J">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="목표 단가" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgP-6z-7Ds">
+                                        <rect key="frame" x="0.0" y="0.0" width="193.5" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="SHD-d3-rAe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="목표 수익률" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQ6-hZ-CJ6">
+                                        <rect key="frame" x="208.5" y="0.0" width="193.5" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1d-Tn-cAf">
+                                <rect key="frame" x="0.0" y="82" width="402" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="B23-0Z-oMe"/>
+                                </constraints>
+                                <state key="normal" title="현재 계산 기록 저장하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="akJ-mr-N9J" secondAttribute="trailing" id="Srf-qt-Cry"/>
+                            <constraint firstItem="akJ-mr-N9J" firstAttribute="leading" secondItem="9b7-rA-2KR" secondAttribute="leading" id="ZNA-9w-gr3"/>
+                            <constraint firstItem="Y1d-Tn-cAf" firstAttribute="leading" secondItem="9b7-rA-2KR" secondAttribute="leading" id="gIu-T4-hyS"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1d-Tn-cAf" secondAttribute="trailing" id="nKK-Ms-ats"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="eQi-hE-26Y" firstAttribute="top" secondItem="e8K-UD-R5K" secondAttribute="bottom" constant="68" id="0u4-Zx-YvL"/>
+                <constraint firstItem="AI8-XP-Rs6" firstAttribute="centerY" secondItem="eQi-hE-26Y" secondAttribute="centerY" id="9qk-Ey-evv"/>
+                <constraint firstItem="e8K-UD-R5K" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="9ya-2N-k8Z"/>
+                <constraint firstAttribute="trailing" secondItem="e8K-UD-R5K" secondAttribute="trailing" constant="20" id="C3p-0V-RwT"/>
+                <constraint firstAttribute="trailing" secondItem="9b7-rA-2KR" secondAttribute="trailing" constant="20" id="Chr-Ld-05P"/>
+                <constraint firstItem="9b7-rA-2KR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Cym-xi-UIT"/>
+                <constraint firstItem="fty-mL-NSP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="DtP-41-V25"/>
+                <constraint firstItem="AI8-XP-Rs6" firstAttribute="leading" secondItem="eQi-hE-26Y" secondAttribute="trailing" constant="20" id="HHz-cX-fTM"/>
+                <constraint firstItem="fty-mL-NSP" firstAttribute="top" secondItem="AI8-XP-Rs6" secondAttribute="bottom" constant="20" id="JNc-Sq-DiS"/>
+                <constraint firstItem="eQi-hE-26Y" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="JUy-dx-DM4"/>
+                <constraint firstItem="g4S-eD-it4" firstAttribute="leading" secondItem="eQi-hE-26Y" secondAttribute="leading" id="Lgh-Wh-lqZ"/>
+                <constraint firstItem="e8K-UD-R5K" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="100" id="T1P-KP-V3L"/>
+                <constraint firstItem="g4S-eD-it4" firstAttribute="top" secondItem="fty-mL-NSP" secondAttribute="bottom" constant="32" id="Z5o-Wz-5cO"/>
+                <constraint firstItem="9b7-rA-2KR" firstAttribute="top" secondItem="g4S-eD-it4" secondAttribute="bottom" constant="20" id="fPw-PS-V5A"/>
+                <constraint firstAttribute="trailing" secondItem="fty-mL-NSP" secondAttribute="trailing" constant="20" id="faU-KK-5jk"/>
+                <constraint firstAttribute="trailing" secondItem="AI8-XP-Rs6" secondAttribute="trailing" constant="20" id="nue-nq-7GC"/>
+            </constraints>
+            <size key="customSize" width="442" height="656"/>
+            <connections>
+                <outlet property="buyPriceLabel" destination="4VN-6b-m48" id="NwU-9o-Uze"/>
+                <outlet property="haveAverageLabel" destination="P8P-mE-chj" id="ggC-EA-9MA"/>
+                <outlet property="haveCountLabel" destination="lL4-Cf-UNK" id="oSL-gQ-LiE"/>
+                <outlet property="saveButton" destination="Y1d-Tn-cAf" id="OJU-vP-vKk"/>
+                <outlet property="targetAmountLabel" destination="SgP-6z-7Ds" id="Rw3-aS-avB"/>
+                <outlet property="targetProfitrateLabel" destination="QQ6-hZ-CJ6" id="Hh0-j9-8nP"/>
+            </connections>
+            <point key="canvasLocation" x="424.63768115942031" y="336.16071428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
