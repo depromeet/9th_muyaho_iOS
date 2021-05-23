@@ -28,8 +28,7 @@ class SearchStockView: BaseView {
         $0.backgroundColor = .clear
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
-        $0.contentInset = .init(top: 10, left: 20, bottom: 10, right: 20)
-        $0.register(SearchCell.self, forCellReuseIdentifier: SearchCell.reusableIdentifier)
+        $0.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
     }
     
     

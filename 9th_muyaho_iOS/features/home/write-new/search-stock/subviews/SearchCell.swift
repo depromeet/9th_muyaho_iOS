@@ -30,13 +30,17 @@ class SearchCell: BaseTableViewCell {
     
     override func setup() {
         self.selectionStyle = .none
+        self.backgroundColor = .clear
         self.addSubviews(titleLabel, deleteButton, dividorView)
     }
     
     override func bindConstraints() {
         self.dividorView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview()
             make.height.equalTo(1)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16)
         }
         
         self.titleLabel.snp.makeConstraints { make in
@@ -48,5 +52,10 @@ class SearchCell: BaseTableViewCell {
             make.centerY.equalTo(self.titleLabel)
             make.right.equalTo(self.dividorView).offset(-4)
         }
+    }
+    
+    func bind(stock: Stock, type: CellType) {
+        self.deleteButton.isHidden = (type == .normal)
+        self.titleLabel.text = stock.name
     }
 }

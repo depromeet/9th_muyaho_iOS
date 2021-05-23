@@ -6,14 +6,29 @@
 //
 
 import UIKit
+import ReactorKit
 
-class SearchStockViewController: BaseViewController {
+class SearchStockViewController: BaseViewController, View {
     
     let searchStockView = SearchStockView()
+    private let searchStockReactor: SearchStockReactor
     
     
-    static func instance() -> SearchStockViewController {
-        return SearchStockViewController(nibName: nil, bundle: nil).then {
+    init(stockType: StockType) {
+        self.searchStockReactor = SearchStockReactor(
+            stockType: stockType,
+            stockService: StockService(),
+            userDefaults: UserDefaultsUtils()
+        )
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func instance(stockType: StockType) -> SearchStockViewController {
+        return SearchStockViewController(stockType: stockType).then {
             $0.modalPresentationStyle = .overCurrentContext
         }
     }
@@ -21,6 +36,8 @@ class SearchStockViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.reactor = self.searchStockReactor
+        self.searchStockView.stockTableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.reusableIdentifier)
     }
     
     override func setupView() {
@@ -35,6 +52,30 @@ class SearchStockViewController: BaseViewController {
             .asDriver()
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
+    }
+    
+    func bind(reactor: SearchStockReactor) {
+        // MARK: Bind Action
+        self.searchStockView.searchStockField.rx.text.orEmpty
+            .map { Reactor.Action.inputKeyword($0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.searchStockView.stockTableView.rx.itemSelected
+            .map { Reactor.Action.selectStock($0.row) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.searchedStocks }
+            .bind(to: self.searchStockView.stockTableView.rx.items(
+                    cellIdentifier: SearchCell.reusableIdentifier,
+                    cellType: SearchCell.self
+            )) { row, stock, cell in
+                cell.bind(stock: stock, type: .normal)
+            }
+            .disposed(by: self.disposeBag)
     }
     
     private func dismiss() {
