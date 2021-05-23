@@ -13,6 +13,7 @@ class SignUpReactor: Reactor, BaseReactorProtocol {
     
     var initialState = State()
     let requestRequest: AuthRequest
+    let socialType: SocialType
     let membershipService: MembershipServiceProtocol
     var userDefaults: UserDefaultsUtils
     
@@ -38,10 +39,12 @@ class SignUpReactor: Reactor, BaseReactorProtocol {
     
     
     init(
+        socialType: SocialType,
         accessToken: AuthRequest,
         membershipService: MembershipServiceProtocol,
         userDefaults: UserDefaultsUtils
     ) {
+        self.socialType = socialType
         self.requestRequest = accessToken
         self.membershipService = membershipService
         self.userDefaults = userDefaults
@@ -61,6 +64,7 @@ class SignUpReactor: Reactor, BaseReactorProtocol {
             return Observable.concat(observables)
         case .tapSignUpButton:
             return self.membershipService.signUp(
+                socialType: self.socialType,
                 authRequest: self.requestRequest,
                 name: self.currentState.nickname
             )

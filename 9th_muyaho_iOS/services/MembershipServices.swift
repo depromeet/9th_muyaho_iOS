@@ -14,9 +14,9 @@ protocol MembershipServiceProtocol {
     
     func validateNickname(nickname: String) -> Observable<Bool>
     
-    func signIn(authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>>
+    func signIn(socialType: SocialType, authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>>
     
-    func signUp(authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>>
+    func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>>
 }
 
 struct MembershipService: MembershipServiceProtocol {
@@ -37,8 +37,8 @@ struct MembershipService: MembershipServiceProtocol {
             }
     }
     
-    func signIn(authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/login"
+    func signIn(socialType: SocialType, authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/login/\(socialType.rawValue)"
         let parameters = authRequest.toDict()
         
         return RxAlamofire.requestJSON(
@@ -49,8 +49,8 @@ struct MembershipService: MembershipServiceProtocol {
         ).expectingObject(ofType: AuthResponse.self)
     }
     
-    func signUp(authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/signup"
+    func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/signup\(socialType.rawValue)"
         var parameters = authRequest.toDict()
         parameters["name"] = name
         

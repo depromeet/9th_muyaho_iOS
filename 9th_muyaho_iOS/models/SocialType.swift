@@ -7,6 +7,6 @@
 
 enum SocialType: String, Encodable {
     
-    case kakao = "KAKAO"
-    case apple = "APPLE"
+    case kakao = "kakao"
+    case apple = "apple"
 }

@@ -18,6 +18,7 @@ class SignInReactor: Reactor, BaseReactorProtocol {
     var userDefaults: UserDefaultsUtils
     
     var authRequest: AuthRequest?
+    var socialType: SocialType?
     
     enum Action {
         case tapKakaoButton
@@ -55,8 +56,10 @@ class SignInReactor: Reactor, BaseReactorProtocol {
             return self.kakaoManager.signIn()
                 .do(onNext: { [weak self] authRequest in
                     self?.authRequest = authRequest
+                    self?.socialType = .kakao
                 })
-                .flatMap { self.membershipService.signIn(authRequest: $0) }
+                .map { (SocialType.kakao, $0) }
+                .flatMap(self.membershipService.signIn)
                 .do(onNext: { [weak self] in
                     self?.userDefaults.sessionId = $0.data.sessionId
                 })
@@ -66,8 +69,10 @@ class SignInReactor: Reactor, BaseReactorProtocol {
             return self.appleManager.signIn()
                 .do(onNext: { [weak self] authRequest in
                     self?.authRequest = authRequest
+                    self?.socialType = .apple
                 })
-                .flatMap { self.membershipService.signIn(authRequest: $0) }
+                .map { (SocialType.apple, $0) }
+                .flatMap(self.membershipService.signIn)
                 .do(onNext: { [weak self] in
                     self?.userDefaults.sessionId = $0.data.sessionId
                 })
