@@ -1,0 +1,30 @@
+/* 
+  Localization.strings
+  9th_muyaho_iOS
+
+  Created by Hyun Sik Yoo on 2021/04/29.
+  
+*/
+// common
+"common_ok" = "확인";
+"common_cancel" = "취소";
+
+// http-error
+"http_error_bad_reqeust" = "잘못된 요청입니다.";
+"http_error_not_found" = "결과를 찾을 수 없습니다.";
+"http_error_conflict" = "서버 요청중 충돌이 발생했습니다.";
+"http_error_internal_server_error" = "500에러 서버탓 기기~";
+"http_error_unknown" = "알수 없는 에러가 발생했습니다.";
+
+
+
+// sign-in
+"sign_in_with_kakao" = "카카오 계정으로 계속하기";
+"sign_in_with_apple" = "애플 아이디로 계속하기";
+
+// sign-up
+"sign_up_title" = "우리 화성🚀갈꺼니까,\n영~차!";
+"sign_up_description" = "닉네임을 정해주세요!(최대 5자)";
+"sign_up_nickname_placeholder" = "닉네임 입력";
+"sign_up_button" = "시작하기";
+"sign_up_already_existed_nickname" = "중복된 닉네임";

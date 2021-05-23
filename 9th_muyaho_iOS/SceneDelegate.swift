@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxKakaoSDKAuth
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,10 +17,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: scene.coordinateSpace.bounds)
-        window?.windowScene = scene
-        window?.rootViewController = MainTabBerController.make()
-        window?.makeKeyAndVisible()
+        self.window = UIWindow(frame: scene.coordinateSpace.bounds)
+        self.window?.windowScene = scene
+        
+        if UserDefaultsUtils().sessionId.isEmpty {
+            self.goToSignIn()
+        } else {
+            self.goToMain()
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            if AuthApi.isKakaoTalkLoginUrl(url) {
+                _ = AuthController.rx.handleOpenUrl(url: url)
+            }
+        }
+    }
+    
+    func goToSignIn() {
+        let signInViewController = SignInViewController.instance()
+        let navigationController = UINavigationController(rootViewController: signInViewController).then {
+            $0.setNavigationBarHidden(true, animated: false)
+        }
+        
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func goToMain() {
+        let tabBarController = MainTabBerController()
+        
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
     }
 
 }
