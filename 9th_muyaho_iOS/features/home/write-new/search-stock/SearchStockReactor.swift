@@ -18,6 +18,7 @@ class SearchStockReactor: Reactor {
     
     enum Mutation {
         case setStocks([Stock])
+        case goWriteDetail(Stock)
     }
     
     struct State {
@@ -26,6 +27,7 @@ class SearchStockReactor: Reactor {
     
     let initialState: State = State()
     let disposeBag = DisposeBag()
+    let goWriteDetailPublisher = PublishRelay<Stock>()
     var stocks: [Stock] = []
     let stockType: StockType
     let stockService: StockServiceProtocol
@@ -52,7 +54,7 @@ class SearchStockReactor: Reactor {
         case .selectStock(let index):
             let selectedStock = self.currentState.searchedStocks[index]
             
-            return .just(.setStocks([]))
+            return .just(.goWriteDetail(selectedStock))
         }
     }
     
@@ -62,6 +64,8 @@ class SearchStockReactor: Reactor {
         switch mutation {
         case.setStocks(let stocks):
             newState.searchedStocks = stocks
+        case .goWriteDetail(let stock):
+            self.goWriteDetailPublisher.accept(stock)
         }
         
         return newState

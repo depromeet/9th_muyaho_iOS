@@ -70,7 +70,9 @@ class WriteNewStockTypeViewController: BaseViewController, View {
     }
     
     private func showSearchStock(stockType: StockType) {
-        let searchStockViewController = SearchStockViewController.instance(stockType: stockType)
+        let searchStockViewController = SearchStockViewController.instance(stockType: stockType).then {
+            $0.delegate = self
+        }
         
         searchStockViewController.transitioningDelegate = self
         self.present(searchStockViewController, animated: true, completion: nil)
@@ -92,5 +94,11 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.searchStockTransition.transitionType = .dismiss
         return self.searchStockTransition
+    }
+}
+
+extension WriteNewStockTypeViewController: SearchStockDelegate {
+    func onSelectStock(stock: Stock) {
+        // TODO: 다음 화면 넘기기!
     }
 }

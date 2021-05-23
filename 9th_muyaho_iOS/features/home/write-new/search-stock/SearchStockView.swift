@@ -38,7 +38,15 @@ class SearchStockView: BaseView {
             titleLabel, closeButton, searchStockField, historyTableView,
             stockTableView
         )
-        self.stockTableView.delegate = self
+        
+        self.stockTableView.rx.didScroll
+            .asDriver()
+            .drive { [weak self] _ in
+                _ = self?.searchStockField.resignFirstResponder()
+            }
+            .disposed(by: self.disposeBag)
+
+        
         self.searchStockField.rx.text.orEmpty
             .map { $0.isEmpty }
             .asDriver(onErrorJustReturn: false)
@@ -75,12 +83,5 @@ class SearchStockView: BaseView {
             make.top.equalTo(self.searchStockField.snp.bottom).offset(32)
             make.left.right.bottom.equalToSuperview()
         }
-    }
-}
-
-extension SearchStockView: UITableViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        _ = self.searchStockField.resignFirstResponder()
     }
 }

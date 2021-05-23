@@ -8,9 +8,15 @@
 import UIKit
 import ReactorKit
 
+protocol SearchStockDelegate: AnyObject {
+    
+    func onSelectStock(stock: Stock)
+}
+
 class SearchStockViewController: BaseViewController, View {
     
     let searchStockView = SearchStockView()
+    weak var delegate: SearchStockDelegate?
     private let searchStockReactor: SearchStockReactor
     
     
@@ -37,7 +43,6 @@ class SearchStockViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = self.searchStockReactor
-        self.searchStockView.stockTableView.delegate = self
         let _ = self.searchStockView.searchStockField.becomeFirstResponder()
     }
     
@@ -77,15 +82,20 @@ class SearchStockViewController: BaseViewController, View {
                 cell.bind(stock: stock, type: .normal)
             }
             .disposed(by: self.disposeBag)
+        
+        reactor.goWriteDetailPublisher
+            .observeOn(MainScheduler.instance)
+            .bind(onNext: self.goWriteDetail(stock:))
+            .disposed(by: self.disposeBag)
     }
     
     private func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
-}
-
-extension SearchStockViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        _ = self.searchStockView.searchStockField.resignFirstResponder()
+    
+    private func goWriteDetail(stock: Stock) {
+        self.dismiss(animated: false) { [weak self] in
+            self?.delegate?.onSelectStock(stock: stock)
+        }
     }
 }
