@@ -37,7 +37,8 @@ class SearchStockViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = self.searchStockReactor
-        self.searchStockView.searchStockField.becomeFirstResponder()
+        self.searchStockView.stockTableView.delegate = self
+        let _ = self.searchStockView.searchStockField.becomeFirstResponder()
     }
     
     override func setupView() {
@@ -80,5 +81,11 @@ class SearchStockViewController: BaseViewController, View {
     
     private func dismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SearchStockViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        _ = self.searchStockView.searchStockField.resignFirstResponder()
     }
 }

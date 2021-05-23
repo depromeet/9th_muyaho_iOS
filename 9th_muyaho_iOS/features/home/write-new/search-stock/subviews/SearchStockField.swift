@@ -88,6 +88,10 @@ class SearchStockField: BaseView {
     override func becomeFirstResponder() -> Bool {
         return self.textField.becomeFirstResponder()
     }
+    
+    override func resignFirstResponder() -> Bool {
+        return self.endEditing(true)
+    }
 }
 
 extension Reactive where Base: SearchStockField {

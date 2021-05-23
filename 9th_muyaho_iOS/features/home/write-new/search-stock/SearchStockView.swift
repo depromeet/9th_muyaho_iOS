@@ -28,7 +28,6 @@ class SearchStockView: BaseView {
         $0.backgroundColor = .clear
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
-        $0.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         $0.register(SearchCell.self, forCellReuseIdentifier: SearchCell.reusableIdentifier)
     }
     
@@ -39,7 +38,7 @@ class SearchStockView: BaseView {
             titleLabel, closeButton, searchStockField, historyTableView,
             stockTableView
         )
-        
+        self.stockTableView.delegate = self
         self.searchStockField.rx.text.orEmpty
             .map { $0.isEmpty }
             .asDriver(onErrorJustReturn: false)
@@ -76,5 +75,12 @@ class SearchStockView: BaseView {
             make.top.equalTo(self.searchStockField.snp.bottom).offset(32)
             make.left.right.bottom.equalToSuperview()
         }
+    }
+}
+
+extension SearchStockView: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        _ = self.searchStockField.resignFirstResponder()
     }
 }
