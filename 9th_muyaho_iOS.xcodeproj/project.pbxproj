@@ -62,6 +62,21 @@
 		A5EBC43826475F2200876352 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EBC43726475F2200876352 /* MyPageViewController.swift */; };
 		A5EBC4452647608400876352 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EBC4442647608400876352 /* MyPageView.swift */; };
 		A5EBC44A264760F200876352 /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EBC449264760F200876352 /* MyPageReactor.swift */; };
+		A58C2B752658072000CEEE8C /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2B742658072000CEEE8C /* CalculatorViewController.swift */; };
+		A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2B792658074300CEEE8C /* CalculatorView.swift */; };
+		A58C2B7F2658076400CEEE8C /* CalculatorReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2B7E2658076400CEEE8C /* CalculatorReactor.swift */; };
+		A58C2B9D265892B200CEEE8C /* CustomMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2B9C265892B200CEEE8C /* CustomMenuBar.swift */; };
+		A58C2BAE2658937100CEEE8C /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BAC2658937100CEEE8C /* CustomCell.swift */; };
+		A58C2BAF2658937100CEEE8C /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58C2BAD2658937100CEEE8C /* CustomCell.xib */; };
+		A58C2BB52658938100CEEE8C /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BB32658938100CEEE8C /* PageCell.swift */; };
+		A58C2BB62658938100CEEE8C /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58C2BB42658938100CEEE8C /* PageCell.xib */; };
+		A58C2BBC2658944400CEEE8C /* NSObject + reusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BBB2658944400CEEE8C /* NSObject + reusableIdentifier.swift */; };
+		A58C2BDB2658C7C800CEEE8C /* ProfitrateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BD92658C7C800CEEE8C /* ProfitrateCell.swift */; };
+		A58C2BDC2658C7C800CEEE8C /* ProfitrateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58C2BDA2658C7C800CEEE8C /* ProfitrateCell.xib */; };
+		A58C2BE22659DDF700CEEE8C /* WaterrideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BE02659DDF700CEEE8C /* WaterrideCell.swift */; };
+		A58C2BE32659DDF700CEEE8C /* WaterrideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58C2BE12659DDF700CEEE8C /* WaterrideCell.xib */; };
+		A58C2BE92659DE1100CEEE8C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C2BE72659DE1100CEEE8C /* HistoryCell.swift */; };
+		A58C2BEA2659DE1100CEEE8C /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58C2BE82659DE1100CEEE8C /* HistoryCell.xib */; };
 		E5522E36B7F597FE6EF15C86 /* Pods_9th_muyaho_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2548F9F95CFE9F9A594D89 /* Pods_9th_muyaho_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +164,21 @@
 		A5EBC43726475F2200876352 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A5EBC4442647608400876352 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		A5EBC449264760F200876352 /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
+		A58C2B742658072000CEEE8C /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		A58C2B792658074300CEEE8C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		A58C2B7E2658076400CEEE8C /* CalculatorReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorReactor.swift; sourceTree = "<group>"; };
+		A58C2B9C265892B200CEEE8C /* CustomMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuBar.swift; sourceTree = "<group>"; };
+		A58C2BAC2658937100CEEE8C /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		A58C2BAD2658937100CEEE8C /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		A58C2BB32658938100CEEE8C /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		A58C2BB42658938100CEEE8C /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		A58C2BBB2658944400CEEE8C /* NSObject + reusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + reusableIdentifier.swift"; sourceTree = "<group>"; };
+		A58C2BD92658C7C800CEEE8C /* ProfitrateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitrateCell.swift; sourceTree = "<group>"; };
+		A58C2BDA2658C7C800CEEE8C /* ProfitrateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfitrateCell.xib; sourceTree = "<group>"; };
+		A58C2BE02659DDF700CEEE8C /* WaterrideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterrideCell.swift; sourceTree = "<group>"; };
+		A58C2BE12659DDF700CEEE8C /* WaterrideCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterrideCell.xib; sourceTree = "<group>"; };
+		A58C2BE72659DE1100CEEE8C /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		A58C2BE82659DE1100CEEE8C /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		E0A99F53BEF14AA289056FC2 /* Pods_9th_muyaho_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_9th_muyaho_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE242BEDD8AE9165558401E /* Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests/Pods-9th_muyaho_iOS-9th_muyaho_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2548F9F95CFE9F9A594D89 /* Pods_9th_muyaho_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_9th_muyaho_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,6 +419,7 @@
 		A5754BA32625BB6200B6E8A1 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				A58C2B70265806C100CEEE8C /* calculator */,
 				6E540A3C263BBF6300AAD4B0 /* shared */,
 				6EABBAE1263AF58A00ACC332 /* membership */,
 				6E801CC2262C1C260081E68A /* home */,
@@ -426,6 +457,50 @@
 				A5EBC449264760F200876352 /* MyPageReactor.swift */,
 			);
 			path = myPage;
+		A58C2B70265806C100CEEE8C /* calculator */ = {
+			isa = PBXGroup;
+			children = (
+				A58C2BBA2658942800CEEE8C /* Extentions */,
+				A58C2BA2265892E600CEEE8C /* Views */,
+				A58C2BA1265892DC00CEEE8C /* Cells */,
+				A58C2B742658072000CEEE8C /* CalculatorViewController.swift */,
+				A58C2B792658074300CEEE8C /* CalculatorView.swift */,
+				A58C2B7E2658076400CEEE8C /* CalculatorReactor.swift */,
+			);
+			path = calculator;
+			sourceTree = "<group>";
+		};
+		A58C2BA1265892DC00CEEE8C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A58C2BAC2658937100CEEE8C /* CustomCell.swift */,
+				A58C2BAD2658937100CEEE8C /* CustomCell.xib */,
+				A58C2BB32658938100CEEE8C /* PageCell.swift */,
+				A58C2BB42658938100CEEE8C /* PageCell.xib */,
+				A58C2BD92658C7C800CEEE8C /* ProfitrateCell.swift */,
+				A58C2BDA2658C7C800CEEE8C /* ProfitrateCell.xib */,
+				A58C2BE02659DDF700CEEE8C /* WaterrideCell.swift */,
+				A58C2BE12659DDF700CEEE8C /* WaterrideCell.xib */,
+				A58C2BE72659DE1100CEEE8C /* HistoryCell.swift */,
+				A58C2BE82659DE1100CEEE8C /* HistoryCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A58C2BA2265892E600CEEE8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A58C2B9C265892B200CEEE8C /* CustomMenuBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A58C2BBA2658942800CEEE8C /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				A58C2BBB2658944400CEEE8C /* NSObject + reusableIdentifier.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		D832443F51FC385EB486FBCD /* Pods */ = {
@@ -551,10 +626,15 @@
 			files = (
 				6E81759D263837AD0050FFC7 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				A5754B572625B6C400B6E8A1 /* LaunchScreen.storyboard in Resources */,
+				A58C2BAF2658937100CEEE8C /* CustomCell.xib in Resources */,
+				A58C2BDC2658C7C800CEEE8C /* ProfitrateCell.xib in Resources */,
 				6EABBADC263AD2C900ACC332 /* Localization.strings in Resources */,
 				6E81759B263837330050FFC7 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
+				A58C2BB62658938100CEEE8C /* PageCell.xib in Resources */,
+				A58C2BE32659DDF700CEEE8C /* WaterrideCell.xib in Resources */,
 				6E81759F263838140050FFC7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				6E8175A1263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
+				A58C2BEA2659DE1100CEEE8C /* HistoryCell.xib in Resources */,
 				A5754B542625B6C400B6E8A1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +763,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58C2BAE2658937100CEEE8C /* CustomCell.swift in Sources */,
 				A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */,
 				A5EBC44A264760F200876352 /* MyPageReactor.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
@@ -691,32 +772,40 @@
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
 				6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
+				A58C2BE92659DE1100CEEE8C /* HistoryCell.swift in Sources */,
 				6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */,
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
+				A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */,
 				6E817597263835390050FFC7 /* UIFontExtensions.swift in Sources */,
 				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
+				A58C2BBC2658944400CEEE8C /* NSObject + reusableIdentifier.swift in Sources */,
 				6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */,
 				6EABBACF263A954100ACC332 /* SocialType.swift in Sources */,
 				A5754BAF2625BC6B00B6E8A1 /* BaseView.swift in Sources */,
 				6E81759526382B680050FFC7 /* UIColorExtensions.swift in Sources */,
 				6E16631B263D30B600A35C9F /* AuthResponse.swift in Sources */,
+				A58C2B752658072000CEEE8C /* CalculatorViewController.swift in Sources */,
+				A58C2B9D265892B200CEEE8C /* CustomMenuBar.swift in Sources */,
 				A5754BA62625BBD100B6E8A1 /* MainTabBerController.swift in Sources */,
 				6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */,
 				A5754BBC2625BE4B00B6E8A1 /* BaseTableViewCell.swift in Sources */,
 				A5754B4D2625B6C200B6E8A1 /* SceneDelegate.swift in Sources */,
 				6E166309263D2D1400A35C9F /* HTTPUtils.swift in Sources */,
 				6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */,
+				A58C2BE22659DDF700CEEE8C /* WaterrideCell.swift in Sources */,
 				6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */,
+				A58C2BDB2658C7C800CEEE8C /* ProfitrateCell.swift in Sources */,
 				6E5A3A23263D9B2700B46EAF /* HTTPURLResponseExtensions.swift in Sources */,
 				6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */,
 				6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */,
 				A5EBC43826475F2200876352 /* MyPageViewController.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
+				A58C2B7F2658076400CEEE8C /* CalculatorReactor.swift in Sources */,
 				6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */,
 				6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */,
 				6E744C5E2641546C00AB9054 /* UserDefaultsUtils.swift in Sources */,
@@ -726,6 +815,7 @@
 				6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */,
 				6E801CD2262C1D810081E68A /* UIViewExtensions.swift in Sources */,
 				6EABBAE0263AD2DE00ACC332 /* StringExtensions.swift in Sources */,
+				A58C2BB52658938100CEEE8C /* PageCell.swift in Sources */,
 				A5754BB72625BD8900B6E8A1 /* BaseViewController.swift in Sources */,
 				6EABBACD263A950500ACC332 /* AuthRequest.swift in Sources */,
 			);
