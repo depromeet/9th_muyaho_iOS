@@ -84,6 +84,10 @@ class SearchStockField: BaseView {
             make.edges.equalTo(self.containerView)
         }
     }
+    
+    override func becomeFirstResponder() -> Bool {
+        return self.textField.becomeFirstResponder()
+    }
 }
 
 extension Reactive where Base: SearchStockField {

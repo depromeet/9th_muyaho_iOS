@@ -37,7 +37,7 @@ class SearchStockViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = self.searchStockReactor
-        self.searchStockView.stockTableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.reusableIdentifier)
+        self.searchStockView.searchStockField.becomeFirstResponder()
     }
     
     override func setupView() {
