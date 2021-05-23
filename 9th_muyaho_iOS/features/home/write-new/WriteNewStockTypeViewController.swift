@@ -42,11 +42,6 @@ class WriteNewStockTypeViewController: BaseViewController, View {
             .asDriver()
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
-        
-        self.writeNewStockTypeView.stockSearchButton.rx.tap
-            .asDriver()
-            .drive(onNext: self.showSearchStock)
-            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: WriteNewStockTypeReactor) {
@@ -55,6 +50,12 @@ class WriteNewStockTypeViewController: BaseViewController, View {
             .map { Reactor.Action.tapStockType($0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        self.writeNewStockTypeView.stockSearchButton.rx.tap
+            .map { reactor.currentState.stockType }
+            .asDriver(onErrorJustReturn: .domestic)
+            .drive(onNext: self.showSearchStock)
+            .disposed(by: self.eventDisposeBag)
         
         // MARK: Bind state
         reactor.state
@@ -68,8 +69,10 @@ class WriteNewStockTypeViewController: BaseViewController, View {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func showSearchStock() {
-        let searchStockViewController = SearchStockViewController.instance()
+    private func showSearchStock(stockType: StockType) {
+        let searchStockViewController = SearchStockViewController.instance(stockType: stockType).then {
+            $0.delegate = self
+        }
         
         searchStockViewController.transitioningDelegate = self
         self.present(searchStockViewController, animated: true, completion: nil)
@@ -91,5 +94,11 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.searchStockTransition.transitionType = .dismiss
         return self.searchStockTransition
+    }
+}
+
+extension WriteNewStockTypeViewController: SearchStockDelegate {
+    func onSelectStock(stock: Stock) {
+        // TODO: 다음 화면 넘기기!
     }
 }

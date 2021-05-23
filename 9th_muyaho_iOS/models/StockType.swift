@@ -5,9 +5,9 @@
 //  Created by Hyun Sik Yoo on 2021/05/20.
 //
 
-enum StockType {
+enum StockType: String, Codable {
     
-    case domestic
-    case abroad
-    case coin
+    case domestic = "DOMESTIC_STOCK"
+    case abroad = "OVERSEAS_STOCK"
+    case coin = "BITCOIN"
 }

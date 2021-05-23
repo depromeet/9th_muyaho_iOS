@@ -66,5 +66,6 @@
 "write_new_stock_search" = "종목 이름, 종목 코드로 검색해 주세요";
 
 // search-stock
-"stock_search_title" = "종목 검색하기";
-"stock_search_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
+"search_stock_title" = "종목 검색하기";
+"search_stock_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
+"search_stock_latest_history" = "최근 10개의 검색 기록";

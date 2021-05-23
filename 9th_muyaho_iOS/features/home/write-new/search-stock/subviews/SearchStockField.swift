@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchStockField: BaseView {
     
@@ -21,7 +23,7 @@ class SearchStockField: BaseView {
     
     let textField = UITextField().then {
         let placeholderText = NSAttributedString(
-            string: "stock_search_placeholder".localized,
+            string: "search_stock_placeholder".localized,
             attributes: [.foregroundColor: UIColor.sub_black_b5 as Any]
         )
         
@@ -38,6 +40,21 @@ class SearchStockField: BaseView {
     override func setup() {
         self.backgroundColor = .clear
         self.addSubviews(containerView, searchImage, textField, deleteButton)
+        
+        self.textField.rx.text.orEmpty
+            .map { $0.isEmpty }
+            .asDriver(onErrorJustReturn: true)
+            .drive(self.deleteButton.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
+        
+        self.deleteButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.textField.rx.text.orEmpty.onNext("")
+                self?.textField.resignFirstResponder()
+            }.disposed(by: self.disposeBag)
+
     }
     
     override func bindConstraints() {
@@ -66,5 +83,20 @@ class SearchStockField: BaseView {
         self.snp.makeConstraints { make in
             make.edges.equalTo(self.containerView)
         }
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return self.textField.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return self.endEditing(true)
+    }
+}
+
+extension Reactive where Base: SearchStockField {
+    
+    var text: ControlProperty<String?> {
+        return base.textField.rx.text
     }
 }
