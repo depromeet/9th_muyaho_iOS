@@ -20,7 +20,7 @@ extension UIColor {
     static let secondary_red_dark = UIColor(r: 183, g: 59, b: 37)
     static let secondary_blue_default = UIColor(r: 83, g: 138, b: 255)
     static let secondary_blue_dark = UIColor(r: 47, g: 81, b: 153)
-    static let sub_black_b1 = UIColor(r: 25, g: 24, b: 32)
+    static let sub_black_b1 = UIColor(r: 25, g: 24, b: 43)
     static let sub_black_b2 = UIColor(r: 28, g: 26, b: 56)
     static let sub_black_b3 = UIColor(r: 37, g: 32, b: 68)
     static let sub_black_b4 = UIColor(r: 41, g: 37, b: 88)

@@ -27,18 +27,39 @@ class HomeViewController: BaseViewController, View {
         self.reactor = homeReactor
     }
     
+    override func bindEvent() {
+        self.homeView.writeButton.rx.tap
+            .observeOn(MainScheduler.instance)
+            .bind(onNext: self.showshowWriteMenus)
+            .disposed(by: self.eventDisposeBag)
+    }
+    
     func bind(reactor: HomeReactor) {
         // Bind Action
         self.homeView.refreshButton.rx.tap
             .map { HomeReactor.Action.tapRefreshButton(()) }
             .bind(to: self.homeReactor.action)
             .disposed(by: self.disposeBag)
+    }
+    
+    private func showshowWriteMenus() {
+        let writeMenuViewController = WriteMenuViewController.instance().then {
+            $0.delegate = self
+        }
+        self.present(writeMenuViewController, animated: true, completion: nil)
+    }
+}
+
+
+extension HomeViewController: WriteMenuDelegate {
+    
+    func onTapNew() {
+        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
         
-        // Bind State
-        self.homeReactor.state
-            .map { $0.title }
-            .distinctUntilChanged()
-            .bind(to: self.homeView.titleLabel.rx.text)
-            .disposed(by: self.disposeBag)
+        self.present(writeNewStockTypeViewController, animated: true, completion: nil)
+    }
+    
+    func onTapModify() {
+        print("onTapModify")
     }
 }

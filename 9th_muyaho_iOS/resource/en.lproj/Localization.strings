@@ -9,14 +9,17 @@
 "common_ok" = "확인";
 "common_cancel" = "취소";
 
+// category
+"investment_category_demestic" = "국내주식";
+"investment_category_abroad" = "해외주식";
+"investment_category_coin" = "가상화폐";
+
 // http-error
 "http_error_bad_reqeust" = "잘못된 요청입니다.";
 "http_error_not_found" = "결과를 찾을 수 없습니다.";
 "http_error_conflict" = "서버 요청중 충돌이 발생했습니다.";
 "http_error_internal_server_error" = "500에러 서버탓 기기~";
 "http_error_unknown" = "알수 없는 에러가 발생했습니다.";
-
-
 
 // sign-in
 "sign_in_with_kakao" = "카카오 계정으로 계속하기";
@@ -28,3 +31,40 @@
 "sign_up_nickname_placeholder" = "닉네임 입력";
 "sign_up_button" = "시작하기";
 "sign_up_already_existed_nickname" = "중복된 닉네임";
+
+// home
+"home_empty_title" = "각 투자별 상황을 입력하고\n영찬이를 깨워주세요!";
+"home_empty_overview" = "각 투자별 현황을 입력하세요";
+"home_invent_by_category_header_format" = "현재 0종목에 투자 중!";
+"home_category_register" = "등록하기";
+"home_youngchan_empty_left" = "zzzz...";
+"home_youngchan_empty_right" = "zzzzzz...";
+"home_youngchan_up_left_1" = "우린...";
+"home_youngchan_up_right_1" = "화성갈꺼니까...";
+"home_youngchan_up_left_2" = "영...차....";
+"home_youngchan_up_right_2" = "영.......차......";
+"home_youngchan_up_left_3" = "존...버는";
+"home_youngchan_up_right_3" = "승ㄹ...ㅣㅎ";
+"home_youngchan_down_left_1" = "화려한 빨간불이";
+"home_youngchan_down_right_1" = "나를 감싸네...";
+"home_youngchan_down_left_2" = "도지타고";
+"home_youngchan_down_right_2" = "화성 갈꾸니깐";
+"home_youngchan_down_left_3" = "늦으면";
+"home_youngchan_down_right_3" = "어시없다";
+"home_total_title" = "최종 자산";
+"home_incoming_rate_title" = "오늘의 수익률(%)";
+"home_incoming_title" = "오늘의 수익금(원)";
+
+// write-menu
+"write_menu_modify" = "기종 종목 정보 수정";
+"write_menu_new" = "신규 종목 추가";
+
+// write-new-stock-type
+"write_new_stock_type_title" = "신규항목추가";
+"write_new_stock_type_description" = "신규 등록하실\n투자 종목을 알려주세요!";
+"write_new_stock_type_name" = "종목명";
+"write_new_stock_search" = "종목 이름, 종목 코드로 검색해 주세요";
+
+// search-stock
+"stock_search_title" = "종목 검색하기";
+"stock_search_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
