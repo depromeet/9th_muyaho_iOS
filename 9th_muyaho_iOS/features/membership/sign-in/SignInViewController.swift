@@ -60,8 +60,8 @@ class SignInViewController: BaseViewController, View {
         reactor.state
             .map { $0.goToSignUpFlag }
             .distinctUntilChanged()
-            .map { _ in reactor.authRequest }
-            .bind(onNext: self.gpToSignUp(authRequest:))
+            .map { _ in return (reactor.socialType, reactor.authRequest) }
+            .bind(onNext: self.gpToSignUp)
             .disposed(by: self.disposeBag)
         
         reactor.state
@@ -72,9 +72,10 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
     }
     
-    private func gpToSignUp(authRequest: AuthRequest?) {
+    private func gpToSignUp(socialType: SocialType?, authRequest: AuthRequest?) {
         guard let authRequest = authRequest else { return }
-        let signUpViewController = SignUpViewController.instance(accessToken: authRequest)
+        guard let socialType = socialType else { return }
+        let signUpViewController = SignUpViewController.instance(socialType: socialType, accessToken: authRequest)
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }

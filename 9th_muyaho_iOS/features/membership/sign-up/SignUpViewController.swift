@@ -15,8 +15,9 @@ class SignUpViewController: BaseViewController, View {
     private let signUpReactor: SignUpReactor
     
     
-    init(accessToken: AuthRequest) {
+    init(socialType: SocialType, accessToken: AuthRequest) {
         self.signUpReactor = SignUpReactor(
+            socialType: socialType,
             accessToken: accessToken,
             membershipService: MembershipService(),
             userDefaults: UserDefaultsUtils()
@@ -28,8 +29,8 @@ class SignUpViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instance(accessToken: AuthRequest) -> SignUpViewController {
-        return SignUpViewController(accessToken: accessToken)
+    static func instance(socialType: SocialType, accessToken: AuthRequest) -> SignUpViewController {
+        return SignUpViewController(socialType: socialType, accessToken: accessToken)
     }
     
     override func viewDidLoad() {
