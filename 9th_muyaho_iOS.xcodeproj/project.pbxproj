@@ -457,6 +457,8 @@
 				A5EBC449264760F200876352 /* MyPageReactor.swift */,
 			);
 			path = myPage;
+      sourceTree = "<group>";
+    };
 		A58C2B70265806C100CEEE8C /* calculator */ = {
 			isa = PBXGroup;
 			children = (
