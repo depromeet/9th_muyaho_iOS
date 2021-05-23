@@ -67,6 +67,8 @@
 		6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDADCB8264C2B9A00D6D356 /* EmptyOverviewButton.swift */; };
 		6EE19C07265A37730023B0F5 /* SearchHistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19C06265A37730023B0F5 /* SearchHistoryTableView.swift */; };
 		6EE19C09265A3E420023B0F5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19C08265A3E420023B0F5 /* SearchCell.swift */; };
+		6EE19C0D265A504D0023B0F5 /* StockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19C0C265A504D0023B0F5 /* StockServices.swift */; };
+		6EE19C0F265A50A30023B0F5 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19C0E265A50A30023B0F5 /* Stock.swift */; };
 		6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */; };
 		6EE5C2C5263BDA34001D47B8 /* AlreadyExistedNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */; };
 		6EF960E82658EAB2003BD2BF /* WriteNewStockTypeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF960E72658EAB2003BD2BF /* WriteNewStockTypeReactor.swift */; };
@@ -182,6 +184,8 @@
 		6EDADCB8264C2B9A00D6D356 /* EmptyOverviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyOverviewButton.swift; sourceTree = "<group>"; };
 		6EE19C06265A37730023B0F5 /* SearchHistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableView.swift; sourceTree = "<group>"; };
 		6EE19C08265A3E420023B0F5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		6EE19C0C265A504D0023B0F5 /* StockServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockServices.swift; sourceTree = "<group>"; };
+		6EE19C0E265A50A30023B0F5 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		6EE5C2C0263BC878001D47B8 /* SignUpReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpReactor.swift; sourceTree = "<group>"; };
 		6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyExistedNicknameView.swift; sourceTree = "<group>"; };
 		6EF07EFF26393349004FBE8F /* 9th_muyaho_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 9th_muyaho_iOS.entitlements; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				6E16630D263D2D8400A35C9F /* MembershipServices.swift */,
+				6EE19C0C265A504D0023B0F5 /* StockServices.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				6E16632A263D3CC200A35C9F /* APIResult.swift */,
 				6E9429EE26403BC2005AAC78 /* HTTPError.swift */,
 				6E25387826569A5700439E8E /* StockType.swift */,
+				6EE19C0E265A50A30023B0F5 /* Stock.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -936,7 +942,9 @@
 				6E2538722656941E00439E8E /* WriteNewStockTypeViewController.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
 				6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */,
+				6EE19C0F265A50A30023B0F5 /* Stock.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
+				6EE19C0D265A504D0023B0F5 /* StockServices.swift in Sources */,
 				A58C2B7F2658076400CEEE8C /* CalculatorReactor.swift in Sources */,
 				6EDADCB7264C1FF000D6D356 /* PaddingLabel.swift in Sources */,
 				6E540A3E263BBF8E00AAD4B0 /* LargeButton.swift in Sources */,
