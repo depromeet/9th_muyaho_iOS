@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchStockView: BaseView {
     
     let titleLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_white_w1
-        $0.text = "stock_search_title".localized
+        $0.text = "search_stock_title".localized
     }
     
     let closeButton = UIButton().then {
@@ -21,12 +22,32 @@ class SearchStockView: BaseView {
     
     let searchStockField = SearchStockField()
     
+    let historyTableView = SearchHistoryTableView()
+    
+    let stockTableView = UITableView().then {
+        $0.backgroundColor = .clear
+        $0.tableFooterView = UIView()
+        $0.separatorStyle = .none
+        $0.contentInset = .init(top: 10, left: 20, bottom: 10, right: 20)
+        $0.register(SearchCell.self, forCellReuseIdentifier: SearchCell.reusableIdentifier)
+    }
+    
     
     override func setup() {
         self.backgroundColor = .sub_black_b2
         self.addSubviews(
-            titleLabel, closeButton, searchStockField
+            titleLabel, closeButton, searchStockField, historyTableView,
+            stockTableView
         )
+        
+        self.searchStockField.rx.text.orEmpty
+            .map { $0.isEmpty }
+            .asDriver(onErrorJustReturn: false)
+            .drive { [weak self] isEmpty in
+                self?.historyTableView.isHidden = !isEmpty
+                self?.stockTableView.isHidden = isEmpty
+            }
+            .disposed(by: self.disposeBag)
     }
     
     override func bindConstraints() {
@@ -44,6 +65,16 @@ class SearchStockView: BaseView {
             make.top.equalTo(self.titleLabel.snp.bottom).offset(33)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
+        }
+        
+        self.historyTableView.snp.makeConstraints { make in
+            make.top.equalTo(self.searchStockField.snp.bottom).offset(32)
+            make.left.right.bottom.equalToSuperview()
+        }
+        
+        self.stockTableView.snp.makeConstraints { make in
+            make.top.equalTo(self.searchStockField.snp.bottom).offset(32)
+            make.left.right.bottom.equalToSuperview()
         }
     }
 }
