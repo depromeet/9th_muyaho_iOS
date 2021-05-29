@@ -11,6 +11,8 @@ import RxCocoa
 
 class WriteDetailView: BaseView {
     
+    let tapBackground = UITapGestureRecognizer()
+    
     let backButton = UIButton().then {
         $0.setImage(.arrowLeft24, for: .normal)
     }
@@ -91,11 +93,15 @@ class WriteDetailView: BaseView {
         $0.setTitleColor(.sub_white_w2, for: .normal)
         $0.contentEdgeInsets = .init(top: 11, left: 0, bottom: 11, right: 0)
         $0.backgroundColor = .primary_default
+        $0.layer.shadowColor = UIColor.primary_default.cgColor
+        $0.layer.shadowOffset = CGSize(width: 4, height: 4)
+        $0.layer.shadowOpacity = 0.4
     }
     
     
     override func setup() {
         self.backgroundColor = .sub_black_b1
+        self.addGestureRecognizer(self.tapBackground)
         self.containerView.addSubviews(
             descriptionLabel, stockContainerView, stockTypeLabel, stockNameLabel,
             totalPriceLabel, avgPriceLabel, avgPriceField, amountLabel,
@@ -191,13 +197,22 @@ class WriteDetailView: BaseView {
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
         }
     }
+    
+    func hideKeyboard() {
+        self.endEditing(true)
+    }
 }
 
 extension Reactive where Base: WriteDetailView {
     
-    var isSaveButtonSelected: Binder<Bool> {
-        return Binder(self.base) { view, isSelected in
-            view.saveButton.backgroundColor = isSelected ? .primary_fade : .primary_fade.withAlphaComponent(0.5)
+    var isSaveEnable: Binder<Bool> {
+        return Binder(self.base) { view, isEnable in
+            view.saveButton.backgroundColor = isEnable ? .primary_fade : .primary_fade.withAlphaComponent(0.5)
+            if isEnable {
+                view.saveButton.layer.shadowOpacity = 0.4
+            } else {
+                view.saveButton.layer.shadowOpacity = 0
+            }
         }
     }
 }
