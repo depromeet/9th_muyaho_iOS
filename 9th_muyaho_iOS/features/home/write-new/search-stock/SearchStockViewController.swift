@@ -33,10 +33,8 @@ class SearchStockViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instance(stockType: StockType) -> SearchStockViewController {
-        return SearchStockViewController(stockType: stockType).then {
-            $0.modalPresentationStyle = .overCurrentContext
-        }
+    static func make(stockType: StockType) -> SearchStockViewController {
+        return SearchStockViewController(stockType: stockType)
     }
     
     override func viewDidLoad() {

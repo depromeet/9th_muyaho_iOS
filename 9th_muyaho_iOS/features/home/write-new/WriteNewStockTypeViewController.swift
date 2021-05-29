@@ -70,12 +70,16 @@ class WriteNewStockTypeViewController: BaseViewController, View {
     }
     
     private func showSearchStock(stockType: StockType) {
-        let searchStockViewController = SearchStockViewController.instance(stockType: stockType).then {
+        let searchStockViewController = SearchStockViewController.make(stockType: stockType).then {
             $0.delegate = self
         }
+        let naviViewController = UINavigationController(rootViewController: searchStockViewController).then {
+            $0.isNavigationBarHidden = true
+            $0.modalPresentationStyle = .overCurrentContext
+            $0.transitioningDelegate = self
+        }
         
-        searchStockViewController.transitioningDelegate = self
-        self.present(searchStockViewController, animated: true, completion: nil)
+        self.present(naviViewController, animated: true, completion: nil)
     }
 }
 

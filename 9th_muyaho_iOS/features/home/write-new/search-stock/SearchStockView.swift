@@ -60,7 +60,7 @@ class SearchStockView: BaseView {
     override func bindConstraints() {
         self.titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(11)
+            make.top.equalToSuperview().offset(UIApplication.shared.windows[0].safeAreaInsets.top + 11)
         }
         
         self.closeButton.snp.makeConstraints { make in
