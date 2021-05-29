@@ -50,7 +50,7 @@ struct MembershipService: MembershipServiceProtocol {
     }
     
     func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/signup\(socialType.rawValue)"
+        let urlString = HTTPUtils.endPoint + "/api/v1/signup/\(socialType.rawValue)"
         var parameters = authRequest.toDict()
         parameters["name"] = name
         
