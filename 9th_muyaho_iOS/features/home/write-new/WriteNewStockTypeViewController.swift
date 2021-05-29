@@ -99,7 +99,7 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
 
 extension WriteNewStockTypeViewController: SearchStockDelegate {
     func onSelectStock(stock: Stock) {
-        let writeDetailViewController = WriteDetailViewController.make()
+        let writeDetailViewController = WriteDetailViewController.make(stock: stock)
         
         self.navigationController?.pushViewController(writeDetailViewController, animated: true)
     }

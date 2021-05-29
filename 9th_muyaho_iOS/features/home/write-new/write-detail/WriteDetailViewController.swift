@@ -6,23 +6,35 @@
 //
 
 import UIKit
+import ReactorKit
 
-class WriteDetailViewController: BaseViewController {
+class WriteDetailViewController: BaseViewController, View {
     
     private let writeDetailView = WriteDetailView()
+    private let writeDetailReactor: WriteDetailReactor
     
+    
+    init(stock: Stock) {
+        self.writeDetailReactor = WriteDetailReactor(stock: stock)
+        super.init(nibName: nil, bundle: nil)
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    static func make() -> WriteDetailViewController {
-        return WriteDetailViewController(nibName: nil, bundle: nil)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func make(stock: Stock) -> WriteDetailViewController {
+        return WriteDetailViewController(stock: stock)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.reactor = self.writeDetailReactor
         self.setupKeyboardNotification()
     }
     
@@ -49,7 +61,49 @@ class WriteDetailViewController: BaseViewController {
             .asDriver()
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
-            
+        
+        self.writeDetailReactor.dismissPublisher
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.dismiss)
+            .disposed(by: self.eventDisposeBag)
+    }
+    
+    func bind(reactor: WriteDetailReactor) {
+        // MARK: Bind Action
+        self.writeDetailView.avgPriceField.rx.text
+            .map { Reactor.Action.avgPrice(Double($0) ?? 0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.writeDetailView.amountField.rx.text
+            .map { Reactor.Action.amount(Int($0) ?? 0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.writeDetailView.saveButton.rx.tap
+            .map { Reactor.Action.tapSaveButton }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.isSaveButtonEnable }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.writeDetailView.saveButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { String($0.totalPrice) }
+            .asDriver(onErrorJustReturn: "0")
+            .drive(self.writeDetailView.rx.totalPrice)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isSaveButtonEnable }
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.writeDetailView.rx.isSaveEnable)
+            .disposed(by: self.disposeBag)
     }
     
     private func popViewController() {

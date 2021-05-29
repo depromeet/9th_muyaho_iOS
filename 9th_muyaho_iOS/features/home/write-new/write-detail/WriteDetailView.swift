@@ -215,4 +215,15 @@ extension Reactive where Base: WriteDetailView {
             }
         }
     }
+    
+    var totalPrice: Binder<String> {
+        return Binder(self.base) { view, text in
+            view.totalPriceLabel.text = text
+            if text == "0" {
+                view.totalPriceLabel.textColor = .sub_gray_40
+            } else {
+                view.totalPriceLabel.textColor = .sub_black_b1
+            }
+        }
+    }
 }
