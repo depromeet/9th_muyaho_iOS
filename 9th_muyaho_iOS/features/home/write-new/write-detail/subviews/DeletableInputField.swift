@@ -15,6 +15,7 @@ class DeletableInputField: BaseView {
         $0.textColor = .sub_white_w2
         $0.font = .body1_16
         $0.returnKeyType = .done
+        $0.keyboardType = .numberPad
         $0.attributedPlaceholder = NSAttributedString(
             string: "0",
             attributes: [.foregroundColor: UIColor.sub_gray_40]
@@ -37,6 +38,10 @@ class DeletableInputField: BaseView {
             .map { $0.isEmpty }
             .asDriver(onErrorJustReturn: true)
             .drive(onNext: self.setEmpty(isEmpty:))
+            .disposed(by: self.disposeBag)
+        self.deleteButton.rx.tap
+            .asDriver()
+            .drive(onNext: self.clearField)
             .disposed(by: self.disposeBag)
     }
     
@@ -77,6 +82,11 @@ class DeletableInputField: BaseView {
         ) { [weak self] in
             self?.bottomLineView.backgroundColor = isEmpty ? .sub_gray_60 : .primary_fade
         }
+    }
+    
+    private func clearField() {
+        self.textfield.rx.text.onNext(nil)
+        self.setEmpty(isEmpty: true)
     }
 }
 

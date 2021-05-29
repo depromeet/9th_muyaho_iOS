@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class WriteDetailView: BaseView {
     
@@ -68,21 +70,41 @@ class WriteDetailView: BaseView {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w3
         $0.text = "common_average_price".localized
+        $0.contentHuggingPriority(for: .horizontal)
     }
     
     let avgPriceField = DeletableInputField()
     
+    let amountLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .sub_white_w3
+        $0.text = "common_amount".localized
+    }
+    
+    let amountField = DeletableInputField()
+    
+    let saveButton = UIButton().then {
+        $0.layer.cornerRadius = 8
+        $0.titleLabel?.font = .caption1_12B
+        $0.setTitle("write_detail_save".localized, for: .normal)
+        $0.setTitleColor(.sub_gray_20, for: .disabled)
+        $0.setTitleColor(.sub_white_w2, for: .normal)
+        $0.contentEdgeInsets = .init(top: 11, left: 0, bottom: 11, right: 0)
+        $0.backgroundColor = .primary_default
+    }
     
     
     override func setup() {
         self.backgroundColor = .sub_black_b1
         self.containerView.addSubviews(
             descriptionLabel, stockContainerView, stockTypeLabel, stockNameLabel,
-            totalPriceLabel, avgPriceLabel, avgPriceField
+            totalPriceLabel, avgPriceLabel, avgPriceField, amountLabel,
+            amountField
         )
         self.scrollView.addSubview(containerView)
         self.addSubviews(
-            backButton, titleLabel, closeButton, scrollView
+            backButton, titleLabel, closeButton, scrollView,
+            saveButton
         )
     }
     
@@ -111,7 +133,7 @@ class WriteDetailView: BaseView {
             make.edges.equalTo(0)
             make.width.equalTo(UIScreen.main.bounds.width)
             make.top.equalTo(self.descriptionLabel)
-            make.bottom.equalTo(self.avgPriceField)
+            make.bottom.equalTo(self.amountField)
         }
         
         self.descriptionLabel.snp.makeConstraints { make in
@@ -150,6 +172,32 @@ class WriteDetailView: BaseView {
             make.left.equalTo(self.avgPriceLabel.snp.right).offset(24)
             make.centerY.equalTo(self.avgPriceLabel)
             make.right.equalToSuperview().offset(-24)
+        }
+        
+        self.amountLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.avgPriceLabel)
+            make.top.equalTo(self.avgPriceLabel.snp.bottom).offset(46)
+        }
+        
+        self.amountField.snp.makeConstraints { make in
+            make.left.equalTo(self.amountLabel.snp.right).offset(36)
+            make.centerY.equalTo(self.amountLabel)
+            make.right.equalToSuperview().offset(-24)
+        }
+        
+        self.saveButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
+        }
+    }
+}
+
+extension Reactive where Base: WriteDetailView {
+    
+    var isSaveButtonSelected: Binder<Bool> {
+        return Binder(self.base) { view, isSelected in
+            view.saveButton.backgroundColor = isSelected ? .primary_fade : .primary_fade.withAlphaComponent(0.5)
         }
     }
 }

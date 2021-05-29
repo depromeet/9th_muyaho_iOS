@@ -9,6 +9,7 @@
 "common_ok" = "확인";
 "common_cancel" = "취소";
 "common_average_price" = "평단가";
+"common_amount" = "수량";
 
 // category
 "investment_category_demestic" = "국내주식";
@@ -74,3 +75,4 @@
 // write-detail
 "write_detail_title" = "신규항목추가";
 "write_detail_description" = "투자 종목의\n가격과 수량을 알려주세요!";
+"write_detail_save" = "저장하기";
