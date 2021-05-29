@@ -8,6 +8,7 @@
 // common
 "common_ok" = "확인";
 "common_cancel" = "취소";
+"common_average_price" = "평단가";
 
 // category
 "investment_category_demestic" = "국내주식";
@@ -69,3 +70,7 @@
 "search_stock_title" = "종목 검색하기";
 "search_stock_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
 "search_stock_latest_history" = "최근 10개의 검색 기록";
+
+// write-detail
+"write_detail_title" = "신규항목추가";
+"write_detail_description" = "투자 종목의\n가격과 수량을 알려주세요!";

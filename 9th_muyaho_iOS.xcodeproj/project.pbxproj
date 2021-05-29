@@ -19,6 +19,7 @@
 		6E2538772656980F00439E8E /* StockTypeRadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2538762656980F00439E8E /* StockTypeRadioGroupView.swift */; };
 		6E25387926569A5700439E8E /* StockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E25387826569A5700439E8E /* StockType.swift */; };
 		6E25387B2656A3A100439E8E /* StockSearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E25387A2656A3A100439E8E /* StockSearchButton.swift */; };
+		6E2B9C862661EF1400734784 /* DeletableInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2B9C852661EF1400734784 /* DeletableInputField.swift */; };
 		6E2F82B7264CD48300539D8A /* HomeInvestByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */; };
 		6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */; };
 		6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E40DDFB263448060003E4AD /* UIImageExtensions.swift */; };
@@ -61,6 +62,8 @@
 		6EABBAE0263AD2DE00ACC332 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */; };
 		6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE3263AF5B500ACC332 /* SignUpView.swift */; };
 		6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */; };
+		6ED56BA82661C8080057A90F /* WriteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED56BA72661C8080057A90F /* WriteDetailView.swift */; };
+		6ED56BAA2661C9670057A90F /* WriteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED56BA92661C9670057A90F /* WriteDetailViewController.swift */; };
 		6ED95A86264ACCAA00853CA3 /* HomeOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */; };
 		6ED95A88264AD57A00853CA3 /* YoungchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED95A87264AD57A00853CA3 /* YoungchanView.swift */; };
 		6EDADCB7264C1FF000D6D356 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDADCB6264C1FF000D6D356 /* PaddingLabel.swift */; };
@@ -137,6 +140,7 @@
 		6E2538762656980F00439E8E /* StockTypeRadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTypeRadioGroupView.swift; sourceTree = "<group>"; };
 		6E25387826569A5700439E8E /* StockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockType.swift; sourceTree = "<group>"; };
 		6E25387A2656A3A100439E8E /* StockSearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSearchButton.swift; sourceTree = "<group>"; };
+		6E2B9C852661EF1400734784 /* DeletableInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletableInputField.swift; sourceTree = "<group>"; };
 		6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInvestByCategoryView.swift; sourceTree = "<group>"; };
 		6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestByCategoryButton.swift; sourceTree = "<group>"; };
 		6E40DDFB263448060003E4AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 		6EABBADF263AD2DE00ACC332 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		6EABBAE3263AF5B500ACC332 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6ED56BA72661C8080057A90F /* WriteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDetailView.swift; sourceTree = "<group>"; };
+		6ED56BA92661C9670057A90F /* WriteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDetailViewController.swift; sourceTree = "<group>"; };
 		6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverview.swift; sourceTree = "<group>"; };
 		6ED95A87264AD57A00853CA3 /* YoungchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoungchanView.swift; sourceTree = "<group>"; };
 		6EDADCB6264C1FF000D6D356 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
@@ -293,6 +299,14 @@
 			path = subviews;
 			sourceTree = "<group>";
 		};
+		6E2B9C842661EEF600734784 /* subviews */ = {
+			isa = PBXGroup;
+			children = (
+				6E2B9C852661EF1400734784 /* DeletableInputField.swift */,
+			);
+			path = subviews;
+			sourceTree = "<group>";
+		};
 		6E45387F265516F1000CFC0F /* write-menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +319,7 @@
 		6E4538802655194A000CFC0F /* write-new */ = {
 			isa = PBXGroup;
 			children = (
+				6ED56BA62661C7DB0057A90F /* write-detail */,
 				6E4F5D942657E75D0061A13C /* search-stock */,
 				6E2538732656962700439E8E /* subviews */,
 				6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */,
@@ -454,6 +469,16 @@
 				6EE5C2C4263BDA34001D47B8 /* AlreadyExistedNicknameView.swift */,
 			);
 			path = "sign-up";
+			sourceTree = "<group>";
+		};
+		6ED56BA62661C7DB0057A90F /* write-detail */ = {
+			isa = PBXGroup;
+			children = (
+				6E2B9C842661EEF600734784 /* subviews */,
+				6ED56BA72661C8080057A90F /* WriteDetailView.swift */,
+				6ED56BA92661C9670057A90F /* WriteDetailViewController.swift */,
+			);
+			path = "write-detail";
 			sourceTree = "<group>";
 		};
 		6ED95A84264ACB9100853CA3 /* subview */ = {
@@ -903,8 +928,10 @@
 				6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */,
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
 				6EE19C07265A37730023B0F5 /* SearchHistoryTableView.swift in Sources */,
+				6E2B9C862661EF1400734784 /* DeletableInputField.swift in Sources */,
 				6E25387926569A5700439E8E /* StockType.swift in Sources */,
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
+				6ED56BA82661C8080057A90F /* WriteDetailView.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
 				A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */,
@@ -940,6 +967,7 @@
 				6E5A3A23263D9B2700B46EAF /* HTTPURLResponseExtensions.swift in Sources */,
 				6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */,
 				6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */,
+				6ED56BAA2661C9670057A90F /* WriteDetailViewController.swift in Sources */,
 				A5EBC43826475F2200876352 /* MyPageViewController.swift in Sources */,
 				6EE19C0B265A4F9D0023B0F5 /* SearchStockReactor.swift in Sources */,
 				6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */,
