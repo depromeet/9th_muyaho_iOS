@@ -22,8 +22,7 @@ final class SearchStockTransition: NSObject {
     
     
     private func present(using context: UIViewControllerContextTransitioning) {
-        if let naviViewController = context.viewController(forKey: .to) as? UINavigationController,
-           let searchStockViewController = naviViewController.topViewController as? SearchStockViewController {
+        if let searchStockViewController = context.viewController(forKey: .to) as? SearchStockViewController {
             let containerView = context.containerView
             let searchStockButton = StockSearchButton().then {
                 $0.translatesAutoresizingMaskIntoConstraints = true
@@ -50,8 +49,7 @@ final class SearchStockTransition: NSObject {
     }
     
     private func dismiss(using context: UIViewControllerContextTransitioning) {
-        if let naviViewController = context.viewController(forKey: .from) as? UINavigationController,
-           let searchStockViewController = naviViewController.topViewController as? SearchStockViewController {
+        if let searchStockViewController = context.viewController(forKey: .from) as? SearchStockViewController {
             let containerView = context.containerView
             let searchStockField = SearchStockField().then {
                 $0.translatesAutoresizingMaskIntoConstraints = true
