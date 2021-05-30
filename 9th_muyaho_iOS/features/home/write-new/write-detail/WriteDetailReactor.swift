@@ -21,7 +21,7 @@ class WriteDetailReactor: Reactor {
         case setAvgPrice(Double)
         case setAmount(Int)
         case saveStock
-        case setTotalPrice(Int)
+        case setTotalPrice(Double)
         case setSaveButtonEnable(Bool)
     }
     
@@ -29,7 +29,7 @@ class WriteDetailReactor: Reactor {
         var isSaveButtonEnable = false
         var avgPrice = 0.0
         var amount = 0
-        var totalPrice = 0
+        var totalPrice = 0.0
     }
     
     let stock: Stock
@@ -43,7 +43,7 @@ class WriteDetailReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .avgPrice(let price):
-            let totalPrice = Int(price) * self.currentState.amount
+            let totalPrice = price * Double(self.currentState.amount)
             
             return .concat([
                 .just(.setAvgPrice(price)),
@@ -51,7 +51,7 @@ class WriteDetailReactor: Reactor {
                 .just(.setSaveButtonEnable(totalPrice != 0))
             ])
         case .amount(let amount):
-            let totalPrice = Int(self.currentState.avgPrice) * amount
+            let totalPrice = self.currentState.avgPrice * Double(amount)
             
             return .concat([
                 .just(.setAmount(amount)),

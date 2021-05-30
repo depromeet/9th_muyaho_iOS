@@ -71,12 +71,12 @@ class WriteDetailViewController: BaseViewController, View {
     func bind(reactor: WriteDetailReactor) {
         // MARK: Bind Action
         self.writeDetailView.avgPriceField.rx.text
-            .map { Reactor.Action.avgPrice(Double($0) ?? 0) }
+            .map { Reactor.Action.avgPrice(Double($0.replacingOccurrences(of: ",", with: "")) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         self.writeDetailView.amountField.rx.text
-            .map { Reactor.Action.amount(Int($0) ?? 0) }
+            .map { Reactor.Action.amount(Int($0.replacingOccurrences(of: " 개", with: "")) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -94,8 +94,22 @@ class WriteDetailViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         reactor.state
-            .map { String($0.totalPrice) }
-            .asDriver(onErrorJustReturn: "0")
+            .map { $0.avgPrice }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: 0)
+            .drive(self.writeDetailView.rx.avgPrice)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.amount }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: 0)
+            .drive(self.writeDetailView.rx.amount)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.totalPrice }
+            .asDriver(onErrorJustReturn: 0)
             .drive(self.writeDetailView.rx.totalPrice)
             .disposed(by: self.disposeBag)
         

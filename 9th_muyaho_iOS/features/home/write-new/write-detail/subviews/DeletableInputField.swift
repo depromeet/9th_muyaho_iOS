@@ -15,7 +15,6 @@ class DeletableInputField: BaseView {
         $0.textColor = .sub_white_w2
         $0.font = .body1_16
         $0.returnKeyType = .done
-        $0.keyboardType = .numberPad
         $0.attributedPlaceholder = NSAttributedString(
             string: "0",
             attributes: [.foregroundColor: UIColor.sub_gray_40]
@@ -39,6 +38,19 @@ class DeletableInputField: BaseView {
             .asDriver(onErrorJustReturn: true)
             .drive(onNext: self.setEmpty(isEmpty:))
             .disposed(by: self.disposeBag)
+        
+        self.textfield.rx.controlEvent(.editingDidBegin)
+            .map { _ in Void() }
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.focusIn)
+            .disposed(by: self.disposeBag)
+        
+        self.textfield.rx.controlEvent(.editingDidEnd)
+            .map { _ in Void() }
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.focusOut)
+            .disposed(by: self.disposeBag)
+        
         self.deleteButton.rx.tap
             .asDriver()
             .drive(onNext: self.clearField)
@@ -73,15 +85,30 @@ class DeletableInputField: BaseView {
         }
     }
     
-    private func setEmpty(isEmpty: Bool) {
-        self.deleteButton.isHidden = isEmpty
+    private func focusOut() {
+        self.deleteButton.isHidden = true
         UIView.transition(
             with: self.bottomLineView,
             duration: 0.3,
             options: .curveEaseInOut
         ) { [weak self] in
-            self?.bottomLineView.backgroundColor = isEmpty ? .sub_gray_60 : .primary_fade
+            self?.bottomLineView.backgroundColor = .sub_gray_60
         }
+    }
+    
+    private func focusIn() {
+        self.deleteButton.isHidden = self.textfield.text?.isEmpty ?? true
+        UIView.transition(
+            with: self.bottomLineView,
+            duration: 0.3,
+            options: .curveEaseInOut
+        ) { [weak self] in
+            self?.bottomLineView.backgroundColor = .primary_fade
+        }
+    }
+    
+    private func setEmpty(isEmpty: Bool) {
+        self.deleteButton.isHidden = isEmpty
     }
     
     private func clearField() {

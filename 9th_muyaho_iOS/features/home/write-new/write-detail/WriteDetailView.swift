@@ -75,7 +75,10 @@ class WriteDetailView: BaseView {
         $0.contentHuggingPriority(for: .horizontal)
     }
     
-    let avgPriceField = DeletableInputField()
+    let avgPriceField = DeletableInputField().then {
+        $0.textfield.placeholder = "0"
+        $0.textfield.keyboardType = .decimalPad
+    }
     
     let amountLabel = UILabel().then {
         $0.font = .caption1_12R
@@ -83,7 +86,10 @@ class WriteDetailView: BaseView {
         $0.text = "common_amount".localized
     }
     
-    let amountField = DeletableInputField()
+    let amountField = DeletableInputField().then {
+        $0.textfield.placeholder = "0개"
+        $0.textfield.keyboardType = .numberPad
+    }
     
     let saveButton = UIButton().then {
         $0.layer.cornerRadius = 8
@@ -207,7 +213,7 @@ extension Reactive where Base: WriteDetailView {
     
     var isSaveEnable: Binder<Bool> {
         return Binder(self.base) { view, isEnable in
-            view.saveButton.backgroundColor = isEnable ? .primary_fade : .primary_fade.withAlphaComponent(0.5)
+            view.saveButton.backgroundColor = isEnable ? .primary_default : .primary_default.withAlphaComponent(0.5)
             if isEnable {
                 view.saveButton.layer.shadowOpacity = 0.4
             } else {
@@ -216,13 +222,43 @@ extension Reactive where Base: WriteDetailView {
         }
     }
     
-    var totalPrice: Binder<String> {
-        return Binder(self.base) { view, text in
-            view.totalPriceLabel.text = text
-            if text == "0" {
+    var totalPrice: Binder<Double> {
+        return Binder(self.base) { view, totalPrice in
+            let formatter = NumberFormatter().then {
+                $0.numberStyle = .decimal
+                $0.locale = .current
+            }
+            
+            view.totalPriceLabel.text = formatter.string(from: NSNumber(value: totalPrice))
+            if totalPrice == 0 {
                 view.totalPriceLabel.textColor = .sub_gray_40
             } else {
                 view.totalPriceLabel.textColor = .sub_black_b1
+            }
+        }
+    }
+    
+    var avgPrice: Binder<Double> {
+        return Binder(self.base) { view, avgPrice in
+            if avgPrice == 0 {
+                view.avgPriceField.textfield.text = nil
+            } else {
+                let formatter = NumberFormatter().then {
+                    $0.numberStyle = .decimal
+                    $0.locale = .current
+                }
+                
+                view.avgPriceField.textfield.text = formatter.string(from: NSNumber(value: avgPrice))
+            }
+        }
+    }
+    
+    var amount: Binder<Int> {
+        return Binder(self.base) { view, amount in
+            if amount == 0 {
+                view.amountField.textfield.text = nil
+            } else {
+                view.amountField.textfield.text = "\(amount) 개"
             }
         }
     }
