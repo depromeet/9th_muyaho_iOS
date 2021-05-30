@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-class WriteDetailReactor: Reactor {
+class WriteDomesticDetailReactor: Reactor {
     
     enum Action {
         case avgPrice(Double)
