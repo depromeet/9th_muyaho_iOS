@@ -23,7 +23,7 @@ struct UserDefaultsUtils {
     
     var sessionId: String {
         set {
-            self.instance.set(newValue, forKey: UserDefaultsUtils.KEY_SESSION_ID)
+            self.instance.set("Bearer " + newValue, forKey: UserDefaultsUtils.KEY_SESSION_ID)
         }
         
         get {

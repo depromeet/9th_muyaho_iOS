@@ -8,10 +8,10 @@
 struct WriteStockRequest {
     
     let stockId: Int
-    let purchasePrice: Int
+    let purchasePrice: Double
     let quantity: Int
     let currencyType: CurrencyType
-    let purchaseTotalPrice: Int
+    let purchaseTotalPrice: Double
     
     func toParams() -> [String: Any] {
         return [

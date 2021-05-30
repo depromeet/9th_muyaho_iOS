@@ -23,6 +23,7 @@ class WriteDomesticDetailReactor: Reactor {
         case saveStock
         case setTotalPrice(Double)
         case setSaveButtonEnable(Bool)
+        case showAlert(String)
     }
     
     struct State {
@@ -36,10 +37,14 @@ class WriteDomesticDetailReactor: Reactor {
     
     let stock: Stock
     let initialState: State
+    let stockService: StockServiceProtocol
     let dismissPublisher = PublishRelay<Void>()
+    let alertPublisher = PublishRelay<String>()
     
-    init(stock: Stock) {
+    
+    init(stock: Stock, stockService: StockServiceProtocol) {
         self.stock = stock
+        self.stockService = stockService
         self.initialState = State(stockType: stock.type, stockName: stock.name)
     }
     
@@ -62,7 +67,17 @@ class WriteDomesticDetailReactor: Reactor {
                 .just(.setSaveButtonEnable(totalPrice != 0))
             ])
         case .tapSaveButton:
-            return .empty()
+            let writeStockRequest = WriteStockRequest(
+                stockId: self.stock.id,
+                purchasePrice: self.currentState.avgPrice,
+                quantity: self.currentState.amount,
+                currencyType: .won,
+                purchaseTotalPrice: self.currentState.totalPrice
+            )
+            
+            return self.stockService.writeStock(request: writeStockRequest)
+                .map { _ in Mutation.saveStock }
+                .catchError(self.handleHTTPError(error:))
         }
     }
     
@@ -80,8 +95,18 @@ class WriteDomesticDetailReactor: Reactor {
             newState.totalPrice = totalPrice
         case .setSaveButtonEnable(let isEnable):
             newState.isSaveButtonEnable = isEnable
+        case .showAlert(let message):
+            self.alertPublisher.accept(message)
         }
         
         return newState
+    }
+    
+    private func handleHTTPError(error: Error) -> Observable<Mutation> {
+        if let error = error as? HTTPError {
+            return .just(.showAlert(error.description))
+        } else {
+            return .just(.showAlert(error.localizedDescription))
+        }
     }
 }

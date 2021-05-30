@@ -15,7 +15,10 @@ class WriteDomesticDetailViewController: BaseViewController, View {
     
     
     init(stock: Stock) {
-        self.writeDomesticDetailReactor = WriteDomesticDetailReactor(stock: stock)
+        self.writeDomesticDetailReactor = WriteDomesticDetailReactor(
+            stock: stock,
+            stockService: StockService()
+        )
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,6 +68,11 @@ class WriteDomesticDetailViewController: BaseViewController, View {
         self.writeDomesticDetailReactor.dismissPublisher
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.dismiss)
+            .disposed(by: self.eventDisposeBag)
+        
+        self.writeDomesticDetailReactor.alertPublisher
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: self.showAlert(message:))
             .disposed(by: self.eventDisposeBag)
     }
     
@@ -137,7 +145,9 @@ class WriteDomesticDetailViewController: BaseViewController, View {
     }
     
     private func dismiss() {
-        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     private func setupKeyboardNotification() {
