@@ -19,6 +19,12 @@ struct Stock: Decodable {
         case type = "type"
     }
     
+    init() {
+        self.id = -1
+        self.code = ""
+        self.name = ""
+        self.type = .domestic
+    }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)

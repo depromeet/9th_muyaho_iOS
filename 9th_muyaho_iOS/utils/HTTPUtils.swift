@@ -17,4 +17,10 @@ struct HTTPUtils {
         
         return headers
     }
+    
+    static func authorizationHeader() -> HTTPHeaders {
+        let headers = ["Authorization": UserDefaultsUtils().sessionId] as HTTPHeaders
+        
+        return headers
+    }
 }

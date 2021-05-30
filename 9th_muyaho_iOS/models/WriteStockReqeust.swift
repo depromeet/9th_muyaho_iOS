@@ -1,0 +1,25 @@
+//
+//  WriteStockReqeust.swift
+//  9th_muyaho_iOS
+//
+//  Created by Hyun Sik Yoo on 2021/05/30.
+//
+
+struct WriteStockRequest {
+    
+    let stockId: Int
+    let purchasePrice: Int
+    let quantity: Int
+    let currencyType: CurrencyType
+    let purchaseTotalPrice: Int
+    
+    func toParams() -> [String: Any] {
+        return [
+            "stockId": stockId,
+            "purchasePrice": purchasePrice,
+            "quantity": quantity,
+            "currencyType": currencyType.rawValue,
+            "purchaseTotalPrice": purchaseTotalPrice
+        ]
+    }
+}
