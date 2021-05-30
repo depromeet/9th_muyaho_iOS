@@ -26,6 +26,8 @@ class WriteDetailReactor: Reactor {
     }
     
     struct State {
+        var stockType: StockType
+        var stockName: String
         var isSaveButtonEnable = false
         var avgPrice = 0.0
         var amount = 0
@@ -33,11 +35,12 @@ class WriteDetailReactor: Reactor {
     }
     
     let stock: Stock
-    let initialState = State()
+    let initialState: State
     let dismissPublisher = PublishRelay<Void>()
     
     init(stock: Stock) {
         self.stock = stock
+        self.initialState = State(stockType: stock.type, stockName: stock.name)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {

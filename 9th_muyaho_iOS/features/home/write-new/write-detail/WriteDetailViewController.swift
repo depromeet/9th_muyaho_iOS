@@ -87,6 +87,18 @@ class WriteDetailViewController: BaseViewController, View {
         
         // MARK: Bind State
         reactor.state
+            .map { $0.stockType }
+            .asDriver(onErrorJustReturn: .domestic)
+            .drive(self.writeDetailView.rx.stockType)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.stockName }
+            .asDriver(onErrorJustReturn: "")
+            .drive(self.writeDetailView.stockNameLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
             .map { $0.isSaveButtonEnable }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)

@@ -262,4 +262,17 @@ extension Reactive where Base: WriteDetailView {
             }
         }
     }
+    
+    var stockType: Binder<StockType> {
+        return Binder(self.base) { view, stockType in
+            switch stockType {
+            case .domestic:
+                view.stockTypeLabel.text = "investment_category_demestic".localized
+            case .abroad:
+                view.stockTypeLabel.text = "investment_category_abroad".localized
+            case .coin:
+                view.stockTypeLabel.text = "investment_category_coin".localized
+            }
+        }
+    }
 }
