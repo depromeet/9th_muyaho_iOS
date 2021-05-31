@@ -8,14 +8,14 @@
 import UIKit
 import ReactorKit
 
-class WriteDomesticDetailViewController: BaseViewController, View {
+class DomesticDetailViewController: BaseViewController, View {
     
-    private let writeDomesticDetailView = WriteDomesticDetailView()
-    private let writeDomesticDetailReactor: WriteDomesticDetailReactor
+    private let domesticDetailView = DomesticDetailView()
+    private let domesticDetailReactor: DomesticDetailReactor
     
     
     init(stock: Stock) {
-        self.writeDomesticDetailReactor = WriteDomesticDetailReactor(
+        self.domesticDetailReactor = DomesticDetailReactor(
             stock: stock,
             stockService: StockService()
         )
@@ -30,65 +30,65 @@ class WriteDomesticDetailViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func make(stock: Stock) -> WriteDomesticDetailViewController {
-        return WriteDomesticDetailViewController(stock: stock)
+    static func make(stock: Stock) -> DomesticDetailViewController {
+        return DomesticDetailViewController(stock: stock)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.reactor = self.writeDomesticDetailReactor
+        self.reactor = self.domesticDetailReactor
         self.setupKeyboardNotification()
     }
     
     override func setupView() {
-        self.view.addSubview(writeDomesticDetailView)
-        self.writeDomesticDetailView.snp.makeConstraints { make in
+        self.view.addSubview(domesticDetailView)
+        self.domesticDetailView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }
     }
     
     override func bindEvent() {
-        self.writeDomesticDetailView.tapBackground.rx.event
+        self.domesticDetailView.tapBackground.rx.event
             .map { _ in Void() }
             .asDriver(onErrorJustReturn: Void())
-            .drive(onNext: self.writeDomesticDetailView.hideKeyboard)
+            .drive(onNext: self.domesticDetailView.hideKeyboard)
             .disposed(by: self.eventDisposeBag)
         
-        self.writeDomesticDetailView.backButton.rx.tap
+        self.domesticDetailView.backButton.rx.tap
             .asDriver()
             .drive(onNext: self.popViewController)
             .disposed(by: self.eventDisposeBag)
         
-        self.writeDomesticDetailView.closeButton.rx.tap
+        self.domesticDetailView.closeButton.rx.tap
             .asDriver()
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
         
-        self.writeDomesticDetailReactor.dismissPublisher
+        self.domesticDetailReactor.dismissPublisher
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
         
-        self.writeDomesticDetailReactor.alertPublisher
+        self.domesticDetailReactor.alertPublisher
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: self.showAlert(message:))
             .disposed(by: self.eventDisposeBag)
     }
     
-    func bind(reactor: WriteDomesticDetailReactor) {
+    func bind(reactor: DomesticDetailReactor) {
         // MARK: Bind Action
-        self.writeDomesticDetailView.avgPriceField.rx.text
+        self.domesticDetailView.avgPriceField.rx.text
             .map { Reactor.Action.avgPrice(Double($0.replacingOccurrences(of: ",", with: "")) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.writeDomesticDetailView.amountField.rx.text
+        self.domesticDetailView.amountField.rx.text
             .map { Reactor.Action.amount(Int($0.replacingOccurrences(of: " 개", with: "")) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.writeDomesticDetailView.saveButton.rx.tap
+        self.domesticDetailView.saveButton.rx.tap
             .map { Reactor.Action.tapSaveButton }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
@@ -97,46 +97,46 @@ class WriteDomesticDetailViewController: BaseViewController, View {
         reactor.state
             .map { $0.stockType }
             .asDriver(onErrorJustReturn: .domestic)
-            .drive(self.writeDomesticDetailView.rx.stockType)
+            .drive(self.domesticDetailView.rx.stockType)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.stockName }
             .asDriver(onErrorJustReturn: "")
-            .drive(self.writeDomesticDetailView.stockNameLabel.rx.text)
+            .drive(self.domesticDetailView.stockNameLabel.rx.text)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.isSaveButtonEnable }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)
-            .drive(self.writeDomesticDetailView.saveButton.rx.isEnabled)
+            .drive(self.domesticDetailView.saveButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.avgPrice }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: 0)
-            .drive(self.writeDomesticDetailView.rx.avgPrice)
+            .drive(self.domesticDetailView.rx.avgPrice)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.amount }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: 0)
-            .drive(self.writeDomesticDetailView.rx.amount)
+            .drive(self.domesticDetailView.rx.amount)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.totalPrice }
             .asDriver(onErrorJustReturn: 0)
-            .drive(self.writeDomesticDetailView.rx.totalPrice)
+            .drive(self.domesticDetailView.rx.totalPrice)
             .disposed(by: self.disposeBag)
         
         reactor.state
             .map { $0.isSaveButtonEnable }
             .asDriver(onErrorJustReturn: false)
-            .drive(self.writeDomesticDetailView.rx.isSaveEnable)
+            .drive(self.domesticDetailView.rx.isSaveEnable)
             .disposed(by: self.disposeBag)
     }
     
@@ -172,14 +172,14 @@ class WriteDomesticDetailViewController: BaseViewController, View {
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         let bottomInset = UIApplication.shared.windows[0].safeAreaInsets.top
         
-        self.writeDomesticDetailView.saveButton.transform = .init(
+        self.domesticDetailView.saveButton.transform = .init(
             translationX: 0,
             y: -keyboardViewEndFrame.height + bottomInset)
-        self.writeDomesticDetailView.scrollView.contentInset.bottom = keyboardViewEndFrame.height
+        self.domesticDetailView.scrollView.contentInset.bottom = keyboardViewEndFrame.height
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
-        self.writeDomesticDetailView.saveButton.transform = .identity
-        self.writeDomesticDetailView.scrollView.contentInset.bottom = .zero
+        self.domesticDetailView.saveButton.transform = .identity
+        self.domesticDetailView.scrollView.contentInset.bottom = .zero
     }
 }

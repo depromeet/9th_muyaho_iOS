@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class WriteDomesticDetailView: BaseView {
+class DomesticDetailView: BaseView {
     
     let tapBackground = UITapGestureRecognizer()
     
@@ -209,7 +209,7 @@ class WriteDomesticDetailView: BaseView {
     }
 }
 
-extension Reactive where Base: WriteDomesticDetailView {
+extension Reactive where Base: DomesticDetailView {
     
     var isSaveEnable: Binder<Bool> {
         return Binder(self.base) { view, isEnable in
