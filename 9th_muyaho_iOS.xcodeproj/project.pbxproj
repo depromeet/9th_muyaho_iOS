@@ -592,12 +592,12 @@
 				A58C2BAD2658937100CEEE8C /* CustomCell.xib */,
 				A58C2BB32658938100CEEE8C /* PageCell.swift */,
 				A58C2BB42658938100CEEE8C /* PageCell.xib */,
+				A58C2BE72659DE1100CEEE8C /* HistoryCell.swift */,
+				A58C2BE82659DE1100CEEE8C /* HistoryCell.xib */,
 				A58C2BD92658C7C800CEEE8C /* ProfitrateCell.swift */,
 				A58C2BDA2658C7C800CEEE8C /* ProfitrateCell.xib */,
 				A58C2BE02659DDF700CEEE8C /* WaterrideCell.swift */,
 				A58C2BE12659DDF700CEEE8C /* WaterrideCell.xib */,
-				A58C2BE72659DE1100CEEE8C /* HistoryCell.swift */,
-				A58C2BE82659DE1100CEEE8C /* HistoryCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

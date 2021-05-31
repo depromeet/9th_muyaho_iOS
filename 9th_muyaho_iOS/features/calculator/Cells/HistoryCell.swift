@@ -11,7 +11,7 @@ class HistoryCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.backgroundColor = .sub_black_b1
     }
 
 }

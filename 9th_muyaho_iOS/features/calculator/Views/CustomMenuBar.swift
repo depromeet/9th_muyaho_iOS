@@ -37,7 +37,7 @@ class CustomMenuBar: UIView {
     var indicatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .sub_black_b1
         return view
     }()
     

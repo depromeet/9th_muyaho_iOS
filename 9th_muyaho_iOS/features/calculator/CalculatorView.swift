@@ -40,12 +40,17 @@ class CalculatorView: BaseView, CustomMenuBarDelegate {
     func setupPageCollectionView(){
         pageCollectionView.delegate = self
         pageCollectionView.dataSource = self
-        pageCollectionView.backgroundColor = .gray
+        pageCollectionView.backgroundColor = .sub_black_b1
         pageCollectionView.showsHorizontalScrollIndicator = false
         pageCollectionView.isPagingEnabled = true
+        
         pageCollectionView.register(UINib(nibName: PageCell.reusableIdentifier, bundle: nil), forCellWithReuseIdentifier: PageCell.reusableIdentifier)
         pageCollectionView.register(UINib(nibName: ProfitrateCell.reusableIdentifier, bundle: nil), forCellWithReuseIdentifier: ProfitrateCell.reusableIdentifier)
+        pageCollectionView.register(UINib(nibName: WaterrideCell.reusableIdentifier, bundle: nil), forCellWithReuseIdentifier: WaterrideCell.reusableIdentifier)
+        pageCollectionView.register(UINib(nibName: HistoryCell.reusableIdentifier, bundle: nil), forCellWithReuseIdentifier: HistoryCell.reusableIdentifier)
+        
         self.addSubview(pageCollectionView)
+        
         pageCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         pageCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         pageCollectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -53,7 +58,7 @@ class CalculatorView: BaseView, CustomMenuBarDelegate {
     }
     
     override func setup() {
-        self.backgroundColor = .white
+        self.backgroundColor = .sub_black_b1
         setupCustomTabBar()
         setupPageCollectionView()
     }
@@ -67,8 +72,14 @@ class CalculatorView: BaseView, CustomMenuBarDelegate {
 //MARK:- UICollectionViewDelegate, UICollectionViewDataSource
 extension CalculatorView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 1{
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reusableIdentifier, for: indexPath) as! HistoryCell
+            return cell
+        } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfitrateCell.reusableIdentifier, for: indexPath) as! ProfitrateCell
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaterrideCell.reusableIdentifier, for: indexPath) as! WaterrideCell
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.reusableIdentifier, for: indexPath) as! PageCell
@@ -78,7 +89,7 @@ extension CalculatorView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

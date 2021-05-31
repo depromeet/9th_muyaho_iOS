@@ -11,7 +11,6 @@ final class MyPageView: BaseView {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        
         imageView.image = UIImage(named: "ic_refresh")
         return imageView
     }()
@@ -28,7 +27,6 @@ final class MyPageView: BaseView {
     
     private let illustImageView: UIImageView = {
         let imageView = UIImageView()
-        
         imageView.image = UIImage(named: "ic_refresh")
         return imageView
     }()
