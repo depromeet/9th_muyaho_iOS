@@ -76,3 +76,7 @@
 "write_detail_title" = "신규항목추가";
 "write_detail_description" = "투자 종목의\n가격과 수량을 알려주세요!";
 "write_detail_save" = "저장하기";
+"write_detail_cancel_title" = "기록이 날라가요!";
+"write_detail_cancel_description" = "작성 중인 글을 취소하시나요?\n작성된 글은 저장되지 않아요.";
+"write_detail_continue" = "계속 등록";
+"write_detail_exit" = "등록 종료";

@@ -12,6 +12,8 @@ import ReactorKit
 class DomesticDetailReactor: Reactor {
     
     enum Action {
+        case tapBack
+        case tapClose
         case avgPrice(Double)
         case amount(Int)
         case tapSaveButton
@@ -24,6 +26,8 @@ class DomesticDetailReactor: Reactor {
         case setTotalPrice(Double)
         case setSaveButtonEnable(Bool)
         case showAlert(String)
+        case back(isAlertShow: Bool)
+        case close(isAlertShow: Bool)
     }
     
     struct State {
@@ -40,6 +44,8 @@ class DomesticDetailReactor: Reactor {
     let stockService: StockServiceProtocol
     let dismissPublisher = PublishRelay<Void>()
     let alertPublisher = PublishRelay<String>()
+    let backPublisher = PublishRelay<Bool>()
+    let closePublisher = PublishRelay<Bool>()
     
     
     init(stock: Stock, stockService: StockServiceProtocol) {
@@ -78,6 +84,18 @@ class DomesticDetailReactor: Reactor {
             return self.stockService.writeStock(request: writeStockRequest)
                 .map { _ in Mutation.saveStock }
                 .catchError(self.handleHTTPError(error:))
+        case .tapBack:
+            if self.isChangedState() {
+                return .just(.back(isAlertShow: true))
+            } else {
+                return .just(.back(isAlertShow: false))
+            }
+        case .tapClose:
+            if self.isChangedState() {
+                return .just(.close(isAlertShow: true))
+            } else {
+                return .just(.close(isAlertShow: false))
+            }
         }
     }
     
@@ -97,6 +115,10 @@ class DomesticDetailReactor: Reactor {
             newState.isSaveButtonEnable = isEnable
         case .showAlert(let message):
             self.alertPublisher.accept(message)
+        case .back(let isAlertShow):
+            self.backPublisher.accept(isAlertShow)
+        case .close(let isAlertShow):
+            self.closePublisher.accept(isAlertShow)
         }
         
         return newState
@@ -108,5 +130,10 @@ class DomesticDetailReactor: Reactor {
         } else {
             return .just(.showAlert(error.localizedDescription))
         }
+    }
+    
+    private func isChangedState() -> Bool {
+        return self.initialState.avgPrice != self.currentState.avgPrice
+            || self.initialState.amount != self.currentState.amount
     }
 }

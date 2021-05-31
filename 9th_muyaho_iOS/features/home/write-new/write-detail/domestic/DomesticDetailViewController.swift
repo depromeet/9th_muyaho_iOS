@@ -55,16 +55,6 @@ class DomesticDetailViewController: BaseViewController, View {
             .drive(onNext: self.domesticDetailView.hideKeyboard)
             .disposed(by: self.eventDisposeBag)
         
-        self.domesticDetailView.backButton.rx.tap
-            .asDriver()
-            .drive(onNext: self.popViewController)
-            .disposed(by: self.eventDisposeBag)
-        
-        self.domesticDetailView.closeButton.rx.tap
-            .asDriver()
-            .drive(onNext: self.dismiss)
-            .disposed(by: self.eventDisposeBag)
-        
         self.domesticDetailReactor.dismissPublisher
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.dismiss)
@@ -74,10 +64,30 @@ class DomesticDetailViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: self.showAlert(message:))
             .disposed(by: self.eventDisposeBag)
+        
+        self.domesticDetailReactor.backPublisher
+            .asDriver(onErrorJustReturn: true)
+            .drive(onNext: self.pop(isAlertShow:))
+            .disposed(by: self.eventDisposeBag)
+        
+        self.domesticDetailReactor.closePublisher
+            .asDriver(onErrorJustReturn: true)
+            .drive(onNext: self.close(isAlertShow:))
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: DomesticDetailReactor) {
         // MARK: Bind Action
+        self.domesticDetailView.backButton.rx.tap
+            .map { Reactor.Action.tapBack }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.domesticDetailView.closeButton.rx.tap
+            .map { Reactor.Action.tapClose }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
         self.domesticDetailView.avgPriceField.rx.text
             .map { Reactor.Action.avgPrice(Double($0.replacingOccurrences(of: ",", with: "")) ?? 0) }
             .bind(to: reactor.action)
@@ -163,6 +173,34 @@ class DomesticDetailViewController: BaseViewController, View {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+    }
+    
+    private func pop(isAlertShow: Bool) {
+        if isAlertShow {
+            let detailAlertViewController = DetailAlertViewController.instance().then {
+                $0.onExit = { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+            
+            self.present(detailAlertViewController, animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func close(isAlertShow: Bool) {
+        if isAlertShow {
+            let detailAlertViewController = DetailAlertViewController.instance().then {
+                $0.onExit = { [weak self] in
+                    self?.dismiss()
+                }
+            }
+            
+            self.present(detailAlertViewController, animated: true, completion: nil)
+        } else {
+            self.dismiss()
+        }
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {

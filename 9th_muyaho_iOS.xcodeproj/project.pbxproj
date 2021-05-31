@@ -30,6 +30,8 @@
 		6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E45387D26550D16000CFC0F /* WriteMenuViewController.swift */; };
 		6E45388226551A42000CFC0F /* WriteNewStockTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */; };
 		6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E475841264D566F003E16C5 /* DashBoardView.swift */; };
+		6E48045B2665151B00BF5E44 /* DetailAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E48045A2665151B00BF5E44 /* DetailAlertView.swift */; };
+		6E48045D2665208100BF5E44 /* DetailAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E48045C2665208100BF5E44 /* DetailAlertViewController.swift */; };
 		6E4F5D962657E7780061A13C /* SearchStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D952657E7780061A13C /* SearchStockView.swift */; };
 		6E4F5D992657E8400061A13C /* SearchStockField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D982657E8400061A13C /* SearchStockField.swift */; };
 		6E4F5D9B2657EB6C0061A13C /* SearchStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F5D9A2657EB6C0061A13C /* SearchStockViewController.swift */; };
@@ -155,6 +157,8 @@
 		6E45387D26550D16000CFC0F /* WriteMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMenuViewController.swift; sourceTree = "<group>"; };
 		6E45388126551A42000CFC0F /* WriteNewStockTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNewStockTypeView.swift; sourceTree = "<group>"; };
 		6E475841264D566F003E16C5 /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
+		6E48045A2665151B00BF5E44 /* DetailAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAlertView.swift; sourceTree = "<group>"; };
+		6E48045C2665208100BF5E44 /* DetailAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAlertViewController.swift; sourceTree = "<group>"; };
 		6E4F5D952657E7780061A13C /* SearchStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockView.swift; sourceTree = "<group>"; };
 		6E4F5D982657E8400061A13C /* SearchStockField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockField.swift; sourceTree = "<group>"; };
 		6E4F5D9A2657EB6C0061A13C /* SearchStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockViewController.swift; sourceTree = "<group>"; };
@@ -497,6 +501,8 @@
 			children = (
 				6E480459266513A100BF5E44 /* domestic */,
 				6E2B9C842661EEF600734784 /* subviews */,
+				6E48045A2665151B00BF5E44 /* DetailAlertView.swift */,
+				6E48045C2665208100BF5E44 /* DetailAlertViewController.swift */,
 			);
 			path = "write-detail";
 			sourceTree = "<group>";
@@ -955,8 +961,10 @@
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
 				6ED56BA82661C8080057A90F /* DomesticDetailView.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
+				6E48045B2665151B00BF5E44 /* DetailAlertView.swift in Sources */,
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
 				A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */,
+				6E48045D2665208100BF5E44 /* DetailAlertViewController.swift in Sources */,
 				6E817597263835390050FFC7 /* UIFontExtensions.swift in Sources */,
 				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
