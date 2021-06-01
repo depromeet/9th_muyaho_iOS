@@ -1,15 +1,15 @@
 //
-//  WriteDetailView.swift
+//  AbroadDetailView.swift
 //  9th_muyaho_iOS
 //
-//  Created by Hyun Sik Yoo on 2021/05/29.
+//  Created by Hyun Sik Yoo on 2021/05/31.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class DomesticDetailView: BaseView {
+class AbroadDetailView: BaseView {
     
     let tapBackground = UITapGestureRecognizer()
     
@@ -51,7 +51,7 @@ class DomesticDetailView: BaseView {
     let stockTypeLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_black_b4
-        $0.text = "investment_category_demestic".localized
+        $0.text = "investment_category_abroad".localized
         $0.contentHuggingPriority(for: .vertical)
     }
     
@@ -63,7 +63,7 @@ class DomesticDetailView: BaseView {
     let totalPriceLabel = UILabel().then {
         $0.textColor = .sub_gray_40
         $0.font = .subtitle1_24
-        $0.text = "0"
+        $0.text = "0원"
         $0.textAlignment = .right
     }
     
@@ -75,7 +75,7 @@ class DomesticDetailView: BaseView {
     }
     
     let avgPriceField = DeletableInputField().then {
-        $0.textfield.placeholder = "0"
+        $0.textfield.placeholder = "0 USD"
         $0.textfield.keyboardType = .decimalPad
     }
     
@@ -88,6 +88,48 @@ class DomesticDetailView: BaseView {
     let amountField = DeletableInputField().then {
         $0.textfield.placeholder = "0개"
         $0.textfield.keyboardType = .numberPad
+    }
+    
+    let optionLabel = UILabel().then {
+        $0.font = .subtitle2_18
+        $0.textColor = .sub_white_w1
+        $0.text = "write_detail_option_title".localized
+    }
+    
+    let optionDescriptionLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .sub_white_w1
+        $0.text = "write_detail_option_description".localized
+        $0.numberOfLines = 0
+    }
+    
+    let transitionRateLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .sub_white_w3
+        $0.text = "write_detail_transition_rate".localized
+    }
+    
+    let transitionRateValueLabel = UILabel().then {
+        $0.font = .body1_16
+        $0.textColor = .sub_gray_40
+        $0.text = "0"
+    }
+    
+    let standardLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .sub_black_b5
+        $0.text = "write_detail_standard".localized
+    }
+    
+    let purchasedMoneyLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .sub_white_w3
+        $0.text = "write_detail_purchased_money".localized
+    }
+    
+    let purchasedMoneyField = DeletableInputField().then {
+        $0.textfield.placeholder = "0원"
+        $0.textfield.keyboardType = .decimalPad
     }
     
     let saveButton = UIButton().then {
@@ -110,7 +152,9 @@ class DomesticDetailView: BaseView {
         self.containerView.addSubviews(
             descriptionLabel, stockContainerView, stockTypeLabel, stockNameLabel,
             totalPriceLabel, avgPriceLabel, avgPriceField, amountLabel,
-            amountField
+            amountField, optionLabel, optionDescriptionLabel,
+            transitionRateLabel, transitionRateValueLabel, standardLabel, purchasedMoneyLabel,
+            purchasedMoneyField
         )
         self.scrollView.addSubview(containerView)
         self.addSubviews(
@@ -144,7 +188,7 @@ class DomesticDetailView: BaseView {
             make.edges.equalTo(0)
             make.width.equalTo(UIScreen.main.bounds.width)
             make.top.equalTo(self.descriptionLabel)
-            make.bottom.equalTo(self.amountField)
+            make.bottom.equalTo(self.purchasedMoneyField)
         }
         
         self.descriptionLabel.snp.makeConstraints { make in
@@ -196,6 +240,42 @@ class DomesticDetailView: BaseView {
             make.right.equalToSuperview().offset(-24)
         }
         
+        self.optionLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(24)
+            make.top.equalTo(self.amountField.snp.bottom).offset(81)
+        }
+        
+        self.optionDescriptionLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.optionLabel)
+            make.top.equalTo(self.optionLabel.snp.bottom).offset(15)
+        }
+        
+        self.transitionRateLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.optionLabel)
+            make.top.equalTo(self.optionDescriptionLabel.snp.bottom).offset(34)
+        }
+        
+        self.transitionRateValueLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.transitionRateLabel.snp.right).offset(14)
+            make.centerY.equalTo(self.transitionRateLabel)
+        }
+        
+        self.standardLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-24)
+            make.centerY.equalTo(self.transitionRateLabel)
+        }
+        
+        self.purchasedMoneyLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.transitionRateLabel)
+            make.top.equalTo(self.transitionRateLabel.snp.bottom).offset(45)
+        }
+        
+        self.purchasedMoneyField.snp.makeConstraints { make in
+            make.left.equalTo(self.transitionRateValueLabel)
+            make.right.equalToSuperview().offset(-24)
+            make.centerY.equalTo(self.purchasedMoneyLabel)
+        }
+        
         self.saveButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
@@ -208,7 +288,7 @@ class DomesticDetailView: BaseView {
     }
 }
 
-extension Reactive where Base: DomesticDetailView {
+extension Reactive where Base: AbroadDetailView {
     
     var isSaveEnable: Binder<Bool> {
         return Binder(self.base) { view, isEnable in
@@ -228,7 +308,10 @@ extension Reactive where Base: DomesticDetailView {
                 $0.locale = .current
             }
             
-            view.totalPriceLabel.text = formatter.string(from: NSNumber(value: totalPrice))
+            let totalPriceString = formatter.string(from: NSNumber(value: totalPrice)) ?? ""
+            
+            view.totalPriceLabel.text = totalPriceString + " 원"
+            view.purchasedMoneyField.textfield.text = totalPrice == 0 ? nil : (totalPriceString + " 원")
             if totalPrice == 0 {
                 view.totalPriceLabel.textColor = .sub_gray_40
             } else {
@@ -247,7 +330,7 @@ extension Reactive where Base: DomesticDetailView {
                     $0.locale = .current
                 }
                 
-                view.avgPriceField.textfield.text = formatter.string(from: NSNumber(value: avgPrice))
+                view.avgPriceField.textfield.text = (formatter.string(from: NSNumber(value: avgPrice)) ?? "") + " USD"
             }
         }
     }

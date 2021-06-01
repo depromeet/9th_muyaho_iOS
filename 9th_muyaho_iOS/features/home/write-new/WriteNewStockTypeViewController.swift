@@ -99,8 +99,16 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
 
 extension WriteNewStockTypeViewController: SearchStockDelegate {
     func onSelectStock(stock: Stock) {
-        let domesticDetailViewController = DomesticDetailViewController.make(stock: stock)
+        var viewController: BaseViewController
+        switch stock.type {
+        case .domestic:
+            viewController = DomesticDetailViewController.make(stock: stock)
+        case .abroad:
+            viewController = AbroadDetailViewController.make(stock: stock)
+        case .coin:
+            viewController = AbroadDetailViewController.make(stock: stock)
+        }
         
-        self.navigationController?.pushViewController(domesticDetailViewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
