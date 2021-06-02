@@ -12,6 +12,7 @@ import ReactorKit
 class AbroadDetailReactor: Reactor {
     
     enum Action {
+        case viewDidLoad
         case tapBack
         case tapClose
         case avgPrice(Double)
@@ -25,6 +26,7 @@ class AbroadDetailReactor: Reactor {
         case setAmount(Int)
         case saveStock
         case setTotalPrice(Double)
+        case setPurchasedMoney(Double)
         case setTransitionReate(Double)
         case setSaveButtonEnable(Bool)
         case showAlert(String)
@@ -40,47 +42,90 @@ class AbroadDetailReactor: Reactor {
         var amount = 0
         var transitionRate = 0.0
         var totalPrice = 0.0
+        var purchasedMoeny = 0.0
     }
     
     let stock: Stock
     let initialState: State
     let stockService: StockServiceProtocol
+    let exchangeRateService: ExchangeRateServiceProtocol
     let dismissPublisher = PublishRelay<Void>()
     let alertPublisher = PublishRelay<String>()
     let backPublisher = PublishRelay<Bool>()
     let closePublisher = PublishRelay<Bool>()
     
     
-    init(stock: Stock, stockService: StockServiceProtocol) {
+    init(
+        stock: Stock,
+        stockService: StockServiceProtocol,
+        exchangeRateService: ExchangeRateServiceProtocol
+    ) {
         self.stock = stock
         self.stockService = stockService
+        self.exchangeRateService = exchangeRateService
         self.initialState = State(stockType: stock.type, stockName: stock.name)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .viewDidLoad:
+            return self.exchangeRateService.fetchExchangeRate()
+                .map { Mutation.setTransitionReate($0) }
+                .catchError(self.handleHTTPError(error:))
         case .avgPrice(let price):
-            let totalPrice = price * Double(self.currentState.amount)
+            if self.currentState.purchasedMoeny == 0 {
+                let totalPrice = price * Double(self.currentState.amount) * self.currentState.transitionRate
+                
+                return .concat([
+                    .just(.setAvgPrice(price)),
+                    .just(.setTotalPrice(totalPrice)),
+                    .just(.setSaveButtonEnable(totalPrice != 0))
+                ])
+            } else {
+                let exchangeRate = self.currentState.purchasedMoeny / (price * Double(self.currentState.amount))
+                
+                return .concat([
+                    .just(.setAvgPrice(price)),
+                    .just(.setTransitionReate(exchangeRate)),
+                    .just(.setSaveButtonEnable(true))
+                ])
+            }
             
-            return .concat([
-                .just(.setAvgPrice(price)),
-                .just(.setTotalPrice(totalPrice)),
-                .just(.setSaveButtonEnable(totalPrice != 0))
-            ])
         case .amount(let amount):
-            let totalPrice = self.currentState.avgPrice * Double(amount)
+            if self.currentState.purchasedMoeny == 0 {
+                let totalPrice = self.currentState.avgPrice * Double(amount)
+                
+                return .concat([
+                    .just(.setAmount(amount)),
+                    .just(.setTotalPrice(totalPrice)),
+                    .just(.setSaveButtonEnable(totalPrice != 0))
+                ])
+            } else {
+                let exchangeRate = self.currentState.purchasedMoeny / (self.currentState.avgPrice * Double(amount))
+                
+                return .concat([
+                    .just(.setAmount(amount)),
+                    .just(.setTransitionReate(exchangeRate)),
+                    .just(.setSaveButtonEnable(true))
+                ])
+            }
             
-            return .concat([
-                .just(.setAmount(amount)),
-                .just(.setTotalPrice(totalPrice)),
-                .just(.setSaveButtonEnable(totalPrice != 0))
-            ])
         case .purchasedMoney(let money):
-            let transitionRate = money / (self.currentState.avgPrice * Double(self.currentState.amount))
-            return .concat([
-                .just(.setTotalPrice(money)),
-                .just(.setTransitionReate(transitionRate))
-            ])
+            let normalPrice = self.currentState.avgPrice * Double(self.currentState.amount)
+            
+            if normalPrice == 0 {
+                return .concat([
+                    .just(.setTotalPrice(money)),
+                    .just(.setPurchasedMoney(money))
+                ])
+            } else {
+                let transitionRate = money / (self.currentState.avgPrice * Double(self.currentState.amount))
+                return .concat([
+                    .just(.setTotalPrice(money)),
+                    .just(.setPurchasedMoney(money)),
+                    .just(.setTransitionReate(transitionRate))
+                ])
+            }
         case .tapSaveButton:
             let writeStockRequest = WriteStockRequest(
                 stockId: self.stock.id,
@@ -120,6 +165,8 @@ class AbroadDetailReactor: Reactor {
             self.dismissPublisher.accept(())
         case .setTotalPrice(let totalPrice):
             newState.totalPrice = totalPrice
+        case .setPurchasedMoney(let purchasedMoney):
+            newState.purchasedMoeny = purchasedMoney
         case .setTransitionReate(let transitionRate):
             newState.transitionRate = transitionRate
         case .setSaveButtonEnable(let isEnable):

@@ -16,7 +16,8 @@ class AbroadDetailViewController: BaseViewController, View {
     init(stock: Stock) {
         self.abroadDetailReactor = AbroadDetailReactor(
             stock: stock,
-            stockService: StockService()
+            stockService: StockService(),
+            exchangeRateService: ExchangeRateService()
         )
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,6 +43,7 @@ class AbroadDetailViewController: BaseViewController, View {
         
         self.reactor = self.abroadDetailReactor
         self.setupKeyboardNotification()
+        self.abroadDetailReactor.action.onNext(.viewDidLoad)
     }
     
     override func bindEvent() {
@@ -149,9 +151,21 @@ class AbroadDetailViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         reactor.state
+            .map { "\($0.transitionRate)" }
+            .asDriver(onErrorJustReturn: "")
+            .drive(self.abroadDetailView.transitionRateValueLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
             .map { $0.totalPrice }
             .asDriver(onErrorJustReturn: 0)
             .drive(self.abroadDetailView.rx.totalPrice)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.purchasedMoeny }
+            .asDriver(onErrorJustReturn: 0)
+            .drive(self.abroadDetailView.rx.purchasedMoney)
             .disposed(by: self.disposeBag)
         
         reactor.state

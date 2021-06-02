@@ -311,12 +311,24 @@ extension Reactive where Base: AbroadDetailView {
             let totalPriceString = formatter.string(from: NSNumber(value: totalPrice)) ?? ""
             
             view.totalPriceLabel.text = totalPriceString + " 원"
-            view.purchasedMoneyField.textfield.text = totalPrice == 0 ? nil : (totalPriceString + " 원")
             if totalPrice == 0 {
                 view.totalPriceLabel.textColor = .sub_gray_40
             } else {
                 view.totalPriceLabel.textColor = .sub_black_b1
             }
+        }
+    }
+    
+    var purchasedMoney: Binder<Double> {
+        return Binder(self.base) { view, totalPrice in
+            let formatter = NumberFormatter().then {
+                $0.numberStyle = .decimal
+                $0.locale = .current
+            }
+            
+            let totalPriceString = formatter.string(from: NSNumber(value: totalPrice)) ?? ""
+            
+            view.purchasedMoneyField.textfield.text = totalPrice == 0 ? nil : (totalPriceString + " 원")
         }
     }
     
