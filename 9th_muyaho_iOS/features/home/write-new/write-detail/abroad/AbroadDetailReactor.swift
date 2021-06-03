@@ -131,7 +131,7 @@ class AbroadDetailReactor: Reactor {
                 stockId: self.stock.id,
                 purchasePrice: self.currentState.avgPrice,
                 quantity: self.currentState.amount,
-                currencyType: .won,
+                currencyType: .dollar,
                 purchaseTotalPrice: self.currentState.totalPrice
             )
             
