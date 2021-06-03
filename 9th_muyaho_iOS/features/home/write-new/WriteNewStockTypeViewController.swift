@@ -106,7 +106,7 @@ extension WriteNewStockTypeViewController: SearchStockDelegate {
         case .abroad:
             viewController = AbroadDetailViewController.make(stock: stock)
         case .coin:
-            viewController = AbroadDetailViewController.make(stock: stock)
+            viewController = CoinDetailViewController.make(stock: stock)
         }
         
         self.navigationController?.pushViewController(viewController, animated: true)
