@@ -54,6 +54,12 @@
 		6E73158C26692A9C008F652C /* CoinDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73158B26692A9C008F652C /* CoinDetailReactor.swift */; };
 		6E744C5E2641546C00AB9054 /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E744C5D2641546C00AB9054 /* UserDefaultsUtils.swift */; };
 		6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E744C5F26416FA600AB9054 /* BaseReactorProtocol.swift */; };
+		6E7CAEE5266A8FB900A5E0CA /* StockCurrentPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEE4266A8FB900A5E0CA /* StockCurrentPriceResponse.swift */; };
+		6E7CAEE7266A90C300A5E0CA /* StockCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEE6266A90C300A5E0CA /* StockCurrentResponse.swift */; };
+		6E7CAEE9266A920900A5E0CA /* StockPurchaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEE8266A920900A5E0CA /* StockPurchaseResponse.swift */; };
+		6E7CAEEB266A944800A5E0CA /* StockCalculateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEEA266A944800A5E0CA /* StockCalculateResponse.swift */; };
+		6E7CAEED266A96DF00A5E0CA /* OverViewStocksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEEC266A96DF00A5E0CA /* OverViewStocksResponse.swift */; };
+		6E7CAEEF266A996C00A5E0CA /* InvestStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7CAEEE266A996C00A5E0CA /* InvestStatusResponse.swift */; };
 		6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ED81E26385FD400DC0C10 /* SignInView.swift */; };
 		6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E801CC3262C1C2E0081E68A /* HomeViewController.swift */; };
 		6E801CC9262C1C6E0081E68A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E801CC8262C1C6E0081E68A /* HomeView.swift */; };
@@ -188,6 +194,12 @@
 		6E73158B26692A9C008F652C /* CoinDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailReactor.swift; sourceTree = "<group>"; };
 		6E744C5D2641546C00AB9054 /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
 		6E744C5F26416FA600AB9054 /* BaseReactorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReactorProtocol.swift; sourceTree = "<group>"; };
+		6E7CAEE4266A8FB900A5E0CA /* StockCurrentPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCurrentPriceResponse.swift; sourceTree = "<group>"; };
+		6E7CAEE6266A90C300A5E0CA /* StockCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCurrentResponse.swift; sourceTree = "<group>"; };
+		6E7CAEE8266A920900A5E0CA /* StockPurchaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPurchaseResponse.swift; sourceTree = "<group>"; };
+		6E7CAEEA266A944800A5E0CA /* StockCalculateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCalculateResponse.swift; sourceTree = "<group>"; };
+		6E7CAEEC266A96DF00A5E0CA /* OverViewStocksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewStocksResponse.swift; sourceTree = "<group>"; };
+		6E7CAEEE266A996C00A5E0CA /* InvestStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestStatusResponse.swift; sourceTree = "<group>"; };
 		6E7ED81E26385FD400DC0C10 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6E801CC3262C1C2E0081E68A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6E801CC8262C1C6E0081E68A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -489,6 +501,12 @@
 				6E3692F72663908C009A83DF /* StockInfo.swift */,
 				6E3692F9266390C2009A83DF /* CurrencyType.swift */,
 				6E3692FB26639BB6009A83DF /* WriteStockReqeust.swift */,
+				6E7CAEE8266A920900A5E0CA /* StockPurchaseResponse.swift */,
+				6E7CAEE6266A90C300A5E0CA /* StockCurrentResponse.swift */,
+				6E7CAEE4266A8FB900A5E0CA /* StockCurrentPriceResponse.swift */,
+				6E7CAEEE266A996C00A5E0CA /* InvestStatusResponse.swift */,
+				6E7CAEEA266A944800A5E0CA /* StockCalculateResponse.swift */,
+				6E7CAEEC266A96DF00A5E0CA /* OverViewStocksResponse.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -982,6 +1000,7 @@
 				A5EBC44A264760F200876352 /* MyPageReactor.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
 				A5EBC4452647608400876352 /* MyPageView.swift in Sources */,
+				6E7CAEE9266A920900A5E0CA /* StockPurchaseResponse.swift in Sources */,
 				6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */,
 				6E4F5D9D2657F66A0061A13C /* SearchStockTransition.swift in Sources */,
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
@@ -998,10 +1017,12 @@
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
 				6ED56BA82661C8080057A90F /* DomesticDetailView.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
+				6E7CAEE5266A8FB900A5E0CA /* StockCurrentPriceResponse.swift in Sources */,
 				6E48045B2665151B00BF5E44 /* DetailAlertView.swift in Sources */,
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
 				A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */,
 				6E48045D2665208100BF5E44 /* DetailAlertViewController.swift in Sources */,
+				6E7CAEEB266A944800A5E0CA /* StockCalculateResponse.swift in Sources */,
 				6E817597263835390050FFC7 /* UIFontExtensions.swift in Sources */,
 				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
 				6E7315882669273F008F652C /* CoinDetailView.swift in Sources */,
@@ -1023,6 +1044,7 @@
 				A5754BA62625BBD100B6E8A1 /* MainTabBerController.swift in Sources */,
 				6E4FE4A42638655B00103948 /* SignInReactor.swift in Sources */,
 				6E45387C26550966000CFC0F /* WriteMenuView.swift in Sources */,
+				6E7CAEEF266A996C00A5E0CA /* InvestStatusResponse.swift in Sources */,
 				6E2538752656964C00439E8E /* StockTypeButton.swift in Sources */,
 				6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */,
 				6E4F5D992657E8400061A13C /* SearchStockField.swift in Sources */,
@@ -1046,6 +1068,7 @@
 				6E26F35C26665C14003C4961 /* AbroadDetailViewController.swift in Sources */,
 				6E2538722656941E00439E8E /* WriteNewStockTypeViewController.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
+				6E7CAEE7266A90C300A5E0CA /* StockCurrentResponse.swift in Sources */,
 				6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */,
 				6EE19C0F265A50A30023B0F5 /* Stock.swift in Sources */,
 				6E319C2E2667CA9F00E0C43B /* ExchangeRateServices.swift in Sources */,
@@ -1071,6 +1094,7 @@
 				A58C2BB52658938100CEEE8C /* PageCell.swift in Sources */,
 				A5754BB72625BD8900B6E8A1 /* BaseViewController.swift in Sources */,
 				6E73158C26692A9C008F652C /* CoinDetailReactor.swift in Sources */,
+				6E7CAEED266A96DF00A5E0CA /* OverViewStocksResponse.swift in Sources */,
 				6EABBACD263A950500ACC332 /* AuthRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
