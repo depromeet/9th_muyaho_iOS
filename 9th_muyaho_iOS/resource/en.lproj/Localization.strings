@@ -8,6 +8,8 @@
 // common
 "common_ok" = "확인";
 "common_cancel" = "취소";
+"common_average_price" = "평단가";
+"common_amount" = "수량";
 
 // category
 "investment_category_demestic" = "국내주식";
@@ -69,3 +71,17 @@
 "search_stock_title" = "종목 검색하기";
 "search_stock_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
 "search_stock_latest_history" = "최근 10개의 검색 기록";
+
+// write-detail
+"write_detail_title" = "신규항목추가";
+"write_detail_description" = "투자 종목의\n가격과 수량을 알려주세요!";
+"write_detail_save" = "저장하기";
+"write_detail_cancel_title" = "기록이 날라가요!";
+"write_detail_cancel_description" = "작성 중인 글을 취소하시나요?\n작성된 글은 저장되지 않아요.";
+"write_detail_continue" = "계속 등록";
+"write_detail_exit" = "등록 종료";
+"write_detail_option_title" = "선택사항";
+"write_detail_option_description" = "매입금 미입력시 해외주식 매입 평균환율은\n현재환율 기준으로 계산되어 오차가 발생 할 수 있습니다";
+"write_detail_transition_rate" = "적용환율";
+"write_detail_standard" = "기본 - 하나은행 기준환율";
+"write_detail_purchased_money" = "매입금";

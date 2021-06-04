@@ -7,10 +7,14 @@
 
 import RxSwift
 import RxAlamofire
+import Foundation
+import Alamofire
 
 protocol StockServiceProtocol {
     
     func fetchStocks(stockType: StockType) -> Observable<ResponseContainer<[Stock]>>
+    
+    func writeStock(request: WriteStockRequest) -> Observable<ResponseContainer<StockInfo>>
 }
 
 struct StockService: StockServiceProtocol {
@@ -28,5 +32,25 @@ struct StockService: StockServiceProtocol {
                 }
             }
             .expectingObject(ofType: [Stock].self)
+    }
+    
+    func writeStock(request: WriteStockRequest) -> Observable<ResponseContainer<StockInfo>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock"
+        let parameters = request.toParams()
+        
+        return RxAlamofire.requestJSON(
+            .post, urlString,
+            parameters: parameters,
+            encoding: JSONEncoding.default,
+            headers: HTTPUtils.authorizationHeader()
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: StockInfo.self)
     }
 }

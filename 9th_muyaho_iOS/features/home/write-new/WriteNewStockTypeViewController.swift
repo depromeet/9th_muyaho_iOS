@@ -99,6 +99,16 @@ extension WriteNewStockTypeViewController: UIViewControllerTransitioningDelegate
 
 extension WriteNewStockTypeViewController: SearchStockDelegate {
     func onSelectStock(stock: Stock) {
-        // TODO: 다음 화면 넘기기!
+        var viewController: BaseViewController
+        switch stock.type {
+        case .domestic:
+            viewController = DomesticDetailViewController.make(stock: stock)
+        case .abroad:
+            viewController = AbroadDetailViewController.make(stock: stock)
+        case .coin:
+            viewController = CoinDetailViewController.make(stock: stock)
+        }
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
