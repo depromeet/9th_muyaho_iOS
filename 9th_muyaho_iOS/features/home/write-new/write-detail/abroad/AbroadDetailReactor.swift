@@ -130,7 +130,7 @@ class AbroadDetailReactor: Reactor {
             let writeStockRequest = WriteStockRequest(
                 stockId: self.stock.id,
                 purchasePrice: self.currentState.avgPrice,
-                quantity: self.currentState.amount,
+                quantity: Double(self.currentState.amount),
                 currencyType: .dollar,
                 purchaseTotalPrice: self.currentState.totalPrice
             )

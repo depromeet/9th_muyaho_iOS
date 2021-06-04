@@ -9,7 +9,7 @@ struct WriteStockRequest {
     
     let stockId: Int
     let purchasePrice: Double
-    let quantity: Int
+    let quantity: Double
     let currencyType: CurrencyType
     let purchaseTotalPrice: Double
     

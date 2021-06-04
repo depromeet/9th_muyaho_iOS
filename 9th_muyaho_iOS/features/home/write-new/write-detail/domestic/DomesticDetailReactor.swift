@@ -76,7 +76,7 @@ class DomesticDetailReactor: Reactor {
             let writeStockRequest = WriteStockRequest(
                 stockId: self.stock.id,
                 purchasePrice: self.currentState.avgPrice,
-                quantity: self.currentState.amount,
+                quantity: Double(self.currentState.amount),
                 currencyType: .won,
                 purchaseTotalPrice: self.currentState.totalPrice
             )

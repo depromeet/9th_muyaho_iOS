@@ -276,11 +276,7 @@ extension Reactive where Base: CoinDetailView {
     
     var amount: Binder<Int> {
         return Binder(self.base) { view, amount in
-            if amount == 0 {
-                view.amountValueLabel.text = nil
-            } else {
-                view.amountValueLabel.text = "\(amount) 개"
-            }
+            view.amountValueLabel.text = "\(amount) 개"
         }
     }
     

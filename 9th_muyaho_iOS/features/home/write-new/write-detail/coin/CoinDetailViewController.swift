@@ -93,6 +93,11 @@ class CoinDetailViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
+        self.coinDetailView.purchasedMoneyField.rx.text
+            .map { Reactor.Action.totalPrice(Double($0.replacingOccurrences(of: ",", with: "")) ?? 0)}
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
         self.coinDetailView.saveButton.rx.tap
             .map { Reactor.Action.tapSaveButton }
             .bind(to: reactor.action)
@@ -126,7 +131,7 @@ class CoinDetailViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         reactor.state
-            .map { $0.amount }
+            .map { Int($0.amount) }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: 0)
             .drive(self.coinDetailView.rx.amount)

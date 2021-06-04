@@ -15,13 +15,13 @@ class CoinDetailReactor: Reactor {
         case tapBack
         case tapClose
         case avgPrice(Double)
-        case amount(Int)
+        case totalPrice(Double)
         case tapSaveButton
     }
     
     enum Mutation {
         case setAvgPrice(Double)
-        case setAmount(Int)
+        case setAmount(Double)
         case saveStock
         case setTotalPrice(Double)
         case setSaveButtonEnable(Bool)
@@ -35,7 +35,7 @@ class CoinDetailReactor: Reactor {
         var stockName: String
         var isSaveButtonEnable = false
         var avgPrice = 0.0
-        var amount = 0
+        var amount = 0.0
         var totalPrice = 0.0
     }
     
@@ -64,8 +64,13 @@ class CoinDetailReactor: Reactor {
                 .just(.setTotalPrice(totalPrice)),
                 .just(.setSaveButtonEnable(totalPrice != 0))
             ])
-        case .amount(let amount):
-            let totalPrice = self.currentState.avgPrice * Double(amount)
+        case .totalPrice(let totalPrice):
+            var amount: Double
+            if self.currentState.avgPrice != 0 {
+                amount = totalPrice / self.currentState.avgPrice
+            } else {
+                amount = 0
+            }
             
             return .concat([
                 .just(.setAmount(amount)),
