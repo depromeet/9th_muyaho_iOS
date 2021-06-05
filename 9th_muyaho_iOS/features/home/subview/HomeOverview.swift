@@ -152,6 +152,7 @@ extension Reactive where Base: HomeOverview {
             view.setEmptyDashboard(isEmpty: isEmpty)
             view.setTitle(isEmpty: isEmpty, todayPL: status.todayProfitOrLose)
             view.youngchanView.rx.status.onNext(status.todayStatus)
+            view.dashboardView.rx.investStatus.onNext(status)
         }
     }
 }

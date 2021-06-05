@@ -44,7 +44,7 @@ class HomeReactor: Reactor, BaseReactorProtocol {
                 
             return .concat([fetchCacheStatus, fetchStatus])
         case .tapRefresh:
-            return self.stockService.fetchStatusCache()
+            return self.stockService.fetchStatus()
                 .map { Mutation.setInvestStatus($0.data) }
                 .catchError(self.handleError(error:))
         }
