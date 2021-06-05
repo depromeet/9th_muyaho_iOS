@@ -6,18 +6,21 @@
 //
 
 import ReactorKit
+import RxCocoa
 
 class HomeReactor: Reactor, BaseReactorProtocol {
     
     enum Action {
         case viewDidLoad
         case tapRefresh
+        case tapStockDetail(StockType)
     }
     
     enum Mutation {
         case setInvestStatus(InvestStatusResponse)
         case setLoading(Bool)
         case setAlertMessage(String)
+        case pushStockDetail(StockType)
     }
     
     struct State {
@@ -28,7 +31,7 @@ class HomeReactor: Reactor, BaseReactorProtocol {
     
     let initialState = State()
     let stockService: StockService
-    
+    let stockDetailPublisher = PublishRelay<(StockType, OverviewStocksResponse)>()
     
     init(stockService: StockService) {
         self.stockService = stockService
@@ -52,6 +55,8 @@ class HomeReactor: Reactor, BaseReactorProtocol {
                     .map { Mutation.setInvestStatus($0.data) }
                     .catchError(self.handleError(error:))
             ])
+        case .tapStockDetail(let type):
+            return .just(.pushStockDetail(type))
         }
     }
     
@@ -66,6 +71,8 @@ class HomeReactor: Reactor, BaseReactorProtocol {
             newState.loading = isLoading
         case .setAlertMessage(let message):
             newState.alertMessage = message
+        case .pushStockDetail(let type):
+            self.stockDetailPublisher.accept((type, self.currentState.investStatusResponse.overview))
         }
         
         return newState

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.2)
+  - Differentiator (4.0.1)
   - KakaoSDKAuth (2.4.1):
     - KakaoSDKCommon (= 2.4.1)
   - KakaoSDKCommon (2.4.1):
@@ -26,6 +27,10 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxKakaoSDKAuth (2.4.1):
     - KakaoSDKAuth (= 2.4.1)
     - RxKakaoSDKCommon (= 2.4.1)
@@ -56,6 +61,7 @@ DEPENDENCIES:
   - ReactorKit
   - RxAlamofire
   - RxCocoa (~> 5)
+  - RxDataSources (~> 4.0)
   - RxKakaoSDKAuth
   - RxKakaoSDKUser
   - RxSwift (~> 5)
@@ -65,6 +71,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -72,6 +79,7 @@ SPEC REPOS:
     - ReactorKit
     - RxAlamofire
     - RxCocoa
+    - RxDataSources
     - RxKakaoSDKAuth
     - RxKakaoSDKCommon
     - RxKakaoSDKUser
@@ -83,6 +91,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   KakaoSDKAuth: fcba1c9ede431683f5bdd84c835a96981cb115a5
   KakaoSDKCommon: 0912aa0c7db051ae8dc07a35395cf644f7728f95
   KakaoSDKUser: 11955811d99d1ff1f1dfd5428afe69937e31ccef
@@ -90,6 +99,7 @@ SPEC CHECKSUMS:
   ReactorKit: 6d894a20c3d508344320901cd8e386fde92df4b6
   RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxKakaoSDKAuth: 0330e691ddd75e8de7382f4599b5d871d986168e
   RxKakaoSDKCommon: 2c18971a846e5fb5b6f0c05823c3194cdc27d064
   RxKakaoSDKUser: 1bf30e43d58ca54f7eff9ca9f74c1e6c491ae096
@@ -99,6 +109,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: e36e17541f28ac8a436d1e012c58e8eae2424c50
+PODFILE CHECKSUM: 20ecc5c02cb9ed95d7a4caa0d2936b5121f105f2
 
 COCOAPODS: 1.10.0

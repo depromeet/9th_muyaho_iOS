@@ -18,14 +18,23 @@ class StockDetailViewController: BaseViewController {
         navigationOrientation: .horizontal,
         options: nil
     )
-    private let pageViewControllers: [UIViewController] = [
-        StockDetailChildViewController.instance(),
-        StockDetailChildViewController.instance(),
-        StockDetailChildViewController.instance()
-    ]
+    private let pageViewControllers: [UIViewController]
     
-    static func instance() -> StockDetailViewController {
-        return StockDetailViewController(nibName: nil, bundle: nil)
+    init(overviewStocks: OverviewStocksResponse) {
+        self.pageViewControllers = [
+            StockDetailChildViewController.instance(type: .domestic, stocks: overviewStocks.domesticStocks),
+            StockDetailChildViewController.instance(type: .abroad, stocks: overviewStocks.foreignStocks),
+            StockDetailChildViewController.instance(type: .coin, stocks: overviewStocks.bitCoins)
+        ]
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func instance(overviewStocks: OverviewStocksResponse) -> StockDetailViewController {
+        return StockDetailViewController(overviewStocks: overviewStocks)
     }
     
     override func loadView() {
@@ -170,7 +179,7 @@ extension StockDetailViewController: UIPageViewControllerDelegate, UIPageViewCon
                 return
             }
             
-            self.stockDetailView.selectTab(index: viewControllerIndex)            
+            self.stockDetailView.selectTab(index: viewControllerIndex)
         }
     }
 }

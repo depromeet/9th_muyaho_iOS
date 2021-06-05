@@ -80,6 +80,8 @@
 		6E9218B7266B9F25007A92DC /* StockDetailOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B6266B9F25007A92DC /* StockDetailOverviewCell.swift */; };
 		6E9218B9266BA826007A92DC /* StockDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B8266BA826007A92DC /* StockDetailHeaderView.swift */; };
 		6E9218BB266BA982007A92DC /* StockDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218BA266BA982007A92DC /* StockDetailItemCell.swift */; };
+		6E9218BD266BC00A007A92DC /* StockDetailChildReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218BC266BC00A007A92DC /* StockDetailChildReactor.swift */; };
+		6E9218C1266BC8C1007A92DC /* StockDetailItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218C0266BC8C1007A92DC /* StockDetailItemSection.swift */; };
 		6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9429EE26403BC2005AAC78 /* HTTPError.swift */; };
 		6EABBACD263A950500ACC332 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBACC263A950500ACC332 /* AuthRequest.swift */; };
 		6EABBACF263A954100ACC332 /* SocialType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBACE263A954100ACC332 /* SocialType.swift */; };
@@ -229,6 +231,8 @@
 		6E9218B6266B9F25007A92DC /* StockDetailOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailOverviewCell.swift; sourceTree = "<group>"; };
 		6E9218B8266BA826007A92DC /* StockDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailHeaderView.swift; sourceTree = "<group>"; };
 		6E9218BA266BA982007A92DC /* StockDetailItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailItemCell.swift; sourceTree = "<group>"; };
+		6E9218BC266BC00A007A92DC /* StockDetailChildReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailChildReactor.swift; sourceTree = "<group>"; };
+		6E9218C0266BC8C1007A92DC /* StockDetailItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailItemSection.swift; sourceTree = "<group>"; };
 		6E9429EE26403BC2005AAC78 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		6EABBACC263A950500ACC332 /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		6EABBACE263A954100ACC332 /* SocialType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialType.swift; sourceTree = "<group>"; };
@@ -514,6 +518,7 @@
 				6E9218AD266B8EC5007A92DC /* StockDetailViewController.swift */,
 				6E9218B1266B99A3007A92DC /* StockDetailChildView.swift */,
 				6E9218B3266B9ABF007A92DC /* StockDetailChildViewController.swift */,
+				6E9218BC266BC00A007A92DC /* StockDetailChildReactor.swift */,
 			);
 			path = "stock-detail";
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				6E7CAEEA266A944800A5E0CA /* StockCalculateResponse.swift */,
 				6E7CAEEC266A96DF00A5E0CA /* OverViewStocksResponse.swift */,
 				6E9218A8266B24BE007A92DC /* InvestmentStatus.swift */,
+				6E9218C0266BC8C1007A92DC /* StockDetailItemSection.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1105,6 +1111,7 @@
 				6EE19C09265A3E420023B0F5 /* SearchCell.swift in Sources */,
 				A58C2BE22659DDF700CEEE8C /* WaterrideCell.swift in Sources */,
 				6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */,
+				6E9218C1266BC8C1007A92DC /* StockDetailItemSection.swift in Sources */,
 				A58C2BDB2658C7C800CEEE8C /* ProfitrateCell.swift in Sources */,
 				6E5A3A23263D9B2700B46EAF /* HTTPURLResponseExtensions.swift in Sources */,
 				6E5DECFC26423D080005487F /* AlertUtils.swift in Sources */,
@@ -1136,6 +1143,7 @@
 				6E9218AC266B8B2C007A92DC /* StockDetailView.swift in Sources */,
 				6E4F5D9B2657EB6C0061A13C /* SearchStockViewController.swift in Sources */,
 				6E9218B9266BA826007A92DC /* StockDetailHeaderView.swift in Sources */,
+				6E9218BD266BC00A007A92DC /* StockDetailChildReactor.swift in Sources */,
 				6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */,
 				6E5A3A25263D9C7C00B46EAF /* ObservableExtensions.swift in Sources */,
 				6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */,

@@ -19,6 +19,8 @@ protocol StockServiceProtocol {
     func fetchStatusCache() -> Observable<ResponseContainer<InvestStatusResponse>>
     
     func fetchStatus() -> Observable<ResponseContainer<InvestStatusResponse>>
+    
+    func fetchStatus(by type: StockType) -> Observable<ResponseContainer<[StockCalculateResponse]>>
 }
 
 struct StockService: StockServiceProtocol {
@@ -94,5 +96,26 @@ struct StockService: StockServiceProtocol {
             }
         }
         .expectingObject(ofType: InvestStatusResponse.self)
+    }
+    
+    func fetchStatus(by type: StockType) -> Observable<ResponseContainer<[StockCalculateResponse]>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock"
+        let params = ["type": type.rawValue]
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .get,
+            urlString,
+            parameters: params,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: [StockCalculateResponse].self)
     }
 }

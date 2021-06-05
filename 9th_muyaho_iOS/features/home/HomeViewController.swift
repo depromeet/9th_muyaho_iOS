@@ -45,9 +45,8 @@ class HomeViewController: BaseViewController, View {
             .bind(onNext: self.showshowWriteMenus)
             .disposed(by: self.eventDisposeBag)
         
-        self.homeView.homeInvestByCategoryView.domesticCategoryButton.rx.tap
-            .asDriver()
-            .debug()
+        self.homeReactor.stockDetailPublisher
+            .asDriver(onErrorJustReturn: (.domestic, OverviewStocksResponse()))
             .drive(onNext: self.pushStockDetailViewController)
             .disposed(by: self.eventDisposeBag)
     }
@@ -56,6 +55,21 @@ class HomeViewController: BaseViewController, View {
         // MARK: Bind Action
         self.homeView.refreshButton.rx.tap
             .map { Reactor.Action.tapRefresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.domesticCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.domestic) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.abroadCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.abroad) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.coinCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.coin) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -80,8 +94,11 @@ class HomeViewController: BaseViewController, View {
         self.present(writeMenuViewController, animated: true, completion: nil)
     }
     
-    private func pushStockDetailViewController() {
-        let stockDetailViewController = StockDetailViewController.instance()
+    private func pushStockDetailViewController(
+        type: StockType,
+        overviewStocks: OverviewStocksResponse
+    ) {
+        let stockDetailViewController = StockDetailViewController.instance(overviewStocks: overviewStocks)
         
         self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
