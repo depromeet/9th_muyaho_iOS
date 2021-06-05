@@ -20,19 +20,22 @@ class StockDetailView: BaseView {
     let domesticButton = UIButton().then {
         $0.setTitle("investment_category_demestic".localized, for: .normal)
         $0.titleLabel?.font = .body1_16
-        $0.setTitleColor(.sub_white_w1, for: .normal)
+        $0.setTitleColor(.sub_white_w1, for: .selected)
+        $0.setTitleColor(.sub_white_w1.withAlphaComponent(0.4), for: .normal)
     }
     
     let abroadButton = UIButton().then {
         $0.setTitle("investment_category_abroad".localized, for: .normal)
         $0.titleLabel?.font = .body1_16
-        $0.setTitleColor(.sub_white_w1, for: .normal)
+        $0.setTitleColor(.sub_white_w1, for: .selected)
+        $0.setTitleColor(.sub_white_w1.withAlphaComponent(0.4), for: .normal)
     }
     
     let coinButton = UIButton().then {
         $0.setTitle("investment_category_coin".localized, for: .normal)
         $0.titleLabel?.font = .body1_16
-        $0.setTitleColor(.sub_white_w1, for: .normal)
+        $0.setTitleColor(.sub_white_w1, for: .selected)
+        $0.setTitleColor(.sub_white_w1.withAlphaComponent(0.4), for: .normal)
     }
     
     let indicatorView = UIView().then {
@@ -93,6 +96,32 @@ class StockDetailView: BaseView {
         
         self.patternImage.snp.makeConstraints { make in
             make.top.right.equalToSuperview()
+        }
+    }
+    
+    func selectTab(index: Int) {
+        self.domesticButton.isSelected = index == 0
+        self.abroadButton.isSelected = index == 1
+        self.coinButton.isSelected = index == 2
+        
+        self.indicatorView.snp.remakeConstraints { make in
+            if index == 0 {
+                make.centerX.equalTo(self.domesticButton)
+            } else if index == 1 {
+                make.centerX.equalTo(self.abroadButton)
+            } else {
+                make.centerX.equalTo(self.coinButton)
+            }
+            make.top.equalTo(self.domesticButton.snp.bottom)
+            make.width.equalTo(56)
+            make.height.equalTo(2)
+        }
+        UIView.transition(
+            with: self.indicatorView,
+            duration: 0.3,
+            options: .curveEaseInOut
+        ) { [weak self] in
+            self?.layoutIfNeeded()
         }
     }
 }

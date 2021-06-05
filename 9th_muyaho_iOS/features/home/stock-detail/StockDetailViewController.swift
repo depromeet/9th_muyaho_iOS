@@ -43,6 +43,27 @@ class StockDetailViewController: BaseViewController {
             .asDriver()
             .drive(onNext: self.popupVC)
             .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.domesticButton.rx.tap
+            .asDriver()
+            .map { 0 }
+            .do(onNext: self.stockDetailView.selectTab(index:))
+            .drive(onNext: self.movePageView(index:))
+            .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.abroadButton.rx.tap
+            .asDriver()
+            .map { 1 }
+            .do(onNext: self.stockDetailView.selectTab(index:))
+            .drive(onNext: self.movePageView(index:))
+            .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.coinButton.rx.tap
+            .asDriver()
+            .map { 2 }
+            .do(onNext: self.stockDetailView.selectTab(index:))
+            .drive(onNext: self.movePageView(index:))
+            .disposed(by: self.eventDisposeBag)
     }
     
     private func popupVC() {
@@ -64,6 +85,34 @@ class StockDetailViewController: BaseViewController {
           animated: false,
           completion: nil
         )
+    }
+    
+    private func movePageView(index: Int) {
+        guard let currentViewControllerIndex =
+                self.pageViewControllers.firstIndex(of: self.pageViewController.viewControllers![0]) else { return }
+        
+        if index == 0 {
+            self.pageViewController.setViewControllers(
+                [self.pageViewControllers[0]],
+                direction: .reverse,
+                animated: true,
+                completion: nil
+            )
+        } else if index == 1 {
+            self.pageViewController.setViewControllers(
+                [self.pageViewControllers[1]],
+                direction: currentViewControllerIndex > 1 ? .reverse : .forward,
+                animated: true,
+                completion: nil
+            )
+        } else {
+            self.pageViewController.setViewControllers(
+                [self.pageViewControllers[2]],
+                direction: .forward,
+                animated: true,
+                completion: nil
+            )
+        }
     }
 }
 
@@ -108,5 +157,20 @@ extension StockDetailViewController: UIPageViewControllerDelegate, UIPageViewCon
         }
         
         return self.pageViewControllers[nextIndex]
+    }
+    
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        didFinishAnimating finished: Bool,
+        previousViewControllers: [UIViewController],
+        transitionCompleted completed: Bool
+    ) {
+        if completed {
+            guard let viewControllerIndex = self.pageViewControllers.firstIndex(of: self.pageViewController.viewControllers![0]) else {
+                return
+            }
+            
+            self.stockDetailView.selectTab(index: viewControllerIndex)            
+        }
     }
 }
