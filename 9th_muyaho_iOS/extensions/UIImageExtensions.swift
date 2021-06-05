@@ -17,6 +17,7 @@ extension UIImage {
     
     // home
     static let imgLogo = UIImage(named: "img_logo")
+    static let imgLogoBig = UIImage(named: "img_logo_big")
     static let imgYoungchanGray = UIImage(named: "img_youngchan_gray")
     static let imgYoungchanRed = UIImage(named: "img_youngchan_red")
     static let imgYoungchanBlue = UIImage(named: "img_youngchan_blue")

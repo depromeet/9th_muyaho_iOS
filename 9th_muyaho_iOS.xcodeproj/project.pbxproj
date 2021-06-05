@@ -1284,14 +1284,14 @@
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.muyaho;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.muyaho.-th-muyaho-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
