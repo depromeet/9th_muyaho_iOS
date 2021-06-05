@@ -15,6 +15,10 @@ class SignUpView: BaseView {
         $0.setImage(.arrowLeft24, for: .normal)
     }
     
+    let logoImage = UIImageView().then {
+        $0.image = .imgLogo
+    }
+    
     let titleLabel = UILabel().then {
         $0.font = .h3_30B
         $0.textColor = .sub_white_w2
@@ -54,7 +58,7 @@ class SignUpView: BaseView {
         self.addGestureRecognizer(self.tapBackground)
         self.nicknameField.delegate = self
         self.addSubviews(
-            backButton, titleLabel, descriptionLabel, nicknameField,
+            backButton, logoImage, titleLabel, descriptionLabel, nicknameField,
             alreadyExistedNicknameView, dividorView, signUpButton
         )
     }
@@ -63,6 +67,11 @@ class SignUpView: BaseView {
         self.backButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(9)
+        }
+        
+        self.logoImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(self.backButton)
         }
         
         self.titleLabel.snp.makeConstraints { make in
