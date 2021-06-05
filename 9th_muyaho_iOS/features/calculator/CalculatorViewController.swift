@@ -23,11 +23,11 @@ class CalculatorViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .sub_black_b1
+        view.backgroundColor = .sub_black_b1
         title = "계산기"
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.backgroundColor = .sub_black_b1
-        self.view = calculatorView
+        view = calculatorView
         self.reactor = calculatorReactor
     }
     

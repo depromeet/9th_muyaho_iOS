@@ -10,6 +10,7 @@ import UIKit
 class ProfitrateCell: UICollectionViewCell {
 
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var haveAverageLabel: UITextField!
     @IBOutlet weak var haveCountLabel: UITextField!
     @IBOutlet weak var buyPriceLabel: UITextField!
@@ -22,6 +23,8 @@ class ProfitrateCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .sub_black_b1
+        
+        titleLabel.sizeToFit()
         
         haveAverageLabel.backgroundColor = .sub_black_b3
         haveAverageLabel.textColor = .sub_gray_40

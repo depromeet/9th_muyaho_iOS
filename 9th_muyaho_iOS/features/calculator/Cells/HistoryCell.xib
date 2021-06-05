@@ -43,22 +43,28 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H5A-zj-phY">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SZt-fH-P0K">
                         <rect key="frame" x="0.0" y="245" width="303" height="369"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </tableView>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wyj-NO-eu2">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="L4r-32-0C1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="71" id="0uC-sQ-8Ob"/>
+                <constraint firstItem="SZt-fH-P0K" firstAttribute="top" secondItem="GMl-Xu-IaB" secondAttribute="bottom" constant="30" id="5NP-LJ-mv7"/>
+                <constraint firstAttribute="trailing" secondItem="SZt-fH-P0K" secondAttribute="trailing" id="AhF-8y-dnc"/>
                 <constraint firstItem="GMl-Xu-IaB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Clc-Hn-N60"/>
                 <constraint firstItem="GMl-Xu-IaB" firstAttribute="top" secondItem="L4r-32-0C1" secondAttribute="bottom" constant="50" id="JGP-mF-0Kf"/>
                 <constraint firstItem="L4r-32-0C1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="SlS-1N-09U"/>
-                <constraint firstItem="H5A-zj-phY" firstAttribute="top" secondItem="GMl-Xu-IaB" secondAttribute="bottom" constant="30" id="c00-4h-9XT"/>
-                <constraint firstAttribute="bottom" secondItem="H5A-zj-phY" secondAttribute="bottom" id="hlP-E2-ip0"/>
-                <constraint firstItem="H5A-zj-phY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lCG-or-Dgy"/>
-                <constraint firstAttribute="trailing" secondItem="H5A-zj-phY" secondAttribute="trailing" id="ppg-23-vOX"/>
+                <constraint firstItem="SZt-fH-P0K" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h9R-PJ-MKw"/>
+                <constraint firstAttribute="bottom" secondItem="SZt-fH-P0K" secondAttribute="bottom" id="jwJ-zT-W8a"/>
                 <constraint firstAttribute="trailing" secondItem="L4r-32-0C1" secondAttribute="trailing" constant="20" id="rFb-Vp-hq7"/>
                 <constraint firstAttribute="trailing" secondItem="GMl-Xu-IaB" secondAttribute="trailing" constant="20" id="rm5-4H-bfb"/>
             </constraints>
