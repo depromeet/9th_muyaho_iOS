@@ -16,12 +16,14 @@ class HomeReactor: Reactor, BaseReactorProtocol {
     
     enum Mutation {
         case setInvestStatus(InvestStatusResponse)
+        case setLoading(Bool)
         case setAlertMessage(String)
     }
     
     struct State {
         var investStatusResponse = InvestStatusResponse()
         var alertMessage: String?
+        var loading: Bool = false
     }
     
     let initialState = State()
@@ -44,9 +46,12 @@ class HomeReactor: Reactor, BaseReactorProtocol {
                 
             return .concat([fetchCacheStatus, fetchStatus])
         case .tapRefresh:
-            return self.stockService.fetchStatus()
-                .map { Mutation.setInvestStatus($0.data) }
-                .catchError(self.handleError(error:))
+            return .concat([
+                .just(.setLoading(true)),
+                self.stockService.fetchStatus()
+                    .map { Mutation.setInvestStatus($0.data) }
+                    .catchError(self.handleError(error:))
+            ])
         }
     }
     
@@ -55,7 +60,10 @@ class HomeReactor: Reactor, BaseReactorProtocol {
         
         switch mutation {
         case .setInvestStatus(let investStatusResponse):
+            newState.loading = false
             newState.investStatusResponse = investStatusResponse
+        case .setLoading(let isLoading):
+            newState.loading = isLoading
         case .setAlertMessage(let message):
             newState.alertMessage = message
         }
@@ -64,7 +72,10 @@ class HomeReactor: Reactor, BaseReactorProtocol {
     }
     
     private func handleError(error: Error) -> Observable<Mutation> {
-        return self.handleDefaultError(error: error)
-            .map { Mutation.setAlertMessage($0) }
+        return .concat([
+            .just(.setLoading(false)),
+            self.handleDefaultError(error: error)
+                .map { Mutation.setAlertMessage($0) }
+        ])
     }
 }

@@ -51,6 +51,12 @@ class HomeViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: InvestStatusResponse())
             .drive(self.homeView.rx.investStatus)
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: self.homeView.setRefreshAnimation(isLoading:))
+            .disposed(by: self.disposeBag)
     }
     
     private func showshowWriteMenus() {
