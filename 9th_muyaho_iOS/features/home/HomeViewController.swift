@@ -91,7 +91,7 @@ class HomeViewController: BaseViewController, View {
         let writeMenuViewController = WriteMenuViewController.instance().then {
             $0.delegate = self
         }
-        self.present(writeMenuViewController, animated: true, completion: nil)
+        self.tabBarController?.present(writeMenuViewController, animated: true, completion: nil)
     }
     
     private func pushStockDetailViewController(
