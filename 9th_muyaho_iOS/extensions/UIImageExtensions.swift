@@ -48,6 +48,8 @@ extension UIImage {
     
     // stock-detail
     static let imgKoreanYoungchan = UIImage(named: "img_korean_youngchan")
+    static let imgAmericanYoungchan = UIImage(named: "img_american_youngchan")
+    static let imgCoinYoungchan = UIImage(named: "img_coin_youngchan")
     static let imgGround = UIImage(named: "img_ground")
     static let imgStarSolid = UIImage(named: "img_star_solid")
     static let imgPattern = UIImage(named: "img_pattern")

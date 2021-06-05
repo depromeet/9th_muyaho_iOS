@@ -67,6 +67,12 @@ class StockDetailChildViewController: BaseViewController, View {
                     for: indexPath
                 ) as? StockDetailOverviewCell else { return BaseTableViewCell() }
                 
+                let sectionModel = dataSource.sectionModels[indexPath.section]
+                cell.bind(
+                    type: sectionModel.type,
+                    totalMoney: sectionModel.totalMoney,
+                    pl: sectionModel.profiltOrLose
+                )
                 return cell
             } else {
                 guard let cell = self.stockDetailChildView.tableView.dequeueReusableCell(

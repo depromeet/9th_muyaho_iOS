@@ -105,7 +105,7 @@ class StockDetailOverviewCell: BaseTableViewCell {
         }
         
         self.youngchanImage.snp.makeConstraints { make in
-            make.top.equalTo(self.totalMoneyLabel.snp.bottom).offset(8)
+            make.bottom.equalTo(self.groundView)
             make.right.equalToSuperview().offset(-20)
         }
         
@@ -119,6 +119,33 @@ class StockDetailOverviewCell: BaseTableViewCell {
             make.top.equalTo(self.groundImage.snp.bottom)
             make.height.equalTo(40)
             make.bottom.equalToSuperview()
+        }
+    }
+    
+    func bind(type: StockType, totalMoney: Double, pl: Double) {
+        self.setYoungchan(by: type)
+        self.totalMoneyLabel.text = totalMoney.decimalString
+        self.setProfitOrLose(pl: pl)
+    }
+    
+    private func setYoungchan(by type: StockType) {
+        switch type {
+        case .domestic:
+            self.youngchanImage.image = .imgKoreanYoungchan
+        case .abroad:
+            self.youngchanImage.image = .imgAmericanYoungchan
+        case .coin:
+            self.youngchanImage.image = .imgCoinYoungchan
+        }
+    }
+    
+    private func setProfitOrLose(pl: Double) {
+        self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
+        self.plLabel.text = pl.decimalString + "원"
+        if pl >= 0 {
+            self.plLabel.textColor = .secondary_red_default
+        } else {
+            self.plLabel.textColor = .secondary_blue_default
         }
     }
 }
