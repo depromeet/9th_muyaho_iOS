@@ -29,6 +29,12 @@ class HomeOverview: BaseView {
         $0.image = .imgStar2
     }
     
+    let descriptionLabel = UILabel().then {
+        $0.font = .subtitle1_24
+        $0.textColor = .sub_white_w2
+        $0.text = "home_my_invest_status".localized
+    }
+    
     let emptyOverViewButton = EmptyOverviewButton().then {
         $0.isHidden = true
     }
@@ -40,7 +46,7 @@ class HomeOverview: BaseView {
         self.backgroundColor = .clear
         self.addSubviews(
             titleLabel, youngchanView, starImageView1, starImageView2,
-            dashboardView, emptyOverViewButton
+            descriptionLabel, dashboardView, emptyOverViewButton
         )
     }
     
@@ -64,15 +70,20 @@ class HomeOverview: BaseView {
             make.left.equalToSuperview().offset(-21)
             make.centerY.equalTo(self.youngchanView.snp.bottom)
         }
+        
+        self.descriptionLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(self.youngchanView.snp.bottom).offset(36)
+        }
 
         self.emptyOverViewButton.snp.makeConstraints { make in
-            make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
+            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
         
         self.dashboardView.snp.makeConstraints { make in
-            make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
+            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(20)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         }

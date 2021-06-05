@@ -37,6 +37,7 @@
 // home
 "home_empty_title" = "각 투자별 상황을 입력하고\n영찬이를 깨워주세요!";
 "home_today_pl_title" = "오늘의 수익금은\n";
+"home_my_invest_status" = "나의 투자 현황은?";
 "home_empty_overview" = "각 투자별 현황을 입력하세요";
 "home_invent_by_category_header_format" = "현재 0종목에 투자 중!";
 "home_category_register" = "등록하기";
