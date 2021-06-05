@@ -9,9 +9,9 @@ import Foundation
 
 struct StockPurchaseResponse: Decodable {
     
-    let unitPrice: String
-    let amount: String
-    let amountInWon: String
+    let unitPrice: Double
+    let amount: Double
+    let amountInWon: Double
     
     enum CodingKeys: String, CodingKey {
         case unitPrice
@@ -22,14 +22,14 @@ struct StockPurchaseResponse: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.unitPrice = try values.decodeIfPresent(String.self, forKey: .unitPrice) ?? ""
-        self.amount = try values.decodeIfPresent(String.self, forKey: .amount) ?? ""
-        self.amountInWon = try values.decodeIfPresent(String.self, forKey: .amountInWon) ?? ""
+        self.unitPrice = (try values.decodeIfPresent(String.self, forKey: .unitPrice) ?? "0").toDouble()
+        self.amount = (try values.decodeIfPresent(String.self, forKey: .amount) ?? "0").toDouble()
+        self.amountInWon = (try values.decodeIfPresent(String.self, forKey: .amountInWon) ?? "0").toDouble()
     }
     
     init() {
-        self.unitPrice = ""
-        self.amount = ""
-        self.amountInWon = ""
+        self.unitPrice = 0
+        self.amount = 0
+        self.amountInWon = 0
     }
 }

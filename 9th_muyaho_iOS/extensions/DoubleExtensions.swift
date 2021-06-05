@@ -15,4 +15,8 @@ extension Double {
         
         return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
     }
+    
+    var roundUpTwoString: String {
+        return String(format: "%.2f", self)
+    }
 }

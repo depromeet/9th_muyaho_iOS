@@ -137,6 +137,7 @@ extension Reactive where Base: HomeView {
     var investStatus: Binder<InvestStatusResponse> {
         return Binder(self.base) { view, investStatus in
             view.homeOverview.rx.investStatus.onNext(investStatus)
+            view.homeInvestByCategoryView.rx.overView.onNext(investStatus.overview)
         }
     }
 }
