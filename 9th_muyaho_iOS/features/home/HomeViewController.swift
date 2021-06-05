@@ -16,8 +16,16 @@ class HomeViewController: BaseViewController, View {
     
     static func instance() -> HomeViewController {
         let homeViewController = HomeViewController(nibName: nil, bundle: nil)
+        let tabIconOff = UIImage.icHomeOff
+        let tabIconOn = UIImage.icHomeOn
         
-        homeViewController.tabBarItem = UITabBarItem(title: "홈", image: nil, tag: 0)
+        tabIconOn?.withRenderingMode(.alwaysOriginal)
+        tabIconOff?.withRenderingMode(.alwaysOriginal)
+        homeViewController.tabBarItem = UITabBarItem(
+            title: nil,
+            image: tabIconOff,
+            selectedImage: tabIconOn
+        )
         return homeViewController
     }
     

@@ -26,6 +26,12 @@ class MainTabBerController: UITabBarController {
     }
     
     private func setupTabBar() {
-        self.setViewControllers([homeViewController, calculatorViewController, myPageViewController], animated: true)
+        self.setViewControllers([
+            homeViewController,
+            calculatorViewController,
+            myPageViewController
+        ], animated: true)
+        UITabBar.appearance().barTintColor = .sub_black_b1
+        self.tabBar.tintColor = .white
     }
 }

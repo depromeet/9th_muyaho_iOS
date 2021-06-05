@@ -15,6 +15,10 @@ extension UIImage {
     static let arrowLeft24 = UIImage(named: "ic_arrow_left_24")
     static let info = UIImage(named: "ic_info")
     
+    // tab
+    static let icHomeOff = UIImage(named: "ic_home_off")
+    static let icHomeOn = UIImage(named: "ic_home_on")
+    
     // home
     static let imgLogo = UIImage(named: "img_logo")
     static let imgLogoBig = UIImage(named: "img_logo_big")
