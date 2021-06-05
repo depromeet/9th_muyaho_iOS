@@ -79,4 +79,16 @@ class SignInView: BaseView {
             make.bottom.equalTo(self.bottomImage).offset(-102)
         }
     }
+    
+    func startAnimation() {
+        UIView.transition(
+            with: self.rocketImage,
+            duration: 10
+        ) { [weak self] in
+            self?.rocketImage.transform = .init(translationX: -500, y: 0).rotated(by: -90)
+        } completion: { [weak self] isCompleted in
+            self?.rocketImage.transform = .identity
+            self?.startAnimation()
+        }
+    }
 }

@@ -24,17 +24,16 @@ class SignInViewController: BaseViewController, View {
         return SignInViewController(nibName: nil, bundle: nil)
     }
     
+    
+    override func loadView() {
+        self.view = signInView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.reactor = self.signinReactor
-    }
-    
-    override func setupView() {
-        self.view.addSubviews(signInView)
-        self.signInView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
-        }
+        self.signInView.startAnimation()
     }
     
     func bind(reactor: SignInReactor) {
