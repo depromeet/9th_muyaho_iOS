@@ -86,7 +86,9 @@ class HomeOverview: BaseView {
     fileprivate func setEmptyDashboard(isEmpty: Bool) {
         self.emptyOverViewButton.isHidden = !isEmpty
         self.dashboardView.isHidden = isEmpty
-        self.snp.updateConstraints { make in
+        self.snp.remakeConstraints { make in
+            make.top.equalTo(self.titleLabel).offset(-24)
+            make.left.right.equalToSuperview()
             if isEmpty {
                 make.bottom.equalTo(self.emptyOverViewButton).offset(20).priority(.high)
             } else {
@@ -134,13 +136,11 @@ extension Reactive where Base: HomeOverview {
     
     var investStatus: Binder<InvestStatusResponse> {
         return Binder(base.self) { view, status in
-            // 비어있는 경우 -> seedAmount == 0
             let isEmpty = status.seedAmount == 0
             
             view.setEmptyDashboard(isEmpty: isEmpty)
             view.setTitle(isEmpty: isEmpty, todayPL: status.todayProfitOrLose)
             view.youngchanView.rx.status.onNext(status.todayStatus)
-            // 비어있지 않은 경우는 바인딩
         }
     }
 }

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeView: BaseView {
     
@@ -126,6 +128,15 @@ extension HomeView: UIScrollViewDelegate {
                 .translatedBy(x: -140 * (angle - self.latestAngle), y: -70 * (angle - self.latestAngle))
         } else {
             self.latestAngle = angle
+        }
+    }
+}
+
+extension Reactive where Base: HomeView {
+    
+    var investStatus: Binder<InvestStatusResponse> {
+        return Binder(self.base) { view, investStatus in
+            view.homeOverview.rx.investStatus.onNext(investStatus)
         }
     }
 }

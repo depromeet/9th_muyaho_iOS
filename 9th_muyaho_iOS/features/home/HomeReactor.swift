@@ -7,49 +7,64 @@
 
 import ReactorKit
 
-class HomeReactor: Reactor {
+class HomeReactor: Reactor, BaseReactorProtocol {
     
     enum Action {
-        case tapRefreshButton(Void)
+        case viewDidLoad
+        case tapRefresh
     }
     
     enum Mutation {
-        case changeTitle(String)
+        case setInvestStatus(InvestStatusResponse)
+        case setAlertMessage(String)
     }
     
     struct State {
-        var title: String = "초기 제목입니다."
+        var investStatusResponse = InvestStatusResponse()
+        var alertMessage: String?
     }
     
     let initialState = State()
+    let stockService: StockService
     
+    
+    init(stockService: StockService) {
+        self.stockService = stockService
+    }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .tapRefreshButton(()):
-            return Observable.just(Mutation.changeTitle(self.randomString()))
+        case .viewDidLoad:
+            let fetchCacheStatus = self.stockService.fetchStatusCache()
+                .map { Mutation.setInvestStatus($0.data) }
+                .catchError(self.handleError(error:))
+            let fetchStatus = self.stockService.fetchStatus()
+                .map { Mutation.setInvestStatus($0.data)}
+                .catchError(self.handleError(error:))
+                
+            return .concat([fetchCacheStatus, fetchStatus])
+        case .tapRefresh:
+            return self.stockService.fetchStatusCache()
+                .map { Mutation.setInvestStatus($0.data) }
+                .catchError(self.handleError(error:))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
+        
         switch mutation {
-        case .changeTitle(let title):
-            newState.title = title
+        case .setInvestStatus(let investStatusResponse):
+            newState.investStatusResponse = investStatusResponse
+        case .setAlertMessage(let message):
+            newState.alertMessage = message
         }
         
         return newState
     }
     
-    private func randomString() -> String {
-        let stringArray = [
-            "아뇽하세요.",
-            "무야호~~~",
-            "우리조 완성시켜봅시다.",
-            "아울러 다른분들 화이팅!"
-        ]
-        guard let randomString = stringArray.randomElement() else { return "" }
-        
-        return randomString
+    private func handleError(error: Error) -> Observable<Mutation> {
+        return self.handleDefaultError(error: error)
+            .map { Mutation.setAlertMessage($0) }
     }
 }

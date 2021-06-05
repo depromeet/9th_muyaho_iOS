@@ -54,4 +54,12 @@ struct InvestStatusResponse: Decodable {
             forKey: .overview
         ) ?? OverviewStocksResponse()
     }
+    
+    init() {
+        self.todayProfitOrLose = 0
+        self.finalAsset = 0
+        self.seedAmount = 0
+        self.finalProfitOrLoseRate = 0
+        self.overview = OverviewStocksResponse()
+    }
 }
