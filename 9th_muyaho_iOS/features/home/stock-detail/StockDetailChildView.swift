@@ -23,6 +23,7 @@ class StockDetailChildView: BaseView {
             StockDetailItemCell.self,
             forCellReuseIdentifier: StockDetailItemCell.registerId
         )
+        $0.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
     }
     
     

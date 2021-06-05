@@ -64,7 +64,6 @@ class StockDetailItemCell: BaseTableViewCell {
     let currentPriceValueLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_gray_20
-        $0.text = "83,600"
     }
     
     let rightDividorView = UIView().then {
@@ -80,7 +79,11 @@ class StockDetailItemCell: BaseTableViewCell {
     let amountValueLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_gray_20
-        $0.text = "8"
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
     }
     
     override func setup() {
@@ -174,5 +177,17 @@ class StockDetailItemCell: BaseTableViewCell {
             make.centerY.equalTo(self.avgPriceValueLabel)
             make.centerX.equalTo(self.amountLabel)
         }
+    }
+    
+    func bind(stock: StockCalculateResponse) {
+        let pl = stock.current.won.amountPrice - stock.purchase.amount
+        self.titleLabel.text = stock.stock.name
+        self.plLabel.text = pl.decimalString + "(" + stock.profitOrLoseRate + "%)"
+        self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
+        self.plLabel.textColor = pl >= 0 ? .secondary_red_default : .secondary_blue_default
+        self.priceLabel.text = stock.current.won.amountPrice.decimalString
+        self.currentPriceValueLabel.text = stock.current.won.unitPrice.decimalString
+        self.avgPriceValueLabel.text = stock.purchase.unitPrice.decimalString
+        self.amountValueLabel.text = stock.quantity
     }
 }

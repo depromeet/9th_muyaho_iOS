@@ -68,6 +68,7 @@ class StockDetailChildViewController: BaseViewController, View {
                 ) as? StockDetailOverviewCell else { return BaseTableViewCell() }
                 
                 let sectionModel = dataSource.sectionModels[indexPath.section]
+                
                 cell.bind(
                     type: sectionModel.type,
                     totalMoney: sectionModel.totalMoney,
@@ -80,22 +81,9 @@ class StockDetailChildViewController: BaseViewController, View {
                     for: indexPath
                 ) as? StockDetailItemCell else { return BaseTableViewCell() }
                 
+                cell.bind(stock: item)
                 return cell
             }
-//
-//
-//            cell.setMenu(menu: item)
-//            cell.nameField.rx.controlEvent(.editingDidEnd)
-//                .withLatestFrom(cell.nameField.rx.text.orEmpty)
-//                .map { (indexPath, $0) }
-//                .bind(to: self.viewModel.input.menuName)
-//                .disposed(by: cell.disposeBag)
-//
-//            cell.descField.rx.controlEvent(.editingDidEnd)
-//                .withLatestFrom(cell.descField.rx.text.orEmpty)
-//                .map { (indexPath, $0) }
-//                .bind(to: self.viewModel.input.menuPrice)
-//                .disposed(by: cell.disposeBag)
         }
     }
 }
