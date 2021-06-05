@@ -45,4 +45,11 @@ extension UIImage {
     static let searchGray = UIImage(named: "ic_search_gray")
     static let searchBlue = UIImage(named: "ic_search_blue")
     static let icDelete = UIImage(named: "ic_delete")
+    
+    // stock-detail
+    static let imgKoreanYoungchan = UIImage(named: "img_korean_youngchan")
+    static let imgGround = UIImage(named: "img_ground")
+    static let imgStarSolid = UIImage(named: "img_star_solid")
+    static let imgPattern = UIImage(named: "img_pattern")
+    static let icSetting = UIImage(named: "ic_setting")
 }

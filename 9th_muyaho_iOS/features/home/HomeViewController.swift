@@ -44,6 +44,12 @@ class HomeViewController: BaseViewController, View {
             .observeOn(MainScheduler.instance)
             .bind(onNext: self.showshowWriteMenus)
             .disposed(by: self.eventDisposeBag)
+        
+        self.homeView.homeInvestByCategoryView.domesticCategoryButton.rx.tap
+            .asDriver()
+            .debug()
+            .drive(onNext: self.pushStockDetailViewController)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: HomeReactor) {
@@ -72,6 +78,12 @@ class HomeViewController: BaseViewController, View {
             $0.delegate = self
         }
         self.present(writeMenuViewController, animated: true, completion: nil)
+    }
+    
+    private func pushStockDetailViewController() {
+        let stockDetailViewController = StockDetailViewController.instance()
+        
+        self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
 }
 

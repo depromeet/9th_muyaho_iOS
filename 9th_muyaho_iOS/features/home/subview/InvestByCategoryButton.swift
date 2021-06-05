@@ -15,16 +15,19 @@ class InvestByCategoryButton: UIButton {
         $0.font = .body1_16
         $0.textColor = UIColor(r: 236, g: 236, b: 236)
         $0.text = "investment_category_demestic".localized
+        $0.isUserInteractionEnabled = false
     }
     
     let subTitleLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_black_b5
         $0.text = "home_category_register".localized
+        $0.isUserInteractionEnabled = false
     }
     
     let rightArrowImage = UIImageView().then {
         $0.image = .arrowRight16
+        $0.isUserInteractionEnabled = false
     }
     
     

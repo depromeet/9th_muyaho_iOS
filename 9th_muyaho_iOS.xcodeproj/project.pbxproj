@@ -73,6 +73,13 @@
 		6E8175A1263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E8175A0263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf */; };
 		6E9218A7266B1F86007A92DC /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218A6266B1F86007A92DC /* DoubleExtensions.swift */; };
 		6E9218A9266B24BE007A92DC /* InvestmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218A8266B24BE007A92DC /* InvestmentStatus.swift */; };
+		6E9218AC266B8B2C007A92DC /* StockDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218AB266B8B2C007A92DC /* StockDetailView.swift */; };
+		6E9218AE266B8EC5007A92DC /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218AD266B8EC5007A92DC /* StockDetailViewController.swift */; };
+		6E9218B2266B99A3007A92DC /* StockDetailChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B1266B99A3007A92DC /* StockDetailChildView.swift */; };
+		6E9218B4266B9ABF007A92DC /* StockDetailChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B3266B9ABF007A92DC /* StockDetailChildViewController.swift */; };
+		6E9218B7266B9F25007A92DC /* StockDetailOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B6266B9F25007A92DC /* StockDetailOverviewCell.swift */; };
+		6E9218B9266BA826007A92DC /* StockDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218B8266BA826007A92DC /* StockDetailHeaderView.swift */; };
+		6E9218BB266BA982007A92DC /* StockDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9218BA266BA982007A92DC /* StockDetailItemCell.swift */; };
 		6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9429EE26403BC2005AAC78 /* HTTPError.swift */; };
 		6EABBACD263A950500ACC332 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBACC263A950500ACC332 /* AuthRequest.swift */; };
 		6EABBACF263A954100ACC332 /* SocialType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBACE263A954100ACC332 /* SocialType.swift */; };
@@ -215,6 +222,13 @@
 		6E8175A0263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
 		6E9218A6266B1F86007A92DC /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		6E9218A8266B24BE007A92DC /* InvestmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentStatus.swift; sourceTree = "<group>"; };
+		6E9218AB266B8B2C007A92DC /* StockDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailView.swift; sourceTree = "<group>"; };
+		6E9218AD266B8EC5007A92DC /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
+		6E9218B1266B99A3007A92DC /* StockDetailChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailChildView.swift; sourceTree = "<group>"; };
+		6E9218B3266B9ABF007A92DC /* StockDetailChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailChildViewController.swift; sourceTree = "<group>"; };
+		6E9218B6266B9F25007A92DC /* StockDetailOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailOverviewCell.swift; sourceTree = "<group>"; };
+		6E9218B8266BA826007A92DC /* StockDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailHeaderView.swift; sourceTree = "<group>"; };
+		6E9218BA266BA982007A92DC /* StockDetailItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailItemCell.swift; sourceTree = "<group>"; };
 		6E9429EE26403BC2005AAC78 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		6EABBACC263A950500ACC332 /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		6EABBACE263A954100ACC332 /* SocialType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialType.swift; sourceTree = "<group>"; };
@@ -446,6 +460,7 @@
 		6E801CC2262C1C260081E68A /* home */ = {
 			isa = PBXGroup;
 			children = (
+				6E9218AA266B8B1D007A92DC /* stock-detail */,
 				6E4538802655194A000CFC0F /* write-new */,
 				6E45387F265516F1000CFC0F /* write-menu */,
 				6ED95A84264ACB9100853CA3 /* subview */,
@@ -489,6 +504,28 @@
 				6E8175A0263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		6E9218AA266B8B1D007A92DC /* stock-detail */ = {
+			isa = PBXGroup;
+			children = (
+				6E9218B5266B9F13007A92DC /* cell */,
+				6E9218AB266B8B2C007A92DC /* StockDetailView.swift */,
+				6E9218AD266B8EC5007A92DC /* StockDetailViewController.swift */,
+				6E9218B1266B99A3007A92DC /* StockDetailChildView.swift */,
+				6E9218B3266B9ABF007A92DC /* StockDetailChildViewController.swift */,
+			);
+			path = "stock-detail";
+			sourceTree = "<group>";
+		};
+		6E9218B5266B9F13007A92DC /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E9218B6266B9F25007A92DC /* StockDetailOverviewCell.swift */,
+				6E9218B8266BA826007A92DC /* StockDetailHeaderView.swift */,
+				6E9218BA266BA982007A92DC /* StockDetailItemCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		6EABBACB263A94E700ACC332 /* models */ = {
@@ -1001,6 +1038,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58C2BAE2658937100CEEE8C /* CustomCell.swift in Sources */,
+				6E9218B4266B9ABF007A92DC /* StockDetailChildViewController.swift in Sources */,
 				6E25387B2656A3A100439E8E /* StockSearchButton.swift in Sources */,
 				A5754B4B2625B6C200B6E8A1 /* AppDelegate.swift in Sources */,
 				A5EBC44A264760F200876352 /* MyPageReactor.swift in Sources */,
@@ -1020,6 +1058,7 @@
 				6EE19C07265A37730023B0F5 /* SearchHistoryTableView.swift in Sources */,
 				6E2B9C862661EF1400734784 /* DeletableInputField.swift in Sources */,
 				6E25387926569A5700439E8E /* StockType.swift in Sources */,
+				6E9218AE266B8EC5007A92DC /* StockDetailViewController.swift in Sources */,
 				6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */,
 				6ED56BA82661C8080057A90F /* DomesticDetailView.swift in Sources */,
 				6E5A3A27263DA1E700B46EAF /* NetworkActivityLogger.swift in Sources */,
@@ -1034,6 +1073,7 @@
 				6E7315882669273F008F652C /* CoinDetailView.swift in Sources */,
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
 				A58C2BBC2658944400CEEE8C /* NSObjectExtensions.swift in Sources */,
+				6E9218BB266BA982007A92DC /* StockDetailItemCell.swift in Sources */,
 				6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */,
 				6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */,
 				6E26F35E26666366003C4961 /* AbroadDetailReactor.swift in Sources */,
@@ -1061,6 +1101,7 @@
 				6E9218A9266B24BE007A92DC /* InvestmentStatus.swift in Sources */,
 				6EF960E82658EAB2003BD2BF /* WriteNewStockTypeReactor.swift in Sources */,
 				6E4FE4A22638625B00103948 /* SignInViewController.swift in Sources */,
+				6E9218B7266B9F25007A92DC /* StockDetailOverviewCell.swift in Sources */,
 				6EE19C09265A3E420023B0F5 /* SearchCell.swift in Sources */,
 				A58C2BE22659DDF700CEEE8C /* WaterrideCell.swift in Sources */,
 				6E7ED81F26385FD400DC0C10 /* SignInView.swift in Sources */,
@@ -1072,6 +1113,7 @@
 				A5EBC43826475F2200876352 /* MyPageViewController.swift in Sources */,
 				6EE19C0B265A4F9D0023B0F5 /* SearchStockReactor.swift in Sources */,
 				6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */,
+				6E9218B2266B99A3007A92DC /* StockDetailChildView.swift in Sources */,
 				6E26F35C26665C14003C4961 /* AbroadDetailViewController.swift in Sources */,
 				6E2538722656941E00439E8E /* WriteNewStockTypeViewController.swift in Sources */,
 				6E9429EF26403BC2005AAC78 /* HTTPError.swift in Sources */,
@@ -1091,7 +1133,9 @@
 				6E744C5E2641546C00AB9054 /* UserDefaultsUtils.swift in Sources */,
 				6E16632B263D3CC200A35C9F /* APIResult.swift in Sources */,
 				6E4F5D962657E7780061A13C /* SearchStockView.swift in Sources */,
+				6E9218AC266B8B2C007A92DC /* StockDetailView.swift in Sources */,
 				6E4F5D9B2657EB6C0061A13C /* SearchStockViewController.swift in Sources */,
+				6E9218B9266BA826007A92DC /* StockDetailHeaderView.swift in Sources */,
 				6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */,
 				6E5A3A25263D9C7C00B46EAF /* ObservableExtensions.swift in Sources */,
 				6E801CC4262C1C2E0081E68A /* HomeViewController.swift in Sources */,

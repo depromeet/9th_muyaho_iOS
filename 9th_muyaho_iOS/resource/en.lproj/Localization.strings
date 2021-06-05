@@ -10,6 +10,8 @@
 "common_cancel" = "취소";
 "common_average_price" = "평단가";
 "common_amount" = "수량";
+"common_current_price" = "현재가";
+"common_amount" = "보유량";
 
 // category
 "investment_category_demestic" = "국내주식";
