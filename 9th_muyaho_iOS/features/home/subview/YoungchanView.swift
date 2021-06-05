@@ -11,12 +11,6 @@ import RxCocoa
 
 class YoungchanView: BaseView {
     
-    enum InvestmentStatus {
-        case empty
-        case up
-        case down
-    }
-    
     let youngchanImage = UIImageView().then {
         $0.image = .imgYoungchanGray
     }
@@ -83,25 +77,25 @@ class YoungchanView: BaseView {
         }
     }
     
-    func setYoungChanImage(by status: YoungchanView.InvestmentStatus) {
+    func setYoungChanImage(by status: InvestmentStatus) {
         switch status {
         case .empty:
             self.youngchanImage.image = .imgYoungchanGray
-        case .up:
+        case .profit:
             self.youngchanImage.image = .imgYoungchanRed
-        case .down:
+        case .lose:
             self.youngchanImage.image = .imgYoungchanBlue
         }
     }
     
-    func setYoungChanLabel(by status: YoungchanView.InvestmentStatus) {
+    func setYoungChanLabel(by status: InvestmentStatus) {
         switch status{
         case .empty:
             self.leftLabel.text = "home_youngchan_empty_left".localized
             self.rightLabel.text = "home_youngchan_empty_right".localized
-        case .up:
+        case .profit:
             self.setUpStateRandomLabel()
-        case .down:
+        case .lose:
             self.setDownStateRandomLabel()
         }
     }
@@ -123,7 +117,7 @@ class YoungchanView: BaseView {
 
 extension Reactive where Base: YoungchanView {
     
-    var status: Binder<Base.InvestmentStatus> {
+    var status: Binder<InvestmentStatus> {
         return Binder(self.base) { view, status in
             view.setYoungChanImage(by: status)
             view.setYoungChanLabel(by: status)

@@ -12,5 +12,9 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, tableName: "Localization", value: self, comment: "")
     }
+    
+    func toDouble() -> Double {
+        return Double(self) ?? 0
+    }
 }
 

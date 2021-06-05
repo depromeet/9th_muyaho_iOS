@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeOverview: BaseView {
     
@@ -27,7 +29,9 @@ class HomeOverview: BaseView {
         $0.image = .imgStar2
     }
     
-//    let emptyOverViewButton = EmptyOverviewButton()
+    let emptyOverViewButton = EmptyOverviewButton().then {
+        $0.isHidden = true
+    }
     
     let dashboardView = DashBoardView()
     
@@ -36,7 +40,7 @@ class HomeOverview: BaseView {
         self.backgroundColor = .clear
         self.addSubviews(
             titleLabel, youngchanView, starImageView1, starImageView2,
-            dashboardView
+            dashboardView, emptyOverViewButton
         )
     }
     
@@ -61,11 +65,11 @@ class HomeOverview: BaseView {
             make.centerY.equalTo(self.youngchanView.snp.bottom)
         }
 
-//        self.emptyOverViewButton.snp.makeConstraints { make in
-//            make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
-//            make.left.equalToSuperview().offset(20)
-//            make.right.equalToSuperview().offset(-20)
-//        }
+        self.emptyOverViewButton.snp.makeConstraints { make in
+            make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+        }
         
         self.dashboardView.snp.makeConstraints { make in
             make.top.equalTo(self.starImageView2.snp.bottom).offset(3)
@@ -76,6 +80,67 @@ class HomeOverview: BaseView {
         self.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel).offset(-24)
             make.bottom.equalTo(self.dashboardView).offset(20).priority(.high)
+        }
+    }
+    
+    fileprivate func setEmptyDashboard(isEmpty: Bool) {
+        self.emptyOverViewButton.isHidden = !isEmpty
+        self.dashboardView.isHidden = isEmpty
+        self.snp.updateConstraints { make in
+            if isEmpty {
+                make.bottom.equalTo(self.emptyOverViewButton).offset(20).priority(.high)
+            } else {
+                make.bottom.equalTo(self.dashboardView).offset(20).priority(.high)
+            }
+        }
+    }
+    
+    fileprivate func setTitle(isEmpty: Bool, todayPL: Double) {
+        if isEmpty {
+            self.setEmptyTitle()
+        } else {
+            self.setTodayPLTitle(todayPL: todayPL)
+        }
+    }
+    
+    private func setEmptyTitle() {
+        self.titleLabel.text = "home_empty_title".localized
+        self.titleLabel.font = .subtitle1_24
+    }
+    
+    private func setTodayPLTitle(todayPL: Double) {
+        let todayPLString = self.isProfit(pl: todayPL) ?
+            "+" + todayPL.decimalString :
+            "-" + todayPL.decimalString
+        let text = "home_today_pl_title".localized + todayPLString
+        let attributedString = NSMutableAttributedString(string: text)
+        let attributedRange = (text as NSString).range(of: todayPLString)
+        
+        attributedString.addAttributes([
+            .foregroundColor: todayPL > 0 ? UIColor.secondary_red_default : UIColor.secondary_blue_default,
+            .font: UIFont.h3_30B!
+        ], range: attributedRange)
+        
+        self.titleLabel.font = .h3_30L
+        self.titleLabel.attributedText = attributedString
+    }
+    
+    private func isProfit(pl: Double) -> Bool {
+        return pl > 0
+    }
+}
+
+extension Reactive where Base: HomeOverview {
+    
+    var investStatus: Binder<InvestStatusResponse> {
+        return Binder(base.self) { view, status in
+            // 비어있는 경우 -> seedAmount == 0
+            let isEmpty = status.seedAmount == 0
+            
+            view.setEmptyDashboard(isEmpty: isEmpty)
+            view.setTitle(isEmpty: isEmpty, todayPL: status.todayProfitOrLose)
+            view.youngchanView.rx.status.onNext(status.todayStatus)
+            // 비어있지 않은 경우는 바인딩
         }
     }
 }
