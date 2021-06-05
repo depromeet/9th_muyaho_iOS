@@ -93,10 +93,16 @@ class YoungchanView: BaseView {
         case .empty:
             self.leftLabel.text = "home_youngchan_empty_left".localized
             self.rightLabel.text = "home_youngchan_empty_right".localized
+            self.leftLabel.backgroundColor = UIColor(r: 208, g: 208, b: 208)
+            self.rightLabel.backgroundColor = UIColor(r: 208, g: 208, b: 208)
         case .profit:
             self.setUpStateRandomLabel()
+            self.leftLabel.backgroundColor = .secondary_red_default
+            self.rightLabel.backgroundColor = .secondary_red_default
         case .lose:
             self.setDownStateRandomLabel()
+            self.leftLabel.backgroundColor = .primary_dark
+            self.rightLabel.backgroundColor = .primary_dark
         }
     }
     
