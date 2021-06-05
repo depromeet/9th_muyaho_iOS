@@ -21,8 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.windowScene = scene
         
         if UserDefaultsUtils().sessionId.isEmpty {
-            self.goToMain()
-            //self.goToSignIn()
+            self.goToSignIn()
         } else {
             self.goToMain()
         }
