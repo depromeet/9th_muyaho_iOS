@@ -24,6 +24,10 @@ class HomeView: BaseView {
     
     let dimmedView = UIView()
     
+    let logoImage = UIImageView().then {
+        $0.image = .imgLogo
+    }
+    
     let refreshButton = UIButton().then {
         $0.setImage(.refresh, for: .normal)
     }
@@ -64,7 +68,8 @@ class HomeView: BaseView {
         self.containerView.addSubviews(homeOverview, homeInvestByCategoryView)
         self.scrollView.addSubviews(containerView)
         self.addSubviews(
-            scrollView, dimmedView, refreshButton, writeButton
+            scrollView, dimmedView, logoImage, refreshButton,
+            writeButton
         )
     }
     
@@ -72,6 +77,11 @@ class HomeView: BaseView {
         self.dimmedView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.top).offset(65)
+        }
+        
+        self.logoImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(self.refreshButton)
         }
         
         self.refreshButton.snp.makeConstraints { make in
