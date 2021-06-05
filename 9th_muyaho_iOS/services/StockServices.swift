@@ -15,6 +15,10 @@ protocol StockServiceProtocol {
     func fetchStocks(stockType: StockType) -> Observable<ResponseContainer<[Stock]>>
     
     func writeStock(request: WriteStockRequest) -> Observable<ResponseContainer<StockInfo>>
+    
+    func fetchStatusCache() -> Observable<ResponseContainer<InvestStatusResponse>>
+    
+    func fetchStatus() -> Observable<ResponseContainer<InvestStatusResponse>>
 }
 
 struct StockService: StockServiceProtocol {
@@ -52,5 +56,43 @@ struct StockService: StockServiceProtocol {
             }
         }
         .expectingObject(ofType: StockInfo.self)
+    }
+    
+    func fetchStatusCache() -> Observable<ResponseContainer<InvestStatusResponse>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock/status/history"
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .get,
+            urlString,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: InvestStatusResponse.self)
+    }
+    
+    func fetchStatus() -> Observable<ResponseContainer<InvestStatusResponse>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock/status"
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .get,
+            urlString,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: InvestStatusResponse.self)
     }
 }

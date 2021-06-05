@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class InvestByCategoryButton: UIButton {
     
@@ -37,6 +39,16 @@ class InvestByCategoryButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    fileprivate func setPL(pl: Double) {
+        if pl > 0 {
+            self.subTitleLabel.textColor = .secondary_red_default
+            self.subTitleLabel.text = "+" + pl.roundUpTwoString + "원"
+        } else {
+            self.subTitleLabel.textColor = .secondary_blue_default
+            self.subTitleLabel.text = pl.roundUpTwoString + "원"
+        }
+    }
+    
     private func setup() {
         self.backgroundColor = .sub_black_b3
         self.layer.cornerRadius = 8
@@ -64,6 +76,27 @@ class InvestByCategoryButton: UIButton {
             make.right.equalTo(self.rightArrowImage).offset(10)
             make.top.equalTo(self.mainTitleLabel).offset(-17).priority(.high)
             make.bottom.equalTo(self.mainTitleLabel).offset(16).priority(.high)
+        }
+    }
+}
+
+extension Reactive where Base: InvestByCategoryButton {
+    
+    var stockCalculate: Binder<(type: StockType, overview: [StockCalculateResponse])> {
+        return Binder(self.base) { view, stockCalculate in
+            view.mainTitleLabel.text = stockCalculate.type.localizedString
+            
+            if stockCalculate.type == .abroad {
+                let pl = stockCalculate.overview
+                    .map { $0.current.won.amountPrice - $0.purchase.amountInWon }
+                    .reduce(0, +)
+                view.setPL(pl: pl)
+            } else {
+                let pl = stockCalculate.overview
+                    .map { $0.current.won.amountPrice - $0.purchase.amount }
+                    .reduce(0, +)
+                view.setPL(pl: pl)
+            }
         }
     }
 }

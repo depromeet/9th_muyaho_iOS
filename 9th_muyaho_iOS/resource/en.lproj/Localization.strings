@@ -36,8 +36,10 @@
 
 // home
 "home_empty_title" = "각 투자별 상황을 입력하고\n영찬이를 깨워주세요!";
+"home_today_pl_title" = "오늘의 수익금은\n";
+"home_my_invest_status" = "나의 투자 현황은?";
 "home_empty_overview" = "각 투자별 현황을 입력하세요";
-"home_invent_by_category_header_format" = "현재 0종목에 투자 중!";
+"home_invent_by_category_header_format" = "현재 %d종목에 투자 중!";
 "home_category_register" = "등록하기";
 "home_youngchan_empty_left" = "zzzz...";
 "home_youngchan_empty_right" = "zzzzzz...";
@@ -54,8 +56,8 @@
 "home_youngchan_down_left_3" = "늦으면";
 "home_youngchan_down_right_3" = "어시없다";
 "home_total_title" = "최종 자산";
-"home_incoming_rate_title" = "오늘의 수익률(%)";
-"home_incoming_title" = "오늘의 수익금(원)";
+"home_incoming_rate_title" = "수익률(%)";
+"home_incoming_title" = "수익금(원)";
 
 // write-menu
 "write_menu_modify" = "기종 종목 정보 수정";

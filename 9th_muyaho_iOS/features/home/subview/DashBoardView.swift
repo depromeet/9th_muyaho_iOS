@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DashBoardView: BaseView {
     
@@ -23,13 +25,11 @@ class DashBoardView: BaseView {
     let seedMoneyLabel = UILabel().then {
         $0.font = .caption1_12B
         $0.textColor = .sub_white_w3
-        $0.text = "시드 20,000,000"
     }
     
     let totalMoneyLabel = UILabel().then {
         $0.font = .h3_30B
         $0.textColor = .sub_white_w2
-        $0.text = "22,704,022"
     }
     
     let incommingRateContainer = UIView().then {
@@ -56,7 +56,6 @@ class DashBoardView: BaseView {
     let incommingRateLabel = UILabel().then {
         $0.font = .subtitle2_18
         $0.textColor = .sub_white_w2
-        $0.text = "1,000"
     }
     
     let incommingContainer = UIView().then {
@@ -83,7 +82,6 @@ class DashBoardView: BaseView {
     let incommingLabel = UILabel().then {
         $0.font = .subtitle2_18
         $0.textColor = .sub_white_w2
-        $0.text = "100,000,000,000"
     }
     
     
@@ -125,12 +123,12 @@ class DashBoardView: BaseView {
         self.incommingRateContainer.snp.makeConstraints { make in
             make.left.equalTo(self.totalMoneyContainer)
             make.top.equalTo(self.totalMoneyContainer.snp.bottom).offset(16)
-            make.right.equalTo(self.incommingRateTitleLabel).offset(12)
+            make.width.equalTo(100)
             make.bottom.equalTo(self.incommingRateLabel).offset(24)
         }
         
         self.incommingRateTitleLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.incommingRateContainer).offset(12)
+            make.centerX.equalTo(self.incommingRateContainer)
             make.top.equalTo(self.incommingRateContainer).offset(24)
         }
         
@@ -158,6 +156,36 @@ class DashBoardView: BaseView {
         self.snp.makeConstraints { make in
             make.top.equalTo(self.totalMoneyContainer).priority(.high)
             make.bottom.equalTo(self.incommingContainer).offset(16).priority(.high)
+        }
+    }
+    
+    fileprivate func setFinalPL(pl: Double) {
+        if pl > 0 {
+            self.incommingRateArrowImage.image = .arrowUp
+        } else {
+            self.incommingRateArrowImage.image = .arrowDown
+        }
+        self.incommingRateLabel.text = pl.decimalString + "%"
+    }
+    
+    fileprivate func setFinalAsset(asset: Double) {
+        if asset > 0 {
+            self.incommingArrowImage.image = .arrowUp
+        } else {
+            self.incommingArrowImage.image = .arrowDown
+        }
+        self.incommingLabel.text = asset.decimalString
+    }
+}
+
+extension Reactive where Base: DashBoardView {
+    
+    var investStatus: Binder<InvestStatusResponse> {
+        return Binder(self.base) { view, investStatus in
+            view.seedMoneyLabel.text = "시드 " + investStatus.seedAmount.decimalString
+            view.totalMoneyLabel.text = investStatus.finalAsset.decimalString
+            view.setFinalPL(pl: investStatus.finalProfitOrLoseRate)
+            view.setFinalAsset(asset: investStatus.finalAsset)
         }
     }
 }

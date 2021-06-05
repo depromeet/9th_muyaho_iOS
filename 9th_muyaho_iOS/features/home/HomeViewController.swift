@@ -10,8 +10,8 @@ import ReactorKit
 
 class HomeViewController: BaseViewController, View {
     
-    private lazy var homeView = HomeView(frame: self.view.frame)
-    private let homeReactor = HomeReactor()
+    private let homeView = HomeView()
+    private let homeReactor = HomeReactor(stockService: StockService())
     
     
     static func instance() -> HomeViewController {
@@ -21,10 +21,14 @@ class HomeViewController: BaseViewController, View {
         return homeViewController
     }
     
+    override func setupView() {
+        self.view = homeView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = homeView
         self.reactor = homeReactor
+        self.homeReactor.action.onNext(.viewDidLoad)
     }
     
     override func bindEvent() {
@@ -35,10 +39,23 @@ class HomeViewController: BaseViewController, View {
     }
     
     func bind(reactor: HomeReactor) {
-        // Bind Action
+        // MARK: Bind Action
         self.homeView.refreshButton.rx.tap
-            .map { HomeReactor.Action.tapRefreshButton(()) }
-            .bind(to: self.homeReactor.action)
+            .map { Reactor.Action.tapRefresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.investStatusResponse }
+            .asDriver(onErrorJustReturn: InvestStatusResponse())
+            .drive(self.homeView.rx.investStatus)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: self.homeView.setRefreshAnimation(isLoading:))
             .disposed(by: self.disposeBag)
     }
     

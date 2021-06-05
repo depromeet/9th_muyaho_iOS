@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeView: BaseView {
     
@@ -21,6 +23,10 @@ class HomeView: BaseView {
     }
     
     let dimmedView = UIView()
+    
+    let logoImage = UIImageView().then {
+        $0.image = .imgLogo
+    }
     
     let refreshButton = UIButton().then {
         $0.setImage(.refresh, for: .normal)
@@ -62,7 +68,8 @@ class HomeView: BaseView {
         self.containerView.addSubviews(homeOverview, homeInvestByCategoryView)
         self.scrollView.addSubviews(containerView)
         self.addSubviews(
-            scrollView, dimmedView, refreshButton, writeButton
+            scrollView, dimmedView, logoImage, refreshButton,
+            writeButton
         )
     }
     
@@ -70,6 +77,11 @@ class HomeView: BaseView {
         self.dimmedView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.top).offset(65)
+        }
+        
+        self.logoImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(self.refreshButton)
         }
         
         self.refreshButton.snp.makeConstraints { make in
@@ -106,6 +118,20 @@ class HomeView: BaseView {
         }
     }
     
+    func setRefreshAnimation(isLoading: Bool) {
+        if isLoading {
+            let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+            rotateAnimation.fromValue = 0.0
+            rotateAnimation.toValue = CGFloat(Double.pi * 2)
+            rotateAnimation.isRemovedOnCompletion = false
+            rotateAnimation.duration = 2
+            rotateAnimation.repeatCount=Float.infinity
+            self.refreshButton.layer.add(rotateAnimation, forKey: nil)
+        } else {
+            self.refreshButton.layer.removeAllAnimations()
+        }
+    }
+    
     private func setupGradientLayer() {
         self.dimmedView.layer.addSublayer(self.gradientLayer)
     }
@@ -126,6 +152,16 @@ extension HomeView: UIScrollViewDelegate {
 //                .translatedBy(x: -140 * (angle - self.latestAngle), y: -70 * (angle - self.latestAngle))
         } else {
             self.latestAngle = angle
+        }
+    }
+}
+
+extension Reactive where Base: HomeView {
+    
+    var investStatus: Binder<InvestStatusResponse> {
+        return Binder(self.base) { view, investStatus in
+            view.homeOverview.rx.investStatus.onNext(investStatus)
+            view.homeInvestByCategoryView.rx.overView.onNext(investStatus.overview)
         }
     }
 }

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeInvestByCategoryView: BaseView {
     
@@ -74,6 +76,21 @@ class HomeInvestByCategoryView: BaseView {
         self.snp.makeConstraints { make in
             make.top.equalTo(self.headerLabel.snp.top).offset(-36)
             make.bottom.equalTo(self.bottomBackgroundImage)
+        }
+    }
+}
+
+extension Reactive where Base: HomeInvestByCategoryView {
+    
+    var overView: Binder<OverviewStocksResponse> {
+        return Binder(self.base) { view , overview in
+            view.headerLabel.text = String(
+                format: "home_invent_by_category_header_format".localized,
+                overview.bitCoins.count + overview.domesticStocks.count + overview.foreignStocks.count
+            )
+            view.domesticCategoryButton.rx.stockCalculate.onNext((.domestic, overview.domesticStocks))
+            view.abroadCategoryButton.rx.stockCalculate.onNext((.abroad, overview.foreignStocks))
+            view.coinCategoryButton.rx.stockCalculate.onNext((.coin, overview.bitCoins))
         }
     }
 }
