@@ -10,8 +10,11 @@ import ReactorKit
 
 class MyPageViewController: BaseViewController, View {
     
-    private lazy var myPageView = MyPageView(frame: self.view.frame)
-    private let myPageReactor = MyPageReactor()
+    private let myPageView = MyPageView()
+    private let myPageReactor = MyPageReactor(
+        userDefaults: UserDefaultsUtils(),
+        memberService: MembershipService()
+    )
 
     
     static func instance() -> MyPageViewController {
@@ -31,9 +34,13 @@ class MyPageViewController: BaseViewController, View {
         return myPageViewController
     }
     
+    override func loadView() {
+        self.view = self.myPageView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = myPageView
+        
         self.reactor = myPageReactor
     }
     

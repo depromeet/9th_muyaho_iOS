@@ -38,6 +38,5 @@ class MainTabBerController: UITabBarController {
             calculatorViewController,
             myPageViewController
         ], animated: true)
-        
     }
 }

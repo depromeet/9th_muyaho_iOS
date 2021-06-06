@@ -6,50 +6,69 @@
 //
 
 import ReactorKit
+import RxCocoa
 
-class MyPageReactor: Reactor {
+class MyPageReactor: Reactor, BaseReactorProtocol {
 
     enum Action {
-        case tapRefreshButton(Void)
+        case viewDidLoad
+        case tapSignout
+        case tapWithdrawal
     }
     
     enum Mutation {
-        case changeTitle(String)
+        case setUser(MemberInfoResponse)
+        case goToSignIn
+        case setAlertMessage(String)
     }
     
     struct State {
-        var title: String = "초기 제목입니다."
+        var member: MemberInfoResponse = MemberInfoResponse()
+        var alertMessage: String?
     }
     
     let initialState = State()
+    let userDefaults: UserDefaultsUtils
+    let memberService: MembershipServiceProtocol
+    let goToSignInPublisher = PublishRelay<Void>()
     
+    init(
+        userDefaults: UserDefaultsUtils,
+        memberService: MembershipServiceProtocol
+    ) {
+        self.userDefaults = userDefaults
+        self.memberService = memberService
+    }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .tapRefreshButton(()):
-            return Observable.just(Mutation.changeTitle(self.randomString()))
+        case .viewDidLoad:
+            return self.memberService.fetchMemberInfo()
+                .map { Mutation.setUser($0.data) }
+                .catchError(self.handleError(error:))
+        case .tapSignout:
+            return .empty()
+        case .tapWithdrawal:
+            return .empty()
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-        switch mutation {
-        case .changeTitle(let title):
-            newState.title = title
-        }
         
+        switch mutation {
+        case .setUser(let memberResponse):
+            newState.member = memberResponse
+        case .goToSignIn:
+            self.goToSignInPublisher.accept(())
+        case .setAlertMessage(let message):
+            newState.alertMessage = message
+        }
         return newState
     }
     
-    private func randomString() -> String {
-        let stringArray = [
-            "아뇽하세요.",
-            "무야호~~~",
-            "우리조 완성시켜봅시다.",
-            "아울러 다른분들 화이팅!"
-        ]
-        guard let randomString = stringArray.randomElement() else { return "" }
-        
-        return randomString
+    private func handleError(error: Error) -> Observable<Mutation> {
+        return self.handleDefaultError(error: error)
+            .map { Mutation.setAlertMessage($0) }
     }
 }
