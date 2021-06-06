@@ -26,7 +26,9 @@ class MainTabBerController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print("item.tag: \(item.tag)")
         self.tabBar.barTintColor = item.tag == TabbarTag.mypage.rawValue ? .primary_dark : .sub_black_b1
+        self.tabBar.isTranslucent = false
     }
     
     private func setupTabBar() {
@@ -38,5 +40,7 @@ class MainTabBerController: UITabBarController {
             calculatorViewController,
             myPageViewController
         ], animated: true)
+        self.tabBar.tintColor = .sub_white_w2
+        self.tabBar.barTintColor = .sub_black_b1
     }
 }
