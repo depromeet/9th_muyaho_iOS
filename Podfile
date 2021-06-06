@@ -17,6 +17,7 @@ target '9th_muyaho_iOS' do
   pod 'RxKakaoSDKAuth'
   pod 'RxKakaoSDKUser'
   pod 'lottie-ios'
+  pod 'Firebase/Analytics'
   
   target '9th_muyaho_iOSTests' do
     inherit! :search_paths
