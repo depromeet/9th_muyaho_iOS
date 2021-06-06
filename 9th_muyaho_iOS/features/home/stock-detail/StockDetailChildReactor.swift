@@ -17,6 +17,7 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
         case refresh
         case tapSettingButton
         case tapFinishButton
+        case tapDelete(Int)
     }
     
     enum Mutation {
@@ -101,6 +102,8 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
             return .just(.setEditable(true))
         case .tapFinishButton:
             return .just(.setEditable(false))
+        case .tapDelete(let index):
+            return .empty()
         }
     }
     

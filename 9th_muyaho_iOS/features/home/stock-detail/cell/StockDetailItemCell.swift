@@ -128,6 +128,7 @@ class StockDetailItemCell: BaseTableViewCell {
     override func setup() {
         self.selectionStyle = .none
         self.backgroundColor = .sub_black_b2
+        self.contentView.isUserInteractionEnabled = false
         self.addSubviews(
             self.stockContainerView,
             self.titleLabel,

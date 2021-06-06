@@ -9,11 +9,26 @@ import UIKit
 
 class DetailAlertViewController: BaseViewController {
     
+    enum AlertType {
+        case delete
+        case detail
+    }
+    
     var onExit: (() -> ())?
     private let detailAlertView = DetailAlertView()
+    private let type: AlertType
     
-    static func instance() -> DetailAlertViewController {
-        return DetailAlertViewController(nibName: nil, bundle: nil).then {
+    init(type: AlertType) {
+        self.type = type
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func instance(type: AlertType) -> DetailAlertViewController {
+        return DetailAlertViewController(type: type).then {
             $0.modalPresentationStyle = .overCurrentContext
             $0.modalTransitionStyle = .crossDissolve
         }
@@ -25,6 +40,7 @@ class DetailAlertViewController: BaseViewController {
         self.detailAlertView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }
+        self.detailAlertView.bind(type: self.type)
     }
     
     override func bindEvent() {

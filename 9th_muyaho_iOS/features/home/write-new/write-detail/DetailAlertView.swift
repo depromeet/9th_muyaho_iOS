@@ -83,11 +83,28 @@ class DetailAlertView: BaseView {
         self.continueButton.snp.makeConstraints { make in
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(30)
             make.right.equalTo(self.snp.centerX).offset(-4)
+            make.width.equalTo(120)
         }
         
         self.exitButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.continueButton)
             make.left.equalTo(self.snp.centerX).offset(4)
+            make.width.equalTo(120)
+        }
+    }
+    
+    func bind(type: DetailAlertViewController.AlertType) {
+        switch type {
+        case .detail:
+            self.titleLabel.text = "write_detail_cancel_title".localized
+            self.descriptionLabel.text = "write_detail_cancel_description".localized
+            self.continueButton.setTitle("write_detail_continue".localized, for: .normal)
+            self.exitButton.setTitle("write_detail_exit".localized, for: .normal)
+        case .delete:
+            self.titleLabel.text = "stock_detail_alert_title".localized
+            self.descriptionLabel.text = "stock_detail_alert_description".localized
+            self.continueButton.setTitle("stock_detail_next_time".localized, for: .normal)
+            self.exitButton.setTitle("stock_detail_delete".localized, for: .normal)
         }
     }
 }

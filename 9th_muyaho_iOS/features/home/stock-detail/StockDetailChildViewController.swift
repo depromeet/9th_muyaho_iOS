@@ -83,14 +83,29 @@ class StockDetailChildViewController: BaseViewController, View {
                 ) as? StockDetailItemCell else { return BaseTableViewCell() }
                 
                 cell.bind(stock: item)
+                cell.deleteButton.rx.tap
+                    .asDriver()
+                    .map { indexPath.row }
+                    .drive(onNext: self.presentDeleteAlert(index:))
+                    .disposed(by: cell.disposeBag)
                 self.stockDetailChildReactor.state
                     .map { $0.isEditable }
                     .asDriver(onErrorJustReturn: false)
                     .drive(cell.rx.isEditable)
-                    .disposed(by: self.disposeBag)
+                    .disposed(by: cell.disposeBag)
                 return cell
             }
         }
+    }
+    
+    private func presentDeleteAlert(index: Int) {
+        let alertViewController = DetailAlertViewController.instance(type: .delete).then {
+            $0.onExit = { [weak self] in
+                self?.stockDetailChildReactor.action.onNext(.tapDelete(index))
+            }
+        }
+        
+        self.tabBarController?.present(alertViewController, animated: true, completion: nil)
     }
 }
 
