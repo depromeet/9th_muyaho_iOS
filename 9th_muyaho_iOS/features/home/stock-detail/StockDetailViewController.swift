@@ -10,9 +10,10 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-class StockDetailViewController: BaseViewController {
+class StockDetailViewController: BaseViewController, View {
     
     private let stockDetailView = StockDetailView()
+    private let stockDetailReactor: StockDetailReactor
     private let pageViewController = UIPageViewController(
         transitionStyle: .scroll,
         navigationOrientation: .horizontal,
@@ -20,12 +21,13 @@ class StockDetailViewController: BaseViewController {
     )
     private let pageViewControllers: [UIViewController]
     
-    init(overviewStocks: OverviewStocksResponse) {
+    init(type: StockType, overviewStocks: OverviewStocksResponse) {
         self.pageViewControllers = [
             StockDetailChildViewController.instance(type: .domestic, stocks: overviewStocks.domesticStocks),
             StockDetailChildViewController.instance(type: .abroad, stocks: overviewStocks.foreignStocks),
             StockDetailChildViewController.instance(type: .coin, stocks: overviewStocks.bitCoins)
         ]
+        self.stockDetailReactor = StockDetailReactor(type: type)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,8 +35,11 @@ class StockDetailViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instance(overviewStocks: OverviewStocksResponse) -> StockDetailViewController {
-        return StockDetailViewController(overviewStocks: overviewStocks)
+    static func instance(
+        type: StockType,
+        overviewStocks: OverviewStocksResponse
+    ) -> StockDetailViewController {
+        return StockDetailViewController(type: type, overviewStocks: overviewStocks)
     }
     
     override func loadView() {
@@ -45,6 +50,7 @@ class StockDetailViewController: BaseViewController {
         super.viewDidLoad()
         
         self.setupPageViewController()
+        self.reactor = self.stockDetailReactor
     }
     
     override func bindEvent() {
@@ -52,27 +58,32 @@ class StockDetailViewController: BaseViewController {
             .asDriver()
             .drive(onNext: self.popupVC)
             .disposed(by: self.eventDisposeBag)
-        
+    }
+    
+    func bind(reactor: StockDetailReactor) {
+        // Bind Action
         self.stockDetailView.domesticButton.rx.tap
-            .asDriver()
-            .map { 0 }
-            .do(onNext: self.stockDetailView.selectTab(index:))
-            .drive(onNext: self.movePageView(index:))
-            .disposed(by: self.eventDisposeBag)
+            .map { Reactor.Action.tapDomestic}
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
         self.stockDetailView.abroadButton.rx.tap
-            .asDriver()
-            .map { 1 }
-            .do(onNext: self.stockDetailView.selectTab(index:))
-            .drive(onNext: self.movePageView(index:))
-            .disposed(by: self.eventDisposeBag)
+            .map { Reactor.Action.tapAbroad }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
         self.stockDetailView.coinButton.rx.tap
-            .asDriver()
-            .map { 2 }
-            .do(onNext: self.stockDetailView.selectTab(index:))
-            .drive(onNext: self.movePageView(index:))
-            .disposed(by: self.eventDisposeBag)
+            .map { Reactor.Action.tapCoin }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // Bind State
+        reactor.state
+            .map { $0.currentTab }
+            .asDriver(onErrorJustReturn: 0)
+            .do(onNext: self.movePageView(index:))
+            .drive(self.stockDetailView.rx.selectTab)
+            .disposed(by: self.disposeBag)
     }
     
     private func popupVC() {

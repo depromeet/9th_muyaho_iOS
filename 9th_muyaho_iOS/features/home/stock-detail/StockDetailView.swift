@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StockDetailView: BaseView {
     
@@ -122,6 +124,15 @@ class StockDetailView: BaseView {
             options: .curveEaseInOut
         ) { [weak self] in
             self?.layoutIfNeeded()
+        }
+    }
+}
+
+extension Reactive where Base: StockDetailView {
+    
+    var selectTab: Binder<Int> {
+        return Binder(self.base) { view, index in
+            view.selectTab(index: index)
         }
     }
 }

@@ -98,7 +98,10 @@ class HomeViewController: BaseViewController, View {
         type: StockType,
         overviewStocks: OverviewStocksResponse
     ) {
-        let stockDetailViewController = StockDetailViewController.instance(overviewStocks: overviewStocks)
+        let stockDetailViewController = StockDetailViewController.instance(
+            type: type,
+            overviewStocks: overviewStocks
+        )
         
         self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
