@@ -89,3 +89,7 @@
 "write_detail_transition_rate" = "적용환율";
 "write_detail_standard" = "기본 - 하나은행 기준환율";
 "write_detail_purchased_money" = "매입금";
+
+// stock-detail
+"stock_detail_count_format" = "총 %d종목";
+"stock_detail_purchased_average" = "매수평균가";

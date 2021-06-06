@@ -60,6 +60,7 @@ class StockDetailChildViewController: BaseViewController, View {
     }
     
     private func setupTableView() {
+        self.stockDetailChildView.tableView.delegate = self
         self.stockDataSource = RxTableViewSectionedReloadDataSource<StockDetailItemSection> { (dataSource, tableView, indexPath, item) in
             if indexPath.section == 0 {
                 guard let cell = self.stockDetailChildView.tableView.dequeueReusableCell(
@@ -84,6 +85,33 @@ class StockDetailChildViewController: BaseViewController, View {
                 cell.bind(stock: item)
                 return cell
             }
+        }
+    }
+}
+
+extension StockDetailChildViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return UIView(frame: .zero)
+        } else {
+            let headerView = StockDetailHeaderView(frame: .init(
+                x: 0,
+                y: 0,
+                width: UIScreen.main.bounds.width,
+                height: StockDetailHeaderView.height
+            ))
+            
+            headerView.bind(stocksCount: self.stockDataSource.sectionModels[1].count)
+            return headerView
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        } else {
+            return StockDetailHeaderView.height
         }
     }
 }

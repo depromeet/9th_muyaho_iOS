@@ -9,10 +9,11 @@ import UIKit
 
 class StockDetailHeaderView: BaseView {
     
+    static let height: CGFloat = 56
+    
     let totalCountLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_white_w2
-        $0.text = "총 2종목"
     }
     
     let settingButton = UIButton().then {
@@ -47,5 +48,12 @@ class StockDetailHeaderView: BaseView {
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
+    }
+    
+    func bind(stocksCount: Int) {
+        self.totalCountLabel.text = String(
+            format: "stock_detail_count_format".localized,
+            stocksCount
+        )
     }
 }
