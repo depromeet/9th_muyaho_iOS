@@ -20,14 +20,14 @@ class WriteNewStockTypeReactor: Reactor {
     }
     
     struct State {
-        var stockType: StockType = .domestic
+        var stockType: StockType
     }
     
-    let initialState = State()
+    let initialState: State
     
     
-    init() {
-        
+    init(stockType: StockType) {
+        self.initialState = State(stockType: stockType)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {

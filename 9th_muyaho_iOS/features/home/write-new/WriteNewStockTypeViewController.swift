@@ -11,17 +11,26 @@ import ReactorKit
 class WriteNewStockTypeViewController: BaseViewController, View {
     
     private let writeNewStockTypeView = WriteNewStockTypeView()
-    private let writeNewStockTypeReactor = WriteNewStockTypeReactor()
+    private let writeNewStockTypeReactor: WriteNewStockTypeReactor
     private let searchStockTransition = SearchStockTransition()
     
-    
-    static func instance() -> UINavigationController {
-        let viewController = WriteNewStockTypeViewController(nibName: nil, bundle: nil)
+    static func instance(stockType: StockType) -> UINavigationController {
+        let viewController = WriteNewStockTypeViewController(stockType: stockType)
         
         return UINavigationController(rootViewController: viewController).then {
             $0.modalPresentationStyle = .overCurrentContext
             $0.setNavigationBarHidden(true, animated: false)
         }
+    }
+    
+    init(stockType: StockType) {
+        self.writeNewStockTypeReactor = WriteNewStockTypeReactor(stockType: stockType)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

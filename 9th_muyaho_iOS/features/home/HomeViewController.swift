@@ -118,7 +118,7 @@ class HomeViewController: BaseViewController, View {
     }
     
     private func presnetWriteStockTypeViewController(type: StockType = .domestic) {
-        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
+        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance(stockType: type)
         
         self.tabBarController?.present(
             writeNewStockTypeViewController,
