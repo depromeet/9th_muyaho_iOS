@@ -22,6 +22,8 @@ extension UIImage {
     static let icMyPageOn = UIImage(named: "ic_my_page_on")
     static let icCalculateOff = UIImage(named: "ic_calculate_off")
     static let icCalculateOn = UIImage(named: "ic_calculate_on")
+    static let icBoardOff = UIImage(named: "ic_board_off")
+    static let icBoardOn = UIImage(named: "ic_board_on")
     
     // home
     static let imgLogo = UIImage(named: "img_logo")
@@ -65,4 +67,7 @@ extension UIImage {
     // my-page
     static let icKakao = UIImage(named: "ic_kakao")
     static let icApple = UIImage(named: "ic_apple")
+    
+    // board
+    static let icTbdEmpty = UIImage(named: "img_tbd_youngchan")
 }

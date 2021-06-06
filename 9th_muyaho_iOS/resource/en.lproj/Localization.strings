@@ -101,8 +101,8 @@
 "stock_detail_next_time" = "다음에";
 "stock_detail_delete" = "삭제하기";
 
-
 // my-page
 "my_page_title_format" = "님,\n환영합니다!";
 "my_page_signout" = "로그아웃";
 "my_page_withdrawal" = "회원탈퇴";
+"my_page_tbd" = "준비중이에요!";
