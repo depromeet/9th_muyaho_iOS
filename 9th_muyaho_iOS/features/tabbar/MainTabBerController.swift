@@ -26,7 +26,6 @@ class MainTabBerController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print("item.tag: \(item.tag)")
         self.tabBar.barTintColor = item.tag == TabbarTag.mypage.rawValue ? .primary_dark : .sub_black_b1
         self.tabBar.isTranslucent = false
     }

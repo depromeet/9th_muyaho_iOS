@@ -20,6 +20,8 @@ extension UIImage {
     static let icHomeOn = UIImage(named: "ic_home_on")
     static let icMyPageOff = UIImage(named: "ic_my_page_off")
     static let icMyPageOn = UIImage(named: "ic_my_page_on")
+    static let icCalculateOff = UIImage(named: "ic_calculate_off")
+    static let icCalculateOn = UIImage(named: "ic_calculate_on")
     
     // home
     static let imgLogo = UIImage(named: "img_logo")
