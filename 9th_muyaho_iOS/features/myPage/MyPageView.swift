@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class MyPageView: BaseView {
     
@@ -13,17 +15,18 @@ final class MyPageView: BaseView {
         $0.image = .imgLogo
     }
     
-    private let socialImage = UIImageView().then {
+    let socialImage = UIImageView().then {
         $0.image = .icKakao
     }
     
-    private let titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = .h3_30L
         $0.textColor = .sub_white_w2
         $0.text = "my_page_title_format".localized
+        $0.numberOfLines = 0
     }
     
-    private let signOutButton = UIButton().then {
+    let signOutButton = UIButton().then {
         $0.setTitle("my_page_signout".localized, for: .normal)
         $0.setTitleColor(.primary_default, for: .normal)
         $0.titleLabel?.font = .caption1_12B
@@ -31,7 +34,7 @@ final class MyPageView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
-    private let withdrawalButton = UIButton().then {
+    let withdrawalButton = UIButton().then {
         $0.backgroundColor = .clear
         $0.setTitle("my_page_withdrawal".localized, for: .normal)
         $0.setTitleColor(.sub_white_w2, for: .normal)
@@ -76,6 +79,32 @@ final class MyPageView: BaseView {
             make.left.right.equalTo(self.withdrawalButton)
             make.bottom.equalTo(withdrawalButton.snp.top).offset(-10)
             make.height.equalTo(40)
+        }
+    }
+    
+    fileprivate func setNickname(name: String) {
+        let text = name + "my_page_title_format".localized
+        let attributedString = NSMutableAttributedString(string: text)
+        let attributedRange = (text as NSString).range(of: name)
+        
+        attributedString.addAttributes([
+            .font: UIFont.h3_30B!
+        ], range: attributedRange)
+        
+        self.titleLabel.attributedText = attributedString
+    }
+}
+
+extension Reactive where Base: MyPageView {
+    
+    var member: Binder<MemberInfoResponse> {
+        return Binder(self.base) { view, member in
+            if member.provider == .kakao {
+                view.socialImage.image = .icKakao
+            } else {
+                view.socialImage.image = .icApple
+            }
+            view.setNickname(name: member.name)
         }
     }
 }

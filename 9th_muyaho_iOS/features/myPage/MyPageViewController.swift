@@ -42,9 +42,46 @@ class MyPageViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = myPageReactor
+        self.myPageReactor.action.onNext(.viewDidLoad)
+    }
+    
+    override func bindEvent() {
+        self.reactor?.goToSignInPublisher
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.goToSignIn)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: MyPageReactor) {
+        // MARK: Bind Action
+        self.myPageView.signOutButton.rx.tap
+            .map { Reactor.Action.tapSignout }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
+        self.myPageView.withdrawalButton.rx.tap
+            .map { Reactor.Action.tapWithdrawal }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.member }
+            .asDriver(onErrorJustReturn: MemberInfoResponse())
+            .drive(self.myPageView.rx.member)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.alertMessage }
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(onNext: self.showAlert(message:))
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func goToSignIn() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.goToSignIn()
+        }
     }
 }

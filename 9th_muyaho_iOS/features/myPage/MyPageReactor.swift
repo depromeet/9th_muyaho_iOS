@@ -47,9 +47,15 @@ class MyPageReactor: Reactor, BaseReactorProtocol {
                 .map { Mutation.setUser($0.data) }
                 .catchError(self.handleError(error:))
         case .tapSignout:
-            return .empty()
+            self.userDefaults.clear()
+            return .just(.goToSignIn)
         case .tapWithdrawal:
-            return .empty()
+            return self.memberService.withdrawal()
+                .do(onNext: { [weak self] _ in
+                    self?.userDefaults.clear()
+                })
+                .map { _ in Mutation.goToSignIn }
+                .catchError(self.handleError(error:))
         }
     }
     

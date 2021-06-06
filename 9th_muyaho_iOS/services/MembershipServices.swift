@@ -19,6 +19,8 @@ protocol MembershipServiceProtocol {
     func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>>
     
     func fetchMemberInfo() -> Observable<ResponseContainer<MemberInfoResponse>>
+    
+    func withdrawal() -> Observable<ResponseContainer<String>>
 }
 
 struct MembershipService: MembershipServiceProtocol {
@@ -73,5 +75,16 @@ struct MembershipService: MembershipServiceProtocol {
             urlString,
             headers: headers
         ).expectingObject(ofType: MemberInfoResponse.self)
+    }
+    
+    func withdrawal() -> Observable<ResponseContainer<String>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member"
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .delete,
+            urlString,
+            headers: headers
+        ).expectingObject(ofType: String.self)
     }
 }

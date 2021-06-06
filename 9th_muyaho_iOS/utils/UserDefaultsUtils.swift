@@ -30,4 +30,8 @@ struct UserDefaultsUtils {
             self.instance.string(forKey: UserDefaultsUtils.KEY_SESSION_ID) ?? ""
         }
     }
+    
+    func clear() {
+        self.instance.removeObject(forKey: UserDefaultsUtils.KEY_SESSION_ID)
+    }
 }
