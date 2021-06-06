@@ -46,7 +46,7 @@ class MyPageViewController: BaseViewController, View {
     }
     
     override func bindEvent() {
-        self.reactor?.goToSignInPublisher
+        self.myPageReactor.goToSignInPublisher
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.goToSignIn)
             .disposed(by: self.eventDisposeBag)
