@@ -49,6 +49,11 @@ class HomeViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: (.domestic, OverviewStocksResponse()))
             .drive(onNext: self.pushStockDetailViewController)
             .disposed(by: self.eventDisposeBag)
+        
+        self.homeView.homeOverview.emptyOverViewButton.rx.tap
+            .asDriver()
+            .drive(onNext: self.presnetWriteStockTypeViewController)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: HomeReactor) {
@@ -105,15 +110,23 @@ class HomeViewController: BaseViewController, View {
         
         self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
+    
+    private func presnetWriteStockTypeViewController() {
+        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
+        
+        self.tabBarController?.present(
+            writeNewStockTypeViewController,
+            animated: true,
+            completion: nil
+        )
+    }
 }
 
 
 extension HomeViewController: WriteMenuDelegate {
     
     func onTapNew() {
-        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
-        
-        self.tabBarController?.present(writeNewStockTypeViewController, animated: true, completion: nil)
+        self.presnetWriteStockTypeViewController()
     }
     
     func onTapModify() {
