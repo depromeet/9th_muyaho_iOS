@@ -83,6 +83,11 @@ class StockDetailChildViewController: BaseViewController, View {
                 ) as? StockDetailItemCell else { return BaseTableViewCell() }
                 
                 cell.bind(stock: item)
+                self.stockDetailChildReactor.state
+                    .map { $0.isEditable }
+                    .asDriver(onErrorJustReturn: false)
+                    .drive(cell.rx.isEditable)
+                    .disposed(by: self.disposeBag)
                 return cell
             }
         }
@@ -103,6 +108,19 @@ extension StockDetailChildViewController: UITableViewDelegate {
             ))
             
             headerView.bind(stocksCount: self.stockDataSource.sectionModels[1].count)
+            headerView.settingButton.rx.tap
+                .map { Reactor.Action.tapSettingButton }
+                .bind(to: self.stockDetailChildReactor.action)
+                .disposed(by: self.eventDisposeBag)
+            headerView.finishButton.rx.tap
+                .map { Reactor.Action.tapFinishButton }
+                .bind(to: self.stockDetailChildReactor.action)
+                .disposed(by: self.eventDisposeBag)
+            self.stockDetailChildReactor.state
+                .map { $0.isEditable }
+                .asDriver(onErrorJustReturn: false)
+                .drive(headerView.rx.isEditable)
+                .disposed(by: self.eventDisposeBag)
             return headerView
         }
     }

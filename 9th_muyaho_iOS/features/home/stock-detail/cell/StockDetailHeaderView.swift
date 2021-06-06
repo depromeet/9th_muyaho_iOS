@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StockDetailHeaderView: BaseView {
     
@@ -26,7 +28,6 @@ class StockDetailHeaderView: BaseView {
         $0.setTitleColor(.sub_white_w2, for: .normal)
         $0.titleLabel?.font = .caption1_12R
         $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 6)
-        $0.isHidden = true
     }
     
     let dividorView = UIView().then {
@@ -41,22 +42,6 @@ class StockDetailHeaderView: BaseView {
             self.finishButton,
             self.dividorView
         )
-        
-        self.settingButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.settingButton.isHidden = true
-                self?.finishButton.isHidden = false
-            }
-            .disposed(by: self.disposeBag)
-        
-        self.finishButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.settingButton.isHidden = false
-                self?.finishButton.isHidden = true
-            }
-            .disposed(by: self.disposeBag)
     }
     
     override func bindConstraints() {
@@ -86,5 +71,15 @@ class StockDetailHeaderView: BaseView {
             format: "stock_detail_count_format".localized,
             stocksCount
         )
+    }
+}
+
+extension Reactive where Base: StockDetailHeaderView {
+    
+    var isEditable: Binder<Bool> {
+        return Binder(self.base) { view, isEditable in
+            view.settingButton.isHidden = isEditable
+            view.finishButton.isHidden = !isEditable
+        }
     }
 }

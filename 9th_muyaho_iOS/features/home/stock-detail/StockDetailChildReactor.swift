@@ -15,17 +15,21 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
     enum Action {
         case viewDidLoad
         case refresh
+        case tapSettingButton
+        case tapFinishButton
     }
     
     enum Mutation {
         case setStocks([StockDetailItemSection])
         case setAlertMessage(String)
+        case setEditable(Bool)
     }
     
     struct State {
         var type: StockType
         var alertMessage: String?
         var stocks: [StockDetailItemSection]
+        var isEditable = false
     }
     
     let initialState: State
@@ -93,6 +97,10 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
                     return Mutation.setStocks(sections)
                 }
                 .catchError(self.handleError(error:))
+        case .tapSettingButton:
+            return .just(.setEditable(true))
+        case .tapFinishButton:
+            return .just(.setEditable(false))
         }
     }
     
@@ -104,6 +112,8 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
             newState.stocks = stocks
         case .setAlertMessage(let message):
             newState.alertMessage = message
+        case .setEditable(let isEditable):
+            newState.isEditable = isEditable
         }
         return newState
     }

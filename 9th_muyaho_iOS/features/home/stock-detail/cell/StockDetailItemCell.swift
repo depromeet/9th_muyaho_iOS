@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StockDetailItemCell: BaseTableViewCell {
     
@@ -20,13 +22,11 @@ class StockDetailItemCell: BaseTableViewCell {
     let titleLabel = UILabel().then {
         $0.font = .subtitle2_18
         $0.textColor = .sub_white_w1
-        $0.text = "삼성전자"
     }
     
     let plLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .secondary_red_default
-        $0.text = "668,434(11.8%)"
     }
     
     let plArrowImage = UIImageView().then {
@@ -36,7 +36,6 @@ class StockDetailItemCell: BaseTableViewCell {
     let priceLabel = UILabel().then {
         $0.font = .subtitle1_24
         $0.textColor = .sub_white_w1
-        $0.text = "928,800"
     }
     
     let avgPriceLabel = UILabel().then {
@@ -48,7 +47,6 @@ class StockDetailItemCell: BaseTableViewCell {
     let avgPriceValueLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_gray_20
-        $0.text = "94,778"
     }
     
     let leftDividorView = UIView().then {
@@ -305,23 +303,34 @@ class StockDetailItemCell: BaseTableViewCell {
         }
     }
     
-    func setSettingMode(isSetting: Bool) {
-        self.centerDividorView.isHidden = !isSetting
-        self.editButton.isHidden = !isSetting
-        self.deleteButton.isHidden = !isSetting
+    fileprivate func setEditable(isEditable: Bool) {
+        self.editButton.isHidden = !isEditable
+        self.deleteButton.isHidden = !isEditable
         
         if self.type == .coin {
-            self.coinCurrentPriceLabel.isHidden = isSetting
-            self.coinCurrentPriceValueLabel.isHidden = isSetting
-            self.purchasedAvgLabel.isHidden = isSetting
-            self.purchasedAvgValueLabel.isHidden = isSetting
+            self.coinCurrentPriceLabel.isHidden = isEditable
+            self.coinCurrentPriceValueLabel.isHidden = isEditable
+            self.purchasedAvgLabel.isHidden = isEditable
+            self.purchasedAvgValueLabel.isHidden = isEditable
         } else {
-            self.currentPriceLabel.isHidden = isSetting
-            self.currentPriceValueLabel.isHidden = isSetting
-            self.avgPriceLabel.isHidden = isSetting
-            self.avgPriceValueLabel.isHidden = isSetting
-            self.amountLabel.isHidden = isSetting
-            self.amountValueLabel.isHidden = isSetting
+            self.centerDividorView.isHidden = !isEditable
+            self.currentPriceLabel.isHidden = isEditable
+            self.currentPriceValueLabel.isHidden = isEditable
+            self.avgPriceLabel.isHidden = isEditable
+            self.avgPriceValueLabel.isHidden = isEditable
+            self.amountLabel.isHidden = isEditable
+            self.amountValueLabel.isHidden = isEditable
+            self.leftDividorView.isHidden = isEditable
+            self.rightDividorView.isHidden = isEditable
+        }
+    }
+}
+
+extension Reactive where Base: StockDetailItemCell {
+    
+    var isEditable: Binder<Bool> {
+        return Binder(self.base) { view, isEditable in
+            view.setEditable(isEditable: isEditable)
         }
     }
 }
