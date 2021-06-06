@@ -126,6 +126,20 @@ class StockDetailView: BaseView {
             self?.layoutIfNeeded()
         }
     }
+    
+    func setRefreshAnimation(isLoading: Bool) {
+        if isLoading {
+            let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+            rotateAnimation.fromValue = 0.0
+            rotateAnimation.toValue = CGFloat(Double.pi * 2)
+            rotateAnimation.isRemovedOnCompletion = false
+            rotateAnimation.duration = 2
+            rotateAnimation.repeatCount=Float.infinity
+            self.refreshButton.layer.add(rotateAnimation, forKey: nil)
+        } else {
+            self.refreshButton.layer.removeAllAnimations()
+        }
+    }
 }
 
 extension Reactive where Base: StockDetailView {

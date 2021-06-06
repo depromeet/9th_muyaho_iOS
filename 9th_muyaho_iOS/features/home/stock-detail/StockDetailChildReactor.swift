@@ -35,6 +35,7 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
     
     let initialState: State
     let stockService: StockServiceProtocol
+    let loadingDismissPublisher = PublishRelay<Void>()
     
     init(
         type: StockType,
@@ -128,6 +129,7 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
         switch mutation {
         case .setStocks(let stocks):
             newState.stocks = stocks
+            self.loadingDismissPublisher.accept(())
         case .setAlertMessage(let message):
             newState.alertMessage = message
         case .setEditable(let isEditable):

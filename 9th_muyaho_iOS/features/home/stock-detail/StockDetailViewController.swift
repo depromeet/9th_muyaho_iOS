@@ -21,6 +21,7 @@ class StockDetailViewController: BaseViewController, View {
     )
     private let pageViewControllers: [UIViewController]
     
+    
     init(type: StockType, overviewStocks: OverviewStocksResponse) {
         self.pageViewControllers = [
             StockDetailChildViewController.instance(type: .domestic, stocks: overviewStocks.domesticStocks),
@@ -49,8 +50,9 @@ class StockDetailViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupPageViewController()
         self.reactor = self.stockDetailReactor
+        self.setupPageViewController()
+        self.stockDetailView.selectTab(index: self.stockDetailReactor.currentState.currentTab)
     }
     
     override func bindEvent() {
@@ -58,31 +60,52 @@ class StockDetailViewController: BaseViewController, View {
             .asDriver()
             .drive(onNext: self.popupVC)
             .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.domesticButton.rx.tap
+            .asDriver()
+            .map { 0 }
+            .do(onNext: self.movePageView(index:))
+            .drive(self.stockDetailView.rx.selectTab)
+            .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.abroadButton.rx.tap
+            .asDriver()
+            .map { 1 }
+            .do(onNext: self.movePageView(index:))
+            .drive(self.stockDetailView.rx.selectTab)
+            .disposed(by: self.eventDisposeBag)
+        
+        self.stockDetailView.coinButton.rx.tap
+            .asDriver()
+            .map { 2 }
+            .do(onNext: self.movePageView(index:))
+            .drive(self.stockDetailView.rx.selectTab)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: StockDetailReactor) {
         // Bind Action
-        self.stockDetailView.domesticButton.rx.tap
-            .map { Reactor.Action.tapDomestic}
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        self.stockDetailView.abroadButton.rx.tap
-            .map { Reactor.Action.tapAbroad }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        self.stockDetailView.coinButton.rx.tap
-            .map { Reactor.Action.tapCoin }
+        self.stockDetailView.refreshButton.rx.tap
+            .map { Reactor.Action.tapRefresh }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         // Bind State
         reactor.state
-            .map { $0.currentTab }
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .debug()
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: self.stockDetailView.setRefreshAnimation(isLoading:))
+            .disposed(by: self.disposeBag)
+        
+        reactor.refreshPublisher
             .asDriver(onErrorJustReturn: 0)
-            .do(onNext: self.movePageView(index:))
-            .drive(self.stockDetailView.rx.selectTab)
+            .drive { [weak self] index in
+                if let vc = self?.pageViewControllers[index] as? StockDetailChildViewController {
+                    vc.refresh()
+                }
+            }
             .disposed(by: self.disposeBag)
     }
     
@@ -100,11 +123,17 @@ class StockDetailViewController: BaseViewController, View {
         }
         
         self.pageViewController.setViewControllers(
-          [self.pageViewControllers[0]],
+          [self.pageViewControllers[self.stockDetailReactor.currentState.currentTab]],
           direction: .forward,
           animated: false,
           completion: nil
         )
+        
+        if let vcs = self.pageViewControllers as? [StockDetailChildViewController] {
+            vcs.forEach { vc in
+                vc.delegate = self
+            }
+        }
     }
     
     private func movePageView(index: Int) {
@@ -190,7 +219,15 @@ extension StockDetailViewController: UIPageViewControllerDelegate, UIPageViewCon
                 return
             }
             
+            self.stockDetailReactor.action.onNext(.swipePage(viewControllerIndex))
             self.stockDetailView.selectTab(index: viewControllerIndex)
         }
+    }
+}
+
+extension StockDetailViewController: StockDetailChildProtocol {
+    
+    func onFinishRefresh() {
+        self.stockDetailReactor.action.onNext(.finishRefresh)
     }
 }

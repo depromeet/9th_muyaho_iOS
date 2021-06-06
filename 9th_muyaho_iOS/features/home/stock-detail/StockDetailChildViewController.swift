@@ -11,8 +11,14 @@ import RxCocoa
 import ReactorKit
 import RxDataSources
 
+protocol StockDetailChildProtocol: AnyObject {
+    
+    func onFinishRefresh()
+}
+
 class StockDetailChildViewController: BaseViewController, View {
     
+    weak var delegate: StockDetailChildProtocol?
     private let stockDetailChildView = StockDetailChildView()
     private let stockDetailChildReactor: StockDetailChildReactor
     private var stockDataSource: RxTableViewSectionedReloadDataSource<StockDetailItemSection>!
@@ -50,6 +56,15 @@ class StockDetailChildViewController: BaseViewController, View {
         self.stockDetailChildReactor.action.onNext(.viewDidLoad)
     }
     
+    override func bindEvent() {
+        self.stockDetailChildReactor.loadingDismissPublisher
+            .asDriver(onErrorJustReturn: ())
+            .drive { [weak self] _ in
+                self?.delegate?.onFinishRefresh()
+            }
+            .disposed(by: self.eventDisposeBag)
+    }
+    
     func bind(reactor: StockDetailChildReactor) {
         // Bind State
         reactor.state
@@ -64,6 +79,10 @@ class StockDetailChildViewController: BaseViewController, View {
             .distinctUntilChanged()
             .bind(onNext: self.showAlert(message:))
             .disposed(by: self.disposeBag)
+    }
+    
+    func refresh() {
+        self.stockDetailChildReactor.action.onNext(.refresh)
     }
     
     private func setupTableView() {

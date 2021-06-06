@@ -12,20 +12,24 @@ import ReactorKit
 class StockDetailReactor: Reactor {
     
     enum Action {
-        case tapDomestic
-        case tapAbroad
-        case tapCoin
+        case swipePage(Int)
+        case tapRefresh
+        case finishRefresh
     }
     
     enum Mutation {
         case selectTab(Int)
+        case setLoading(Bool)
+        case refresh(Int)
     }
     
     struct State {
         var currentTab: Int
+        var loading: Bool = false
     }
     
     let initialState: State
+    let refreshPublisher = PublishRelay<Int>()
     
     init(type: StockType) {
         switch type {
@@ -40,12 +44,15 @@ class StockDetailReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .tapDomestic:
-            return .just(.selectTab(0))
-        case .tapAbroad:
-            return .just(.selectTab(1))
-        case .tapCoin:
-            return .just(.selectTab(2))
+        case .swipePage(let index):
+            return .just(.selectTab(index))
+        case .tapRefresh:
+            return .concat([
+                .just(.setLoading(true)),
+                .just(.refresh(self.currentState.currentTab))
+            ])
+        case .finishRefresh:
+            return .just(.setLoading(false))
         }
     }
     
@@ -55,6 +62,10 @@ class StockDetailReactor: Reactor {
         switch mutation {
         case .selectTab(let index):
             newState.currentTab = index
+        case .setLoading(let isLoading):
+            newState.loading = isLoading
+        case .refresh(let currentIndex):
+            self.refreshPublisher.accept(currentIndex)
         }
         
         return newState
