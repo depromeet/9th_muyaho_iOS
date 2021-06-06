@@ -16,8 +16,18 @@ class MyPageViewController: BaseViewController, View {
     
     static func instance() -> MyPageViewController {
         let myPageViewController = MyPageViewController(nibName: nil, bundle: nil)
+        let tabIconOff = UIImage.icMyPageOff
+        let tabIconOn = UIImage.icMyPageOn
         
-        myPageViewController.tabBarItem = UITabBarItem(title: "my", image: nil, tag: 0)
+        tabIconOn?.withRenderingMode(.alwaysOriginal)
+        tabIconOff?.withRenderingMode(.alwaysOriginal)
+        let tabBarItem = UITabBarItem(
+            title: nil,
+            image: tabIconOff,
+            selectedImage: tabIconOn
+        )
+        tabBarItem.tag = TabbarTag.mypage.rawValue
+        myPageViewController.tabBarItem = tabBarItem
         return myPageViewController
     }
     

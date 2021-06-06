@@ -18,6 +18,8 @@ extension UIImage {
     // tab
     static let icHomeOff = UIImage(named: "ic_home_off")
     static let icHomeOn = UIImage(named: "ic_home_on")
+    static let icMyPageOff = UIImage(named: "ic_my_page_off")
+    static let icMyPageOn = UIImage(named: "ic_my_page_on")
     
     // home
     static let imgLogo = UIImage(named: "img_logo")
@@ -57,4 +59,8 @@ extension UIImage {
     static let icEdit = UIImage(named: "ic_edit")
     static let icDeleteDetail = UIImage(named: "ic_delete_detail")
     static let icCheck = UIImage(named: "ic_check")
+    
+    // my-page
+    static let icKakao = UIImage(named: "ic_kakao")
+    static let icApple = UIImage(named: "ic_apple")
 }

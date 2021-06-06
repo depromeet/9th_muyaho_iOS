@@ -9,69 +9,73 @@ import UIKit
 
 final class MyPageView: BaseView {
     
-    private let logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "ic_refresh")
-        return imageView
-    }()
+    private let logoImageView = UIImageView().then {
+        $0.image = .imgLogo
+    }
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        #warning("테스트")
-        label.text = "김영찬영찬님,\n환영합니다!"
-        label.textColor = .white
-        label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 30)
-        return label
-    }()
+    private let socialImage = UIImageView().then {
+        $0.image = .icKakao
+    }
     
-    private let illustImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "ic_refresh")
-        return imageView
-    }()
+    private let titleLabel = UILabel().then {
+        $0.font = .h3_30L
+        $0.textColor = .sub_white_w2
+        $0.text = "my_page_title_format".localized
+    }
     
-    private let logoutButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("로그아웃", for: .normal)
-        button.layer.cornerRadius = 8
-        button.setTitleColor(.primary_default, for: .normal)
-        button.backgroundColor = .white
-        return button
-    }()
+    private let signOutButton = UIButton().then {
+        $0.setTitle("my_page_signout".localized, for: .normal)
+        $0.setTitleColor(.primary_default, for: .normal)
+        $0.titleLabel?.font = .caption1_12B
+        $0.backgroundColor = .sub_white_w2
+        $0.layer.cornerRadius = 8
+    }
     
-    private let withdrawalButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("회원탈퇴", for: .normal)
-        return button
-    }()
+    private let withdrawalButton = UIButton().then {
+        $0.backgroundColor = .clear
+        $0.setTitle("my_page_withdrawal".localized, for: .normal)
+        $0.setTitleColor(.sub_white_w2, for: .normal)
+        $0.titleLabel?.font = .caption1_12R
+    }
     
     override func setup() {
         backgroundColor = .primary_default
-        addSubviews(logoImageView,
-                    titleLabel,
-                    illustImageView,
-                    logoutButton,
-                    withdrawalButton)
+        addSubviews(
+            self.logoImageView,
+            self.socialImage,
+            self.titleLabel,
+            self.signOutButton,
+            self.withdrawalButton
+        )
     }
     
     override func bindConstraints() {
-        
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(150)
-            make.left.right.equalToSuperview().inset(50)
-        }
-        
-        logoutButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.left.right.equalToSuperview().inset(20)
-            make.bottom.equalTo(withdrawalButton.snp.top).offset(-21)
-        }
-        
-        #warning("탭바 높이 계산해서 넣기")
-        withdrawalButton.snp.makeConstraints { make in
+        self.logoImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-46-80)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
+        }
+        
+        self.socialImage.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(self.logoImageView.snp.bottom).offset(61)
+        }
+        
+        self.titleLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.socialImage.snp.right).offset(10)
+            make.top.equalTo(self.socialImage).offset(-7)
+        }
+        
+        self.withdrawalButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-35)
+            make.height.equalTo(40)
+        }
+        
+        self.signOutButton.snp.makeConstraints { make in
+            make.left.right.equalTo(self.withdrawalButton)
+            make.bottom.equalTo(withdrawalButton.snp.top).offset(-10)
+            make.height.equalTo(40)
         }
     }
 }

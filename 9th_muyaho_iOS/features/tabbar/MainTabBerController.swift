@@ -25,6 +25,10 @@ class MainTabBerController: UITabBarController {
         self.setupTabBar()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        self.tabBar.barTintColor = item.tag == TabbarTag.mypage.rawValue ? .primary_dark : .sub_black_b1
+    }
+    
     private func setupTabBar() {
         let homeNaviViewController = UINavigationController(rootViewController: homeViewController)
         
@@ -34,7 +38,6 @@ class MainTabBerController: UITabBarController {
             calculatorViewController,
             myPageViewController
         ], animated: true)
-        UITabBar.appearance().barTintColor = .sub_black_b1
-        self.tabBar.tintColor = .white
+        
     }
 }

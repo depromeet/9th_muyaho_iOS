@@ -21,11 +21,14 @@ class HomeViewController: BaseViewController, View {
         
         tabIconOn?.withRenderingMode(.alwaysOriginal)
         tabIconOff?.withRenderingMode(.alwaysOriginal)
-        homeViewController.tabBarItem = UITabBarItem(
+        let tabBarItem = UITabBarItem(
             title: nil,
             image: tabIconOff,
             selectedImage: tabIconOn
         )
+        
+        tabBarItem.tag = TabbarTag.home.rawValue
+        homeViewController.tabBarItem = tabBarItem
         return homeViewController
     }
     
