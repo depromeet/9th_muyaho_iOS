@@ -21,6 +21,8 @@ protocol StockServiceProtocol {
     func fetchStatus() -> Observable<ResponseContainer<InvestStatusResponse>>
     
     func fetchStatus(by type: StockType) -> Observable<ResponseContainer<[StockCalculateResponse]>>
+    
+    func deleteStock(stockId: Int) -> Observable<ResponseContainer<String>>
 }
 
 struct StockService: StockServiceProtocol {
@@ -117,5 +119,26 @@ struct StockService: StockServiceProtocol {
             }
         }
         .expectingObject(ofType: [StockCalculateResponse].self)
+    }
+    
+    func deleteStock(stockId: Int) -> Observable<ResponseContainer<String>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock"
+        let paramas = ["memberStockId": stockId]
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .delete,
+            urlString,
+            parameters: paramas,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: String.self)
     }
 }

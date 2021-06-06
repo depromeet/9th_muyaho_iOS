@@ -57,6 +57,13 @@ class StockDetailChildViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: [])
             .drive(self.stockDetailChildView.tableView.rx.items(dataSource: self.stockDataSource))
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.alertMessage }
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(onNext: self.showAlert(message:))
+            .disposed(by: self.disposeBag)
     }
     
     private func setupTableView() {
@@ -90,6 +97,7 @@ class StockDetailChildViewController: BaseViewController, View {
                     .disposed(by: cell.disposeBag)
                 self.stockDetailChildReactor.state
                     .map { $0.isEditable }
+                    .distinctUntilChanged()
                     .asDriver(onErrorJustReturn: false)
                     .drive(cell.rx.isEditable)
                     .disposed(by: cell.disposeBag)
@@ -133,6 +141,7 @@ extension StockDetailChildViewController: UITableViewDelegate {
                 .disposed(by: self.eventDisposeBag)
             self.stockDetailChildReactor.state
                 .map { $0.isEditable }
+                .distinctUntilChanged()
                 .asDriver(onErrorJustReturn: false)
                 .drive(headerView.rx.isEditable)
                 .disposed(by: self.eventDisposeBag)

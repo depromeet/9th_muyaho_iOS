@@ -103,7 +103,22 @@ class StockDetailChildReactor: Reactor, BaseReactorProtocol {
         case .tapFinishButton:
             return .just(.setEditable(false))
         case .tapDelete(let index):
-            return .empty()
+            let stockId = self.currentState.stocks[1].items[index].memberStockId
+            
+            return self.stockService.deleteStock(stockId: stockId)
+                .flatMap { _ in
+                    return self.stockService.fetchStatus(by: self.currentState.type)
+                }
+                .map { [weak self] in
+                    guard let self = self else { return .setAlertMessage("error") }
+                    let sections = self.transformToSection(
+                        type: self.currentState.type,
+                        stocks: $0.data
+                    )
+                    
+                    return Mutation.setStocks(sections)
+                }
+                .catchError(self.handleError(error:))
         }
     }
     
