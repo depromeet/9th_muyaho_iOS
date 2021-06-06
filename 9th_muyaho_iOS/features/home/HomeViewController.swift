@@ -119,6 +119,9 @@ class HomeViewController: BaseViewController, View {
     
     private func presnetWriteStockTypeViewController(type: StockType = .domestic) {
         let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance(stockType: type)
+        if let rootVC = writeNewStockTypeViewController.topViewController as? WriteNewStockTypeViewController {
+            rootVC.delegate = self
+        }
         
         self.tabBarController?.present(
             writeNewStockTypeViewController,
@@ -137,5 +140,11 @@ extension HomeViewController: WriteMenuDelegate {
     
     func onTapModify() {
         print("onTapModify")
+    }
+}
+
+extension HomeViewController: WriteNewStockProtocol {
+    func onFinishWrite() {
+        self.homeReactor.action.onNext(.tapRefresh)
     }
 }

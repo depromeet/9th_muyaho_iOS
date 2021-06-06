@@ -8,8 +8,14 @@
 import RxSwift
 import ReactorKit
 
+protocol WriteNewStockProtocol: AnyObject {
+    
+    func onFinishWrite()
+}
+
 class WriteNewStockTypeViewController: BaseViewController, View {
     
+    weak var delegate: WriteNewStockProtocol?
     private let writeNewStockTypeView = WriteNewStockTypeView()
     private let writeNewStockTypeReactor: WriteNewStockTypeReactor
     private let searchStockTransition = SearchStockTransition()
