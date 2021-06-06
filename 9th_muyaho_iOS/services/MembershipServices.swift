@@ -42,7 +42,7 @@ struct MembershipService: MembershipServiceProtocol {
     }
     
     func signIn(socialType: SocialType, authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/login/\(socialType.rawValue)"
+        let urlString = HTTPUtils.endPoint + "/api/v1/login/\(socialType.lowercase)"
         let parameters = authRequest.toDict()
         
         return RxAlamofire.requestJSON(
@@ -54,7 +54,7 @@ struct MembershipService: MembershipServiceProtocol {
     }
     
     func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/signup/\(socialType.rawValue)"
+        let urlString = HTTPUtils.endPoint + "/api/v1/signup/\(socialType.lowercase)"
         var parameters = authRequest.toDict()
         parameters["name"] = name
         
