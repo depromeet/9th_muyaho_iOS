@@ -57,6 +57,7 @@ class DomesticDetailViewController: BaseViewController, View {
         
         self.domesticDetailReactor.dismissPublisher
             .asDriver(onErrorJustReturn: ())
+            .do(onNext: self.refreshWhenClose)
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
         
@@ -186,6 +187,14 @@ class DomesticDetailViewController: BaseViewController, View {
             self.present(detailAlertViewController, animated: true, completion: nil)
         } else {
             self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func refreshWhenClose() {
+        for vc in self.navigationController!.viewControllers {
+            if let writeNewStockTypeViewController = vc as? WriteNewStockTypeViewController {
+                writeNewStockTypeViewController.delegate?.onFinishWrite()
+            }
         }
     }
     

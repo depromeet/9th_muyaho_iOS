@@ -49,6 +49,17 @@ class HomeViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: (.domestic, OverviewStocksResponse()))
             .drive(onNext: self.pushStockDetailViewController)
             .disposed(by: self.eventDisposeBag)
+        
+        self.homeReactor.writePublisher
+            .asDriver(onErrorJustReturn: .domestic)
+            .drive(onNext: self.presnetWriteStockTypeViewController)
+            .disposed(by: self.eventDisposeBag)
+        
+        self.homeView.homeOverview.emptyOverViewButton.rx.tap
+            .asDriver()
+            .map { StockType.domestic }
+            .drive(onNext: self.presnetWriteStockTypeViewController)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: HomeReactor) {
@@ -105,18 +116,35 @@ class HomeViewController: BaseViewController, View {
         
         self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
+    
+    private func presnetWriteStockTypeViewController(type: StockType = .domestic) {
+        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance(stockType: type)
+        if let rootVC = writeNewStockTypeViewController.topViewController as? WriteNewStockTypeViewController {
+            rootVC.delegate = self
+        }
+        
+        self.tabBarController?.present(
+            writeNewStockTypeViewController,
+            animated: true,
+            completion: nil
+        )
+    }
 }
 
 
 extension HomeViewController: WriteMenuDelegate {
     
     func onTapNew() {
-        let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
-        
-        self.present(writeNewStockTypeViewController, animated: true, completion: nil)
+        self.presnetWriteStockTypeViewController()
     }
     
     func onTapModify() {
         print("onTapModify")
+    }
+}
+
+extension HomeViewController: WriteNewStockProtocol {
+    func onFinishWrite() {
+        self.homeReactor.action.onNext(.tapRefresh)
     }
 }

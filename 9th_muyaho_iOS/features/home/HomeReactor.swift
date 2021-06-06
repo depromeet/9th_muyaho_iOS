@@ -21,6 +21,7 @@ class HomeReactor: Reactor, BaseReactorProtocol {
         case setLoading(Bool)
         case setAlertMessage(String)
         case pushStockDetail(StockType)
+        case presentWrite(StockType)
     }
     
     struct State {
@@ -32,6 +33,7 @@ class HomeReactor: Reactor, BaseReactorProtocol {
     let initialState = State()
     let stockService: StockService
     let stockDetailPublisher = PublishRelay<(StockType, OverviewStocksResponse)>()
+    let writePublisher = PublishRelay<StockType>()
     
     init(stockService: StockService) {
         self.stockService = stockService
@@ -56,7 +58,11 @@ class HomeReactor: Reactor, BaseReactorProtocol {
                     .catchError(self.handleError(error:))
             ])
         case .tapStockDetail(let type):
-            return .just(.pushStockDetail(type))
+            if self.isEmptyStock(type: type) {
+                return .just(.presentWrite(type))
+            } else {
+                return .just(.pushStockDetail(type))
+            }
         }
     }
     
@@ -73,9 +79,22 @@ class HomeReactor: Reactor, BaseReactorProtocol {
             newState.alertMessage = message
         case .pushStockDetail(let type):
             self.stockDetailPublisher.accept((type, self.currentState.investStatusResponse.overview))
+        case .presentWrite(let type):
+            self.writePublisher.accept(type)
         }
         
         return newState
+    }
+    
+    private func isEmptyStock(type: StockType) -> Bool {
+        switch type {
+        case .domestic:
+            return self.currentState.investStatusResponse.overview.domesticStocks.isEmpty
+        case .abroad:
+            return self.currentState.investStatusResponse.overview.foreignStocks.isEmpty
+        case .coin:
+            return self.currentState.investStatusResponse.overview.bitCoins.isEmpty
+        }
     }
     
     private func handleError(error: Error) -> Observable<Mutation> {

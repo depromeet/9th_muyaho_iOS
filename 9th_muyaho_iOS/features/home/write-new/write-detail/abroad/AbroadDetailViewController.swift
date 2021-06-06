@@ -55,6 +55,7 @@ class AbroadDetailViewController: BaseViewController, View {
         
         self.abroadDetailReactor.dismissPublisher
             .asDriver(onErrorJustReturn: ())
+            .do(onNext: self.refreshWhenClose)
             .drive(onNext: self.dismiss)
             .disposed(by: self.eventDisposeBag)
 
@@ -225,6 +226,14 @@ class AbroadDetailViewController: BaseViewController, View {
             self.present(detailAlertViewController, animated: true, completion: nil)
         } else {
             self.dismiss()
+        }
+    }
+    
+    private func refreshWhenClose() {
+        for vc in self.navigationController!.viewControllers {
+            if let writeNewStockTypeViewController = vc as? WriteNewStockTypeViewController {
+                writeNewStockTypeViewController.delegate?.onFinishWrite()
+            }
         }
     }
     
