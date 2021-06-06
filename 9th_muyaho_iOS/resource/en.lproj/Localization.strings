@@ -12,6 +12,7 @@
 "common_amount" = "수량";
 "common_current_price" = "현재가";
 "common_amount" = "보유량";
+"common_finish" = "완료";
 
 // category
 "investment_category_demestic" = "국내주식";
@@ -93,3 +94,5 @@
 // stock-detail
 "stock_detail_count_format" = "총 %d종목";
 "stock_detail_purchased_average" = "매수평균가";
+"stock_detail_edit" = "수정하기";
+"stock_detail_delete" = "삭제하기";

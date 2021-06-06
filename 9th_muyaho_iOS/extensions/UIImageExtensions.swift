@@ -54,4 +54,7 @@ extension UIImage {
     static let imgStarSolid = UIImage(named: "img_star_solid")
     static let imgPattern = UIImage(named: "img_pattern")
     static let icSetting = UIImage(named: "ic_setting")
+    static let icEdit = UIImage(named: "ic_edit")
+    static let icDeleteDetail = UIImage(named: "ic_delete_detail")
+    static let icCheck = UIImage(named: "ic_check")
 }

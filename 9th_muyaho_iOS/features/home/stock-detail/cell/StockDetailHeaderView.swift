@@ -20,6 +20,15 @@ class StockDetailHeaderView: BaseView {
         $0.setImage(.icSetting, for: .normal)
     }
     
+    let finishButton = UIButton().then {
+        $0.setImage(.icCheck, for: .normal)
+        $0.setTitle("common_finish".localized, for: .normal)
+        $0.setTitleColor(.sub_white_w2, for: .normal)
+        $0.titleLabel?.font = .caption1_12R
+        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 6)
+        $0.isHidden = true
+    }
+    
     let dividorView = UIView().then {
         $0.backgroundColor = .sub_black_b5
     }
@@ -29,8 +38,25 @@ class StockDetailHeaderView: BaseView {
         self.addSubviews(
             self.totalCountLabel,
             self.settingButton,
+            self.finishButton,
             self.dividorView
         )
+        
+        self.settingButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.settingButton.isHidden = true
+                self?.finishButton.isHidden = false
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.finishButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.settingButton.isHidden = false
+                self?.finishButton.isHidden = true
+            }
+            .disposed(by: self.disposeBag)
     }
     
     override func bindConstraints() {
@@ -41,6 +67,11 @@ class StockDetailHeaderView: BaseView {
         
         self.settingButton.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
+            make.centerY.equalTo(self.totalCountLabel)
+        }
+        
+        self.finishButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-19)
             make.centerY.equalTo(self.totalCountLabel)
         }
         

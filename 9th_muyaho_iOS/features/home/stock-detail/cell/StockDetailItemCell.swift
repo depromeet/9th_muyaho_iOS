@@ -10,7 +10,7 @@ import UIKit
 class StockDetailItemCell: BaseTableViewCell {
     
     static let registerId = "\(StockDetailItemCell.self)"
-    
+    var type: StockType = .domestic
     
     let stockContainerView = UIView().then {
         $0.layer.cornerRadius = 14
@@ -91,7 +91,6 @@ class StockDetailItemCell: BaseTableViewCell {
     let coinCurrentPriceValueLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_gray_20
-        $0.text = "19,415,678"
     }
     
     let centerDividorView = UIView().then {
@@ -107,14 +106,25 @@ class StockDetailItemCell: BaseTableViewCell {
     let purchasedAvgValueLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = .sub_gray_20
-        $0.text = "94,778"
     }
     
     // Setting Model
+    let editButton = UIButton().then {
+        $0.setImage(.icEdit, for: .normal)
+        $0.setTitle("stock_detail_edit".localized, for: .normal)
+        $0.setTitleColor(.sub_white_w2, for: .normal)
+        $0.titleLabel?.font = .body2_14R
+        $0.imageEdgeInsets = .init(top: 0, left: -8, bottom: 0, right: 8)
+        $0.isHidden = true
+    }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
+    let deleteButton = UIButton().then {
+        $0.setImage(.icDeleteDetail, for: .normal)
+        $0.setTitle("stock_detail_delete".localized, for: .normal)
+        $0.setTitleColor(.secondary_red_default, for: .normal)
+        $0.titleLabel?.font = .body2_14R
+        $0.imageEdgeInsets = .init(top: 0, left: -8, bottom: 0, right: 8)
+        $0.isHidden = true
     }
     
     override func setup() {
@@ -138,7 +148,9 @@ class StockDetailItemCell: BaseTableViewCell {
             self.coinCurrentPriceValueLabel,
             self.centerDividorView,
             self.purchasedAvgLabel,
-            self.purchasedAvgValueLabel
+            self.purchasedAvgValueLabel,
+            self.editButton,
+            self.deleteButton
         )
     }
     
@@ -240,10 +252,21 @@ class StockDetailItemCell: BaseTableViewCell {
             make.centerY.equalTo(self.coinCurrentPriceValueLabel)
             make.centerX.equalTo(self.purchasedAvgLabel)
         }
+        
+        self.editButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self.centerDividorView)
+            make.right.equalTo(self.centerDividorView.snp.left).offset(-42)
+        }
+        
+        self.deleteButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self.centerDividorView)
+            make.left.equalTo(self.centerDividorView.snp.right).offset(43)
+        }
     }
     
     func bind(stock: StockCalculateResponse) {
         let type = stock.stock.type
+        self.type = type
         let pl = stock.current.won.amountPrice - stock.purchase.amount
         
         self.plLabel.text = pl.decimalString + "(" + stock.profitOrLoseRate + "%)"
@@ -277,17 +300,28 @@ class StockDetailItemCell: BaseTableViewCell {
             self.amountValueLabel.text = stock.quantity
         case .coin:
             self.coinCurrentPriceValueLabel.text = stock.current.won.unitPrice.decimalString
-            // 매수 평균가는 어떻게 계산하지..?
+            // TODO: 매수 평균가는 어떻게 계산하지..?
             self.purchasedAvgValueLabel.text = stock.current.won.amountPrice.decimalString
         }
-//        let pl = stock.current.won.amountPrice - stock.purchase.amount
-//        self.titleLabel.text = stock.stock.name
-//        self.plLabel.text = pl.decimalString + "(" + stock.profitOrLoseRate + "%)"
-//        self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
-//        self.plLabel.textColor = pl >= 0 ? .secondary_red_default : .secondary_blue_default
-//        self.priceLabel.text = stock.current.won.amountPrice.decimalString
-//        self.currentPriceValueLabel.text = stock.current.won.unitPrice.decimalString
-//        self.avgPriceValueLabel.text = stock.purchase.unitPrice.decimalString
-//        self.amountValueLabel.text = stock.quantity
+    }
+    
+    func setSettingMode(isSetting: Bool) {
+        self.centerDividorView.isHidden = !isSetting
+        self.editButton.isHidden = !isSetting
+        self.deleteButton.isHidden = !isSetting
+        
+        if self.type == .coin {
+            self.coinCurrentPriceLabel.isHidden = isSetting
+            self.coinCurrentPriceValueLabel.isHidden = isSetting
+            self.purchasedAvgLabel.isHidden = isSetting
+            self.purchasedAvgValueLabel.isHidden = isSetting
+        } else {
+            self.currentPriceLabel.isHidden = isSetting
+            self.currentPriceValueLabel.isHidden = isSetting
+            self.avgPriceLabel.isHidden = isSetting
+            self.avgPriceValueLabel.isHidden = isSetting
+            self.amountLabel.isHidden = isSetting
+            self.amountValueLabel.isHidden = isSetting
+        }
     }
 }
