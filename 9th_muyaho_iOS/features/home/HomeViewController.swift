@@ -16,8 +16,16 @@ class HomeViewController: BaseViewController, View {
     
     static func instance() -> HomeViewController {
         let homeViewController = HomeViewController(nibName: nil, bundle: nil)
+        let tabIconOff = UIImage.icHomeOff
+        let tabIconOn = UIImage.icHomeOn
         
-        homeViewController.tabBarItem = UITabBarItem(title: "홈", image: nil, tag: 0)
+        tabIconOn?.withRenderingMode(.alwaysOriginal)
+        tabIconOff?.withRenderingMode(.alwaysOriginal)
+        homeViewController.tabBarItem = UITabBarItem(
+            title: nil,
+            image: tabIconOff,
+            selectedImage: tabIconOn
+        )
         return homeViewController
     }
     
@@ -36,12 +44,32 @@ class HomeViewController: BaseViewController, View {
             .observeOn(MainScheduler.instance)
             .bind(onNext: self.showshowWriteMenus)
             .disposed(by: self.eventDisposeBag)
+        
+        self.homeReactor.stockDetailPublisher
+            .asDriver(onErrorJustReturn: (.domestic, OverviewStocksResponse()))
+            .drive(onNext: self.pushStockDetailViewController)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: HomeReactor) {
         // MARK: Bind Action
         self.homeView.refreshButton.rx.tap
             .map { Reactor.Action.tapRefresh }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.domesticCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.domestic) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.abroadCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.abroad) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.homeView.homeInvestByCategoryView.coinCategoryButton.rx.tap
+            .map { Reactor.Action.tapStockDetail(StockType.coin) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -63,7 +91,19 @@ class HomeViewController: BaseViewController, View {
         let writeMenuViewController = WriteMenuViewController.instance().then {
             $0.delegate = self
         }
-        self.present(writeMenuViewController, animated: true, completion: nil)
+        self.tabBarController?.present(writeMenuViewController, animated: true, completion: nil)
+    }
+    
+    private func pushStockDetailViewController(
+        type: StockType,
+        overviewStocks: OverviewStocksResponse
+    ) {
+        let stockDetailViewController = StockDetailViewController.instance(
+            type: type,
+            overviewStocks: overviewStocks
+        )
+        
+        self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
 }
 

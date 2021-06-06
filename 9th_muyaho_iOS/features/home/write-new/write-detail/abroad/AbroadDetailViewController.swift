@@ -202,7 +202,7 @@ class AbroadDetailViewController: BaseViewController, View {
     
     private func pop(isAlertShow: Bool) {
         if isAlertShow {
-            let detailAlertViewController = DetailAlertViewController.instance().then {
+            let detailAlertViewController = DetailAlertViewController.instance(type: .detail).then {
                 $0.onExit = { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
                 }
@@ -216,7 +216,7 @@ class AbroadDetailViewController: BaseViewController, View {
     
     private func close(isAlertShow: Bool) {
         if isAlertShow {
-            let detailAlertViewController = DetailAlertViewController.instance().then {
+            let detailAlertViewController = DetailAlertViewController.instance(type: .detail).then {
                 $0.onExit = { [weak self] in
                     self?.dismiss()
                 }

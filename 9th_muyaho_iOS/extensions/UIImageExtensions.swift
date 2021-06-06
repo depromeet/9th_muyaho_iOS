@@ -15,6 +15,10 @@ extension UIImage {
     static let arrowLeft24 = UIImage(named: "ic_arrow_left_24")
     static let info = UIImage(named: "ic_info")
     
+    // tab
+    static let icHomeOff = UIImage(named: "ic_home_off")
+    static let icHomeOn = UIImage(named: "ic_home_on")
+    
     // home
     static let imgLogo = UIImage(named: "img_logo")
     static let imgLogoBig = UIImage(named: "img_logo_big")
@@ -41,4 +45,16 @@ extension UIImage {
     static let searchGray = UIImage(named: "ic_search_gray")
     static let searchBlue = UIImage(named: "ic_search_blue")
     static let icDelete = UIImage(named: "ic_delete")
+    
+    // stock-detail
+    static let imgKoreanYoungchan = UIImage(named: "img_korean_youngchan")
+    static let imgAmericanYoungchan = UIImage(named: "img_american_youngchan")
+    static let imgCoinYoungchan = UIImage(named: "img_coin_youngchan")
+    static let imgGround = UIImage(named: "img_ground")
+    static let imgStarSolid = UIImage(named: "img_star_solid")
+    static let imgPattern = UIImage(named: "img_pattern")
+    static let icSetting = UIImage(named: "ic_setting")
+    static let icEdit = UIImage(named: "ic_edit")
+    static let icDeleteDetail = UIImage(named: "ic_delete_detail")
+    static let icCheck = UIImage(named: "ic_check")
 }

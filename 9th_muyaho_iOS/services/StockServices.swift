@@ -19,6 +19,10 @@ protocol StockServiceProtocol {
     func fetchStatusCache() -> Observable<ResponseContainer<InvestStatusResponse>>
     
     func fetchStatus() -> Observable<ResponseContainer<InvestStatusResponse>>
+    
+    func fetchStatus(by type: StockType) -> Observable<ResponseContainer<[StockCalculateResponse]>>
+    
+    func deleteStock(stockId: Int) -> Observable<ResponseContainer<String>>
 }
 
 struct StockService: StockServiceProtocol {
@@ -94,5 +98,47 @@ struct StockService: StockServiceProtocol {
             }
         }
         .expectingObject(ofType: InvestStatusResponse.self)
+    }
+    
+    func fetchStatus(by type: StockType) -> Observable<ResponseContainer<[StockCalculateResponse]>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock"
+        let params = ["type": type.rawValue]
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .get,
+            urlString,
+            parameters: params,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: [StockCalculateResponse].self)
+    }
+    
+    func deleteStock(stockId: Int) -> Observable<ResponseContainer<String>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member/stock"
+        let paramas = ["memberStockId": stockId]
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .delete,
+            urlString,
+            parameters: paramas,
+            headers: headers
+        )
+        .map { (response, value) in
+            if response.isSuccess {
+                return (response, value)
+            } else {
+                throw HTTPError(rawValue: response.statusCode) ?? .unknown
+            }
+        }
+        .expectingObject(ofType: String.self)
     }
 }

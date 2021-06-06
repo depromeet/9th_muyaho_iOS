@@ -38,4 +38,14 @@ struct StockCalculateResponse: Decodable {
         self.currencyType = try values.decodeIfPresent(CurrencyType.self, forKey: .currencyType) ?? .won
         self.profitOrLoseRate = try values.decodeIfPresent(String.self, forKey: .profitOrLoseRate) ?? ""
     }
+    
+    init() {
+        self.memberStockId = 0
+        self.stock = Stock()
+        self.purchase = StockPurchaseResponse()
+        self.current = StockCurrentResponse()
+        self.quantity = "0"
+        self.currencyType = .won
+        self.profitOrLoseRate = "0"
+    }
 }

@@ -10,6 +10,9 @@
 "common_cancel" = "취소";
 "common_average_price" = "평단가";
 "common_amount" = "수량";
+"common_current_price" = "현재가";
+"common_amount" = "보유량";
+"common_finish" = "완료";
 
 // category
 "investment_category_demestic" = "국내주식";
@@ -87,3 +90,13 @@
 "write_detail_transition_rate" = "적용환율";
 "write_detail_standard" = "기본 - 하나은행 기준환율";
 "write_detail_purchased_money" = "매입금";
+
+// stock-detail
+"stock_detail_count_format" = "총 %d종목";
+"stock_detail_purchased_average" = "매수평균가";
+"stock_detail_edit" = "수정하기";
+"stock_detail_delete" = "삭제하기";
+"stock_detail_alert_title" = "종목을 삭제할까요?";
+"stock_detail_alert_description" = "최종 자산과 수익률에 영향을 줍니다.";
+"stock_detail_next_time" = "다음에";
+"stock_detail_delete" = "삭제하기";
