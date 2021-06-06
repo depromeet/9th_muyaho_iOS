@@ -14,14 +14,12 @@ class InvestByCategoryButton: UIButton {
     let mainTitleLabel = UILabel().then {
         $0.font = .body1_16
         $0.textColor = UIColor(r: 236, g: 236, b: 236)
-        $0.text = "investment_category_demestic".localized
         $0.isUserInteractionEnabled = false
     }
     
     let subTitleLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_black_b5
-        $0.text = "home_category_register".localized
         $0.isUserInteractionEnabled = false
     }
     
@@ -43,7 +41,7 @@ class InvestByCategoryButton: UIButton {
     }
     
     fileprivate func setPL(pl: Double) {
-        if pl > 0 {
+        if pl >= 0 {
             self.subTitleLabel.textColor = .secondary_red_default
             self.subTitleLabel.text = "+" + pl.roundUpTwoString + "원"
         } else {
@@ -89,16 +87,20 @@ extension Reactive where Base: InvestByCategoryButton {
         return Binder(self.base) { view, stockCalculate in
             view.mainTitleLabel.text = stockCalculate.type.localizedString
             
-            if stockCalculate.type == .abroad {
-                let pl = stockCalculate.overview
-                    .map { $0.current.won.amountPrice - $0.purchase.amountInWon }
-                    .reduce(0, +)
-                view.setPL(pl: pl)
+            if stockCalculate.overview.isEmpty {
+                view.subTitleLabel.text = "home_category_register".localized
             } else {
-                let pl = stockCalculate.overview
-                    .map { $0.current.won.amountPrice - $0.purchase.amount }
-                    .reduce(0, +)
-                view.setPL(pl: pl)
+                if stockCalculate.type == .abroad {
+                    let pl = stockCalculate.overview
+                        .map { $0.current.won.amountPrice - $0.purchase.amountInWon }
+                        .reduce(0, +)
+                    view.setPL(pl: pl)
+                } else {
+                    let pl = stockCalculate.overview
+                        .map { $0.current.won.amountPrice - $0.purchase.amount }
+                        .reduce(0, +)
+                    view.setPL(pl: pl)
+                }
             }
         }
     }
