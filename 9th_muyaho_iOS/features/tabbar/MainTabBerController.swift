@@ -10,8 +10,10 @@ import UIKit
 class MainTabBerController: UITabBarController {
 
     let homeViewController = HomeViewController.instance()
-    let myPageViewController = MyPageViewController.instance()
     let calculatorViewController = CalculatorViewController.instance()
+    let boardViewController = BoardViewController.instacne()
+    let myPageViewController = MyPageViewController.instance()
+    
 
   
     static func make() -> MainTabBerController {
@@ -25,6 +27,11 @@ class MainTabBerController: UITabBarController {
         self.setupTabBar()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        self.tabBar.barTintColor = item.tag == TabbarTag.mypage.rawValue ? .primary_dark : .sub_black_b1
+        self.tabBar.isTranslucent = false
+    }
+    
     private func setupTabBar() {
         let homeNaviViewController = UINavigationController(rootViewController: homeViewController)
         
@@ -32,9 +39,10 @@ class MainTabBerController: UITabBarController {
         self.setViewControllers([
             homeNaviViewController,
             calculatorViewController,
+            boardViewController,
             myPageViewController
         ], animated: true)
-        UITabBar.appearance().barTintColor = .sub_black_b1
-        self.tabBar.tintColor = .white
+        self.tabBar.tintColor = .sub_white_w2
+        self.tabBar.barTintColor = .sub_black_b1
     }
 }

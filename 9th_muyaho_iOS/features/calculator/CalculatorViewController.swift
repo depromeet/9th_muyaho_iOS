@@ -16,15 +16,25 @@ class CalculatorViewController: BaseViewController, View {
     
     static func instance() -> CalculatorViewController {
         let calculatorViewController = CalculatorViewController(nibName: nil, bundle: nil)
+        let tabIconOff = UIImage.icCalculateOff
+        let tabIconOn = UIImage.icCalculateOn
         
-        calculatorViewController.tabBarItem = UITabBarItem(title: "계산기", image: nil, tag: 0)
+        tabIconOn?.withRenderingMode(.alwaysOriginal)
+        tabIconOff?.withRenderingMode(.alwaysOriginal)
+        let tabBarItem = UITabBarItem(
+            title: nil,
+            image: tabIconOff,
+            selectedImage: tabIconOn
+        )
+        
+        tabBarItem.tag = TabbarTag.calculater.rawValue
+        calculatorViewController.tabBarItem = tabBarItem
         return calculatorViewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .sub_black_b1
-        title = "계산기"
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.backgroundColor = .sub_black_b1
         view = calculatorView

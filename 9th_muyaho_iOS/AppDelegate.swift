@@ -7,6 +7,7 @@
 
 import UIKit
 import KakaoSDKCommon
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         
         self.initilizeKakao()
+        self.initilizeFirebase()
         self.initializeNetworkLogger()
         return true
     }
@@ -51,6 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializeNetworkLogger() {
       NetworkActivityLogger.shared.startLogging()
       NetworkActivityLogger.shared.level = .debug
+    }
+    
+    private func initilizeFirebase() {
+        FirebaseApp.configure()
     }
 }
 

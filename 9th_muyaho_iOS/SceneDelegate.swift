@@ -20,11 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(frame: scene.coordinateSpace.bounds)
         self.window?.windowScene = scene
         
-        if UserDefaultsUtils().sessionId.isEmpty {
-            self.goToSignIn()
-        } else {
-            self.goToMain()
-        }
+        self.window?.rootViewController = SplashViewController.instance()
+        self.window?.makeKeyAndVisible()
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -51,6 +48,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
     }
-
+    
+    func checkAuth() {
+        if UserDefaultsUtils().sessionId.isEmpty {
+            self.goToSignIn()
+        } else {
+            self.goToMain()
+        }
+    }
 }
 

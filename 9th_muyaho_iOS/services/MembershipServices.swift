@@ -17,6 +17,10 @@ protocol MembershipServiceProtocol {
     func signIn(socialType: SocialType, authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>>
     
     func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>>
+    
+    func fetchMemberInfo() -> Observable<ResponseContainer<MemberInfoResponse>>
+    
+    func withdrawal() -> Observable<ResponseContainer<String>>
 }
 
 struct MembershipService: MembershipServiceProtocol {
@@ -38,7 +42,7 @@ struct MembershipService: MembershipServiceProtocol {
     }
     
     func signIn(socialType: SocialType, authRequest: AuthRequest) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/login/\(socialType.rawValue)"
+        let urlString = HTTPUtils.endPoint + "/api/v1/login/\(socialType.lowercase)"
         let parameters = authRequest.toDict()
         
         return RxAlamofire.requestJSON(
@@ -50,7 +54,7 @@ struct MembershipService: MembershipServiceProtocol {
     }
     
     func signUp(socialType: SocialType, authRequest: AuthRequest, name: String) -> Observable<ResponseContainer<AuthResponse>> {
-        let urlString = HTTPUtils.endPoint + "/api/v1/signup/\(socialType.rawValue)"
+        let urlString = HTTPUtils.endPoint + "/api/v1/signup/\(socialType.lowercase)"
         var parameters = authRequest.toDict()
         parameters["name"] = name
         
@@ -60,5 +64,27 @@ struct MembershipService: MembershipServiceProtocol {
             parameters: parameters,
             encoding: JSONEncoding.default
         ).expectingObject(ofType: AuthResponse.self)
+    }
+    
+    func fetchMemberInfo() -> Observable<ResponseContainer<MemberInfoResponse>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member"
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .get,
+            urlString,
+            headers: headers
+        ).expectingObject(ofType: MemberInfoResponse.self)
+    }
+    
+    func withdrawal() -> Observable<ResponseContainer<String>> {
+        let urlString = HTTPUtils.endPoint + "/api/v1/member"
+        let headers = HTTPUtils.authorizationHeader()
+        
+        return RxAlamofire.requestJSON(
+            .delete,
+            urlString,
+            headers: headers
+        ).expectingObject(ofType: String.self)
     }
 }

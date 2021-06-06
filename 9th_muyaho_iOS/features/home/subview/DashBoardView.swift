@@ -185,7 +185,7 @@ extension Reactive where Base: DashBoardView {
             view.seedMoneyLabel.text = "시드 " + investStatus.seedAmount.decimalString
             view.totalMoneyLabel.text = investStatus.finalAsset.decimalString
             view.setFinalPL(pl: investStatus.finalProfitOrLoseRate)
-            view.setFinalAsset(asset: investStatus.finalAsset)
+            view.setFinalAsset(asset: investStatus.finalAsset - investStatus.seedAmount)
         }
     }
 }

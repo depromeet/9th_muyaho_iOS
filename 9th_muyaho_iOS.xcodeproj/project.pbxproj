@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		201094345947E3C0EB6BD6A3 /* Pods_9th_muyaho_iOS_9th_muyaho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142F235D39B5272294793A7A /* Pods_9th_muyaho_iOS_9th_muyaho_iOSUITests.framework */; };
 		6E1443AF266CB012007FD896 /* StockDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443AE266CB012007FD896 /* StockDetailReactor.swift */; };
+		6E1443B1266CFBDB007FD896 /* TabbarTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443B0266CFBDB007FD896 /* TabbarTag.swift */; };
+		6E1443B3266CFDB1007FD896 /* MemberInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443B2266CFDB1007FD896 /* MemberInfoResponse.swift */; };
+		6E1443B6266D05D4007FD896 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443B5266D05D4007FD896 /* BoardView.swift */; };
+		6E1443B8266D07FC007FD896 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443B7266D07FC007FD896 /* BoardViewController.swift */; };
+		6E1443BB266D13A0007FD896 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443BA266D13A0007FD896 /* SplashView.swift */; };
+		6E1443BE266D1408007FD896 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E1443BD266D1408007FD896 /* splash.json */; };
+		6E1443C0266D149E007FD896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443BF266D149E007FD896 /* SplashViewController.swift */; };
+		6E1443C2266D1A7F007FD896 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */; };
 		6E166309263D2D1400A35C9F /* HTTPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E166308263D2D1400A35C9F /* HTTPUtils.swift */; };
 		6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16630D263D2D8400A35C9F /* MembershipServices.swift */; };
 		6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E166315263D306600A35C9F /* ResponseContainer.swift */; };
@@ -161,6 +169,14 @@
 		4EA2ABCB9DE75C662E452F1D /* Pods-9th_muyaho_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9th_muyaho_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-9th_muyaho_iOSTests/Pods-9th_muyaho_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4FDA26644E22F62978D83FBA /* Pods-9th_muyaho_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9th_muyaho_iOS.debug.xcconfig"; path = "Target Support Files/Pods-9th_muyaho_iOS/Pods-9th_muyaho_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6E1443AE266CB012007FD896 /* StockDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailReactor.swift; sourceTree = "<group>"; };
+		6E1443B0266CFBDB007FD896 /* TabbarTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarTag.swift; sourceTree = "<group>"; };
+		6E1443B2266CFDB1007FD896 /* MemberInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoResponse.swift; sourceTree = "<group>"; };
+		6E1443B5266D05D4007FD896 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		6E1443B7266D07FC007FD896 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		6E1443BA266D13A0007FD896 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		6E1443BD266D1408007FD896 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		6E1443BF266D149E007FD896 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E166308263D2D1400A35C9F /* HTTPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUtils.swift; sourceTree = "<group>"; };
 		6E16630D263D2D8400A35C9F /* MembershipServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipServices.swift; sourceTree = "<group>"; };
 		6E166315263D306600A35C9F /* ResponseContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContainer.swift; sourceTree = "<group>"; };
@@ -330,6 +346,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1443B4266D05BB007FD896 /* board */ = {
+			isa = PBXGroup;
+			children = (
+				6E1443B5266D05D4007FD896 /* BoardView.swift */,
+				6E1443B7266D07FC007FD896 /* BoardViewController.swift */,
+			);
+			path = board;
+			sourceTree = "<group>";
+		};
+		6E1443B9266D137C007FD896 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				6E1443BA266D13A0007FD896 /* SplashView.swift */,
+				6E1443BF266D149E007FD896 /* SplashViewController.swift */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		6E1443BC266D13EC007FD896 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+				6E1443BD266D1408007FD896 /* splash.json */,
+			);
+			path = lottie;
+			sourceTree = "<group>";
+		};
 		6E166306263D2CC300A35C9F /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +537,7 @@
 		6E817598263836A20050FFC7 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				6E1443BC266D13EC007FD896 /* lottie */,
 				6E817599263836EE0050FFC7 /* font */,
 				6EABBADE263AD2C900ACC332 /* Localization.strings */,
 			);
@@ -559,6 +602,8 @@
 				6E7CAEEC266A96DF00A5E0CA /* OverViewStocksResponse.swift */,
 				6E9218A8266B24BE007A92DC /* InvestmentStatus.swift */,
 				6E9218C0266BC8C1007A92DC /* StockDetailItemSection.swift */,
+				6E1443B0266CFBDB007FD896 /* TabbarTag.swift */,
+				6E1443B2266CFDB1007FD896 /* MemberInfoResponse.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -674,6 +719,7 @@
 				A5754B4C2625B6C200B6E8A1 /* SceneDelegate.swift */,
 				A5754B532625B6C400B6E8A1 /* Assets.xcassets */,
 				A5754B552625B6C400B6E8A1 /* LaunchScreen.storyboard */,
+				6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */,
 				A5754B582625B6C400B6E8A1 /* Info.plist */,
 			);
 			path = 9th_muyaho_iOS;
@@ -700,6 +746,8 @@
 		A5754BA32625BB6200B6E8A1 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				6E1443B9266D137C007FD896 /* splash */,
+				6E1443B4266D05BB007FD896 /* board */,
 				A58C2B70265806C100CEEE8C /* calculator */,
 				6E540A3C263BBF6300AAD4B0 /* shared */,
 				6EABBAE1263AF58A00ACC332 /* membership */,
@@ -919,6 +967,8 @@
 				6E8175A1263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 				A58C2BEA2659DE1100CEEE8C /* HistoryCell.xib in Resources */,
 				A5754B542625B6C400B6E8A1 /* Assets.xcassets in Resources */,
+				6E1443BE266D1408007FD896 /* splash.json in Resources */,
+				6E1443C2266D1A7F007FD896 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,6 +1111,7 @@
 				6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */,
 				6E40DDFC263448060003E4AD /* UIImageExtensions.swift in Sources */,
 				6E3692FA266390C2009A83DF /* CurrencyType.swift in Sources */,
+				6E1443B6266D05D4007FD896 /* BoardView.swift in Sources */,
 				A58C2BE92659DE1100CEEE8C /* HistoryCell.swift in Sources */,
 				6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */,
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
@@ -1076,6 +1127,7 @@
 				6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */,
 				A58C2B7A2658074300CEEE8C /* CalculatorView.swift in Sources */,
 				6E48045D2665208100BF5E44 /* DetailAlertViewController.swift in Sources */,
+				6E1443B3266CFDB1007FD896 /* MemberInfoResponse.swift in Sources */,
 				6E7CAEEB266A944800A5E0CA /* StockCalculateResponse.swift in Sources */,
 				6E817597263835390050FFC7 /* UIFontExtensions.swift in Sources */,
 				6EE5C2C1263BC878001D47B8 /* SignUpReactor.swift in Sources */,
@@ -1083,6 +1135,7 @@
 				6EABBAD5263AC73800ACC332 /* SignInManagerProtocol.swift in Sources */,
 				A58C2BBC2658944400CEEE8C /* NSObjectExtensions.swift in Sources */,
 				6E9218BB266BA982007A92DC /* StockDetailItemCell.swift in Sources */,
+				6E1443C0266D149E007FD896 /* SplashViewController.swift in Sources */,
 				6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */,
 				6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */,
 				6E26F35E26666366003C4961 /* AbroadDetailReactor.swift in Sources */,
@@ -1093,6 +1146,7 @@
 				6ED95A86264ACCAA00853CA3 /* HomeOverview.swift in Sources */,
 				6E16631B263D30B600A35C9F /* AuthResponse.swift in Sources */,
 				A58C2B752658072000CEEE8C /* CalculatorViewController.swift in Sources */,
+				6E1443B8266D07FC007FD896 /* BoardViewController.swift in Sources */,
 				A58C2B9D265892B200CEEE8C /* CustomMenuBar.swift in Sources */,
 				6E3692F82663908C009A83DF /* StockInfo.swift in Sources */,
 				6E48046026652D7400BF5E44 /* AbroadDetailView.swift in Sources */,
@@ -1132,6 +1186,7 @@
 				6E475842264D566F003E16C5 /* DashBoardView.swift in Sources */,
 				6EE19C0F265A50A30023B0F5 /* Stock.swift in Sources */,
 				6E319C2E2667CA9F00E0C43B /* ExchangeRateServices.swift in Sources */,
+				6E1443B1266CFBDB007FD896 /* TabbarTag.swift in Sources */,
 				6E801CDF262C22240081E68A /* HomeReactor.swift in Sources */,
 				6E3692FC26639BB6009A83DF /* WriteStockReqeust.swift in Sources */,
 				6EE19C0D265A504D0023B0F5 /* StockServices.swift in Sources */,
@@ -1146,6 +1201,7 @@
 				6E4F5D962657E7780061A13C /* SearchStockView.swift in Sources */,
 				6E9218AC266B8B2C007A92DC /* StockDetailView.swift in Sources */,
 				6E4F5D9B2657EB6C0061A13C /* SearchStockViewController.swift in Sources */,
+				6E1443BB266D13A0007FD896 /* SplashView.swift in Sources */,
 				6E9218B9266BA826007A92DC /* StockDetailHeaderView.swift in Sources */,
 				6E9218BD266BC00A007A92DC /* StockDetailChildReactor.swift in Sources */,
 				6E6E6DF72639AFF70061AB4A /* KakaoSignInManager.swift in Sources */,
@@ -1347,6 +1403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.muyaho.-th-muyaho-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1372,6 +1429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.muyaho.-th-muyaho-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

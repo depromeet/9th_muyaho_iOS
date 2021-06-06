@@ -7,6 +7,15 @@
 
 enum SocialType: String, Encodable {
     
-    case kakao = "kakao"
-    case apple = "apple"
+    case kakao = "KAKAO"
+    case apple = "APPLE"
+    
+    var lowercase: String {
+        switch self {
+        case .kakao:
+            return "kakao"
+        case .apple:
+            return "apple"
+        }
+    }
 }

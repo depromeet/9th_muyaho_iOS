@@ -12,7 +12,7 @@ struct AuthRequest: Encodable, Equatable {
     
     func toDict() -> [String: Any] {
         return [
-            "provider": self.provider.rawValue,
+            "provider": self.provider.lowercase,
             "token": self.token
         ]
     }
