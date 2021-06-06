@@ -50,8 +50,14 @@ class HomeViewController: BaseViewController, View {
             .drive(onNext: self.pushStockDetailViewController)
             .disposed(by: self.eventDisposeBag)
         
+        self.homeReactor.writePublisher
+            .asDriver(onErrorJustReturn: .domestic)
+            .drive(onNext: self.presnetWriteStockTypeViewController)
+            .disposed(by: self.eventDisposeBag)
+        
         self.homeView.homeOverview.emptyOverViewButton.rx.tap
             .asDriver()
+            .map { StockType.domestic }
             .drive(onNext: self.presnetWriteStockTypeViewController)
             .disposed(by: self.eventDisposeBag)
     }
@@ -111,7 +117,7 @@ class HomeViewController: BaseViewController, View {
         self.navigationController?.pushViewController(stockDetailViewController, animated: true)
     }
     
-    private func presnetWriteStockTypeViewController() {
+    private func presnetWriteStockTypeViewController(type: StockType = .domestic) {
         let writeNewStockTypeViewController = WriteNewStockTypeViewController.instance()
         
         self.tabBarController?.present(
