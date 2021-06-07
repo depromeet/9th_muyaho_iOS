@@ -8,10 +8,9 @@
 import RxSwift
 import ReactorKit
 
-class CalculatorViewController: BaseViewController, View {
+class CalculatorViewController: BaseViewController {
     
-    private lazy var calculatorView = CalculatorView(frame: self.view.frame)
-    private let calculatorReactor = CalculatorReactor()
+    private let calculatorView = CalculatorView()
     
     
     static func instance() -> CalculatorViewController {
@@ -32,25 +31,12 @@ class CalculatorViewController: BaseViewController, View {
         return calculatorViewController
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .sub_black_b1
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.navigationBar.backgroundColor = .sub_black_b1
-        view = calculatorView
-        self.reactor = calculatorReactor
+    override func loadView() {
+        self.view = self.calculatorView
     }
     
-    func bind(reactor: CalculatorReactor) {
-        // Bind Action
-//        self.calculatorView.refreshButton.rx.tap
-//
-//        
-//        // Bind State
-//        self.calculatorReactor.state
-//            .map { $0.title }
-//            .distinctUntilChanged()
-//            .bind(to: self.calculatorView.titleLabel.rx.text)
-//            .disposed(by: self.disposeBag)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.calculatorView.startSlimeAnimation()
     }
 }

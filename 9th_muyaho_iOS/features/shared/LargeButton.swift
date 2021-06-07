@@ -41,6 +41,10 @@ class LargeButton: UIButton {
             self.setTitleColor(.sub_white_w2, for: .normal)
             self.setTitleColor(.sub_gray_20, for: .disabled)
         }
+        
+        self.layer.shadowColor = UIColor.primary_default.cgColor
+        self.layer.shadowOffset = CGSize(width: 4, height: 4)
+        self.layer.shadowOpacity = 0
     }
     
     func setBackgroundColor(theme: ButtonTheme) {
@@ -50,6 +54,7 @@ class LargeButton: UIButton {
                 self.backgroundColor = self.isEnabled ? .sub_white_w2 : UIColor.sub_white_w2.withAlphaComponent(0.4)
             } else {
                 self.backgroundColor = self.isEnabled ? .primary_default : UIColor(r: 45, g: 36, b: 125)
+                self.layer.shadowOpacity = self.isEnabled ? 0.4 : 0
             }
         }
     }

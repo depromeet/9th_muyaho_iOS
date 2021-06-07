@@ -106,3 +106,18 @@
 "my_page_signout" = "로그아웃";
 "my_page_withdrawal" = "회원탈퇴";
 "my_page_tbd" = "준비중이에요!";
+
+// calculate
+"calculate_empty_title" = "미래의 수익금을\n예상해보세요!";
+"calculate_title" = "미래의 수익금은";
+"calculate_current_asset" = "현재 보유";
+"calculate_gole" = "내 목표";
+"calculate_avg" = "보유 평단가";
+"calculate_amount" = "보유 수량";
+"calculate_purchased" = "매입 금액";
+"calculate_goal_price" = "목표 단가";
+"calculate_goal_pl_rate" = "목표 수익률";
+"calculate_share" = "공유하기";
+"calculate_history" = "기록";
+"calculate_pl_rate" = "수익률";
+"calculate_riding_water" = "물타기";

@@ -70,4 +70,8 @@ extension UIImage {
     
     // board
     static let icTbdEmpty = UIImage(named: "img_tbd_youngchan")
+    
+    // calculate
+    static let imgBlueSlime = UIImage(named: "img_blue_slime")
+    static let imgEmptyYoungchan = UIImage(named: "img_empty_youngchan")
 }
