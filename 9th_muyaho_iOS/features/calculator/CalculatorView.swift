@@ -39,32 +39,8 @@ class CalculatorView: BaseView {
     
     let emptyView = CalculateEmptyView()
     
-    let titleLabel = UILabel().then {
-        $0.font = .body2_14R
-        $0.textColor = .sub_white_w2
-        $0.text = "calculate_title".localized
-    }
-    
-    let assetLabel = UILabel().then {
-        $0.font = .h2_36
-        $0.textColor = .sub_white_w2
-        $0.text = "566,800,000"
-    }
-    
-    let youngchanImage = UIImageView()
-    
-    let plLabel = PaddingLabel(
-        topInset: 5,
-        bottomInset: 5,
-        leftInset: 14,
-        rightInset: 14
-    ).then {
-        $0.font = .caption1_12B
-        $0.textColor = .secondary_red_default
-        $0.text = "+8.35%"
-        $0.layer.cornerRadius = 9
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.secondary_red_default.cgColor
+    let yountchanView = CalculateYoungchanView().then {
+        $0.isHidden = true
     }
     
     let scrollView = UIScrollView().then {
@@ -133,10 +109,7 @@ class CalculatorView: BaseView {
             self.indicatorView,
             self.ridingWaterButton,
             self.emptyView,
-            self.titleLabel,
-            self.assetLabel,
-            self.youngchanImage,
-            self.plLabel
+            self.yountchanView
         )
     }
     
@@ -176,6 +149,11 @@ class CalculatorView: BaseView {
         self.emptyView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(self.safeAreaLayoutGuide).offset(75)
+        }
+        
+        self.yountchanView.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(67)
+            make.left.right.equalToSuperview()
         }
         
         self.scrollView.snp.makeConstraints { make in

@@ -33,6 +33,7 @@
 		6E2F82B7264CD48300539D8A /* HomeInvestByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */; };
 		6E2F82B9264CD63700539D8A /* InvestByCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */; };
 		6E319C2E2667CA9F00E0C43B /* ExchangeRateServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E319C2D2667CA9F00E0C43B /* ExchangeRateServices.swift */; };
+		6E3432E9266EF4C4004188BC /* CalculateYoungchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3432E8266EF4C4004188BC /* CalculateYoungchanView.swift */; };
 		6E347BB4266E5B3800EB1BDA /* CalculateEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E347BB3266E5B3800EB1BDA /* CalculateEmptyView.swift */; };
 		6E347BB6266E62F900EB1BDA /* CalculateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E347BB5266E62F900EB1BDA /* CalculateField.swift */; };
 		6E347BB8266E6B4400EB1BDA /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E347BB7266E6B4400EB1BDA /* splash.json */; };
@@ -195,6 +196,7 @@
 		6E2F82B6264CD48300539D8A /* HomeInvestByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInvestByCategoryView.swift; sourceTree = "<group>"; };
 		6E2F82B8264CD63700539D8A /* InvestByCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestByCategoryButton.swift; sourceTree = "<group>"; };
 		6E319C2D2667CA9F00E0C43B /* ExchangeRateServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServices.swift; sourceTree = "<group>"; };
+		6E3432E8266EF4C4004188BC /* CalculateYoungchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateYoungchanView.swift; sourceTree = "<group>"; };
 		6E347BB3266E5B3800EB1BDA /* CalculateEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateEmptyView.swift; sourceTree = "<group>"; };
 		6E347BB5266E62F900EB1BDA /* CalculateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateField.swift; sourceTree = "<group>"; };
 		6E347BB7266E6B4400EB1BDA /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 			children = (
 				6E347BB3266E5B3800EB1BDA /* CalculateEmptyView.swift */,
 				6E347BB5266E62F900EB1BDA /* CalculateField.swift */,
+				6E3432E8266EF4C4004188BC /* CalculateYoungchanView.swift */,
 			);
 			path = subview;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 				6E45387C26550966000CFC0F /* WriteMenuView.swift in Sources */,
 				6E7CAEEF266A996C00A5E0CA /* InvestStatusResponse.swift in Sources */,
 				6E2538752656964C00439E8E /* StockTypeButton.swift in Sources */,
+				6E3432E9266EF4C4004188BC /* CalculateYoungchanView.swift in Sources */,
 				6EDADCB9264C2B9A00D6D356 /* EmptyOverviewButton.swift in Sources */,
 				6E4F5D992657E8400061A13C /* SearchStockField.swift in Sources */,
 				A5754BBC2625BE4B00B6E8A1 /* BaseTableViewCell.swift in Sources */,

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CalculateField: BaseView {
     
@@ -25,6 +27,18 @@ class CalculateField: BaseView {
             self.containerView,
             self.textField
         )
+        
+        self.textField.rx.controlEvent(.editingDidBegin)
+            .map { _ in Void() }
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.focusIn)
+            .disposed(by: self.disposeBag)
+        
+        self.textField.rx.controlEvent(.editingDidEnd)
+            .map { _ in Void() }
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.focusOut)
+            .disposed(by: self.disposeBag)
     }
     
     override func bindConstraints() {
@@ -50,5 +64,22 @@ class CalculateField: BaseView {
             ])
         
         self.textField.attributedPlaceholder = attributedString
+    }
+    
+    private func focusOut() {
+        self.containerView.layer.borderWidth = 0
+        self.containerView.layer.borderColor = UIColor.primary_fade.cgColor
+    }
+    
+    private func focusIn() {
+        self.containerView.layer.borderWidth = 1
+        self.containerView.layer.borderColor = UIColor.primary_fade.cgColor
+    }
+}
+
+extension Reactive where Base: CalculateField {
+    
+    var text: ControlProperty<String> {
+        return base.textField.rx.text.orEmpty
     }
 }
