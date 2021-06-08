@@ -36,6 +36,7 @@
 		6E3432E9266EF4C4004188BC /* CalculateYoungchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3432E8266EF4C4004188BC /* CalculateYoungchanView.swift */; };
 		6E3432F0266FB157004188BC /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3432EF266FB157004188BC /* ShareView.swift */; };
 		6E3432F2266FB73D004188BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3432F1266FB73D004188BC /* ShareViewController.swift */; };
+		6E3432F4266FC3EF004188BC /* ShareReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3432F3266FC3EF004188BC /* ShareReactor.swift */; };
 		6E347BB4266E5B3800EB1BDA /* CalculateEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E347BB3266E5B3800EB1BDA /* CalculateEmptyView.swift */; };
 		6E347BB6266E62F900EB1BDA /* CalculateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E347BB5266E62F900EB1BDA /* CalculateField.swift */; };
 		6E347BB8266E6B4400EB1BDA /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E347BB7266E6B4400EB1BDA /* splash.json */; };
@@ -201,6 +202,7 @@
 		6E3432E8266EF4C4004188BC /* CalculateYoungchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateYoungchanView.swift; sourceTree = "<group>"; };
 		6E3432EF266FB157004188BC /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		6E3432F1266FB73D004188BC /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		6E3432F3266FC3EF004188BC /* ShareReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareReactor.swift; sourceTree = "<group>"; };
 		6E347BB3266E5B3800EB1BDA /* CalculateEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateEmptyView.swift; sourceTree = "<group>"; };
 		6E347BB5266E62F900EB1BDA /* CalculateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateField.swift; sourceTree = "<group>"; };
 		6E347BB7266E6B4400EB1BDA /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				6E3432EF266FB157004188BC /* ShareView.swift */,
 				6E3432F1266FB73D004188BC /* ShareViewController.swift */,
+				6E3432F3266FC3EF004188BC /* ShareReactor.swift */,
 			);
 			path = share;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				6ED56BAA2661C9670057A90F /* DomesticDetailViewController.swift in Sources */,
 				A5EBC43826475F2200876352 /* MyPageViewController.swift in Sources */,
 				6EE19C0B265A4F9D0023B0F5 /* SearchStockReactor.swift in Sources */,
+				6E3432F4266FC3EF004188BC /* ShareReactor.swift in Sources */,
 				6E45387E26550D16000CFC0F /* WriteMenuViewController.swift in Sources */,
 				6E9218B2266B99A3007A92DC /* StockDetailChildView.swift in Sources */,
 				6E347BB6266E62F900EB1BDA /* CalculateField.swift in Sources */,

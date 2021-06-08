@@ -19,10 +19,14 @@ class ShareView: BaseView {
     
     let imageContainer = UIView()
     
+    let youngchanImage = UIImageView().then {
+        $0.image = .imgBigYoungchan2
+    }
+    
     let shareButton = UIButton().then {
         $0.backgroundColor = .sub_white_w2
         $0.layer.cornerRadius = 8
-        $0.setTitle("카카오톡으로 공유하기", for: .normal)
+        $0.setTitle("이미지로 저장하기", for: .normal)
         $0.titleLabel?.font = .body2_14B
         $0.setTitleColor(.primary_default, for: .normal)
     }
@@ -66,6 +70,7 @@ class ShareView: BaseView {
     
     override func setup() {
         self.backgroundColor = .primary_default
+        self.imageContainer.addSubview(self.youngchanImage)
         self.addSubviews(
             self.backButton,
             self.logoImage,
@@ -93,6 +98,10 @@ class ShareView: BaseView {
             make.top.equalTo(self.backButton).offset(28)
             make.left.right.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        self.youngchanImage.snp.makeConstraints { make in
+            make.edges.equalTo(self.imageContainer)
         }
         
         self.shareButton.snp.makeConstraints { make in

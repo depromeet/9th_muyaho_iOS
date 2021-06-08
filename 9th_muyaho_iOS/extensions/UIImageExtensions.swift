@@ -86,4 +86,16 @@ extension UIImage {
     static let imgYoungchan8 = UIImage(named: "img_youngchan8")
     static let imgYoungchan9 = UIImage(named: "img_youngchan9")
     static let imgYoungchan10 = UIImage(named: "img_youngchan10")
+    
+    // youngchan-big
+    static let imgBigYoungchan1 = UIImage(named: "img_big_youngchan1")
+    static let imgBigYoungchan2 = UIImage(named: "img_big_youngchan2")
+    static let imgBigYoungchan3 = UIImage(named: "img_big_youngchan3")
+    static let imgBigYoungchan4 = UIImage(named: "img_big_youngchan4")
+    static let imgBigYoungchan5 = UIImage(named: "img_big_youngchan5")
+    static let imgBigYoungchan6 = UIImage(named: "img_big_youngchan6")
+    static let imgBigYoungchan7 = UIImage(named: "img_big_youngchan7")
+    static let imgBigYoungchan8 = UIImage(named: "img_big_youngchan8")
+    static let imgBigYoungchan9 = UIImage(named: "img_big_youngchan9")
+    static let imgBigYoungchan10 = UIImage(named: "img_big_youngchan10")
 }
