@@ -8,9 +8,10 @@
 import RxSwift
 import ReactorKit
 
-class CalculatorViewController: BaseViewController {
+class CalculatorViewController: BaseViewController, View {
     
     private let calculatorView = CalculatorView()
+    private let calculatorReactor = CalculatorReactor()
     
     
     static func instance() -> CalculatorViewController {
@@ -37,6 +38,49 @@ class CalculatorViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.reactor = self.calculatorReactor
         self.calculatorView.startSlimeAnimation()
+    }
+    
+    func bind(reactor: CalculatorReactor) {
+        // MARK: Bind Action
+        self.calculatorView.avgField.rx.text
+            .map { Reactor.Action.avgPrice(Double($0) ?? 0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.calculatorView.amountField.rx.text
+            .map { Reactor.Action.amount(Double($0) ?? 0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.calculatorView.purchasedField.rx.text
+            .map { Reactor.Action.purchased(Double($0) ?? 0) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.calculatorView.goalPriceField.rx.text
+            .map { Reactor.Action.goalPrice(Double($0) ?? 0)}
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.calculatorView.goalPLRateField.rx.text
+            .map { Reactor.Action.goalPLRate(Double($0) ?? 0)}
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.calculatorView.shareButton.rx.tap
+            .map { Reactor.Action.tapShareButton }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.isShareButtonEnable }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.calculatorView.shareButton.rx.isEnabled)
+            .disposed(by: self.disposeBag)
     }
 }
