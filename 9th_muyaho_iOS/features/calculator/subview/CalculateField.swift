@@ -19,6 +19,7 @@ class CalculateField: BaseView {
     let textField = UITextField().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w2
+        $0.keyboardType = .decimalPad
     }
     
     

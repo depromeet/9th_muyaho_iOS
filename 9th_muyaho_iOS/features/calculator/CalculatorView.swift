@@ -4,6 +4,8 @@ import RxCocoa
 
 class CalculatorView: BaseView {
     
+    let tapBackground = UITapGestureRecognizer()
+    
     let topContainerView = UIView().then {
         $0.backgroundColor = .sub_black_b1
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -99,6 +101,7 @@ class CalculatorView: BaseView {
     
     override func setup() {
         self.backgroundColor = .sub_black_b1
+        self.addGestureRecognizer(self.tapBackground)
         self.containerView.addSubviews(
             self.currentAssetLabel,
             self.avgField,
