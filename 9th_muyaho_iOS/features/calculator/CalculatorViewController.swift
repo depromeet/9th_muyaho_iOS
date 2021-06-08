@@ -40,7 +40,17 @@ class CalculatorViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = self.calculatorReactor
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.calculatorView.startSlimeAnimation()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.calculatorView.stopSlimeAnimation()
     }
     
     func bind(reactor: CalculatorReactor) {

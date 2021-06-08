@@ -222,4 +222,8 @@ class CalculatorView: BaseView {
         rotation.repeatCount = Float.greatestFiniteMagnitude
         self.slimeImage.layer.add(rotation, forKey: "rotationAnimation")
     }
+    
+    func stopSlimeAnimation() {
+        self.slimeImage.layer.removeAllAnimations()
+    }
 }
