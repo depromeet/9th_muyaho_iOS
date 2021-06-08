@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CalculateYoungchanView: BaseView {
     
@@ -18,11 +20,12 @@ class CalculateYoungchanView: BaseView {
     let assetLabel = UILabel().then {
         $0.font = .h2_36
         $0.textColor = .sub_white_w2
-        $0.text = "566,800,000"
         $0.textAlignment = .right
     }
     
-    let youngchanImage = UIImageView()
+    let youngchanImage = UIImageView().then {
+        $0.image = .imgYoungchan1
+    }
     
     let plLabel = PaddingLabel(
         topInset: 5,
@@ -32,7 +35,6 @@ class CalculateYoungchanView: BaseView {
     ).then {
         $0.font = .caption1_12B
         $0.textColor = .secondary_red_default
-        $0.text = "+8.35%"
         $0.layer.cornerRadius = 9
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.secondary_red_default.cgColor
@@ -70,6 +72,54 @@ class CalculateYoungchanView: BaseView {
         self.snp.makeConstraints { make in
             make.left.top.bottom.equalTo(self.youngchanImage).priority(.high)
             make.right.equalTo(titleLabel).priority(.high)
+        }
+    }
+    
+    fileprivate func setYoungchanImage(plMoney: Double) {
+        switch plMoney {
+        case _ where plMoney < 200000:
+            self.youngchanImage.image = .imgYoungchan1
+        case _ where plMoney <= 500000:
+            self.youngchanImage.image = .imgYoungchan2
+        case _ where plMoney <= 3000000:
+            self.youngchanImage.image = .imgYoungchan3
+        case _ where plMoney <= 10000000:
+            self.youngchanImage.image = .imgYoungchan4
+        case _ where plMoney <= 20000000:
+            self.youngchanImage.image = .imgYoungchan5
+        case _ where plMoney <= 50000000:
+            self.youngchanImage.image = .imgYoungchan6
+        case _ where plMoney <= 100000000:
+            self.youngchanImage.image = .imgYoungchan7
+        case _ where plMoney <= 300000000:
+            self.youngchanImage.image = .imgYoungchan8
+        case _ where plMoney <= 500000000:
+            self.youngchanImage.image = .imgYoungchan9
+        default:
+            self.youngchanImage.image = .imgYoungchan10
+        }
+    }
+}
+
+extension Reactive where Base: CalculateYoungchanView {
+    
+    var pl: Binder<(Double, Double)> {
+        return Binder(self.base) { view, pl in
+            let plMoney = pl.0
+            let plRate = pl.1
+            
+            view.assetLabel.text = plMoney.decimalString
+            
+            if plRate >= 0 {
+                view.plLabel.text = "+\(plRate)"
+                view.plLabel.textColor = .secondary_red_default
+                view.plLabel.layer.borderColor = UIColor.secondary_red_default.cgColor
+            } else {
+                view.plLabel.text = "\(plRate)"
+                view.plLabel.textColor = .secondary_blue_default
+                view.plLabel.layer.borderColor = UIColor.secondary_blue_default.cgColor
+            }
+            view.setYoungchanImage(plMoney: plMoney)
         }
     }
 }

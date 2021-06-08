@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CalculatorView: BaseView {
     
@@ -64,8 +66,16 @@ class CalculatorView: BaseView {
         $0.setAttributedPlaceholder(placeholder: "calculate_amount".localized)
     }
     
-    let purchasedField = CalculateField().then {
-        $0.setAttributedPlaceholder(placeholder: "calculate_purchased".localized)
+    let purchasedLabel = PaddingLabel(
+        topInset: 11,
+        bottomInset: 11,
+        leftInset: 13,
+        rightInset: 13
+    ).then {
+        $0.layer.cornerRadius = 10
+        $0.backgroundColor = .sub_black_b2
+        $0.font = .caption1_12R
+        $0.textColor = .sub_gray_40
     }
     
     let goalLabel = UILabel().then {
@@ -93,7 +103,7 @@ class CalculatorView: BaseView {
             self.currentAssetLabel,
             self.avgField,
             self.amountField,
-            self.purchasedField,
+            self.purchasedLabel,
             self.goalLabel,
             self.goalPriceField,
             self.goalPLRateField,
@@ -185,15 +195,16 @@ class CalculatorView: BaseView {
             make.centerY.equalTo(self.avgField)
         }
         
-        self.purchasedField.snp.makeConstraints { make in
+        self.purchasedLabel.snp.makeConstraints { make in
             make.left.equalTo(self.avgField)
             make.right.equalTo(self.amountField)
             make.top.equalTo(self.avgField.snp.bottom).offset(16)
+            make.height.equalTo(40)
         }
         
         self.goalLabel.snp.makeConstraints { make in
             make.left.equalTo(self.currentAssetLabel)
-            make.top.equalTo(self.purchasedField.snp.bottom).offset(32)
+            make.top.equalTo(self.purchasedLabel.snp.bottom).offset(32)
         }
         
         self.goalPriceField.snp.makeConstraints { make in
@@ -225,5 +236,16 @@ class CalculatorView: BaseView {
     
     func stopSlimeAnimation() {
         self.slimeImage.layer.removeAllAnimations()
+    }
+}
+
+extension Reactive where Base: CalculatorView {
+    
+    var pl: Binder<(Double, Double)> {
+        return Binder(self.base) { view, pl in
+            view.emptyView.isHidden = pl.0 != 0
+            view.yountchanView.isHidden = pl.0 == 0
+            view.yountchanView.rx.pl.onNext(pl)
+        }
     }
 }

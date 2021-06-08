@@ -79,7 +79,7 @@ class CalculateField: BaseView {
 
 extension Reactive where Base: CalculateField {
     
-    var text: ControlProperty<String> {
-        return base.textField.rx.text.orEmpty
+    var text: ControlProperty<String?> {
+        return base.textField.rx.text
     }
 }

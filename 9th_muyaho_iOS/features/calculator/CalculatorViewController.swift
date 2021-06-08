@@ -55,27 +55,26 @@ class CalculatorViewController: BaseViewController, View {
     
     func bind(reactor: CalculatorReactor) {
         // MARK: Bind Action
-        self.calculatorView.avgField.rx.text
+        self.calculatorView.avgField.textField.rx.controlEvent(.editingDidEnd)
+            .withLatestFrom(self.calculatorView.avgField.rx.text.orEmpty)
             .map { Reactor.Action.avgPrice(Double($0) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.calculatorView.amountField.rx.text
+        self.calculatorView.amountField.textField.rx.controlEvent(.editingDidEnd)
+            .withLatestFrom(self.calculatorView.amountField.rx.text.orEmpty)
             .map { Reactor.Action.amount(Double($0) ?? 0) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.calculatorView.purchasedField.rx.text
-            .map { Reactor.Action.purchased(Double($0) ?? 0) }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        self.calculatorView.goalPriceField.rx.text
+        self.calculatorView.goalPriceField.textField.rx.controlEvent(.editingDidEnd)
+            .withLatestFrom(self.calculatorView.goalPriceField.rx.text.orEmpty)
             .map { Reactor.Action.goalPrice(Double($0) ?? 0)}
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.calculatorView.goalPLRateField.rx.text
+        self.calculatorView.goalPLRateField.textField.rx.controlEvent(.editingDidEnd)
+            .withLatestFrom(self.calculatorView.goalPLRateField.rx.text.orEmpty)
             .map { Reactor.Action.goalPLRate(Double($0) ?? 0)}
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
@@ -86,6 +85,36 @@ class CalculatorViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
         
         // MARK: Bind State
+        reactor.state
+            .map { String($0.purchased) }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "calculate_purchased".localized)
+            .drive(self.calculatorView.purchasedLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.goalPrice }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: 0)
+            .map { $0 == 0 ? nil : String($0) }
+            .drive(self.calculatorView.goalPriceField.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.goalPLRate }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: 0)
+            .map { $0 == 0 ? nil : String($0) }
+            .drive(self.calculatorView.goalPLRateField.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { ($0.plMoney, $0.goalPLRate) }
+            .debug()
+            .asDriver(onErrorJustReturn: (0, 0))
+            .drive(self.calculatorView.rx.pl)
+            .disposed(by: self.disposeBag)
+        
         reactor.state
             .map { $0.isShareButtonEnable }
             .distinctUntilChanged()
