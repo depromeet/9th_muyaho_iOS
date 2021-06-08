@@ -36,9 +36,11 @@ class MainTabBerController: UITabBarController {
         let homeNaviViewController = UINavigationController(rootViewController: homeViewController)
         
         homeNaviViewController.setNavigationBarHidden(true, animated: false)
+        let calculatorNaviViewController = UINavigationController(rootViewController: calculatorViewController)
+        calculatorNaviViewController.setNavigationBarHidden(true, animated: false)
         self.setViewControllers([
             homeNaviViewController,
-            calculatorViewController,
+            calculatorNaviViewController,
             boardViewController,
             myPageViewController
         ], animated: true)

@@ -134,6 +134,11 @@ class CalculatorViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: false)
             .drive(self.calculatorView.shareButton.rx.isEnabled)
             .disposed(by: self.disposeBag)
+        
+        reactor.goToSharePublisher
+            .asDriver(onErrorJustReturn: (0, 0))
+            .drive(onNext: self.pushShare)
+            .disposed(by: self.disposeBag)
     }
     
     private func setupKeyboardNotification() {
@@ -151,12 +156,17 @@ class CalculatorViewController: BaseViewController, View {
         )
     }
     
+    private func pushShare(asset: Double, pl: Double) {
+        let shareVC = ShareViewController.instance()
+        
+        self.navigationController?.pushViewController(shareVC, animated: true)
+    }
+    
     @objc private func keyboardWillShow(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: Any] else { return }
         guard let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardScreenEndFrame = keyboardFrame.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        let bottomInset = UIApplication.shared.windows[0].safeAreaInsets.top
         
         self.calculatorView.scrollView.contentInset.bottom = keyboardViewEndFrame.height
     }
