@@ -48,7 +48,10 @@ class SearchStockReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .inputKeyword(let keyword):
-            let searchedStocks = self.stocks.filter { $0.name.contains(keyword) }
+            let searchedStocks = self.stocks
+                .filter { $0.name.lowercased().contains(keyword.lowercased()) ||
+                    $0.code.lowercased().contains(keyword.lowercased())
+                }
             
             return .just(.setStocks(searchedStocks))
         case .selectStock(let index):
