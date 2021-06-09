@@ -92,7 +92,7 @@ class AbroadDetailReactor: Reactor {
             
         case .amount(let amount):
             if self.currentState.purchasedMoeny == 0 {
-                let totalPrice = self.currentState.avgPrice * Double(amount)
+                let totalPrice = self.currentState.avgPrice * self.currentState.transitionRate * Double(amount)
                 
                 return .concat([
                     .just(.setAmount(amount)),
