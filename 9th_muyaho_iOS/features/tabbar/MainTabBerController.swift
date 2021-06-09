@@ -11,10 +11,8 @@ class MainTabBerController: UITabBarController {
 
     let homeViewController = HomeViewController.instance()
     let calculatorViewController = CalculatorViewController.instance()
-    let boardViewController = BoardViewController.instacne()
     let myPageViewController = MyPageViewController.instance()
     
-
   
     static func make() -> MainTabBerController {
         return MainTabBerController(nibName: nil, bundle: nil)
@@ -42,7 +40,6 @@ class MainTabBerController: UITabBarController {
         self.setViewControllers([
             homeNaviViewController,
             calculatorNaviViewController,
-            boardViewController,
             myPageViewController
         ], animated: true)
         self.tabBar.tintColor = .sub_white_w2
