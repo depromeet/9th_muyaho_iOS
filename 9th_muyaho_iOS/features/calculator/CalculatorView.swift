@@ -87,8 +87,10 @@ class CalculatorView: BaseView {
         $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
-    let goalPriceField = CalculateField().then {
-        $0.setAttributedPlaceholder(placeholder: "calculate_goal_price".localized)
+    let warningLabel = UILabel().then {
+        $0.font = .caption1_12R
+        $0.textColor = .secondary_red_default
+        $0.text = "+1000%까지 입력 가능해요"
     }
     
     let goalPLRateField = CalculateField().then {
@@ -108,7 +110,7 @@ class CalculatorView: BaseView {
             self.amountField,
             self.purchasedLabel,
             self.goalLabel,
-            self.goalPriceField,
+            self.warningLabel,
             self.goalPLRateField,
             self.shareButton
         )
@@ -210,18 +212,18 @@ class CalculatorView: BaseView {
             make.top.equalTo(self.purchasedLabel.snp.bottom).offset(32)
         }
         
-        self.goalPriceField.snp.makeConstraints { make in
-            make.top.equalTo(self.goalLabel.snp.bottom).offset(20)
-            make.left.right.equalTo(self.avgField)
+        self.warningLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.goalLabel)
+            make.right.equalToSuperview().offset(-20)
         }
         
         self.goalPLRateField.snp.makeConstraints { make in
-            make.left.right.equalTo(self.amountField)
-            make.centerY.equalTo(self.goalPriceField)
+            make.left.right.equalTo(self.purchasedLabel)
+            make.top.equalTo(self.goalLabel.snp.bottom).offset(20)
         }
         
         self.shareButton.snp.makeConstraints { make in
-            make.top.equalTo(self.goalPriceField.snp.bottom).offset(40)
+            make.top.equalTo(self.goalPLRateField.snp.bottom).offset(40)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
@@ -244,7 +246,7 @@ class CalculatorView: BaseView {
 
 extension Reactive where Base: CalculatorView {
     
-    var pl: Binder<(Double, Double)> {
+    var pl: Binder<(Int, Int)> {
         return Binder(self.base) { view, pl in
             view.emptyView.isHidden = pl.0 != 0
             view.yountchanView.isHidden = pl.0 == 0

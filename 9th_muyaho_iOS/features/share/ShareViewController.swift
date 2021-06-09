@@ -16,7 +16,7 @@ class ShareViewController: BaseViewController, View {
     private let shareReactor: ShareReactor
     
     
-    init(asset: Double, plRate: Double) {
+    init(asset: Int, plRate: Int) {
         self.shareReactor = ShareReactor(plRate: plRate, asset: asset)
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,7 +25,7 @@ class ShareViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func instance(asset: Double, plRate: Double) -> ShareViewController {
+    static func instance(asset: Int, plRate: Int) -> ShareViewController {
         return ShareViewController(asset: asset, plRate: plRate).then {
             $0.hidesBottomBarWhenPushed = true
         }
@@ -52,7 +52,7 @@ class ShareViewController: BaseViewController, View {
         // MARK: Bind Action
         self.shareView.slider.rx.value
             .skip(1)
-            .map { Reactor.Action.plRate(Double($0 * 1000)) }
+            .map { Reactor.Action.plRate($0 * 1000) }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         

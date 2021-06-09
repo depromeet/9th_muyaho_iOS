@@ -13,36 +13,36 @@ import Photos
 class ShareReactor: Reactor {
     
     enum Action {
-        case plRate(Double)
+        case plRate(Float)
         case tapShareButton
     }
     
     enum Mutation {
-        case setPLRate(Double)
-        case setAsset(Double)
+        case setPLRate(Float)
+        case setAsset(Int)
         case savePhoto
         case setAlertMessage(String)
     }
     
     struct State {
-        var plRate: Double
-        var asset: Double
+        var plRate: Float
+        var asset: Int
     }
     
     let initialState: State
-    let initialAsset: Double
+    let initialAsset: Int
     let photoPublisher = PublishRelay<Void>()
     let alertPublisher = PublishRelay<String>()
     
-    init(plRate: Double, asset: Double) {
+    init(plRate: Int, asset: Int) {
         self.initialAsset = asset
-        self.initialState = State(plRate: plRate, asset: asset * ((plRate / 100) + 1))
+        self.initialState = State(plRate: Float(plRate), asset: asset * ((plRate / 100) + 1))
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .plRate(let plRate):
-            let expectedAsset = self.initialAsset * ((plRate / 100) + 1)
+            let expectedAsset = Int(Float(self.initialAsset) * ((plRate / 100) + 1))
             
             return .concat([
                 .just(.setAsset(expectedAsset)),
