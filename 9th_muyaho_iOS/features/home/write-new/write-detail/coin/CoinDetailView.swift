@@ -93,7 +93,7 @@ class CoinDetailView: BaseView {
     let amountLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w3
-        $0.text = "common_amount".localized
+        $0.text = "수량"
     }
     
     let amountValueLabel = UILabel().then {
