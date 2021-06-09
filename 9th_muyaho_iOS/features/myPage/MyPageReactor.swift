@@ -30,14 +30,18 @@ class MyPageReactor: Reactor, BaseReactorProtocol {
     let initialState = State()
     let userDefaults: UserDefaultsUtils
     let memberService: MembershipServiceProtocol
+    let kakaoSignManager: KakaoSignInManager
     let goToSignInPublisher = PublishRelay<Void>()
+    let kakaoDisposeBag = DisposeBag()
     
     init(
         userDefaults: UserDefaultsUtils,
-        memberService: MembershipServiceProtocol
+        memberService: MembershipServiceProtocol,
+        kakaoSignManager: KakaoSignInManager
     ) {
         self.userDefaults = userDefaults
         self.memberService = memberService
+        self.kakaoSignManager = kakaoSignManager
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -66,6 +70,11 @@ class MyPageReactor: Reactor, BaseReactorProtocol {
         case .setUser(let memberResponse):
             newState.member = memberResponse
         case .goToSignIn:
+            if self.currentState.member.provider == .kakao {
+                self.kakaoSignManager.signOut()
+                    .subscribe()
+                    .disposed(by: self.kakaoDisposeBag)
+            }
             self.goToSignInPublisher.accept(())
         case .setAlertMessage(let message):
             newState.alertMessage = message

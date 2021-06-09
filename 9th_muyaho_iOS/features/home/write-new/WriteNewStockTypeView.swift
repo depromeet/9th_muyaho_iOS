@@ -36,12 +36,18 @@ class WriteNewStockTypeView: BaseView {
     
     let stockSearchButton = StockSearchButton()
     
+    let warningLabel = UILabel().then {
+        $0.font = .body2_14R
+        $0.textColor = .sub_black_b5
+        $0.text = "- 가상화페 항목은\n업비트거래소를 기준으로 검색 가능합니다."
+        $0.numberOfLines = 0
+    }
     
     override func setup() {
         self.backgroundColor = .sub_black_b1
         self.addSubviews(
             titleLabel, closeButton, descriptionLabel, stockTypeRadioGroupView,
-            stockNameLabel, stockSearchButton
+            stockNameLabel, stockSearchButton, warningLabel
         )
     }
     
@@ -75,6 +81,11 @@ class WriteNewStockTypeView: BaseView {
             make.top.equalTo(stockNameLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(24)
             make.right.equalToSuperview().offset(-24)
+        }
+        
+        self.warningLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(self.stockSearchButton.snp.bottom).offset(32)
         }
     }
 }
