@@ -51,9 +51,15 @@ class MyPageReactor: Reactor, BaseReactorProtocol {
                 .map { Mutation.setUser($0.data) }
                 .catchError(self.handleError(error:))
         case .tapSignout:
+            self.kakaoSignManager.signOut()
+                .subscribe(
+                ).disposed(by: self.kakaoDisposeBag)
             self.userDefaults.clear()
             return .just(.goToSignIn)
         case .tapWithdrawal:
+            self.kakaoSignManager.unlink()
+                .subscribe(
+                ).disposed(by: self.kakaoDisposeBag)
             return self.memberService.withdrawal()
                 .do(onNext: { [weak self] _ in
                     self?.userDefaults.clear()
@@ -70,11 +76,6 @@ class MyPageReactor: Reactor, BaseReactorProtocol {
         case .setUser(let memberResponse):
             newState.member = memberResponse
         case .goToSignIn:
-            if self.currentState.member.provider == .kakao {
-                self.kakaoSignManager.signOut()
-                    .subscribe()
-                    .disposed(by: self.kakaoDisposeBag)
-            }
             self.goToSignInPublisher.accept(())
         case .setAlertMessage(let message):
             newState.alertMessage = message
