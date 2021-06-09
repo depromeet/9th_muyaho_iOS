@@ -72,16 +72,18 @@ class ShareView: BaseView {
     
     override func setup() {
         self.backgroundColor = .primary_default
-        self.imageContainer.addSubview(self.youngchanImage)
+        self.imageContainer.addSubviews(
+            self.youngchanImage,
+            self.plRateLabel,
+            self.assetLabel,
+            self.descriptionLabel
+        )
         self.addSubviews(
             self.backButton,
             self.logoImage,
             self.imageContainer,
             self.shareButton,
-            self.slider,
-            self.plRateLabel,
-            self.assetLabel,
-            self.descriptionLabel
+            self.slider
         )
     }
     
@@ -97,13 +99,30 @@ class ShareView: BaseView {
         }
         
         self.imageContainer.snp.makeConstraints { make in
-            make.top.equalTo(self.backButton).offset(28)
+            make.top.equalTo(self.backButton.snp.bottom).offset(28)
             make.left.right.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.width)
+            make.bottom.equalTo(self.descriptionLabel)
         }
         
         self.youngchanImage.snp.makeConstraints { make in
-            make.edges.equalTo(self.imageContainer)
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        self.descriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.youngchanImage.snp.bottom).offset(24)
+        }
+        
+        self.assetLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(10)
+        }
+        
+        self.plRateLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.assetLabel.snp.bottom).offset(28)
+            make.height.equalTo(34)
         }
         
         self.shareButton.snp.makeConstraints { make in
@@ -118,46 +137,51 @@ class ShareView: BaseView {
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.shareButton.snp.top).offset(-58)
         }
-        
-        self.plRateLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.slider.snp.top).offset(-21)
-            make.height.equalTo(34)
-        }
-        
-        self.assetLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.plRateLabel.snp.top).offset(-28)
-        }
-        
-        self.descriptionLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(self.assetLabel.snp.top).offset(-10)
-        }
     }
     
     fileprivate func setYoungchanImage(asset: Double) {
         switch asset {
         case _ where asset < 200000:
             self.youngchanImage.image = .imgBigYoungchan1
+            self.setBackground(isBlack: false)
         case _ where asset <= 500000:
             self.youngchanImage.image = .imgBigYoungchan2
+            self.setBackground(isBlack: false)
         case _ where asset <= 3000000:
             self.youngchanImage.image = .imgBigYoungchan3
+            self.setBackground(isBlack: false)
         case _ where asset <= 10000000:
             self.youngchanImage.image = .imgBigYoungchan4
+            self.setBackground(isBlack: false)
         case _ where asset <= 20000000:
             self.youngchanImage.image = .imgBigYoungchan5
+            self.setBackground(isBlack: false)
         case _ where asset <= 50000000:
             self.youngchanImage.image = .imgBigYoungchan6
+            self.setBackground(isBlack: false)
         case _ where asset <= 100000000:
             self.youngchanImage.image = .imgBigYoungchan7
+            self.setBackground(isBlack: false)
         case _ where asset <= 300000000:
             self.youngchanImage.image = .imgBigYoungchan8
+            self.setBackground(isBlack: false)
         case _ where asset <= 500000000:
             self.youngchanImage.image = .imgBigYoungchan9
+            self.setBackground(isBlack: true)
         default:
             self.youngchanImage.image = .imgBigYoungchan10
+            self.setBackground(isBlack: true)
+        }
+    }
+    
+    private func setBackground(isBlack: Bool) {
+        let backgroundColor = isBlack ? UIColor.sub_black_b1 : UIColor.primary_default
+        
+        if self.backgroundColor != backgroundColor {
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.backgroundColor = isBlack ? .sub_black_b1 : .primary_default
+                self?.plRateLabel.backgroundColor = isBlack ? .primary_default : .primary_dark
+            }
         }
     }
 }
@@ -167,7 +191,7 @@ extension Reactive where Base: ShareView {
     var plRate: Binder<Double> {
         return Binder(self.base) { view, plRate in
             view.slider.value = Float(plRate / 1000)
-            view.plRateLabel.text = "+\(plRate.decimalString)%"
+            view.plRateLabel.text = "+\(Int(plRate))%"
         }
     }
     

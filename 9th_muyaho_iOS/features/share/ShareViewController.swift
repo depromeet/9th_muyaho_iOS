@@ -51,8 +51,8 @@ class ShareViewController: BaseViewController, View {
     func bind(reactor: ShareReactor) {
         // MARK: Bind Action
         self.shareView.slider.rx.value
+            .skip(1)
             .map { Reactor.Action.plRate(Double($0 * 1000)) }
-            .debug()
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         

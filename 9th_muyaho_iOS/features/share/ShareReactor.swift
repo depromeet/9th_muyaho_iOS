@@ -27,16 +27,18 @@ class ShareReactor: Reactor {
     }
     
     let initialState: State
+    let initialAsset: Double
     let photoPublisher = PublishRelay<Void>()
     
     init(plRate: Double, asset: Double) {
-        self.initialState = State(plRate: plRate, asset: asset)
+        self.initialAsset = asset
+        self.initialState = State(plRate: plRate, asset: asset * ((plRate / 100) + 1))
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .plRate(let plRate):
-            let expectedAsset = self.initialState.asset * ((plRate / 100) + 1)
+            let expectedAsset = self.initialAsset * ((plRate / 100) + 1)
             
             return .concat([
                 .just(.setAsset(expectedAsset)),
