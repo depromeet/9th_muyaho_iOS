@@ -47,5 +47,6 @@ class MainTabBerController: UITabBarController {
         ], animated: true)
         self.tabBar.tintColor = .sub_white_w2
         self.tabBar.barTintColor = .sub_black_b1
+        self.tabBar.isTranslucent = false
     }
 }
