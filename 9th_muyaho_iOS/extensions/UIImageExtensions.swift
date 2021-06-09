@@ -70,4 +70,32 @@ extension UIImage {
     
     // board
     static let icTbdEmpty = UIImage(named: "img_tbd_youngchan")
+    
+    // calculate
+    static let imgBlueSlime = UIImage(named: "img_blue_slime")
+    static let imgEmptyYoungchan = UIImage(named: "img_empty_youngchan")
+    
+    // youngchan
+    static let imgYoungchan1 = UIImage(named: "img_youngchan1")
+    static let imgYoungchan2 = UIImage(named: "img_youngchan2")
+    static let imgYoungchan3 = UIImage(named: "img_youngchan3")
+    static let imgYoungchan4 = UIImage(named: "img_youngchan4")
+    static let imgYoungchan5 = UIImage(named: "img_youngchan5")
+    static let imgYoungchan6 = UIImage(named: "img_youngchan6")
+    static let imgYoungchan7 = UIImage(named: "img_youngchan7")
+    static let imgYoungchan8 = UIImage(named: "img_youngchan8")
+    static let imgYoungchan9 = UIImage(named: "img_youngchan9")
+    static let imgYoungchan10 = UIImage(named: "img_youngchan10")
+    
+    // youngchan-big
+    static let imgBigYoungchan1 = UIImage(named: "img_big_youngchan1")
+    static let imgBigYoungchan2 = UIImage(named: "img_big_youngchan2")
+    static let imgBigYoungchan3 = UIImage(named: "img_big_youngchan3")
+    static let imgBigYoungchan4 = UIImage(named: "img_big_youngchan4")
+    static let imgBigYoungchan5 = UIImage(named: "img_big_youngchan5")
+    static let imgBigYoungchan6 = UIImage(named: "img_big_youngchan6")
+    static let imgBigYoungchan7 = UIImage(named: "img_big_youngchan7")
+    static let imgBigYoungchan8 = UIImage(named: "img_big_youngchan8")
+    static let imgBigYoungchan9 = UIImage(named: "img_big_youngchan9")
+    static let imgBigYoungchan10 = UIImage(named: "img_big_youngchan10")
 }
