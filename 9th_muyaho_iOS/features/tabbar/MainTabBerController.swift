@@ -35,6 +35,7 @@ class MainTabBerController: UITabBarController {
     private func setupTabBar() {
         let homeNaviViewController = UINavigationController(rootViewController: homeViewController)
         
+        homeNaviViewController.interactivePopGestureRecognizer?.delegate = nil
         homeNaviViewController.setNavigationBarHidden(true, animated: false)
         let calculatorNaviViewController = UINavigationController(rootViewController: calculatorViewController)
         calculatorNaviViewController.setNavigationBarHidden(true, animated: false)
