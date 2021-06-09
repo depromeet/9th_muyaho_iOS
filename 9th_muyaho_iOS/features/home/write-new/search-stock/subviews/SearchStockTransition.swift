@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchStockTransition: NSObject {
     
-    let duration = 0.5
+    let duration = 0.3
     var transitionType: TransitionType = .present
     var originalFrame = CGRect.zero
     var originalCenter: CGPoint = .zero
