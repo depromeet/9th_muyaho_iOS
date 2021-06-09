@@ -89,6 +89,7 @@ extension Reactive where Base: InvestByCategoryButton {
             
             if stockCalculate.overview.isEmpty {
                 view.subTitleLabel.text = "home_category_register".localized
+                view.subTitleLabel.textColor = .sub_black_b5
             } else {
                 if stockCalculate.type == .abroad {
                     let pl = stockCalculate.overview
