@@ -101,7 +101,7 @@ class ShareView: BaseView {
         self.imageContainer.snp.makeConstraints { make in
             make.top.equalTo(self.backButton.snp.bottom).offset(28)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(self.descriptionLabel)
+            make.bottom.equalTo(self.plRateLabel).offset(10)
         }
         
         self.youngchanImage.snp.makeConstraints { make in
@@ -180,6 +180,7 @@ class ShareView: BaseView {
         if self.backgroundColor != backgroundColor {
             UIView.animate(withDuration: 0.3) { [weak self] in
                 self?.backgroundColor = isBlack ? .sub_black_b1 : .primary_default
+                self?.imageContainer.backgroundColor = isBlack ? .sub_black_b1 : .primary_default
                 self?.plRateLabel.backgroundColor = isBlack ? .primary_default : .primary_dark
             }
         }

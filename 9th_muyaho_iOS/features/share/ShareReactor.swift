@@ -19,6 +19,7 @@ class ShareReactor: Reactor {
     enum Mutation {
         case setPLRate(Double)
         case setAsset(Double)
+        case savePhoto
     }
     
     struct State {
@@ -45,7 +46,7 @@ class ShareReactor: Reactor {
                 .just(.setPLRate(plRate))
             ])
         case .tapShareButton:
-            return .empty()
+            return .just(.savePhoto)
         }
     }
     
@@ -57,6 +58,8 @@ class ShareReactor: Reactor {
             newState.asset = asset
         case .setPLRate(let plRate):
             newState.plRate = plRate
+        case .savePhoto:
+            self.photoPublisher.accept(())
         }
         
         return newState

@@ -73,9 +73,42 @@ class ShareViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: 0)
             .drive(self.shareView.rx.asset)
             .disposed(by: self.disposeBag)
+        
+        reactor.photoPublisher
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.savePhotoToAlbum)
+            .disposed(by: self.disposeBag)
     }
     
     private func popVC() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func savePhotoToAlbum() {
+      let image = self.shareView.imageContainer.asImage()
+      
+      UIImageWriteToSavedPhotosAlbum(
+        image,
+        self,
+        #selector(saveError(_:didFinishSavingWithError:contextInfo:)),
+        nil
+      )
+    }
+    
+    @objc func saveError(
+      _ image: UIImage,
+      didFinishSavingWithError error: Error?,
+      contextInfo: UnsafeRawPointer
+    ) {
+      if let error = error {
+        print("error: \(error.localizedDescription)")
+      } else {
+        AlertUtils.showWithAction(
+            controller: self,
+            title: "저장 완료",
+            message: "앨범에서 이미지를 공유해보세요.👋") { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+      }
     }
 }
