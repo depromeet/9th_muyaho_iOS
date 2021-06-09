@@ -35,7 +35,6 @@ class AbroadDetailReactor: Reactor {
     }
     
     struct State {
-        var stockType: StockType
         var stockName: String
         var isSaveButtonEnable = false
         var avgPrice = 0.0
@@ -63,7 +62,7 @@ class AbroadDetailReactor: Reactor {
         self.stock = stock
         self.stockService = stockService
         self.exchangeRateService = exchangeRateService
-        self.initialState = State(stockType: stock.type, stockName: stock.name)
+        self.initialState = State(stockName: stock.name)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
