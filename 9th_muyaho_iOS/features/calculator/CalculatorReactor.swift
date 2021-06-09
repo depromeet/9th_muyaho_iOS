@@ -154,7 +154,7 @@ class CalculatorReactor: Reactor {
                 return .just(.setGoalPLRate(goalPLRate))
             }
         case .tapShareButton:
-            return .just(.goToShare(self.currentState.goalPrice, self.currentState.goalPLRate))
+            return .just(.goToShare(self.currentState.purchased, self.currentState.goalPLRate))
         }
     }
     

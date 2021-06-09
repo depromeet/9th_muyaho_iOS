@@ -36,9 +36,27 @@ class ShareReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .plRate(let plRate):
-            return .just(.setPLRate(plRate))
+            let expectedAsset = self.initialState.asset * ((plRate / 100) + 1)
+            
+            return .concat([
+                .just(.setAsset(expectedAsset)),
+                .just(.setPLRate(plRate))
+            ])
         case .tapShareButton:
             return .empty()
         }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var newState = state
+        
+        switch mutation {
+        case .setAsset(let asset):
+            newState.asset = asset
+        case .setPLRate(let plRate):
+            newState.plRate = plRate
+        }
+        
+        return newState
     }
 }

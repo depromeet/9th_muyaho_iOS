@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ShareView: BaseView {
     
@@ -133,5 +135,46 @@ class ShareView: BaseView {
             make.bottom.equalTo(self.assetLabel.snp.top).offset(-10)
         }
     }
+    
+    fileprivate func setYoungchanImage(asset: Double) {
+        switch asset {
+        case _ where asset < 200000:
+            self.youngchanImage.image = .imgBigYoungchan1
+        case _ where asset <= 500000:
+            self.youngchanImage.image = .imgBigYoungchan2
+        case _ where asset <= 3000000:
+            self.youngchanImage.image = .imgBigYoungchan3
+        case _ where asset <= 10000000:
+            self.youngchanImage.image = .imgBigYoungchan4
+        case _ where asset <= 20000000:
+            self.youngchanImage.image = .imgBigYoungchan5
+        case _ where asset <= 50000000:
+            self.youngchanImage.image = .imgBigYoungchan6
+        case _ where asset <= 100000000:
+            self.youngchanImage.image = .imgBigYoungchan7
+        case _ where asset <= 300000000:
+            self.youngchanImage.image = .imgBigYoungchan8
+        case _ where asset <= 500000000:
+            self.youngchanImage.image = .imgBigYoungchan9
+        default:
+            self.youngchanImage.image = .imgBigYoungchan10
+        }
+    }
 }
-       
+
+extension Reactive where Base: ShareView {
+    
+    var plRate: Binder<Double> {
+        return Binder(self.base) { view, plRate in
+            view.slider.value = Float(plRate / 1000)
+            view.plRateLabel.text = "+\(plRate.decimalString)%"
+        }
+    }
+    
+    var asset: Binder<Double> {
+        return Binder(self.base) { view, asset in
+            view.assetLabel.text = asset.decimalString
+            view.setYoungchanImage(asset: asset)
+        }
+    }
+}

@@ -156,8 +156,8 @@ class CalculatorViewController: BaseViewController, View {
         )
     }
     
-    private func pushShare(asset: Double, pl: Double) {
-        let shareVC = ShareViewController.instance()
+    private func pushShare(asset: Double, plRate: Double) {
+        let shareVC = ShareViewController.instance(asset: asset, plRate: plRate)
         
         self.navigationController?.pushViewController(shareVC, animated: true)
     }

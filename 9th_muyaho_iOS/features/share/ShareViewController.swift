@@ -6,17 +6,30 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import ReactorKit
 
-class ShareViewController: BaseViewController {
+class ShareViewController: BaseViewController, View {
     
     private let shareView = ShareView()
+    private let shareReactor: ShareReactor
     
-    static func instance() -> ShareViewController {
-        return ShareViewController(nibName: nil, bundle: nil).then {
+    
+    init(asset: Double, plRate: Double) {
+        self.shareReactor = ShareReactor(plRate: plRate, asset: asset)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func instance(asset: Double, plRate: Double) -> ShareViewController {
+        return ShareViewController(asset: asset, plRate: plRate).then {
             $0.hidesBottomBarWhenPushed = true
         }
     }
-    
     
     override func loadView() {
         self.view = shareView
@@ -24,6 +37,8 @@ class ShareViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.reactor = self.shareReactor
     }
     
     override func bindEvent() {
@@ -31,6 +46,33 @@ class ShareViewController: BaseViewController {
             .asDriver()
             .drive(onNext: self.popVC)
             .disposed(by: self.eventDisposeBag)
+    }
+    
+    func bind(reactor: ShareReactor) {
+        // MARK: Bind Action
+        self.shareView.slider.rx.value
+            .map { Reactor.Action.plRate(Double($0 * 1000)) }
+            .debug()
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.shareView.shareButton.rx.tap
+            .map { Reactor.Action.tapShareButton }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        // MARK: Bind State
+        reactor.state
+            .map { $0.plRate }
+            .asDriver(onErrorJustReturn: 0)
+            .drive(self.shareView.rx.plRate)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.asset }
+            .asDriver(onErrorJustReturn: 0)
+            .drive(self.shareView.rx.asset)
+            .disposed(by: self.disposeBag)
     }
     
     private func popVC() {
