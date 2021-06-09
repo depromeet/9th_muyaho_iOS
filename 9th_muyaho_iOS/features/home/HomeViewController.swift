@@ -39,7 +39,12 @@ class HomeViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reactor = homeReactor
-        self.homeReactor.action.onNext(.viewDidLoad)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.homeReactor.action.onNext(.viewWillAppear)
     }
     
     override func bindEvent() {
