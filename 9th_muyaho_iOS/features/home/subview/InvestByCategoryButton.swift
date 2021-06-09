@@ -40,13 +40,13 @@ class InvestByCategoryButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setPL(pl: Double) {
+    fileprivate func setPL(pl: Int) {
         if pl >= 0 {
             self.subTitleLabel.textColor = .secondary_red_default
-            self.subTitleLabel.text = "+" + pl.roundUpTwoString + "원"
+            self.subTitleLabel.text = "+" + pl.decimalString + "원"
         } else {
             self.subTitleLabel.textColor = .secondary_blue_default
-            self.subTitleLabel.text = pl.roundUpTwoString + "원"
+            self.subTitleLabel.text = pl.decimalString + "원"
         }
     }
     
@@ -93,12 +93,12 @@ extension Reactive where Base: InvestByCategoryButton {
             } else {
                 if stockCalculate.type == .abroad {
                     let pl = stockCalculate.overview
-                        .map { $0.current.won.amountPrice - $0.purchase.amountInWon }
+                        .map { Int($0.current.won.amountPrice - $0.purchase.amountInWon) }
                         .reduce(0, +)
                     view.setPL(pl: pl)
                 } else {
                     let pl = stockCalculate.overview
-                        .map { $0.current.won.amountPrice - $0.purchase.amount }
+                        .map { Int($0.current.won.amountPrice - $0.purchase.amount) }
                         .reduce(0, +)
                     view.setPL(pl: pl)
                 }
