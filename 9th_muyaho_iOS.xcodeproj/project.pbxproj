@@ -1438,7 +1438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FDA26644E22F62978D83FBA /* Pods-9th_muyaho_iOS.debug.xcconfig */;
 			buildSettings = {
-				API_URL = "http://muyaho-api-alb-302156047.ap-northeast-2.elb.amazonaws.com";
+				API_URL = "https://test.muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
@@ -1465,7 +1465,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A57283C4AA526D18F7C7023E /* Pods-9th_muyaho_iOS.release.xcconfig */;
 			buildSettings = {
-				API_URL = "http://muyaho-api-alb-302156047.ap-northeast-2.elb.amazonaws.com";
+				API_URL = "https://muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
