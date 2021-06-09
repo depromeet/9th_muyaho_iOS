@@ -78,6 +78,11 @@ class ShareViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.savePhotoToAlbum)
             .disposed(by: self.disposeBag)
+        
+        reactor.alertPublisher
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: self.showDeniedAlert(message:))
+          .disposed(by: self.disposeBag)
     }
     
     private func popVC() {
@@ -93,6 +98,25 @@ class ShareViewController: BaseViewController, View {
         #selector(saveError(_:didFinishSavingWithError:contextInfo:)),
         nil
       )
+    }
+    
+    private func showDeniedAlert(message: String) {
+      AlertUtils.showWithCancel(
+        viewController: self,
+        title: nil,
+        message: message,
+        onTapOk: { [weak self] in
+          self?.gotoAppPrivacySettings()
+      })
+    }
+    
+    private func gotoAppPrivacySettings() {
+      guard let url = URL(string: UIApplication.openSettingsURLString),
+            UIApplication.shared.canOpenURL(url) else {
+        return
+      }
+      
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     @objc func saveError(

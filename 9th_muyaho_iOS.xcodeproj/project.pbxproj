@@ -1436,6 +1436,7 @@
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
@@ -1462,6 +1463,7 @@
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;

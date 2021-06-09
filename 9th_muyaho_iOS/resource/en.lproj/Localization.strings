@@ -121,3 +121,6 @@
 "calculate_history" = "기록";
 "calculate_pl_rate" = "수익률";
 "calculate_riding_water" = "물타기";
+
+// share
+"share_photo_deny_message" = "이미지로 공유하기 위해 앨범 접근 권한이 필요해요.";
