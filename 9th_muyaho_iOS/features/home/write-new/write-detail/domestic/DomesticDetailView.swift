@@ -200,6 +200,7 @@ class DomesticDetailView: BaseView {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
+            make.height.equalTo(40)
         }
     }
     
@@ -212,7 +213,8 @@ extension Reactive where Base: DomesticDetailView {
     
     var isSaveEnable: Binder<Bool> {
         return Binder(self.base) { view, isEnable in
-            view.saveButton.backgroundColor = isEnable ? .primary_default : .primary_default.withAlphaComponent(0.5)
+            view.saveButton.backgroundColor = isEnable ? .primary_default
+                : UIColor(r: 45, g: 36, b: 125)
             if isEnable {
                 view.saveButton.layer.shadowOpacity = 0.4
             } else {
