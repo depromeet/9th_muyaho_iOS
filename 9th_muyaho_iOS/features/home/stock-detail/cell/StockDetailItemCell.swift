@@ -266,9 +266,15 @@ class StockDetailItemCell: BaseTableViewCell {
     func bind(stock: StockCalculateResponse) {
         let type = stock.stock.type
         self.type = type
-        let pl = stock.current.won.amountPrice - stock.purchase.amount
         
-        self.plLabel.text = pl.decimalString + "(" + stock.profitOrLoseRate + "%)"
+        var pl: Double {
+            if type == .abroad {
+                return stock.current.won.amountPrice - stock.purchase.amountInWon
+            } else {
+                return stock.current.won.amountPrice - stock.purchase.amount
+            }
+        }
+        self.plLabel.text = abs(pl).decimalString + "(" + stock.profitOrLoseRate + "%)"
         self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
         self.plLabel.textColor = pl >= 0 ? .secondary_red_default : .secondary_blue_default
         self.priceLabel.text = stock.current.won.amountPrice.decimalString
