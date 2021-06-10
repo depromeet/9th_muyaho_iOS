@@ -18,11 +18,9 @@ class SignInReactor: Reactor, BaseReactorProtocol {
     var userDefaults: UserDefaultsUtils
     
     var authRequest: AuthRequest?
-    var socialType: SocialType?
     
     enum Action {
-        case tapKakaoButton
-        case tapAppleButton
+        case signIn(AuthRequest)
     }
     
     enum Mutation {
@@ -32,10 +30,11 @@ class SignInReactor: Reactor, BaseReactorProtocol {
     }
     
     struct State {
-        var goToSignUpFlag: Bool = false
-        var goToMainFlag: Bool = false
         var alertMessage: String?
     }
+    
+    let goToSignUpPublisher = PublishRelay<AuthRequest?>()
+    let goToMainPublisher = PublishRelay<Void>()
     
     
     init(
@@ -52,27 +51,10 @@ class SignInReactor: Reactor, BaseReactorProtocol {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .tapKakaoButton:
-            return self.kakaoManager.signIn()
-                .do(onNext: { [weak self] authRequest in
-                    self?.authRequest = authRequest
-                    self?.socialType = .kakao
-                })
-                .map { (SocialType.kakao, $0) }
-                .flatMap(self.membershipService.signIn)
-                .do(onNext: { [weak self] in
-                    self?.userDefaults.sessionId = $0.data.sessionId
-                })
-                .map { _ in Mutation.goToMain }
-                .catchError(self.handleSignInError(error:))
-        case .tapAppleButton:
-            return self.appleManager.signIn()
-                .do(onNext: { [weak self] authRequest in
-                    self?.authRequest = authRequest
-                    self?.socialType = .apple
-                })
-                .map { (SocialType.apple, $0) }
-                .flatMap(self.membershipService.signIn)
+        case .signIn(let authRequest):
+            self.authRequest = authRequest
+            return self.membershipService.signIn(
+                socialType: authRequest.provider, authRequest: authRequest)
                 .do(onNext: { [weak self] in
                     self?.userDefaults.sessionId = $0.data.sessionId
                 })
@@ -86,9 +68,9 @@ class SignInReactor: Reactor, BaseReactorProtocol {
         
         switch mutation {
         case .goToSignUp:
-            newState.goToSignUpFlag.toggle()
+            self.goToSignUpPublisher.accept(self.authRequest)
         case .goToMain:
-            newState.goToMainFlag.toggle()
+            self.goToMainPublisher.accept(())
         case .setAlertMessage(let message):
             newState.alertMessage = message
         }
