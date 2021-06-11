@@ -1,0 +1,125 @@
+/* 
+  Localization.strings
+  9th_muyaho_iOS
+
+  Created by Hyun Sik Yoo on 2021/04/29.
+  
+*/
+// common
+"common_ok" = "확인";
+"common_cancel" = "취소";
+"common_average_price" = "평단가";
+"common_amount" = "수량";
+"common_current_price" = "현재가";
+"common_amount" = "보유량";
+"common_finish" = "완료";
+
+// category
+"investment_category_demestic" = "국내주식";
+"investment_category_abroad" = "해외주식";
+"investment_category_coin" = "가상화폐";
+
+// http-error
+"http_error_bad_reqeust" = "잘못된 요청입니다.";
+"http_error_not_found" = "결과를 찾을 수 없습니다.";
+"http_error_conflict" = "서버 요청중 충돌이 발생했습니다.";
+"http_error_internal_server_error" = "500에러 서버탓 기기~";
+"http_error_unknown" = "알수 없는 에러가 발생했습니다.";
+
+// sign-in
+"sign_in_with_kakao" = "카카오 계정으로 계속하기";
+"sign_in_with_apple" = "Apple로 계속하기";
+
+// sign-up
+"sign_up_title" = "우리 화성🚀갈꺼니까,\n영~차!";
+"sign_up_description" = "닉네임을 정해주세요!(최대 5자)";
+"sign_up_nickname_placeholder" = "닉네임 입력";
+"sign_up_button" = "시작하기";
+"sign_up_already_existed_nickname" = "중복된 닉네임";
+
+// home
+"home_empty_title" = "각 투자별 상황을 입력하고\n영찬이를 깨워주세요!";
+"home_today_pl_title" = "오늘의 수익금은\n";
+"home_my_invest_status" = "나의 투자 현황은?";
+"home_empty_overview" = "각 투자별 현황을 입력하세요";
+"home_invent_by_category_header_format" = "현재 %d종목에 투자 중!";
+"home_category_register" = "등록하기";
+"home_youngchan_empty_left" = "zzzz...";
+"home_youngchan_empty_right" = "zzzzzz...";
+"home_youngchan_up_left_1" = "우린...";
+"home_youngchan_up_right_1" = "화성갈꺼니까...";
+"home_youngchan_up_left_2" = "영...차....";
+"home_youngchan_up_right_2" = "영.......차......";
+"home_youngchan_up_left_3" = "존...버는";
+"home_youngchan_up_right_3" = "승ㄹ...ㅣㅎ";
+"home_youngchan_down_left_1" = "화려한 빨간불이";
+"home_youngchan_down_right_1" = "나를 감싸네...";
+"home_youngchan_down_left_2" = "도지타고";
+"home_youngchan_down_right_2" = "화성 갈꾸니깐";
+"home_youngchan_down_left_3" = "늦으면";
+"home_youngchan_down_right_3" = "어시없다";
+"home_total_title" = "최종 자산";
+"home_incoming_rate_title" = "수익률(%)";
+"home_incoming_title" = "수익금(원)";
+
+// write-menu
+"write_menu_modify" = "기종 종목 정보 수정";
+"write_menu_new" = "신규 종목 추가";
+
+// write-new-stock-type
+"write_new_stock_type_title" = "신규항목추가";
+"write_new_stock_type_description" = "신규 등록하실\n투자 종목을 알려주세요!";
+"write_new_stock_type_name" = "종목명";
+"write_new_stock_search" = "종목 이름, 종목 코드로 검색해 주세요";
+
+// search-stock
+"search_stock_title" = "종목 검색하기";
+"search_stock_placeholder" = "종목 이름, 종목 코드로 검색해 주세요";
+"search_stock_latest_history" = "최근 10개의 검색 기록";
+
+// write-detail
+"write_detail_title" = "신규항목추가";
+"write_detail_description" = "투자 종목의\n가격과 수량을 알려주세요!";
+"write_detail_save" = "저장하기";
+"write_detail_cancel_title" = "기록이 날라가요!";
+"write_detail_cancel_description" = "작성 중인 글을 취소하시나요?\n작성된 글은 저장되지 않아요.";
+"write_detail_continue" = "계속 등록";
+"write_detail_exit" = "등록 종료";
+"write_detail_option_title" = "선택사항";
+"write_detail_option_description" = "매입금 미입력시 해외주식 매입 평균환율은\n현재환율 기준으로 계산되어 오차가 발생 할 수 있습니다";
+"write_detail_transition_rate" = "적용환율";
+"write_detail_standard" = "기본 - 하나은행 기준환율";
+"write_detail_purchased_money" = "매입금";
+
+// stock-detail
+"stock_detail_count_format" = "총 %d종목";
+"stock_detail_purchased_average" = "매수평균가";
+"stock_detail_edit" = "수정하기";
+"stock_detail_delete" = "삭제하기";
+"stock_detail_alert_title" = "종목을 삭제할까요?";
+"stock_detail_alert_description" = "최종 자산과 수익률에 영향을 줍니다.";
+"stock_detail_next_time" = "다음에";
+"stock_detail_delete" = "삭제하기";
+
+// my-page
+"my_page_title_format" = "님,\n환영합니다!";
+"my_page_signout" = "로그아웃";
+"my_page_withdrawal" = "회원탈퇴";
+"my_page_tbd" = "준비중이에요!";
+
+// calculate
+"calculate_empty_title" = "미래의 수익금을\n예상해보세요!";
+"calculate_title" = "미래의 수익금은";
+"calculate_current_asset" = "현재 보유";
+"calculate_gole" = "내 목표 수익률은?";
+"calculate_avg" = "보유 평단가 (원)";
+"calculate_amount" = "보유 수량 (원)";
+"calculate_purchased" = "매입 금액 (원)";
+"calculate_goal_pl_rate" = "목표 수익률 (%)";
+"calculate_share" = "공유하기";
+"calculate_history" = "기록";
+"calculate_pl_rate" = "수익률";
+"calculate_riding_water" = "물타기";
+
+// share
+"share_photo_deny_message" = "이미지로 공유하기 위해 앨범 접근 권한이 필요해요.";

@@ -10,8 +10,14 @@ target '9th_muyaho_iOS' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'RxDataSources', '~> 4.0'
   pod 'Kingfisher', '~> 5.0'
-  pod 'Alamofire', '~> 5.2'
+  pod 'RxAlamofire'
+  pod 'Then'
+  pod 'RxKakaoSDKAuth'
+  pod 'RxKakaoSDKUser'
+  pod 'lottie-ios'
+  pod 'Firebase/Analytics'
   
   target '9th_muyaho_iOSTests' do
     inherit! :search_paths
