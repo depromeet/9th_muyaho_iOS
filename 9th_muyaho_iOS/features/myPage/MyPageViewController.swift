@@ -13,7 +13,8 @@ class MyPageViewController: BaseViewController, View {
     private let myPageView = MyPageView()
     private let myPageReactor = MyPageReactor(
         userDefaults: UserDefaultsUtils(),
-        memberService: MembershipService()
+        memberService: MembershipService(),
+        kakaoSignManager: KakaoSignInManager()
     )
 
     
@@ -50,17 +51,17 @@ class MyPageViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: self.goToSignIn)
             .disposed(by: self.eventDisposeBag)
+        
+        self.myPageView.withdrawalButton.rx.tap
+            .asDriver()
+            .drive(onNext: self.showWithdrawalAlert)
+            .disposed(by: self.eventDisposeBag)
     }
     
     func bind(reactor: MyPageReactor) {
         // MARK: Bind Action
         self.myPageView.signOutButton.rx.tap
             .map { Reactor.Action.tapSignout }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        self.myPageView.withdrawalButton.rx.tap
-            .map { Reactor.Action.tapWithdrawal }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
@@ -82,6 +83,16 @@ class MyPageViewController: BaseViewController, View {
     private func goToSignIn() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.goToSignIn()
+        }
+    }
+    
+    private func showWithdrawalAlert() {
+        AlertUtils.showWithCancel(
+            viewController: self,
+            title: "회원 탈퇴",
+            message: "탈퇴하게되면 저장해둔 투자 종목이 모두 날아가버려요.\n그래도 탈퇴하시겠어요..?😭"
+        ) { [weak self] in
+            self?.myPageReactor.action.onNext(.tapWithdrawal)
         }
     }
 }

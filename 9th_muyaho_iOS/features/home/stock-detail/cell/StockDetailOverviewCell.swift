@@ -14,13 +14,11 @@ class StockDetailOverviewCell: BaseTableViewCell {
     let totalMoneyLabel = UILabel().then {
         $0.font = .h2_36
         $0.textColor = .sub_white_w2
-        $0.text = "1,500,000"
     }
     
     let descriptionLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w2
-        $0.text = "현재 국내 자산(원)"
     }
     
     let plContainerView = UIView().then {
@@ -35,7 +33,6 @@ class StockDetailOverviewCell: BaseTableViewCell {
     let plLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .secondary_blue_default
-        $0.text = "120,402원"
     }
     
     let starImage = UIImageView().then {
@@ -126,6 +123,7 @@ class StockDetailOverviewCell: BaseTableViewCell {
         self.setYoungchan(by: type)
         self.totalMoneyLabel.text = totalMoney.decimalString
         self.setProfitOrLose(pl: pl)
+        self.setStockType(type: type)
     }
     
     private func setYoungchan(by type: StockType) {
@@ -141,11 +139,22 @@ class StockDetailOverviewCell: BaseTableViewCell {
     
     private func setProfitOrLose(pl: Double) {
         self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
-        self.plLabel.text = pl.decimalString + "원"
+        self.plLabel.text = abs(pl).decimalString + "원"
         if pl >= 0 {
             self.plLabel.textColor = .secondary_red_default
         } else {
             self.plLabel.textColor = .secondary_blue_default
+        }
+    }
+    
+    private func setStockType(type: StockType) {
+        switch type {
+        case .domestic:
+            self.descriptionLabel.text = "현재 국내 자산(원)"
+        case .abroad:
+            self.descriptionLabel.text = "현재 해외 자산(원)"
+        case .coin:
+            self.descriptionLabel.text = "현재 코인(원)"
         }
     }
 }

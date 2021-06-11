@@ -8,6 +8,9 @@
 import UIKit
 import ReactorKit
 import AuthenticationServices
+import KakaoSDKUser
+import KakaoSDKAuth
+import KakaoSDKCommon
 
 class SignInViewController: BaseViewController, View {
     
@@ -36,33 +39,29 @@ class SignInViewController: BaseViewController, View {
         self.signInView.startAnimation()
     }
     
-    func bind(reactor: SignInReactor) {
-        // Bind action
+    override func bindEvent() {
         self.signInView.kakaoButton.rx.tap
-            .map { SignInReactor.Action.tapKakaoButton }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
+            .asDriver()
+            .drive(onNext: self.signInKakao)
+            .disposed(by: self.eventDisposeBag)
         
         self.signInView.appleButton.rx.tap
-            .map { SignInReactor.Action.tapAppleButton }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
+            .asDriver()
+            .drive(onNext: self.signInApple)
+            .disposed(by: self.eventDisposeBag)
         
-        // Bind State
-        reactor.state
-            .map { $0.goToMainFlag }
-            .filter { $0 == true }
-            .map { _ in Void() }
-            .bind(onNext: self.goToMain)
-            .disposed(by: self.disposeBag)
+        self.signinReactor.goToSignUpPublisher
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: self.gpToSignUp)
+            .disposed(by: self.eventDisposeBag)
         
-        reactor.state
-            .map { $0.goToSignUpFlag }
-            .distinctUntilChanged()
-            .map { _ in return (reactor.socialType, reactor.authRequest) }
-            .bind(onNext: self.gpToSignUp)
-            .disposed(by: self.disposeBag)
-        
+        self.signinReactor.goToMainPublisher
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: self.goToMain)
+            .disposed(by: self.eventDisposeBag)
+    }
+    
+    func bind(reactor: SignInReactor) {
         reactor.state
             .map { $0.alertMessage }
             .compactMap { $0 }
@@ -71,10 +70,9 @@ class SignInViewController: BaseViewController, View {
             .disposed(by: self.disposeBag)
     }
     
-    private func gpToSignUp(socialType: SocialType?, authRequest: AuthRequest?) {
+    private func gpToSignUp(authRequest: AuthRequest?) {
         guard let authRequest = authRequest else { return }
-        guard let socialType = socialType else { return }
-        let signUpViewController = SignUpViewController.instance(socialType: socialType, accessToken: authRequest)
+        let signUpViewController = SignUpViewController.instance(socialType: authRequest.provider, accessToken: authRequest)
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
@@ -82,6 +80,109 @@ class SignInViewController: BaseViewController, View {
     private func goToMain() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.goToMain()
+        }
+    }
+    
+    private func signInKakao() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            self.signInWithKakaoTalk()
+        } else {
+            self.signInWithKakaoAccount()
+        }
+    }
+    
+    private func signInWithKakaoTalk() {
+        UserApi.shared.rx.loginWithKakaoTalk()
+            .subscribe { authToken in
+                let accessToken = AuthRequest(provider: .kakao, token: authToken.accessToken)
+                
+                self.signinReactor.action.onNext(.signIn(accessToken))
+            } onError: { error in
+                if let sdkError = error as? SdkError {
+                    if sdkError.isClientFailed {
+                        switch sdkError.getClientError().reason {
+                        case .Cancelled:
+                            break
+                        default:
+                            let errorMessage = sdkError.getApiError().info?.msg ?? ""
+                            
+                            self.showAlert(message: errorMessage)
+                        }
+                    }
+                } else {
+                    self.showAlert(message: "error is not SdkError. (\(error.self))")
+                }
+            }.disposed(by: self.disposeBag)
+    }
+    
+    private func signInWithKakaoAccount() {
+        UserApi.shared.rx.loginWithKakaoAccount()
+            .subscribe { authToken in
+                let accessToken = AuthRequest(provider: .kakao, token: authToken.accessToken)
+                
+                self.signinReactor.action.onNext(.signIn(accessToken))
+            } onError: { error in
+                if let sdkError = error as? SdkError {
+                    if sdkError.isClientFailed {
+                        switch sdkError.getClientError().reason {
+                        case .Cancelled:
+                            break
+                        default:
+                            let errorMessage = sdkError.getApiError().info?.msg ?? ""
+                            
+                            self.showAlert(message: errorMessage)
+                        }
+                    }
+                } else {
+                    self.showAlert(message: "error is not SdkError. (\(error.self))")
+                }
+            }
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func signInApple() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [.fullName, .email]
+        
+        let authController = ASAuthorizationController(authorizationRequests: [request])
+        
+        authController.delegate = self
+        authController.performRequests()
+    }
+}
+
+extension SignInViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithError error: Error
+    ) {
+        if let authorizationError = error as? ASAuthorizationError {
+            switch authorizationError.code {
+            case .canceled:
+                break
+            case .failed, .invalidResponse, .notHandled, .unknown:
+                self.showAlert(message: authorizationError.localizedDescription)
+            default:
+                self.showAlert(message: authorizationError.localizedDescription)
+            }
+        } else {
+            self.showAlert(message: "error is instance of \(error.self). not ASAuthorizationError")
+        }
+    }
+    
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+           let accessToken = String(data: appleIDCredential.identityToken!, encoding: .utf8) {
+            let authRequest = AuthRequest(provider: .apple, token: accessToken)
+            self.signinReactor.action.onNext(.signIn(authRequest))
+        } else {
+            self.showAlert(message: "credential is not ASAuthorizationAppleIDCredential")
         }
     }
 }

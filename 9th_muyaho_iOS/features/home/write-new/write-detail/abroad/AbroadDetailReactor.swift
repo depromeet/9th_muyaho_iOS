@@ -35,7 +35,6 @@ class AbroadDetailReactor: Reactor {
     }
     
     struct State {
-        var stockType: StockType
         var stockName: String
         var isSaveButtonEnable = false
         var avgPrice = 0.0
@@ -63,7 +62,7 @@ class AbroadDetailReactor: Reactor {
         self.stock = stock
         self.stockService = stockService
         self.exchangeRateService = exchangeRateService
-        self.initialState = State(stockType: stock.type, stockName: stock.name)
+        self.initialState = State(stockName: stock.name)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -93,7 +92,7 @@ class AbroadDetailReactor: Reactor {
             
         case .amount(let amount):
             if self.currentState.purchasedMoeny == 0 {
-                let totalPrice = self.currentState.avgPrice * Double(amount)
+                let totalPrice = self.currentState.avgPrice * self.currentState.transitionRate * Double(amount)
                 
                 return .concat([
                     .just(.setAmount(amount)),

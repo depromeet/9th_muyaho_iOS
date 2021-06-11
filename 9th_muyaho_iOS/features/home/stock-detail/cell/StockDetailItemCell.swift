@@ -12,6 +12,8 @@ import RxCocoa
 class StockDetailItemCell: BaseTableViewCell {
     
     static let registerId = "\(StockDetailItemCell.self)"
+    let tripleWidth = (UIScreen.main.bounds.width - 42) / 3
+    let doubleWidth = (UIScreen.main.bounds.width - 41) / 2
     var type: StockType = .domestic
     
     let stockContainerView = UIView().then {
@@ -42,6 +44,7 @@ class StockDetailItemCell: BaseTableViewCell {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w1
         $0.text = "common_average_price".localized
+        $0.textAlignment = .center
     }
     
     let avgPriceValueLabel = UILabel().then {
@@ -57,6 +60,7 @@ class StockDetailItemCell: BaseTableViewCell {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w1
         $0.text = "common_current_price".localized
+        $0.textAlignment = .center
     }
     
     let currentPriceValueLabel = UILabel().then {
@@ -72,6 +76,7 @@ class StockDetailItemCell: BaseTableViewCell {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w1
         $0.text = "common_amount".localized
+        $0.textAlignment = .center
     }
     
     let amountValueLabel = UILabel().then {
@@ -84,6 +89,7 @@ class StockDetailItemCell: BaseTableViewCell {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w1
         $0.text = "common_current_price".localized
+        $0.textAlignment = .center
     }
     
     let coinCurrentPriceValueLabel = UILabel().then {
@@ -99,6 +105,7 @@ class StockDetailItemCell: BaseTableViewCell {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w1
         $0.text = "stock_detail_purchased_average".localized
+        $0.textAlignment = .center
     }
     
     let purchasedAvgValueLabel = UILabel().then {
@@ -185,6 +192,7 @@ class StockDetailItemCell: BaseTableViewCell {
         self.avgPriceLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.stockContainerView.snp.bottom).offset(13)
+            make.width.equalTo(self.tripleWidth)
         }
         
         self.avgPriceValueLabel.snp.makeConstraints { make in
@@ -194,14 +202,15 @@ class StockDetailItemCell: BaseTableViewCell {
         
         self.leftDividorView.snp.makeConstraints { make in
             make.top.equalTo(self.stockContainerView.snp.bottom).offset(20)
-            make.right.equalTo(self.avgPriceLabel.snp.left).offset(-40)
+            make.right.equalTo(self.avgPriceLabel.snp.left)
             make.width.equalTo(1)
             make.height.equalTo(24)
         }
         
         self.currentPriceLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.avgPriceLabel)
-            make.right.equalTo(self.leftDividorView.snp.left).offset(-40)
+            make.right.equalTo(self.leftDividorView.snp.left)
+            make.width.equalTo(self.tripleWidth)
         }
         
         self.currentPriceValueLabel.snp.makeConstraints { make in
@@ -212,12 +221,13 @@ class StockDetailItemCell: BaseTableViewCell {
         
         self.rightDividorView.snp.makeConstraints { make in
             make.width.height.centerY.equalTo(self.leftDividorView)
-            make.left.equalTo(self.avgPriceLabel.snp.right).offset(40)
+            make.left.equalTo(self.avgPriceLabel.snp.right)
         }
         
         self.amountLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.avgPriceLabel)
-            make.left.equalTo(self.rightDividorView.snp.right).offset(40)
+            make.left.equalTo(self.rightDividorView.snp.right)
+            make.width.equalTo(self.tripleWidth)
         }
         
         self.amountValueLabel.snp.makeConstraints { make in
@@ -234,7 +244,8 @@ class StockDetailItemCell: BaseTableViewCell {
         
         self.coinCurrentPriceLabel.snp.makeConstraints { make in
             make.top.equalTo(self.stockContainerView.snp.bottom).offset(13)
-            make.right.equalTo(self.centerDividorView.snp.left).offset(-66)
+            make.right.equalTo(self.centerDividorView.snp.left)
+            make.width.equalTo(self.doubleWidth)
         }
         
         self.coinCurrentPriceValueLabel.snp.makeConstraints { make in
@@ -244,7 +255,8 @@ class StockDetailItemCell: BaseTableViewCell {
         
         self.purchasedAvgLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.coinCurrentPriceLabel)
-            make.left.equalTo(self.centerDividorView.snp.right).offset(58)
+            make.left.equalTo(self.centerDividorView.snp.right)
+            make.width.equalTo(self.doubleWidth)
         }
         
         self.purchasedAvgValueLabel.snp.makeConstraints { make in
@@ -254,21 +266,29 @@ class StockDetailItemCell: BaseTableViewCell {
         
         self.editButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.centerDividorView)
-            make.right.equalTo(self.centerDividorView.snp.left).offset(-42)
+            make.right.equalTo(self.centerDividorView.snp.left)
+            make.width.equalTo(self.doubleWidth)
         }
         
         self.deleteButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.centerDividorView)
-            make.left.equalTo(self.centerDividorView.snp.right).offset(43)
+            make.left.equalTo(self.centerDividorView.snp.right)
+            make.width.equalTo(self.doubleWidth)
         }
     }
     
     func bind(stock: StockCalculateResponse) {
         let type = stock.stock.type
         self.type = type
-        let pl = stock.current.won.amountPrice - stock.purchase.amount
         
-        self.plLabel.text = pl.decimalString + "(" + stock.profitOrLoseRate + "%)"
+        var pl: Double {
+            if type == .abroad {
+                return stock.current.won.amountPrice - stock.purchase.amountInWon
+            } else {
+                return stock.current.won.amountPrice - stock.purchase.amount
+            }
+        }
+        self.plLabel.text = abs(pl).decimalString + "(" + stock.profitOrLoseRate + "%)"
         self.plArrowImage.image = pl >= 0 ? .arrowUp : .arrowDown
         self.plLabel.textColor = pl >= 0 ? .secondary_red_default : .secondary_blue_default
         self.priceLabel.text = stock.current.won.amountPrice.decimalString
@@ -294,9 +314,11 @@ class StockDetailItemCell: BaseTableViewCell {
             self.avgPriceValueLabel.text = stock.purchase.unitPrice.decimalString
             self.amountValueLabel.text = stock.quantity
         case .abroad:
-            self.currentPriceValueLabel.text = stock.current.won.unitPrice.decimalString
+            self.currentPriceValueLabel.text = stock.current.dollar.amountPrice.decimalString
             self.avgPriceValueLabel.text = stock.purchase.unitPrice.decimalString
             self.amountValueLabel.text = stock.quantity
+            self.currentPriceLabel.text = "현재가(USD)"
+            self.avgPriceLabel.text = "평단가(USD)"
         case .coin:
             self.coinCurrentPriceValueLabel.text = stock.current.won.unitPrice.decimalString
             // TODO: 매수 평균가는 어떻게 계산하지..?

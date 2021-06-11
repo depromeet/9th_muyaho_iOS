@@ -165,7 +165,7 @@ class DashBoardView: BaseView {
         } else {
             self.incommingRateArrowImage.image = .arrowDown
         }
-        self.incommingRateLabel.text = pl.decimalString + "%"
+        self.incommingRateLabel.text = abs(pl).decimalString + "%"
     }
     
     fileprivate func setFinalAsset(asset: Double) {
@@ -174,7 +174,7 @@ class DashBoardView: BaseView {
         } else {
             self.incommingArrowImage.image = .arrowDown
         }
-        self.incommingLabel.text = asset.decimalString
+        self.incommingLabel.text = abs(asset).decimalString
     }
 }
 

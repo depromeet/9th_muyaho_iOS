@@ -124,7 +124,7 @@ class HomeOverview: BaseView {
     private func setTodayPLTitle(todayPL: Double) {
         let todayPLString = self.isProfit(pl: todayPL) ?
             "+" + todayPL.decimalString :
-            "-" + todayPL.decimalString
+            todayPL.decimalString
         let text = "home_today_pl_title".localized + todayPLString
         let attributedString = NSMutableAttributedString(string: text)
         let attributedRange = (text as NSString).range(of: todayPLString)

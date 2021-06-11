@@ -15,7 +15,6 @@
 		6E1443B8266D07FC007FD896 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443B7266D07FC007FD896 /* BoardViewController.swift */; };
 		6E1443BB266D13A0007FD896 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443BA266D13A0007FD896 /* SplashView.swift */; };
 		6E1443C0266D149E007FD896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1443BF266D149E007FD896 /* SplashViewController.swift */; };
-		6E1443C2266D1A7F007FD896 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */; };
 		6E166309263D2D1400A35C9F /* HTTPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E166308263D2D1400A35C9F /* HTTPUtils.swift */; };
 		6E16630E263D2D8400A35C9F /* MembershipServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16630D263D2D8400A35C9F /* MembershipServices.swift */; };
 		6E166316263D306600A35C9F /* ResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E166315263D306600A35C9F /* ResponseContainer.swift */; };
@@ -107,6 +106,9 @@
 		6EABBAE4263AF5B500ACC332 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE3263AF5B500ACC332 /* SignUpView.swift */; };
 		6EABBAE6263AFED300ACC332 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */; };
 		6EC14AEB2662637E0054A1CD /* DomesticDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC14AEA2662637E0054A1CD /* DomesticDetailReactor.swift */; };
+		6ECFEE162670C57900290ED3 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECFEE152670C57900290ED3 /* IntExtensions.swift */; };
+		6ECFEE182670DD7C00290ED3 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECFEE172670DD7C00290ED3 /* FloatExtensions.swift */; };
+		6ECFEE1C26710F1A00290ED3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6ECFEE1B26710F1A00290ED3 /* GoogleService-Info.plist */; };
 		6ED56BA82661C8080057A90F /* DomesticDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED56BA72661C8080057A90F /* DomesticDetailView.swift */; };
 		6ED56BAA2661C9670057A90F /* DomesticDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED56BA92661C9670057A90F /* DomesticDetailViewController.swift */; };
 		6ED95A86264ACCAA00853CA3 /* HomeOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */; };
@@ -181,7 +183,6 @@
 		6E1443B7266D07FC007FD896 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		6E1443BA266D13A0007FD896 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6E1443BF266D149E007FD896 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E166308263D2D1400A35C9F /* HTTPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUtils.swift; sourceTree = "<group>"; };
 		6E16630D263D2D8400A35C9F /* MembershipServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipServices.swift; sourceTree = "<group>"; };
 		6E166315263D306600A35C9F /* ResponseContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContainer.swift; sourceTree = "<group>"; };
@@ -273,6 +274,9 @@
 		6EABBAE3263AF5B500ACC332 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		6EABBAE5263AFED300ACC332 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6EC14AEA2662637E0054A1CD /* DomesticDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomesticDetailReactor.swift; sourceTree = "<group>"; };
+		6ECFEE152670C57900290ED3 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		6ECFEE172670DD7C00290ED3 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
+		6ECFEE1B26710F1A00290ED3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6ED56BA72661C8080057A90F /* DomesticDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomesticDetailView.swift; sourceTree = "<group>"; };
 		6ED56BA92661C9670057A90F /* DomesticDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomesticDetailViewController.swift; sourceTree = "<group>"; };
 		6ED95A85264ACCAA00853CA3 /* HomeOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverview.swift; sourceTree = "<group>"; };
@@ -562,6 +566,8 @@
 				6E5A3A22263D9B2700B46EAF /* HTTPURLResponseExtensions.swift */,
 				6E5A3A24263D9C7C00B46EAF /* ObservableExtensions.swift */,
 				6E9218A6266B1F86007A92DC /* DoubleExtensions.swift */,
+				6ECFEE152670C57900290ED3 /* IntExtensions.swift */,
+				6ECFEE172670DD7C00290ED3 /* FloatExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -750,8 +756,8 @@
 				A5754B4A2625B6C200B6E8A1 /* AppDelegate.swift */,
 				A5754B4C2625B6C200B6E8A1 /* SceneDelegate.swift */,
 				A5754B532625B6C400B6E8A1 /* Assets.xcassets */,
+				6ECFEE1B26710F1A00290ED3 /* GoogleService-Info.plist */,
 				A5754B552625B6C400B6E8A1 /* LaunchScreen.storyboard */,
-				6E1443C1266D1A7F007FD896 /* GoogleService-Info.plist */,
 				A5754B582625B6C400B6E8A1 /* Info.plist */,
 			);
 			path = 9th_muyaho_iOS;
@@ -1002,7 +1008,7 @@
 				6E8175A1263838910050FFC7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 				A58C2BEA2659DE1100CEEE8C /* HistoryCell.xib in Resources */,
 				A5754B542625B6C400B6E8A1 /* Assets.xcassets in Resources */,
-				6E1443C2266D1A7F007FD896 /* GoogleService-Info.plist in Resources */,
+				6ECFEE1C26710F1A00290ED3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,6 +1146,7 @@
 				6E7CAEE9266A920900A5E0CA /* StockPurchaseResponse.swift in Sources */,
 				6E744C6026416FA600AB9054 /* BaseReactorProtocol.swift in Sources */,
 				6E4F5D9D2657F66A0061A13C /* SearchStockTransition.swift in Sources */,
+				6ECFEE162670C57900290ED3 /* IntExtensions.swift in Sources */,
 				6EABBAD1263A95DE00ACC332 /* CommonError.swift in Sources */,
 				6EC14AEB2662637E0054A1CD /* DomesticDetailReactor.swift in Sources */,
 				6E166320263D34FA00A35C9F /* JsonUtils.swift in Sources */,
@@ -1151,6 +1158,7 @@
 				6E6E6DF92639B1320061AB4A /* AppleSignInManager.swift in Sources */,
 				6EE19C07265A37730023B0F5 /* SearchHistoryTableView.swift in Sources */,
 				6E2B9C862661EF1400734784 /* DeletableInputField.swift in Sources */,
+				6ECFEE182670DD7C00290ED3 /* FloatExtensions.swift in Sources */,
 				6E25387926569A5700439E8E /* StockType.swift in Sources */,
 				6E3432F2266FB73D004188BC /* ShareViewController.swift in Sources */,
 				6E9218AE266B8EC5007A92DC /* StockDetailViewController.swift in Sources */,
@@ -1430,13 +1438,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FDA26644E22F62978D83FBA /* Pods-9th_muyaho_iOS.debug.xcconfig */;
 			buildSettings = {
-				API_URL = "http://muyaho-api-alb-302156047.ap-northeast-2.elb.amazonaws.com";
+				API_URL = "https://prod.muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
@@ -1445,11 +1453,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.muyaho.-th-muyaho-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.youngcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1457,13 +1465,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A57283C4AA526D18F7C7023E /* Pods-9th_muyaho_iOS.release.xcconfig */;
 			buildSettings = {
-				API_URL = "http://muyaho-api-alb-302156047.ap-northeast-2.elb.amazonaws.com";
+				API_URL = "https://prod.muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
@@ -1472,11 +1480,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.muyaho.-th-muyaho-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.youngcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

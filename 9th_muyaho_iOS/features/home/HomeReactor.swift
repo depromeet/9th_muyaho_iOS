@@ -11,7 +11,7 @@ import RxCocoa
 class HomeReactor: Reactor, BaseReactorProtocol {
     
     enum Action {
-        case viewDidLoad
+        case viewWillAppear
         case tapRefresh
         case tapStockDetail(StockType)
     }
@@ -41,7 +41,7 @@ class HomeReactor: Reactor, BaseReactorProtocol {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidLoad:
+        case .viewWillAppear:
             let fetchCacheStatus = self.stockService.fetchStatusCache()
                 .map { Mutation.setInvestStatus($0.data) }
                 .catchError(self.handleError(error:))

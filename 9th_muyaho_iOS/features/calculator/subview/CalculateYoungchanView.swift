@@ -75,7 +75,7 @@ class CalculateYoungchanView: BaseView {
         }
     }
     
-    fileprivate func setYoungchanImage(plMoney: Double) {
+    fileprivate func setYoungchanImage(plMoney: Int) {
         switch plMoney {
         case _ where plMoney < 200000:
             self.youngchanImage.image = .imgYoungchan1
@@ -103,7 +103,7 @@ class CalculateYoungchanView: BaseView {
 
 extension Reactive where Base: CalculateYoungchanView {
     
-    var pl: Binder<(Double, Double)> {
+    var pl: Binder<(Int, Int)> {
         return Binder(self.base) { view, pl in
             let plMoney = pl.0
             let plRate = pl.1
@@ -111,11 +111,11 @@ extension Reactive where Base: CalculateYoungchanView {
             view.assetLabel.text = plMoney.decimalString
             
             if plRate >= 0 {
-                view.plLabel.text = "+\(plRate)"
+                view.plLabel.text = "+\(plRate)%"
                 view.plLabel.textColor = .secondary_red_default
                 view.plLabel.layer.borderColor = UIColor.secondary_red_default.cgColor
             } else {
-                view.plLabel.text = "\(plRate)"
+                view.plLabel.text = "\(plRate)%"
                 view.plLabel.textColor = .secondary_blue_default
                 view.plLabel.layer.borderColor = UIColor.secondary_blue_default.cgColor
             }

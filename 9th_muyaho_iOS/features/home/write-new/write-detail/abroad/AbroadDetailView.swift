@@ -39,20 +39,13 @@ class AbroadDetailView: BaseView {
     let descriptionLabel = UILabel().then {
         $0.font = .subtitle1_24
         $0.textColor = .sub_white_w1
-        $0.text = "write_detail_description".localized
+        $0.text = "해외투자 종목의\n가격과 수량을 알려주세요!"
         $0.numberOfLines = 0
     }
     
     let stockContainerView = UIView().then {
         $0.backgroundColor = .sub_white_w1
         $0.layer.cornerRadius = 16
-    }
-    
-    let stockTypeLabel = UILabel().then {
-        $0.font = .caption1_12R
-        $0.textColor = .sub_black_b4
-        $0.text = "investment_category_abroad".localized
-        $0.contentHuggingPriority(for: .vertical)
     }
     
     let stockNameLabel = UILabel().then {
@@ -82,7 +75,7 @@ class AbroadDetailView: BaseView {
     let amountLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w3
-        $0.text = "common_amount".localized
+        $0.text = "수량"
     }
     
     let amountField = DeletableInputField().then {
@@ -150,7 +143,7 @@ class AbroadDetailView: BaseView {
         self.backgroundColor = .sub_black_b1
         self.addGestureRecognizer(self.tapBackground)
         self.containerView.addSubviews(
-            descriptionLabel, stockContainerView, stockTypeLabel, stockNameLabel,
+            descriptionLabel, stockContainerView, stockNameLabel,
             totalPriceLabel, avgPriceLabel, avgPriceField, amountLabel,
             amountField, optionLabel, optionDescriptionLabel,
             transitionRateLabel, transitionRateValueLabel, standardLabel, purchasedMoneyLabel,
@@ -200,22 +193,17 @@ class AbroadDetailView: BaseView {
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(26)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.bottom.equalTo(self.stockNameLabel).offset(12)
-        }
-        
-        self.stockTypeLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.stockContainerView).offset(16)
-            make.top.equalTo(self.stockContainerView).offset(14)
+            make.bottom.equalTo(self.totalPriceLabel).offset(8)
         }
         
         self.stockNameLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.stockTypeLabel)
-            make.top.equalTo(self.stockTypeLabel.snp.bottom).offset(12)
+            make.left.equalTo(self.stockContainerView).offset(16)
+            make.top.equalTo(self.stockContainerView).offset(12)
         }
         
         self.totalPriceLabel.snp.makeConstraints { make in
             make.right.equalTo(self.stockContainerView).offset(-8)
-            make.centerY.equalTo(self.stockNameLabel)
+            make.top.equalTo(self.stockNameLabel.snp.bottom).offset(4)
         }
         
         self.avgPriceLabel.snp.makeConstraints { make in
@@ -280,6 +268,7 @@ class AbroadDetailView: BaseView {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
+            make.height.equalTo(40)
         }
     }
     
@@ -292,7 +281,8 @@ extension Reactive where Base: AbroadDetailView {
     
     var isSaveEnable: Binder<Bool> {
         return Binder(self.base) { view, isEnable in
-            view.saveButton.backgroundColor = isEnable ? .primary_default : .primary_default.withAlphaComponent(0.5)
+            view.saveButton.backgroundColor = isEnable ? .primary_default
+                : UIColor(r: 45, g: 36, b: 125)
             if isEnable {
                 view.saveButton.layer.shadowOpacity = 0.4
             } else {
@@ -353,19 +343,6 @@ extension Reactive where Base: AbroadDetailView {
                 view.amountField.textfield.text = nil
             } else {
                 view.amountField.textfield.text = "\(amount) 개"
-            }
-        }
-    }
-    
-    var stockType: Binder<StockType> {
-        return Binder(self.base) { view, stockType in
-            switch stockType {
-            case .domestic:
-                view.stockTypeLabel.text = "investment_category_demestic".localized
-            case .abroad:
-                view.stockTypeLabel.text = "investment_category_abroad".localized
-            case .coin:
-                view.stockTypeLabel.text = "investment_category_coin".localized
             }
         }
     }

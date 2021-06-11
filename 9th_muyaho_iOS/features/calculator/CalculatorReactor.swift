@@ -11,36 +11,33 @@ import RxCocoa
 class CalculatorReactor: Reactor {
     
     enum Action {
-        case avgPrice(Double)
-        case amount(Double)
-        case goalPrice(Double)
-        case goalPLRate(Double)
+        case avgPrice(Int)
+        case amount(Int)
+        case goalPLRate(Int)
         case tapShareButton
     }
     
     enum Mutation {
-        case setAvgPrice(Double)
-        case setAmount(Double)
-        case setPurchased(Double)
-        case setGoalPrice(Double)
-        case setGoalPLRate(Double)
-        case setPlMoney(Double)
-        case enableShareButton(Bool)
-        case goToShare(Double, Double)
+        case setAvgPrice(Int)
+        case setAmount(Int)
+        case setPurchased(Int)
+        case setGoalPLRate(Int)
+        case setPlMoney(Int)
+        case enableShareButton
+        case goToShare(Int, Int)
     }
     
     struct State {
-        var avgPrice: Double = 0
-        var amount: Double = 0
-        var purchased: Double = 0
-        var goalPrice: Double = 0
-        var goalPLRate: Double = 0
-        var plMoney: Double = 0
+        var avgPrice: Int = 0
+        var amount: Int = 0
+        var purchased: Int = 0
+        var goalPLRate: Int = 0
+        var plMoney: Int = 0
         var isShareButtonEnable = false
     }
     
     let initialState = State()
-    let goToSharePublisher = PublishRelay<(Double, Double)>()
+    let goToSharePublisher = PublishRelay<(Int, Int)>()
     
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -50,39 +47,26 @@ class CalculatorReactor: Reactor {
                 let purchased = avgPrice * self.currentState.amount
                 
                 if self.currentState.goalPLRate != 0 {
-                    let plMoney = purchased + (purchased * self.currentState.goalPLRate / 100)
-                    let goalPrice = avgPrice + (avgPrice * self.currentState.goalPLRate / 100)
+                    let plMoney = purchased * (self.currentState.goalPLRate / 100)
                     
                     return .concat([
                         .just(.setAvgPrice(avgPrice)),
                         .just(.setPurchased(purchased)),
-                        .just(.setGoalPrice(goalPrice)),
                         .just(.setPlMoney(plMoney)),
-                        .just(.enableShareButton(self.isShareEnable()))
-                    ])
-                } else if self.currentState.goalPrice != 0 {
-                    let goalPLRate = self.currentState.goalPrice / avgPrice * 100
-                    let plMoney = purchased + (purchased * goalPLRate / 100)
-                    
-                    return .concat([
-                        .just(.setAvgPrice(avgPrice)),
-                        .just(.setPurchased(purchased)),
-                        .just(.setGoalPLRate(goalPLRate)),
-                        .just(.setPlMoney(plMoney)),
-                        .just(.enableShareButton(self.isShareEnable()))
+                        .just(.enableShareButton)
                     ])
                 } else {
                     return .concat([
                         .just(.setAvgPrice(avgPrice)),
                         .just(.setPurchased(purchased)),
-                        .just(.enableShareButton(self.isShareEnable()))
+                        .just(.enableShareButton)
                     ])
                 }
                 
             } else {
                 return .concat([
                     .just(.setAvgPrice(avgPrice)),
-                    .just(.enableShareButton(self.isShareEnable()))
+                    .just(.enableShareButton)
                 ])
             }
         case .amount(let amount):
@@ -90,65 +74,35 @@ class CalculatorReactor: Reactor {
                 let purchased = amount * self.currentState.avgPrice
                 
                 if self.currentState.goalPLRate != 0 {
-                    let plMoney = purchased * self.currentState.goalPLRate / 100
-                    let goalPrice = self.currentState.avgPrice + (self.currentState.avgPrice * self.currentState.goalPLRate / 100)
+                    let plMoney = purchased * (self.currentState.goalPLRate / 100)
                     
                     return .concat([
                         .just(.setAmount(amount)),
                         .just(.setPurchased(purchased)),
-                        .just(.setGoalPrice(goalPrice)),
                         .just(.setPlMoney(plMoney)),
-                        .just(.enableShareButton(self.isShareEnable()))
+                        .just(.enableShareButton)
                     ])
-                } else if self.currentState.goalPrice != 0 {
-                    let goalPLRate = self.currentState.goalPrice / self.currentState.avgPrice * 100
-                    let plMoney = purchased * goalPLRate / 100
-                    
+                } else {
                     return .concat([
                         .just(.setAmount(amount)),
                         .just(.setPurchased(purchased)),
-                        .just(.setGoalPLRate(goalPLRate)),
-                        .just(.setPlMoney(plMoney)),
-                        .just(.enableShareButton(self.isShareEnable()))
-                    ])
-                }
-                else {
-                    return .concat([
-                        .just(.setAmount(amount)),
-                        .just(.setPurchased(purchased)),
-                        .just(.enableShareButton(self.isShareEnable()))
+                        .just(.enableShareButton)
                     ])
                 }
             } else {
                 return .concat([
                     .just(.setAmount(amount)),
-                    .just(.enableShareButton(self.isShareEnable()))
+                    .just(.enableShareButton)
                 ])
-            }
-        case .goalPrice(let goalPrice):
-            if self.currentState.purchased != 0 {
-                let goalPLRate = (goalPrice - self.currentState.avgPrice) / self.currentState.avgPrice * 100
-                let plMoney =  self.currentState.purchased * goalPLRate / 100
-                
-                return .concat([
-                    .just(.setGoalPrice(goalPrice)),
-                    .just(.setGoalPLRate(goalPLRate)),
-                    .just(.setPlMoney(plMoney)),
-                    .just(.enableShareButton(self.isShareEnable()))
-                ])
-            } else {
-                return .just(.setGoalPrice(goalPrice))
             }
         case .goalPLRate(let goalPLRate):
             if self.currentState.purchased != 0 {
-                let goalPrice = self.currentState.avgPrice + (self.currentState.avgPrice * goalPLRate / 100)
-                let plMoney =  self.currentState.purchased * self.currentState.goalPLRate / 100
+                let plMoney =  self.currentState.purchased * goalPLRate / 100
                 
                 return .concat([
-                    .just(.setGoalPrice(goalPrice)),
                     .just(.setGoalPLRate(goalPLRate)),
                     .just(.setPlMoney(plMoney)),
-                    .just(.enableShareButton(self.isShareEnable()))
+                    .just(.enableShareButton)
                 ])
             } else {
                 return .just(.setGoalPLRate(goalPLRate))
@@ -168,24 +122,16 @@ class CalculatorReactor: Reactor {
             newState.amount = amount
         case .setPurchased(let purchased):
             newState.purchased = purchased
-        case .setGoalPrice(let goalPrice):
-            newState.goalPrice = goalPrice
         case .setGoalPLRate(let goalPLRate):
             newState.goalPLRate = goalPLRate
-        case .enableShareButton(let isEnable):
-            newState.isShareButtonEnable = isEnable
+        case .enableShareButton:
+            newState.isShareButtonEnable = newState.goalPLRate != 0
+                && newState.purchased != 0
         case .setPlMoney(let plMoney):
             newState.plMoney = plMoney
         case .goToShare(let plMoney, let plRate):
             self.goToSharePublisher.accept((plMoney, plRate))
         }
         return newState
-    }
-    
-    private func isShareEnable() -> Bool {
-        return self.currentState.avgPrice != 0
-            && self.currentState.amount != 0
-            && self.currentState.goalPrice != 0
-            && self.currentState.goalPLRate != 0
     }
 }

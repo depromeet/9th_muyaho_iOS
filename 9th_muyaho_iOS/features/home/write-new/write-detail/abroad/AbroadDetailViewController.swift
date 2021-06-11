@@ -119,12 +119,6 @@ class AbroadDetailViewController: BaseViewController, View {
         
         // MARK: Bind State
         reactor.state
-            .map { $0.stockType }
-            .asDriver(onErrorJustReturn: .domestic)
-            .drive(self.abroadDetailView.rx.stockType)
-            .disposed(by: self.disposeBag)
-        
-        reactor.state
             .map { $0.stockName }
             .asDriver(onErrorJustReturn: "")
             .drive(self.abroadDetailView.stockNameLabel.rx.text)

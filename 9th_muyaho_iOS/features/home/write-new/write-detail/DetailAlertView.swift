@@ -37,7 +37,6 @@ class DetailAlertView: BaseView {
         $0.setTitle("write_detail_continue".localized, for: .normal)
         $0.setTitleColor(.sub_gray_20, for: .normal)
         $0.titleLabel?.font = .body2_14B
-        $0.contentEdgeInsets = .init(top: 10, left: 33, bottom: 10, right: 33)
         $0.backgroundColor = .sub_gray_60
     }
     
@@ -46,7 +45,6 @@ class DetailAlertView: BaseView {
         $0.setTitle("write_detail_exit".localized, for: .normal)
         $0.setTitleColor(.sub_white_w2, for: .normal)
         $0.titleLabel?.font = .body2_14B
-        $0.contentEdgeInsets = .init(top: 10, left: 33, bottom: 10, right: 33)
         $0.backgroundColor = .secondary_red_default
     }
     
@@ -84,12 +82,14 @@ class DetailAlertView: BaseView {
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(30)
             make.right.equalTo(self.snp.centerX).offset(-4)
             make.width.equalTo(120)
+            make.height.equalTo(40)
         }
         
         self.exitButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.continueButton)
             make.left.equalTo(self.snp.centerX).offset(4)
             make.width.equalTo(120)
+            make.height.equalTo(40)
         }
     }
     

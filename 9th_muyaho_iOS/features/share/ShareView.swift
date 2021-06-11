@@ -139,7 +139,7 @@ class ShareView: BaseView {
         }
     }
     
-    fileprivate func setYoungchanImage(asset: Double) {
+    fileprivate func setYoungchanImage(asset: Int) {
         switch asset {
         case _ where asset < 200000:
             self.youngchanImage.image = .imgBigYoungchan1
@@ -189,14 +189,14 @@ class ShareView: BaseView {
 
 extension Reactive where Base: ShareView {
     
-    var plRate: Binder<Double> {
+    var plRate: Binder<Float> {
         return Binder(self.base) { view, plRate in
-            view.slider.value = Float(plRate / 1000)
-            view.plRateLabel.text = "+\(Int(plRate))%"
+            view.slider.value = plRate / 1000
+            view.plRateLabel.text = "+\(plRate.roundUpTwoString)%"
         }
     }
     
-    var asset: Binder<Double> {
+    var asset: Binder<Int> {
         return Binder(self.base) { view, asset in
             view.assetLabel.text = asset.decimalString
             view.setYoungchanImage(asset: asset)

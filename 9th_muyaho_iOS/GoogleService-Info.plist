@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>684000882107-00b4f8tkul4uqluglne2m2l47o6ta68n.apps.googleusercontent.com</string>
+	<string>684000882107-7rqske69vlihuj856m4smtncocaug3aa.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.684000882107-00b4f8tkul4uqluglne2m2l47o6ta68n</string>
+	<string>com.googleusercontent.apps.684000882107-7rqske69vlihuj856m4smtncocaug3aa</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCwHN2VKDcLiYPB5jYeLNqnZcUYUyu-DAA</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.depromeet.muyaho.-th-muyaho-iOS</string>
+	<string>com.depromeet.youngcha</string>
 	<key>PROJECT_ID</key>
 	<string>youngcha-b49cf</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:684000882107:ios:5ca8b58b105ef8f52c289e</string>
+	<string>1:684000882107:ios:e9e0ced3376de1d12c289e</string>
 </dict>
 </plist>

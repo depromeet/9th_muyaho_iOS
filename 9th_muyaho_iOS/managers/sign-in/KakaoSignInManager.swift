@@ -30,6 +30,14 @@ class KakaoSignInManager: SigninManagerProtocol {
         return self.publisher
     }
     
+    func signOut() -> Completable {
+        return UserApi.shared.rx.logout()
+    }
+    
+    func unlink() -> Completable {
+        return UserApi.shared.rx.unlink()
+    }
+    
     private func signInWithKakaoTalk() {
         UserApi.shared.rx.loginWithKakaoTalk()
             .subscribe { authToken in

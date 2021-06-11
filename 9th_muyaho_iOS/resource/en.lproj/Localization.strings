@@ -28,7 +28,7 @@
 
 // sign-in
 "sign_in_with_kakao" = "카카오 계정으로 계속하기";
-"sign_in_with_apple" = "애플 아이디로 계속하기";
+"sign_in_with_apple" = "Apple로 계속하기";
 
 // sign-up
 "sign_up_title" = "우리 화성🚀갈꺼니까,\n영~차!";
@@ -111,12 +111,11 @@
 "calculate_empty_title" = "미래의 수익금을\n예상해보세요!";
 "calculate_title" = "미래의 수익금은";
 "calculate_current_asset" = "현재 보유";
-"calculate_gole" = "내 목표";
-"calculate_avg" = "보유 평단가";
-"calculate_amount" = "보유 수량";
-"calculate_purchased" = "매입 금액";
-"calculate_goal_price" = "목표 단가";
-"calculate_goal_pl_rate" = "목표 수익률";
+"calculate_gole" = "내 목표 수익률은?";
+"calculate_avg" = "보유 평단가 (원)";
+"calculate_amount" = "보유 수량 (원)";
+"calculate_purchased" = "매입 금액 (원)";
+"calculate_goal_pl_rate" = "목표 수익률 (%)";
 "calculate_share" = "공유하기";
 "calculate_history" = "기록";
 "calculate_pl_rate" = "수익률";

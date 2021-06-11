@@ -53,8 +53,8 @@ class StockDetailView: BaseView {
     override func setup() {
         self.backgroundColor = .primary_dark
         self.addSubviews(
-            backButton, refreshButton, domesticButton, abroadButton,
-            coinButton, indicatorView, containerView, patternImage
+            backButton, patternImage, domesticButton, abroadButton,
+            coinButton, indicatorView, containerView, refreshButton
         )
     }
     
