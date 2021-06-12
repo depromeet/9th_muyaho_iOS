@@ -72,13 +72,13 @@ final class MyPageView: BaseView {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-35)
-            make.height.equalTo(40)
+            make.height.equalTo(48)
         }
         
         self.signOutButton.snp.makeConstraints { make in
             make.left.right.equalTo(self.withdrawalButton)
             make.bottom.equalTo(withdrawalButton.snp.top).offset(-10)
-            make.height.equalTo(40)
+            make.height.equalTo(48)
         }
     }
     

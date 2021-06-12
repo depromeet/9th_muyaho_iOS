@@ -82,7 +82,7 @@ class DomesticDetailView: BaseView {
     let amountLabel = UILabel().then {
         $0.font = .caption1_12R
         $0.textColor = .sub_white_w3
-        $0.text = "common_amount".localized
+        $0.text = "수량"
     }
     
     let amountField = DeletableInputField().then {
@@ -200,7 +200,7 @@ class DomesticDetailView: BaseView {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
-            make.height.equalTo(40)
+            make.height.equalTo(48)
         }
     }
     

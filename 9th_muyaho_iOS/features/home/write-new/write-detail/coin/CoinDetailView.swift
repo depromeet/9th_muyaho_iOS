@@ -221,7 +221,7 @@ class CoinDetailView: BaseView {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-37)
-            make.height.equalTo(40)
+            make.height.equalTo(48)
         }
     }
     
