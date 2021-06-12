@@ -1438,13 +1438,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FDA26644E22F62978D83FBA /* Pods-9th_muyaho_iOS.debug.xcconfig */;
 			buildSettings = {
-				API_URL = "https://prod.muyaho.xyz";
+				API_URL = "https://test.muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
@@ -1452,7 +1452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.youngcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1465,13 +1465,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A57283C4AA526D18F7C7023E /* Pods-9th_muyaho_iOS.release.xcconfig */;
 			buildSettings = {
-				API_URL = "https://prod.muyaho.xyz";
+				API_URL = "https://muyaho.xyz";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = 9th_muyaho_iOS/9th_muyaho_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X975A2HM62;
 				INFOPLIST_FILE = 9th_muyaho_iOS/Info.plist;
 				KAKAO_APP_KEY = 9d9d22a2c398477b218d7e70d58e04c5;
@@ -1479,7 +1479,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.youngcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

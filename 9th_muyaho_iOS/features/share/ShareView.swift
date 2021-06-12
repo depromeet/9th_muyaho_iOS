@@ -71,7 +71,6 @@ class ShareView: BaseView {
     
     
     override func setup() {
-        self.backgroundColor = .primary_default
         self.imageContainer.addSubviews(
             self.youngchanImage,
             self.plRateLabel,
@@ -181,6 +180,7 @@ class ShareView: BaseView {
             UIView.animate(withDuration: 0.3) { [weak self] in
                 self?.backgroundColor = isBlack ? .sub_black_b1 : .primary_default
                 self?.imageContainer.backgroundColor = isBlack ? .sub_black_b1 : .primary_default
+                print("imageContainer backgroundColor: \(isBlack)")
                 self?.plRateLabel.backgroundColor = isBlack ? .primary_default : .primary_dark
             }
         }
